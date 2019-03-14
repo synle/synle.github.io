@@ -1,0 +1,232 @@
+// https://github.com/dracula/dracula-theme
+@colorBackground: #282a36;
+@colorCurrent :#44475a;
+@colorSelection:  #44475a;
+@colorForeground: #f8f8f2;
+@colorComment :#6272a4;
+@colorCyan:   #8be9fd;
+@colorGreen:  #50fa7b;
+@colorOrange: #ffb86c;
+@colorPink:   #ff79c6;
+@colorPurple: #bd93f9;
+@colorRed :#ff5555;
+@colorYellow: #f1fa8c;
+
+@colorWhite: #fff;
+@colorBlack: #000;
+@colorBlackLight: #333;
+
+@fontFamily0: Tahoma, Geneva, sans-serif;
+@fontFamily1: "Times New Roman", Times, serif;
+@fontFamily2: Impact, Charcoal, sans-serif;
+
+@fontSize0: 1rem;
+@fontSize1: 1.2rem;
+
+@fontWeight2: 900;
+
+@space2-: 0;
+@space1-: 3px;
+@space0: 8px;
+@space1: 13px;
+@space2: 20px;
+@space-auto: auto;
+
+@width-max: 100%;
+
+
+//stuffs that make up the app
+@width-page: 1024px;
+
+// color used by the app
+@color0: @colorForeground; // main color
+@color1: @colorCyan;
+@color2: @colorYellow;
+@color3: @colorBackground; // background color
+@color4: @colorRed; // list dot, and highlight
+@color5: @colorOrange; // link
+
+body{
+    font-size: 14px;
+}
+
+//utils
+.mt1-, .m1-, .mv1- { margin-top: @space1- }
+.mb1-, .m1-, .mv1- { margin-bottom: @space1- }
+.ml1-, .m1-, .ms1- { margin-left: @space1- }
+.mr1-, .m1-, .ms1- { margin-right: @space1- }
+
+.mt0, .m0, .mv0 { margin-top: @space0 }
+.mb0, .m0, .mv0 { margin-bottom: @space0 }
+.ml0, .m0, .ms0 { margin-left: @space0 }
+.mr0, .m0, .ms0 { margin-right: @space0 }
+
+.pt1-, .p1-, .pv1- { padding-top: @space1- }
+.pb1-, .p1-, .pv1- { padding-bottom: @space1- }
+.pl1-, .p1-, .ps1- { padding-left: @space1- }
+.pr1-, .p1-, .ps1- { padding-right: @space1- }
+
+.pt0, .p0, .pv0 { padding-top: @space0 }
+.pb0, .p0, .pv0 { padding-bottom: @space0 }
+.pl0, .p0, .ps0 { padding-left: @space0 }
+.pr0, .p0, .ps0 { padding-right: @space0 }
+
+
+*{
+    box-sizing:border-box;
+}
+
+
+a{
+    text-decoration: none;
+}
+
+.uppercase{
+    text-transform: uppercase;
+}
+
+.tac{
+    text-align:center;
+}
+
+.tar{
+    text-align:right;
+}
+
+.b{
+    font-weight:bold;
+}
+
+.clearfix{
+    clear:both;
+    overflow: hidden;
+}
+
+.fr{
+    float:right;
+}
+
+
+h1, h2, h3, h4, h5, h6, p{
+    margin:0;
+}
+
+.row{
+    &:extend(.mb1-);
+
+    &::before {
+        content: "\b7";
+        margin-right: 3px;
+        font-weight: @fontWeight2;
+    }
+
+    &::after {
+        content: ".";
+    }
+}
+
+.at:after {
+    content: '@';
+    color: @colorForeground;
+}
+
+
+// start
+body{
+    font-family: @fontFamily0;
+    background-color: @color3;
+    color: @color0;
+}
+
+// app colors
+.c0{
+    color: @color0;
+}
+.c1{
+    color: @color1;
+}
+.c2{
+    color: @color2;
+}
+.c3{
+    color: @color3;
+}
+.c4{
+    color: @color4;
+}
+.c5{
+    color: @color5;
+}
+
+
+// specific to resume page
+.job-title{
+    display:block;
+}
+
+//screen only stuffs
+@media screen {
+    *{}
+
+    body{
+        max-width: @width-page;
+        width: calc(~"100% - 40px");
+        margin: @space-auto;
+        padding-top: @space2;
+        padding-bottom: @space2;
+    }
+
+    a{
+        color: @color5;
+
+        &:hover{
+            color: @color4;
+        }
+    }
+
+    .row::before {
+        color: @color4;
+    }
+
+    .visible-screen{
+        display:inline-block;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .job-location, .job-time-description{
+        display:block;
+        float:none;
+    }
+}
+
+
+@media print {
+    @page { margin: @space2-; }
+
+    *{}
+
+    body {
+        background-color: @colorWhite;
+        color: @colorBlackLight;
+        width: @width-max;
+        margin: @space2-;
+        padding: @space2;
+    }
+
+    .bold {
+        color: @colorBlack;
+    }
+
+    body, h1, h2, h3, h4, h5, h6, p {
+        font-size:12px;
+    }
+
+    .c0, .c1, .c2, .c3, .c4, .c5 {
+        color: @colorBlackLight;
+    }
+
+    .visible-screen{
+        display:none;
+    }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "syle-github-io",
+  "version": "1.0.1",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "less": "^2.7.1"
+  },
+  "scripts": {
+    "build": "npm run build:css; npm run package",
+    "build:css": "lessc ./index.less ./index.css",
+    "package": "echo \"no package task yet\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Sy",
+    "Le"
+  ],
+  "author": "",
+  "license": "ISC"
+}
