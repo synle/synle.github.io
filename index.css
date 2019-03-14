@@ -1,0 +1,220 @@
+body {
+  font-size: 14px;
+}
+.mt1-,
+.m1-,
+.mv1- {
+  margin-top: 3px;
+}
+.mb1-,
+.m1-,
+.mv1-,
+.row {
+  margin-bottom: 3px;
+}
+.ml1-,
+.m1-,
+.ms1- {
+  margin-left: 3px;
+}
+.mr1-,
+.m1-,
+.ms1- {
+  margin-right: 3px;
+}
+.mt0,
+.m0,
+.mv0 {
+  margin-top: 8px;
+}
+.mb0,
+.m0,
+.mv0 {
+  margin-bottom: 8px;
+}
+.ml0,
+.m0,
+.ms0 {
+  margin-left: 8px;
+}
+.mr0,
+.m0,
+.ms0 {
+  margin-right: 8px;
+}
+.pt1-,
+.p1-,
+.pv1- {
+  padding-top: 3px;
+}
+.pb1-,
+.p1-,
+.pv1- {
+  padding-bottom: 3px;
+}
+.pl1-,
+.p1-,
+.ps1- {
+  padding-left: 3px;
+}
+.pr1-,
+.p1-,
+.ps1- {
+  padding-right: 3px;
+}
+.pt0,
+.p0,
+.pv0 {
+  padding-top: 8px;
+}
+.pb0,
+.p0,
+.pv0 {
+  padding-bottom: 8px;
+}
+.pl0,
+.p0,
+.ps0 {
+  padding-left: 8px;
+}
+.pr0,
+.p0,
+.ps0 {
+  padding-right: 8px;
+}
+* {
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+}
+.uppercase {
+  text-transform: uppercase;
+}
+.tac {
+  text-align: center;
+}
+.tar {
+  text-align: right;
+}
+.b {
+  font-weight: bold;
+}
+.clearfix {
+  clear: both;
+  overflow: hidden;
+}
+.fr {
+  float: right;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+.row::before {
+  content: "\b7";
+  margin-right: 3px;
+  font-weight: 900;
+}
+.row::after {
+  content: ".";
+}
+.at:after {
+  content: '@';
+  color: #f8f8f2;
+}
+body {
+  font-family: Tahoma, Geneva, sans-serif;
+  background-color: #282a36;
+  color: #f8f8f2;
+}
+.c0 {
+  color: #f8f8f2;
+}
+.c1 {
+  color: #8be9fd;
+}
+.c2 {
+  color: #f1fa8c;
+}
+.c3 {
+  color: #282a36;
+}
+.c4 {
+  color: #ff5555;
+}
+.c5 {
+  color: #ffb86c;
+}
+.job-title {
+  display: block;
+}
+@media screen {
+  body {
+    max-width: 1024px;
+    width: calc(100% - 40px);
+    margin: auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  a {
+    color: #ffb86c;
+  }
+  a:hover {
+    color: #ff5555;
+  }
+  .row::before {
+    color: #ff5555;
+  }
+  .visible-screen {
+    display: inline-block;
+  }
+}
+@media screen and (max-width: 500px) {
+  .job-location,
+  .job-time-description {
+    display: block;
+    float: none;
+  }
+}
+@media print {
+  @page {
+    margin: 0;
+  }
+  body {
+    background-color: #fff;
+    color: #333;
+    width: 100%;
+    margin: 0;
+    padding: 20px;
+  }
+  .bold {
+    color: #000;
+  }
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    font-size: 12px;
+  }
+  .c0,
+  .c1,
+  .c2,
+  .c3,
+  .c4,
+  .c5 {
+    color: #333;
+  }
+  .visible-screen {
+    display: none;
+  }
+}
