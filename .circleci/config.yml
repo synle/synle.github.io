@@ -5,6 +5,9 @@
 version: 2
 jobs:
   build:
+    branches:
+      only:
+        - master
     docker:
       # specify the version you desire here
       - image: circleci/node:7.10
@@ -51,8 +54,8 @@ jobs:
               git config user.name "Deployment Bot"
               npm version --no-git-tag-version patch
               git add .
-              git commit -m "CircleCI Trigger Autobuild `date`"
-              git push -q https://${GITHUB_TOKEN}@github.com/synle/synle.github.io master
+              git commit -m "CircleCI Trigger Autobuild `date` for branch=${CIRCLE_BRANCH}"
+              git push -q https://${GITHUB_TOKEN}@github.com/synle/synle.github.io "${CIRCLE_BRANCH}"
             else
               echo 'clean no update'
             fi
