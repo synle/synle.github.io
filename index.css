@@ -129,9 +129,11 @@ p {
   color: #f8f8f2;
 }
 body {
+  color: #f8f8f2;
+}
+* {
   font-family: Tahoma, Geneva, sans-serif;
   background-color: #282a36;
-  color: #f8f8f2;
 }
 .c0 {
   color: #f8f8f2;
