@@ -257,6 +257,14 @@ body {
 .justify-content-center {
   justify-content: center;
 }
+.hr {
+  height: 2px;
+  background: #ccc;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  margin-left: 25px;
+  margin-right: 25px;
+}
 @media screen {
   body {
     max-width: 1024px;

@@ -11,6 +11,7 @@
 @space1: 3px;
 @space2: 8px;
 @space3: 12px;
+@space4: 25px;
 @space-auto: auto;
 
 @width-max: 100%;
@@ -88,6 +89,7 @@
 @color3: @colorBackground; // background color
 @color4: @colorRed; // list dot, and highlight
 @color5: @colorCyan; // link
+@color6: #ccc; // minor separator
 
 // Use these for more colorful schemes
 // @color2: @colorYellow;
@@ -245,6 +247,17 @@ body{
 }
 .justify-content-center{
     justify-content: center;
+}
+
+
+// custom stuffs
+.hr {
+    height: 2px;
+    background: @color6;
+    margin-top: @space3;
+    margin-bottom: @space3;
+    margin-left: @space4;
+    margin-right: @space4;
 }
 
 //screen only stuffs
