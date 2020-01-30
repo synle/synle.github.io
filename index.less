@@ -205,9 +205,23 @@ body{
 }
 
 
-// specific to resume page
-.job-title{
+// display helpers
+.block{
     display:block;
+}
+.flex{
+    display: flex;
+}
+
+// flex helpers
+.shrink0{
+  flex-shrink: 0;
+}
+.grow1{
+  flex-grow: 1;
+}
+.flex-wrap{
+  flex-wrap: wrap;
 }
 
 //screen only stuffs
@@ -235,7 +249,7 @@ body{
     }
 
     .visible-screen{
-        display:inline-block;
+        display: initial;
     }
 }
 

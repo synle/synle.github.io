@@ -191,8 +191,20 @@ body {
 .c5 {
   color: var(--color-orange);
 }
-.job-title {
+.block {
   display: block;
+}
+.flex {
+  display: flex;
+}
+.shrink0 {
+  flex-shrink: 0;
+}
+.grow1 {
+  flex-grow: 1;
+}
+.flex-wrap {
+  flex-wrap: wrap;
 }
 @media screen {
   body {
@@ -212,7 +224,7 @@ body {
     color: var(--color-red);
   }
   .visible-screen {
-    display: inline-block;
+    display: initial;
   }
 }
 @media screen and (max-width: 500px) {
