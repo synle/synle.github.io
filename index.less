@@ -1,21 +1,3 @@
-// https://github.com/dracula/dracula-theme
-@colorBackground: #282a36;
-@colorCurrent :#44475a;
-@colorSelection:  #44475a;
-@colorForeground: #f8f8f2;
-@colorComment :#6272a4;
-@colorCyan:   #8be9fd;
-@colorGreen:  #50fa7b;
-@colorOrange: #ffb86c;
-@colorPink:   #ff79c6;
-@colorPurple: #bd93f9;
-@colorRed :#ff5555;
-@colorYellow: #f1fa8c;
-
-@colorWhite: #fff;
-@colorBlack: #000;
-@colorBlackLight: #333;
-
 @fontFamily0: Tahoma, Geneva, sans-serif;
 @fontFamily1: "Times New Roman", Times, serif;
 @fontFamily2: Impact, Charcoal, sans-serif;
@@ -37,6 +19,68 @@
 
 //stuffs that make up the app
 @width-page: 1024px;
+
+
+// vars for color - Bright Mode
+:root {
+  --main-bg-color: white;
+  // https://github.com/dracula/dracula-theme
+  --color-background: white;
+  --color-current: silver;
+  --color-selection:  #44475a;
+  --color-foreground: black;
+  --color-comment: black;
+  --color-cyan:   blue;
+  --color-green:  green;
+  --color-orange: blue;
+  --color-pink:   pink;
+  --color-purple: purple;
+  --color-red: red;
+  --color-yellow: blue;
+  --color-white: #fff;
+  --color-black: #000;
+  --color-blacklight: #333;
+}
+
+// vars for color - Dark Mode
+@media (prefers-color-scheme: dark) {
+  :root {
+    --main-bg-color: coral;
+    // https://github.com/dracula/dracula-theme
+    --color-background: #282a36;
+    --color-current :#44475a;
+    --color-selection:  #44475a;
+    --color-foreground: #f8f8f2;
+    --color-comment :#6272a4;
+    --color-cyan:   #8be9fd;
+    --color-green:  #50fa7b;
+    --color-orange: #ffb86c;
+    --color-pink:   #ff79c6;
+    --color-purple: #bd93f9;
+    --color-red :#ff5555;
+    --color-yellow: #f1fa8c;
+    --color-white: #fff;
+    --color-black: #000;
+    --color-blacklight: #333;
+  }
+}
+
+
+@colorBackground:  var(--color-background);
+@colorCurrent : var(--color-current);
+@colorSelection:  var(--color-selection);
+@colorForeground:  var(--color-foreground);
+@colorComment : var(--color-comment);
+@colorCyan:  var(--color-cyan);
+@colorGreen:  var(--color-green);
+@colorOrange:  var(--color-orange);
+@colorPink:  var(--color-pink);
+@colorPurple:  var(--color-purple);
+@colorRed : var(--color-red);
+@colorYellow:  var(--color-yellow);
+@colorWhite:  var(--color-white);
+@colorBlack:  var(--color-black);
+@colorBlackLight:  var(--color-blacklight);
 
 // color used by the app
 @color0: @colorForeground; // main color
