@@ -1,3 +1,41 @@
+:root {
+  --main-bg-color: white;
+  --color-background: white;
+  --color-current: silver;
+  --color-selection: #44475a;
+  --color-foreground: black;
+  --color-comment: black;
+  --color-cyan: blue;
+  --color-green: green;
+  --color-orange: blue;
+  --color-pink: pink;
+  --color-purple: purple;
+  --color-red: red;
+  --color-yellow: blue;
+  --color-white: #fff;
+  --color-black: #000;
+  --color-blacklight: #333;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --main-bg-color: coral;
+    --color-background: #282a36;
+    --color-current: #44475a;
+    --color-selection: #44475a;
+    --color-foreground: #f8f8f2;
+    --color-comment: #6272a4;
+    --color-cyan: #8be9fd;
+    --color-green: #50fa7b;
+    --color-orange: #ffb86c;
+    --color-pink: #ff79c6;
+    --color-purple: #bd93f9;
+    --color-red: #ff5555;
+    --color-yellow: #f1fa8c;
+    --color-white: #fff;
+    --color-black: #000;
+    --color-blacklight: #333;
+  }
+}
 body {
   font-size: 14px;
 }
@@ -126,32 +164,32 @@ p {
 }
 .at:after {
   content: '@';
-  color: #f8f8f2;
+  color: var(--color-foreground);
 }
 body {
-  color: #f8f8f2;
+  color: var(--color-foreground);
 }
 * {
   font-family: Tahoma, Geneva, sans-serif;
-  background-color: #282a36;
+  background-color: var(--color-background);
 }
 .c0 {
-  color: #f8f8f2;
+  color: var(--color-foreground);
 }
 .c1 {
-  color: #8be9fd;
+  color: var(--color-cyan);
 }
 .c2 {
-  color: #f1fa8c;
+  color: var(--color-yellow);
 }
 .c3 {
-  color: #282a36;
+  color: var(--color-background);
 }
 .c4 {
-  color: #ff5555;
+  color: var(--color-red);
 }
 .c5 {
-  color: #ffb86c;
+  color: var(--color-orange);
 }
 .job-title {
   display: block;
@@ -165,13 +203,13 @@ body {
     padding-bottom: 20px;
   }
   a {
-    color: #ffb86c;
+    color: var(--color-orange);
   }
   a:hover {
-    color: #ff5555;
+    color: var(--color-red);
   }
   .row::before {
-    color: #ff5555;
+    color: var(--color-red);
   }
   .visible-screen {
     display: inline-block;
@@ -189,14 +227,14 @@ body {
     margin: 0;
   }
   body {
-    background-color: #fff;
-    color: #333;
+    background-color: var(--color-white);
+    color: var(--color-blacklight);
     width: 100%;
     margin: 0;
     padding: 20px;
   }
   .bold {
-    color: #000;
+    color: var(--color-black);
   }
   body,
   h1,
@@ -214,7 +252,7 @@ body {
   .c3,
   .c4,
   .c5 {
-    color: #333;
+    color: var(--color-blacklight);
   }
   .visible-screen {
     display: none;
