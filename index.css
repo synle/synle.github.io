@@ -119,6 +119,26 @@ body {
 .ps2 {
   padding-right: 8px;
 }
+.pt3,
+.p3,
+.pv3 {
+  padding-top: 12px;
+}
+.pb3,
+.p3,
+.pv3 {
+  padding-bottom: 12px;
+}
+.pl3,
+.p3,
+.ps3 {
+  padding-left: 12px;
+}
+.pr3,
+.p3,
+.ps3 {
+  padding-right: 12px;
+}
 * {
   box-sizing: border-box;
 }
