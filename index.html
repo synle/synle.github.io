@@ -166,7 +166,16 @@
     });
 
     // calculate yoe
-    const yoeValue = '8+';
+    let yoeValue;
+    try{
+      yoeValue = (new Date()).getYear() - (2011 - 1900);
+      if(yoeValue <= 0){
+        throw 'Something is wrong with year';
+      }
+      yoeValue += '+';
+    } catch(e){
+      yoeValue = '8+';
+    }
     document.querySelector('#yoe-label').innerText = yoeValue;
   })()
   </script>
