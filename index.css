@@ -79,6 +79,26 @@ body {
 .ms2 {
   margin-right: 8px;
 }
+.mt3,
+.m3,
+.mv3 {
+  margin-top: 12px;
+}
+.mb3,
+.m3,
+.mv3 {
+  margin-bottom: 12px;
+}
+.ml3,
+.m3,
+.ms3 {
+  margin-left: 12px;
+}
+.mr3,
+.m3,
+.ms3 {
+  margin-right: 12px;
+}
 .pt1,
 .p1,
 .pv1 {
