@@ -11,6 +11,7 @@
 @space1: 3px;
 @space2: 8px;
 @space3: 12px;
+@space4: 25px;
 @space-auto: auto;
 
 @width-max: 100%;
@@ -88,6 +89,7 @@
 @color3: @colorBackground; // background color
 @color4: @colorRed; // list dot, and highlight
 @color5: @colorCyan; // link
+@color6: #ccc; // minor separator
 
 // Use these for more colorful schemes
 // @color2: @colorYellow;
@@ -107,6 +109,11 @@ body{
 .mb2, .m2, .mv2 { margin-bottom: @space2 }
 .ml2, .m2, .ms2 { margin-left: @space2 }
 .mr2, .m2, .ms2 { margin-right: @space2 }
+
+.mt3, .m3, .mv3 { margin-top: @space3 }
+.mb3, .m3, .mv3 { margin-bottom: @space3 }
+.ml3, .m3, .ms3 { margin-left: @space3 }
+.mr3, .m3, .ms3 { margin-right: @space3 }
 
 .pt1, .p1, .pv1 { padding-top: @space1 }
 .pb1, .p1, .pv1 { padding-bottom: @space1 }
@@ -240,6 +247,18 @@ body{
 }
 .justify-content-center{
     justify-content: center;
+}
+
+
+// custom stuffs
+.hr {
+    height: 2px;
+    background: @color6;
+    margin-top: @space3;
+    margin-bottom: @space3;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 200px;
 }
 
 //screen only stuffs

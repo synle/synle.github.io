@@ -10,14 +10,17 @@
   <body>
     <!-- Contact Info -->
     <header class="flex flex-wrap justify-content-center">
-      <span class="pv3 shrink0 c2 b cap">Sy Le</span>
-      <span class="pv3 shrink0 ms2">*</span>
+      <span class="pv3 c2 b cap">Sy Le</span>
+      <span class="pv3 ms3">*</span>
       <span class="pv3 cap">San Jose, CA</span>
-      <span class="pv3 shrink0 ms2">*</span>
+      <span class="pv3 ms3">*</span>
       <a href="tel:1-408-216-3428" class="pv3">408-216-3428</a>
-      <span class="pv3 shrink0 ms2">*</span>
+      <span class="pv3 ms3">*</span>
       <a href="mailto:lenguyensy@gmail.com" class="pv3 cap">le.nguyen.sy@gmail.com</a>
     </header>
+
+    <!-- break -->
+    <div class="hr visible-screen"></div>
 
 
     <!-- Summary -->
@@ -27,6 +30,9 @@
         <div class="row">A full-stack Software Engineer with <span id="yoe-label">8+</span> years hands-on experience working with Node, Javascript, React, and Java</div>
       </div>
     </div>
+
+    <!-- break -->
+    <div class="hr visible-screen"></div>
 
     <!-- Experience -->
     <div>
@@ -89,7 +95,7 @@
          <div class="job-description c0">
             <div class="row">Full stack engineer for <a href="https://www.etrigue.com/">eTrigue Demand Center</a> team, using Javascript, PHP, Node and C# responsible for prospect list and campaign  builder</div>
             <div class="row">Integrated with Cisco WebEx and Citrix GoToWebinar using RabbitMQ and C# to retrieve attendees’ information for consumption in eTrigue</div>
-            <div class="row">Designed and built user preference API that persists users settings across visits and clients</div>
+            <div class="row">Designed and built both BE API and FE for User Preference feature to persist users settings across visits and clients</div>
             <div class="row">Used Cassandra and Node to implement ETL Background Jobs to generate reports for Sales Velocity and ROI</div>
          </div>
          <div class="job-header clearfix c1 b">
@@ -103,17 +109,22 @@
        </div>
     </div>
 
+    <!-- break -->
+    <div class="hr visible-screen"></div>
 
     <!-- Educations -->
     <div>
        <div class="section-header cap b c2 tac mt1 mb1"><u>Education</u></div>
        <div class="education-container section-content c0">
-          <div class="row"><span class="b">Master of Science</span> in <span class="b">Software Engineering</span> at <span class="b">San Jose State University</span>, specialized in Cloud & Mobile Computing, graduated 2018</div>
+          <div class="row"><span class="b">Master of Science</span> in <span class="b">Software Engineering</span> at <span class="b">San Jose State University</span>, specialized in Cloud & Mobile Computing, graduated 2019</div>
        </div>
        <div class="education-container section-content c0">
          <div class="row"><span class="b">Bachelor of Science</span> in <span class="b">Computer Science</span> at <span class="b">San Jose State University</span>, specialized in Computer Graphics, graduated 2011 Cum Laude</div>
        </div>
     </div>
+
+    <!-- break -->
+    <div class="hr visible-screen"></div>
 
     <!-- Side Project -->
     <div>
@@ -129,6 +140,9 @@
        </div>
     </div>
 
+    <!-- break -->
+    <div class="hr visible-screen"></div>
+
     <!-- Skills -->
     <div>
       <div class="section-header cap b c2 tac mt1 mb1"><u>Additional Information</u></div>
@@ -139,17 +153,20 @@
       </div>
     </div>
 
+    <!-- break -->
+    <div class="hr visible-screen"></div>
+
     <footer class="flex flex-wrap justify-content-center pv3">
       <a href="https://www.linkedin.com/in/syle1021" class="visible-screen cap" title="Linkedin Profile">
         <i class="fab fa-linkedin"></i>
         <span>Linkedin</span>
       </a>
-      <span class="visible-screen shrink0 ms2">*</span>
+      <span class="visible-screen ms3">*</span>
       <a href="https://github.com/synle" class="visible-screen cap" title="Github Profile">
         <i class="fab fa-github"></i>
         <span>GitHub</span>
       </a>
-      <span class="visible-screen shrink0 ms2">*</span>
+      <span class="visible-screen ms3">*</span>
       <a  href="./syle-resume.pdf" download class="visible-screen cap" title="Download Resume">
         <i class="fas fa-file"></i>
         <span>Resume</span>
@@ -160,10 +177,11 @@
   <script>
   (function(){
     const allAnchorTags = document.querySelectorAll("a");
-    allAnchorTags.forEach(function(anchorTag){
+    for(var i = 0; i < allAnchorTags.length; i++){
+      const anchorTag = allAnchorTags[i];
       anchorTag.setAttribute("target", "_blank");
       anchorTag.setAttribute("rel", "noopener noreferrer");
-    });
+    }
 
     // calculate yoe
     let yoeValue;
