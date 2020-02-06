@@ -281,7 +281,7 @@ body {
   color: var(--color-foreground);
 }
 * {
-  font-family: Tahoma, Geneva, sans-serif;
+  font-family: Helvetica, Tahoma, Geneva, sans-serif;
   background-color: var(--color-background);
 }
 .c0 {
@@ -361,6 +361,9 @@ body {
   }
 }
 @media screen and (max-width: 500px) {
+  body {
+    width: calc(100% - 30px);
+  }
 }
 @media print {
   @page {
