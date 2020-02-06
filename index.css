@@ -39,6 +39,26 @@
 body {
   font-size: 14px;
 }
+.mtauto,
+.mauto,
+.mvauto {
+  margin-top: auto;
+}
+.mbauto,
+.mauto,
+.mvauto {
+  margin-bottom: auto;
+}
+.mlauto,
+.mauto,
+.msauto {
+  margin-left: auto;
+}
+.mrauto,
+.mauto,
+.msauto {
+  margin-right: auto;
+}
 .mt1,
 .m1,
 .mv1 {
@@ -98,6 +118,26 @@ body {
 .m3,
 .ms3 {
   margin-right: 12px;
+}
+.mt4,
+.m4,
+.mv4 {
+  margin-top: 20px;
+}
+.mb4,
+.m4,
+.mv4 {
+  margin-bottom: 20px;
+}
+.ml4,
+.m4,
+.ms4 {
+  margin-left: 20px;
+}
+.mr4,
+.m4,
+.ms4 {
+  margin-right: 20px;
 }
 .pt1,
 .p1,
@@ -159,6 +199,26 @@ body {
 .ps3 {
   padding-right: 12px;
 }
+.pt4,
+.p4,
+.pv4 {
+  padding-top: 20px;
+}
+.pb4,
+.p4,
+.pv4 {
+  padding-bottom: 20px;
+}
+.pl4,
+.p4,
+.ps4 {
+  padding-left: 20px;
+}
+.pr4,
+.p4,
+.ps4 {
+  padding-right: 20px;
+}
 * {
   box-sizing: border-box;
 }
@@ -172,7 +232,7 @@ a {
   text-align: right;
 }
 .bold1 {
-  font-weight: bold;
+  font-weight: 300;
 }
 .bold2 {
   font-weight: bold;
@@ -209,9 +269,6 @@ p {
 }
 .row::after {
   content: ".";
-}
-.job-header {
-  margin-top: 3px;
 }
 .at:after {
   content: '@';
@@ -266,6 +323,9 @@ body {
 .align-items-center {
   align-items: center;
 }
+.hidden {
+  display: none;
+}
 .hr {
   height: 2px;
   background: #ccc;
@@ -280,8 +340,6 @@ body {
     max-width: 1024px;
     width: calc(100% - 40px);
     margin: auto;
-    padding-top: 8px;
-    padding-bottom: 8px;
   }
   a {
     color: var(--color-cyan);
@@ -295,13 +353,11 @@ body {
   .visible-screen {
     display: block;
   }
+  .visible-screen-flex {
+    display: flex;
+  }
 }
 @media screen and (max-width: 500px) {
-  .job-location,
-  .job-time-description {
-    display: block;
-    float: none;
-  }
 }
 @media print {
   @page {
@@ -334,7 +390,8 @@ body {
   .c5 {
     color: var(--color-blacklight);
   }
-  .visible-screen {
+  .visible-screen,
+  .visible-screen-flex {
     display: none;
   }
   .row,
@@ -350,6 +407,7 @@ body {
   }
 }
 .thin-line {
+  height: 2px;
+  border-top: 2px solid #ccc;
   background: #ccc;
-  height: 1px;
 }
