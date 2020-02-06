@@ -265,7 +265,10 @@ p {
 .row::before {
   content: "\b7";
   margin-right: 3px;
-  font-weight: 900;
+  font-weight: bold;
+  font-size: 24px;
+  vertical-align: middle;
+  line-height: 10px;
 }
 .row::after {
   content: ".";
@@ -348,7 +351,7 @@ body {
     color: var(--color-red);
   }
   .row::before {
-    color: var(--color-red);
+    color: #666;
   }
   .visible-screen {
     display: block;
