@@ -171,7 +171,10 @@ a {
 .tar {
   text-align: right;
 }
-.b {
+.bold1 {
+  font-weight: bold;
+}
+.bold2 {
   font-weight: bold;
 }
 .cap {
@@ -245,6 +248,9 @@ body {
 .flex {
   display: flex;
 }
+.w100pct {
+  width: 100%;
+}
 .shrink0 {
   flex-shrink: 0;
 }
@@ -256,6 +262,9 @@ body {
 }
 .justify-content-center {
   justify-content: center;
+}
+.align-items-center {
+  align-items: center;
 }
 .hr {
   height: 2px;
@@ -339,4 +348,8 @@ body {
   .section-header {
     opacity: .7;
   }
+}
+.thin-line {
+  background: #ccc;
+  height: 1px;
 }
