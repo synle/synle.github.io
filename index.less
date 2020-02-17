@@ -6,12 +6,6 @@
 @fontSize1: 1.2rem;
 
 @fontWeight2: 900;
-
-@space0: 0;
-@space1: 3px;
-@space2: 8px;
-@space3: 12px;
-@space4: 20px;
 @space-auto: auto;
 
 @width-max: 100%;
@@ -40,6 +34,11 @@
   --color-white: #fff;
   --color-black: #000;
   --color-blacklight: #333;
+  --space-0: 0;
+  --space-1: 3px;
+  --space-2: 10px;
+  --space-3: 14px;
+  --space-4: 20px;
 }
 
 // vars for color - Dark Mode
@@ -64,6 +63,13 @@
     --color-blacklight: #333;
   }
 }
+
+
+@space0: var(--space-0);
+@space1: var(--space-1);
+@space2: var(--space-2);
+@space3: var(--space-3);
+@space4: var(--space-4);
 
 
 @colorBackground:  var(--color-background);
@@ -290,6 +296,14 @@ body{
 
 //screen only stuffs
 @media screen {
+    :root{
+      --space-0: 0;
+      --space-1: 5px;
+      --space-2: 12px;
+      --space-3: 16px;
+      --space-4: 20px;
+    }
+
     *{}
 
     body{
@@ -330,6 +344,14 @@ body{
 }
 
 @media print {
+    :root{
+      --space-0: 0;
+      --space-1: 3px;
+      --space-2: 6px;
+      --space-3: 10px;
+      --space-4: 14px;
+    }
+    
     @page {
         margin: @space0;
     }
@@ -337,10 +359,11 @@ body{
     *{}
 
     body {
-        background-color: @colorWhite;
-        color: @colorBlackLight;
-        width: @width-max;
-        padding: @space2 @space3;
+      background-color: @colorWhite;
+      color: @colorBlackLight;
+      width: @width-max;
+      padding: @space2 @space4g;
+      margin: 0;
     }
 
     .bold {

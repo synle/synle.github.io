@@ -39,7 +39,7 @@
          <div class="thin-line grow1 ml3"></div>
        </div>
        <div class="job-container section-content">
-         <div class="job-header mt3 flex cap bold1 muted">
+         <div class="job-header flex cap bold1 muted">
             <div class="job-title">Senior Software Engineer <span class="at"></span> Linkedin</span></div>
             <div class="job-time-description tar shrink0 mlauto pl2 mr2">05/2017 - Present</div>
             <!-- <div class="job-location">Sunnyvale, CA</div> -->
@@ -52,7 +52,7 @@
             <div class="row">Developed / Presented Room Booking Assistant(RoomBA), a bot written with Node and Azure Message Service Bus to intelligently book meeting rooms using attendees' locations at Linkedin GOPs Expo 2017</div>
             <div class="row">Resurrected go/book, a calendar tool with support for newer Microsoft Office 365 infrastructure, that makes it easier for people to find and book meeting rooms with 5x faster performance than traditional Outlook Client</div>
          </div>
-         <div class="job-header mt3 flex cap bold1 muted">
+         <div class="job-header mt2 flex cap bold1 muted">
             <div class="job-title">Senior Member of Technical Staff <span class="at"></span> Salesforce</span></div>
             <div class="job-time-description tar shrink0 mlauto pl2 mr2">04/2015 - 05/2017</div>
             <!-- <div class="job-location">San Francisco, CA</div> -->
@@ -66,7 +66,7 @@
             <div class="row">Prototyped Inbox Desktop Email client with React and Electron that lets you read your emails and interact with Salesforce Records</div>
             <div class="row">Prototyped Desktop Dialer with Twilio which sales reps to communicate with customers right on the browser</div>
          </div>
-         <div class="job-header mt3 flex cap bold1 muted">
+         <div class="job-header mt2 flex cap bold1 muted">
             <div class="job-title">Tech Yahoo, Software Dev Engineer <span class="at"></span> Yahoo</span></div>
             <div class="job-time-description tar shrink0 mlauto pl2 mr2">07/2014 - 04/2015</div>
             <!-- <div class="job-location">Sunnyvale, CA</div> -->
@@ -76,19 +76,18 @@
             <div class="row">Within a short time, completed the redesign of Yamas which received internal Yahoo TechPulse 2014 conference award</div>
             <div class="row">Set up CI and CD pipeline for Node/Express applications with Jenkins CI and Chef CD to streamline building and deployment</div>
          </div>
-         <div class="job-header mt3 flex cap bold1 muted">
+         <div class="job-header mt2 flex cap bold1 muted">
             <div class="job-title">Software Engineer <span class="at"></span> eBay Inc</span></div>
             <div class="job-time-description tar shrink0 mlauto pl2 mr2">08/2013 - 07/2014</div>
             <!-- <div class="job-location">San Jose, CA</div> -->
          </div>
          <div class="job-description c0">
             <div class="row">Software engineer for Transaction Flow and Registration team, working with Javascript, Java and SpringMVC</div>
-            <div class="row">Migrated legacy "Manage Best Offer" which sellers used to respond to buyers’ offer</div>
             <div class="row">Developed responsive UI for "Reply With Offer" which sellers can send reply to buyers’ questions with seller-initiated offers</div>
             <div class="row">Implemented the responsive Guest Checkout Registration which users can sign up for new account in Guest Checkout flow</div>
             <div class="row">Rearchitected Selenium UI automation to extend coverage to iPad and iPhone using Selenium iWebDriver</div>
          </div>
-         <div class="job-header mt3 flex cap bold1 muted">
+         <div class="job-header mt2 flex cap bold1 muted">
             <div class="job-title">Software Engineer <span class="at"></span> eTrigue Inc</span></div>
             <div class="job-time-description tar shrink0 mlauto pl2 mr2">10/2011 - 08/2013</div>
             <!-- <div class="job-location">San Jose, CA</div> -->
@@ -98,7 +97,7 @@
             <div class="row">Integrated with Cisco WebEx and Citrix GoToWebinar using RabbitMQ and C# to retrieve attendees’ information for consumption in eTrigue</div>
             <div class="row">Used Cassandra and Node to implement ETL Background Jobs to generate reports for Sales Velocity and ROI</div>
          </div>
-         <div class="job-header mt3 flex cap bold1 muted">
+         <div class="job-header mt2 flex cap bold1 muted">
             <div class="job-title">Software Engineer <span class="at"></span> MTSS</span></div>
             <div class="job-time-description tar shrink0 mlauto pl2 mr2">08/2010 - 10/2011</div>
             <!-- <div class="job-location">San Jose, CA</div> -->
@@ -173,25 +172,27 @@
 
   <script>
   (function(){
-    const allAnchorTags = document.querySelectorAll("a");
-    for(var i = 0; i < allAnchorTags.length; i++){
-      const anchorTag = allAnchorTags[i];
-      anchorTag.setAttribute("target", "_blank");
-      anchorTag.setAttribute("rel", "noopener noreferrer");
-    }
-
-    // calculate yoe
-    let yoeValue;
     try{
-      yoeValue = (new Date()).getYear() - (2011 - 1900);
-      if(yoeValue <= 0){
-        throw 'Something is wrong with year';
+      const allAnchorTags = document.querySelectorAll("a");
+      for(var i = 0; i < allAnchorTags.length; i++){
+        const anchorTag = allAnchorTags[i];
+        anchorTag.setAttribute("target", "_blank");
+        anchorTag.setAttribute("rel", "noopener noreferrer");
       }
-      yoeValue += '+';
-    } catch(e){
-      yoeValue = '8+';
-    }
-    document.querySelector('#yoe-label').innerText = yoeValue;
+
+      // calculate yoe
+      let yoeValue;
+      try{
+        yoeValue = (new Date()).getYear() - (2011 - 1900);
+        if(yoeValue <= 0){
+          throw 'Something is wrong with year';
+        }
+        yoeValue += '+';
+      } catch(e){
+        yoeValue = '8+';
+      }
+      document.querySelector('#yoe-label').innerText = yoeValue;
+    } catch(e){}
   })()
   </script>
 </html>

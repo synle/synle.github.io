@@ -15,6 +15,11 @@
   --color-white: #fff;
   --color-black: #000;
   --color-blacklight: #333;
+  --space-0: 0;
+  --space-1: 3px;
+  --space-2: 10px;
+  --space-3: 14px;
+  --space-4: 20px;
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -62,162 +67,162 @@ body {
 .mt1,
 .m1,
 .mv1 {
-  margin-top: 3px;
+  margin-top: var(--space-1);
 }
 .mb1,
 .m1,
 .mv1 {
-  margin-bottom: 3px;
+  margin-bottom: var(--space-1);
 }
 .ml1,
 .m1,
 .ms1 {
-  margin-left: 3px;
+  margin-left: var(--space-1);
 }
 .mr1,
 .m1,
 .ms1 {
-  margin-right: 3px;
+  margin-right: var(--space-1);
 }
 .mt2,
 .m2,
 .mv2 {
-  margin-top: 8px;
+  margin-top: var(--space-2);
 }
 .mb2,
 .m2,
 .mv2 {
-  margin-bottom: 8px;
+  margin-bottom: var(--space-2);
 }
 .ml2,
 .m2,
 .ms2 {
-  margin-left: 8px;
+  margin-left: var(--space-2);
 }
 .mr2,
 .m2,
 .ms2 {
-  margin-right: 8px;
+  margin-right: var(--space-2);
 }
 .mt3,
 .m3,
 .mv3 {
-  margin-top: 12px;
+  margin-top: var(--space-3);
 }
 .mb3,
 .m3,
 .mv3 {
-  margin-bottom: 12px;
+  margin-bottom: var(--space-3);
 }
 .ml3,
 .m3,
 .ms3 {
-  margin-left: 12px;
+  margin-left: var(--space-3);
 }
 .mr3,
 .m3,
 .ms3 {
-  margin-right: 12px;
+  margin-right: var(--space-3);
 }
 .mt4,
 .m4,
 .mv4 {
-  margin-top: 20px;
+  margin-top: var(--space-4);
 }
 .mb4,
 .m4,
 .mv4 {
-  margin-bottom: 20px;
+  margin-bottom: var(--space-4);
 }
 .ml4,
 .m4,
 .ms4 {
-  margin-left: 20px;
+  margin-left: var(--space-4);
 }
 .mr4,
 .m4,
 .ms4 {
-  margin-right: 20px;
+  margin-right: var(--space-4);
 }
 .pt1,
 .p1,
 .pv1 {
-  padding-top: 3px;
+  padding-top: var(--space-1);
 }
 .pb1,
 .p1,
 .pv1 {
-  padding-bottom: 3px;
+  padding-bottom: var(--space-1);
 }
 .pl1,
 .p1,
 .ps1 {
-  padding-left: 3px;
+  padding-left: var(--space-1);
 }
 .pr1,
 .p1,
 .ps1 {
-  padding-right: 3px;
+  padding-right: var(--space-1);
 }
 .pt2,
 .p2,
 .pv2 {
-  padding-top: 8px;
+  padding-top: var(--space-2);
 }
 .pb2,
 .p2,
 .pv2 {
-  padding-bottom: 8px;
+  padding-bottom: var(--space-2);
 }
 .pl2,
 .p2,
 .ps2 {
-  padding-left: 8px;
+  padding-left: var(--space-2);
 }
 .pr2,
 .p2,
 .ps2 {
-  padding-right: 8px;
+  padding-right: var(--space-2);
 }
 .pt3,
 .p3,
 .pv3 {
-  padding-top: 12px;
+  padding-top: var(--space-3);
 }
 .pb3,
 .p3,
 .pv3 {
-  padding-bottom: 12px;
+  padding-bottom: var(--space-3);
 }
 .pl3,
 .p3,
 .ps3 {
-  padding-left: 12px;
+  padding-left: var(--space-3);
 }
 .pr3,
 .p3,
 .ps3 {
-  padding-right: 12px;
+  padding-right: var(--space-3);
 }
 .pt4,
 .p4,
 .pv4 {
-  padding-top: 20px;
+  padding-top: var(--space-4);
 }
 .pb4,
 .p4,
 .pv4 {
-  padding-bottom: 20px;
+  padding-bottom: var(--space-4);
 }
 .pl4,
 .p4,
 .ps4 {
-  padding-left: 20px;
+  padding-left: var(--space-4);
 }
 .pr4,
 .p4,
 .ps4 {
-  padding-right: 20px;
+  padding-right: var(--space-4);
 }
 * {
   box-sizing: border-box;
@@ -260,7 +265,7 @@ p {
   margin: 0;
 }
 .row {
-  margin-bottom: 8px;
+  margin-bottom: var(--space-2);
 }
 .row::before {
   content: "\b7";
@@ -332,13 +337,20 @@ body {
 .hr {
   height: 2px;
   background: #ccc;
-  margin-top: 12px;
-  margin-bottom: 12px;
+  margin-top: var(--space-3);
+  margin-bottom: var(--space-3);
   margin-left: auto;
   margin-right: auto;
   max-width: 200px;
 }
 @media screen {
+  :root {
+    --space-0: 0;
+    --space-1: 5px;
+    --space-2: 12px;
+    --space-3: 16px;
+    --space-4: 20px;
+  }
   body {
     max-width: 1024px;
     width: calc(100% - 40px);
@@ -366,14 +378,22 @@ body {
   }
 }
 @media print {
+  :root {
+    --space-0: 0;
+    --space-1: 3px;
+    --space-2: 6px;
+    --space-3: 10px;
+    --space-4: 14px;
+  }
   @page {
-    margin: 0;
+    margin: var(--space-0);
   }
   body {
     background-color: var(--color-white);
     color: var(--color-blacklight);
     width: 100%;
-    padding: 8px 12px;
+    padding: var(--space-2) var(--space-4);
+    margin: 0;
   }
   .bold {
     color: var(--color-black);
@@ -402,7 +422,7 @@ body {
   }
   .row,
   .job-header {
-    margin-bottom: 3px;
+    margin-bottom: var(--space-1);
   }
   a {
     color: var(--color-black) !important;
