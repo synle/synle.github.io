@@ -275,6 +275,12 @@ body{
 .justify-content-center{
     justify-content: center;
 }
+.justify-content-space-between{
+    justify-content: space-between;
+}
+.flex-wrap{
+    flex-wrap: wrap;
+}
 .align-items-center{
     align-items: center;
 }
@@ -353,6 +359,9 @@ body{
 }
 
 @media screen and (max-width: 500px) {
+    body{
+        line-height: 20px;
+    }
     header{
         padding-top: @space2;
         padding-bottom: @space1;
@@ -366,8 +375,17 @@ body{
         margin-bottom: 10px !important;
     }
     .job-header{
+        display: block;
         margin-top: 15px;
-        margin-bottom: 10px;
+        margin-bottom: 5px;
+        line-height: 25px;
+    }
+    .job-header *{
+        display: inline;
+    }
+    .separator {
+        margin-left: @space2 !important;
+        margin-right: @space2 !important;
     }
 
     body {
