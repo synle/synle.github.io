@@ -261,8 +261,15 @@ h6,
 p {
   margin: 0;
 }
+ul {
+  margin-top: inherit;
+  margin-bottom: inherit;
+  padding-left: inherit;
+  padding-right: inherit;
+}
 .row {
   margin-bottom: var(--space-2);
+  list-style: none;
 }
 .row::before {
   content: "\b7";
