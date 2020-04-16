@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Windows Terminal Styles Conversion</title>
+</head>
+<body>
+  <style>
+    textarea{
+      width: 100%;
+      height: 350px;
+      background: #fefefe;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    #input {
+
+    }
+    #output{
+
+    }
+  </style>
+  
+  <div><h2>Windows Terminal Styles Conversion</h2></div>
+  <div>This program will convert and add additional key shortcuts and color scheme for Windows Terminal</div>
+  <textarea id='input' placeholder='Input' onblur='onConvert()'></textarea>
+  <textarea id='output' placeholder='Output' readonly='true'></textarea>
+  
+  
+  <script>
+  function onConvert() {
+    const oldText = document.querySelector('#input').value;
+    const newProfiles = JSON.parse(oldText);
+    newProfiles.schemes = [{
+        "background": "#282A36",
+        "black": "#21222C",
+        "blue": "#BD93F9",
+        "brightBlack": "#6272A4",
+        "brightBlue": "#D6ACFF",
+        "brightCyan": "#A4FFFF",
+        "brightGreen": "#69FF94",
+        "brightPurple": "#FF92DF",
+        "brightRed": "#FF6E6E",
+        "brightWhite": "#FFFFFF",
+        "brightYellow": "#FFFFA5",
+        "cyan": "#8BE9FD",
+        "foreground": "#F8F8F2",
+        "green": "#50FA7B",
+        "name": "Dracula",
+        "purple": "#FF79C6",
+        "red": "#FF5555",
+        "white": "#F8F8F2",
+        "yellow": "#F1FA8C"
+    }]
+    newProfiles.keybindings = [{
+        "command": "copy",
+        "keys": "alt+c"
+    }, {
+        "command": "paste",
+        "keys": "alt+v"
+    }, {
+        "command": "nextTab",
+        "keys": "alt+shift+]"
+    }, {
+        "command": "prevTab",
+        "keys": "alt+shift+["
+    }, {
+        "command": "resetFontSize",
+        "keys": "alt+0"
+    }, {
+        "command": "find",
+        "keys": "alt+f"
+    }, {
+        "command": "decreaseFontSize",
+        "keys": "alt+-"
+    }, {
+        "command": "increaseFontSize",
+        "keys": "alt+="
+    }, {
+        "command": "scrollDown",
+        "keys": "alt+down"
+    }, {
+        "command": "scrollDownPage",
+        "keys": "alt+right"
+    }, {
+        "command": "scrollUp",
+        "keys": "alt+up"
+    }, {
+        "command": "scrollUpPage",
+        "keys": "alt+left"
+    }, {
+        "command": "newTab",
+        "keys": ["alt+t"]
+    }, {
+        "command": {
+            "action": "switchToTab",
+            "index": 0
+        },
+        "keys": "alt+1"
+    }, {
+        "command": {
+            "action": "switchToTab",
+            "index": 1
+        },
+        "keys": "alt+2"
+    }, {
+        "command": {
+            "action": "switchToTab",
+            "index": 2
+        },
+        "keys": "alt+3"
+    }, {
+        "command": {
+            "action": "switchToTab",
+            "index": 3
+        },
+        "keys": "alt+4"
+    }, {
+        "command": {
+            "action": "switchToTab",
+            "index": 4
+        },
+        "keys": "alt+5"
+    }, {
+        "command": {
+            "action": "switchToTab",
+            "index": 5
+        },
+        "keys": "alt+6"
+    }, {
+        "command": {
+            "action": "switchToTab",
+            "index": 6
+        },
+        "keys": "alt+7"
+    }, {
+        "command": {
+            "action": "switchToTab",
+            "index": 7
+        },
+        "keys": "alt+8"
+    }, {
+        "command": {
+            "action": "switchToTab",
+            "index": 8
+        },
+        "keys": "alt+9"
+    }, {
+        "command": {
+            "action": "splitPane",
+            "split": "horizontal"
+        },
+        "keys": "alt+'"
+    }, {
+        "command": {
+            "action": "splitPane",
+            "split": "vertical"
+        },
+        "keys": "alt+d"
+    }, {
+        "command": "closePane",
+        "keys": "alt+w"
+    }];
+    // setup the profile color scheme
+    newProfiles.profiles = newProfiles.profiles.map(profile => {
+        profile.colorScheme = 'Dracula';
+        
+        // set default profile
+        if(['Debian'].indexOf(profile.name) >= 0){
+            newProfiles.defaultProfile = profile.guid;
+        }
+
+        return profile;
+    });
+
+    
+    document.querySelector('#output').value = JSON.stringify(newProfiles, null, 2);
+  }
+  </script>
+</body>
+</html>
