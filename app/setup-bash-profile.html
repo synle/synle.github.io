@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>synle/bashrc Setting up Bash Script</title>
+</head>
+<body>
+  <div>
+    <input onchange='updateScript()' type='checkbox' id='choice-setup-dependencies' value='setup-dependencies.sh' />
+    <label for='choice-setup-dependencies'>Setup Depedencies</label>
+
+    <input onchange='updateScript()' type='radio' name='choice-setup' id='choice-setup-full' value='setup-full.sh' checked='true' />
+    <label for='choice-setup-full'>Setup Full Profile</label>
+
+    <input onchange='updateScript()' type='radio' name='choice-setup' id='choice-setup-lightweight' value='setup-lightweight.sh' />
+    <label for='choice-setup-lightweight'>Setup Lightweight Profile</label>
+  </div>
+  
+  <textarea id='output' placeholder='Output' readonly='true' onfocus='selectCommands()'></textarea>
+  
+  <style>
+    #output{
+      width: 100%;
+      height: 300px;
+      margin-top: 20px;
+      padding: 10px;
+    }
+    label, div{user-select: none;}
+    label, input{cursor: pointer}
+  </style>
+  
+  <script>
+    function updateScript(){
+      let newCommands = [];
+
+      if(document.querySelector('#choice-setup-dependencies').checked){
+        newCommands.push('. /dev/stdin <<< "$(curl -s https://raw.githubusercontent.com/synle/bashrc/master/setup-dependencies.sh)"');
+      }
+
+      if(document.querySelector('#choice-setup-full').checked){
+        newCommands.push('. /dev/stdin <<< "$(curl -s https://raw.githubusercontent.com/synle/bashrc/master/setup-full.sh)"');
+      }
+
+      if(document.querySelector('#choice-setup-lightweight').checked){
+        newCommands.push('. /dev/stdin <<< "$(curl -s https://raw.githubusercontent.com/synle/bashrc/master/setup-lightweight.sh)"');
+      }
+
+      document.querySelector('#output').value= newCommands.join('\n')
+      
+      selectCommands();
+    }
+
+    function selectCommands(){
+      document.querySelector('#output').select();
+      document.execCommand("copy");
+    }
+    updateScript();
+  </script>
+</body>
+</html>
