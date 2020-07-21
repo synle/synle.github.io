@@ -21,25 +21,23 @@
   --space-3: 14px;
   --space-4: 20px;
 }
-@media (prefers-color-scheme: dark) {
-  :root {
-    --main-bg-color: coral;
-    --color-background: #282a36;
-    --color-current: #44475a;
-    --color-selection: #44475a;
-    --color-foreground: #f8f8f2;
-    --color-comment: #6272a4;
-    --color-cyan: #8be9fd;
-    --color-green: #50fa7b;
-    --color-orange: #ffb86c;
-    --color-pink: #ff79c6;
-    --color-purple: #bd93f9;
-    --color-red: #ff5555;
-    --color-yellow: #f1fa8c;
-    --color-white: #fff;
-    --color-black: #000;
-    --color-blacklight: #333;
-  }
+.prefers-dark-color-scheme {
+  --main-bg-color: coral;
+  --color-background: #282a36;
+  --color-current: #44475a;
+  --color-selection: #44475a;
+  --color-foreground: #f8f8f2;
+  --color-comment: #6272a4;
+  --color-cyan: #8be9fd;
+  --color-green: #50fa7b;
+  --color-orange: #ffb86c;
+  --color-pink: #ff79c6;
+  --color-purple: #bd93f9;
+  --color-red: #ff5555;
+  --color-yellow: #f1fa8c;
+  --color-white: #fff;
+  --color-black: #000;
+  --color-blacklight: #333;
 }
 .mtauto,
 .mauto,
@@ -554,4 +552,13 @@ html {
   height: 2px;
   border-top: 2px solid #c1c1c1;
   background: #c1c1c1;
+}
+#daynight-toggle {
+  cursor: pointer;
+  position: fixed;
+  top: 5px;
+  right: 10px;
+  z-index: 5;
+  user-select: none;
+  font-size: 20px;
 }
