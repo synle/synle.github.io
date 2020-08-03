@@ -67,10 +67,10 @@
       return res;
     }, {})
     window.result1 = d2;
-    window.result2 = Object.keys(d2).map(date => (`${date}  ${d2[date].amt} ${d2[date].count}`)).join('\n')
+    window.result2 = Object.keys(d2).map(date => (`${date} ${d2[date].amt} ${d2[date].count}`)).join('\n')
 //    console.log('copy(window.result1)')
 //    console.log('copy(window.result2)')
-    document.querySelector('#vest').value = window.result2
+    document.querySelector('#output').value = window.result2
   }
   let scriptAdded = {};
 
