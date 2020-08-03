@@ -18,7 +18,7 @@
 <body>
   <div>
     <strong>Stock Price</strong>
-    <input type='text' value='205' id='price' />
+    <input type='text' value='213' id='price' />
   </div>
   <div>
     <strong>Stock Vest Schedule</strong>
@@ -46,7 +46,7 @@
   function doWork(rawData) {
     let d = [];
     rawData.split('\n').forEach(row => {
-      const cols = row.split(' ').filter(c => !!c)
+      const cols = row.split(/[ \t]/g).filter(c => !!c)
       if (cols.length === 2) {
         d.push([cols[0], parseInt(cols[1])])
       }
