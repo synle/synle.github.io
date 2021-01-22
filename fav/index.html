@@ -1,25 +1,45 @@
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
 <div id='fav'></div>
 <script>
-  let sites = `
+  const sites = `
     hn.svelte.dev/top/1
-    woot.com/
-    slickdeals.net/
-    news.google.com/topstories?
-    finance.google.com/
-    seekingalpha.com/
-    marketwatch.com/
-    fool.com/
-    reddit.com/r/wallstreetbets
-    techcrunch.com/
+    woot|woot.com
+    slickdeals|slickdeals.net
+    google news|news.google.com/topstories?
+    google finance|finance.google.com
+    seekingalpha|seekingalpha.com
+    marketwatch|marketwatch.com
+    fool.com
+    wallstreetbets|reddit.com/r/wallstreetbets
+    techcrunch|techcrunch.com/
   `
-  sites = sites.split('\n').map( s => s.trim()).filter(s => !!s)
+  const sitesData = sites.split('\n').map( s => s.trim()).filter(s => !!s).map(
+    s => {
+      let url, name;
+      const splits = s.split('|');
+
+      if(splits.length === 2){
+        url = splits[1];
+        name = splits[0];
+      }
+      else {
+        url = s;
+        name = s.substr(0, s.indexOf('/') > 0 ? s.indexOf('/') : s.length);
+      }
+
+      return {
+        url,
+        name: name.toUpperCase(),
+      }
+    }
+  )
 
   let dom = ''
-  for (const site of sites){
-    siteName = site.substr(0, site.indexOf('/')).toUpperCase();
-
+  for (const site of sitesData){
     dom += `
-      <a href='http://${site}' title='${siteName}'">${siteName}</a>
+      <a href='http://${site.url}' title='${site.name}'">${site.name}</a>
     `
   }
   document.querySelector('#fav').innerHTML = dom;
