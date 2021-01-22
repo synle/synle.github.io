@@ -50,10 +50,11 @@
     color: #242424;
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
   }
+
   #fav{
     display: grid;
-    grid-template-columns: repeat(auto-fill, 225px);
-    grid-gap: 1rem 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 225px));
+    grid-gap: 2rem 1.2rem;
   }
 
   #fav a{
@@ -65,5 +66,13 @@
     font-size: 1.1rem;
     background: #fff;
     color: #4183c4;
+  }
+
+  @media screen
+    and (min-device-width: 375px)
+    and (max-device-width: 812px) {
+    #fav{
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 </style>
