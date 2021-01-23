@@ -1,7 +1,10 @@
+<!--  html -->
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <div id='fav'></div>
+
+<!--  scripts -->
 <script>
   const sites = `
     hn.svelte.dev/top/1
@@ -44,6 +47,8 @@
   }
   document.querySelector('#fav').innerHTML = dom;
 </script>
+
+<!--  styles -->
 <style>
   body{
     background: #f8f2e3;
@@ -55,6 +60,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(150px, 225px));
     grid-gap: 2rem 1.2rem;
+    margin: auto;
   }
 
   #fav a{
