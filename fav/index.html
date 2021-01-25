@@ -7,16 +7,17 @@
 <!--  scripts -->
 <script>
   const sites = `
-    hn.svelte.dev/top/1
+    hacker news|hn.svelte.dev/top/1
     woot|woot.com
     slickdeals|slickdeals.net
     google news|news.google.com/topstories?
     google finance|finance.google.com
-    seekingalpha|seekingalpha.com
-    marketwatch|marketwatch.com
-    fool.com
-    wallstreetbets|reddit.com/r/wallstreetbets
+    seeking alpha|seekingalpha.com
+    market watch|marketwatch.com
+    motley fool|fool.com
     techcrunch|techcrunch.com/
+    wallstreetbets|reddit.com/r/wallstreetbets
+    thetagang|https://www.reddit.com/r/thetagang/
   `
   const sitesData = sites.split('\n').map( s => s.trim()).filter(s => !!s).map(
     s => {
