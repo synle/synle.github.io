@@ -17,9 +17,9 @@
     motley fool|fool.com
     techcrunch|techcrunch.com/
     wallstreetbets|reddit.com/r/wallstreetbets
-    thetagang|https://www.reddit.com/r/thetagang/
+    thetagang|reddit.com/r/thetagang/
   `
-  const sitesData = sites.split('\n').map( s => s.trim()).filter(s => !!s).map(
+  const sitesData = sites.split('\n').map( s => s.trim().replace('http://', '').replace('https://', '')).filter(s => !!s).map(
     s => {
       let url, name;
       const splits = s.split('|');
