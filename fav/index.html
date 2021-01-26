@@ -1,92 +1,121 @@
-<!--  html -->
-<head>
-  <title>Favorites</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<div id='fav'></div>
+<html>
+  <!--  html -->
+  <head>
+    <title>Favorites</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <div id='fav'></div>
+  </body>
 
-<!--  scripts -->
-<script>
-  const sites = `
-    hacker news|hn.svelte.dev/top/1
-    woot|woot.com
-    slickdeals|slickdeals.net
-    google news|news.google.com/topstories
-    google finance|finance.google.com
-    seeking alpha|seekingalpha.com
-    market watch|marketwatch.com
-    motley fool|fool.com
-    techcrunch|techcrunch.com
-    wallstreetbets|reddit.com/r/wallstreetbets
-    thetagang|reddit.com/r/thetagang/
-  `
-  const sitesData = sites.split('\n').map( s => s.trim().replace('http://', '').replace('https://', '')).filter(s => !!s).map(
-    s => {
-      let url, name;
-      const splits = s.split('|');
-
-      if(splits.length === 2){
-        url = splits[1];
-        name = splits[0];
-      }
-      else {
-        url = s;
-        name = s.substr(0, s.indexOf('/') > 0 ? s.indexOf('/') : s.length);
-      }
-
-      return {
-        url,
-        name: name.toUpperCase(),
-      }
-    }
-  )
-
-  let dom = ''
-  for (const site of sitesData){
-    dom += `
-      <a href='http://${site.url}' title='${site.name}'">${site.name}</a>
+  <!--  scripts -->
+  <script>
+    const sites = `
+      hacker news|hn.svelte.dev/top/1
+      echojs|echojs.com
+      woot|woot.com
+      slickdeals|slickdeals.net
+      lifehacker|lifehacker.com
+      theverge|theverge.com
+      webull|webull.com/quote
+      google news|news.google.com/topstories
+      google finance|finance.google.com
+      seeking alpha|seekingalpha.com
+      market watch|marketwatch.com
+      motley fool|fool.com
+      techcrunch|techcrunch.com
+      wallstreetbets|reddit.com/r/wallstreetbets
+      thetagang|reddit.com/r/thetagang
     `
-  }
-  document.querySelector('#fav').innerHTML = dom;
-</script>
+    const sitesData = sites.split('\n').map( s => s.trim().replace('http://', '').replace('https://', '')).filter(s => !!s).map(
+      s => {
+        let url, name;
+        const splits = s.split('|');
 
-<!--  styles -->
-<style>
-  body{
-    background: #f8f2e3;
-    color: #242424;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-  }
+        if(splits.length === 2){
+          url = splits[1];
+          name = splits[0];
+        }
+        else {
+          url = s;
+          name = s.substr(0, s.indexOf('/') > 0 ? s.indexOf('/') : s.length);
+        }
 
-  #fav{
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 180px));
-    grid-gap: 2rem 1.2rem;
-    justify-content: center;
-  }
+        return {
+          url,
+          name: name.toUpperCase(),
+        }
+      }
+    )
 
-  #fav a{
-    display: block;
-    border: 2px solid #0a222e;
-    padding: 1rem 0.5rem;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    font-size: 1.1rem;
-    background: #fff;
-    color: #4183c4;
-    text-align: center;
-  }
-  
-  #fav a:hover {
-    background: #efefef;
-  }
+    let dom = ''
+    for (const site of sitesData){
+      dom += `
+        <a href='http://${site.url}' title='${site.name}'">${site.name}</a>
+      `
+    }
+    document.querySelector('#fav').innerHTML = dom;
 
-  #fav a:active {
-    background: #ccc;
-  }
-</style>
+    // dark or day theme
+    const isDarkMode = new Date().getHours() >= 19;
+    document.querySelector('html').classList.toggle('darkTheme', isDarkMode)
+  </script>
+
+  <!--  styles -->
+  <style>
+    html {
+      --colorMain: #242424;
+      --colorSecondary: #4183c4;
+      --colorBgMain: #f8f2e3;
+      --colorBgSecondary: #fff;
+      --colorBorderMain: #999;
+      --colorBorderSecondary: #000;
+    }
+
+    html.darkTheme{
+      --colorMain: #f8f8f2;
+      --colorSecondary: #f8f8f2;
+      --colorBgMain: #282a36;
+      --colorBgSecondary: #44475a;
+      --colorBorderMain: #6272a4;
+      --colorBorderSecondary: #8be9fd;
+    }
+
+    body{
+      background: var(--colorBgMain);
+      color: var(--colorMain);
+      font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #fav{
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 180px));
+      grid-gap: 2rem 1.2rem;
+      justify-content: center;
+    }
+
+    #fav a{
+      display: block;
+      border: 2px solid var(--colorBorderMain);
+      padding: 1rem 0.5rem;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      font-size: 1.1rem;
+      background: var(--colorBgSecondary);
+      color: var(--colorSecondary);
+      text-align: center;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+
+    #fav a:hover {
+      opacity: 1;
+      border-color: var(--colorBorderSecondary);
+    }
+  </style>
+</html
