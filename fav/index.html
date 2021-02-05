@@ -17,17 +17,17 @@
       slickdeals|slickdeals.net
       lifehacker|lifehacker.com
       theverge|theverge.com
-      webull|webull.com/quote
+      //webull|webull.com/quote
       google news|news.google.com/topstories
       google finance|finance.google.com
-      seeking alpha|seekingalpha.com
+      //seeking alpha|seekingalpha.com
       market watch|marketwatch.com
-      motley fool|fool.com
+      //motley fool|fool.com
       techcrunch|techcrunch.com
       wallstreetbets|reddit.com/r/wallstreetbets
       thetagang|reddit.com/r/thetagang
     `
-    const sitesData = sites.split('\n').map( s => s.trim().replace('http://', '').replace('https://', '')).filter(s => !!s).map(
+    const sitesData = sites.split('\n').map( s => s.trim().replace('http://', '').replace('https://', '')).filter(s => !!s && s.indexOf('//') !== 0).map(
       s => {
         let url, name;
         const splits = s.split('|');
