@@ -3,7 +3,9 @@
   "version": "1.0.3",
   "description": "",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "http-server": "^0.12.3"
+  },
   "devDependencies": {
     "less": "^2.7.1",
     "prettier": "2.0.2"
