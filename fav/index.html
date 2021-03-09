@@ -27,6 +27,7 @@
       techcrunch|techcrunch.com
       wallstreetbets|reddit.com/r/wallstreetbets
       thetagang|reddit.com/r/thetagang
+      teamblind|teamblind.com
     `
     const sitesData = sites.split('\n').map( s => s.trim().replace('http://', '').replace('https://', '')).filter(s => !!s && s.indexOf('//') !== 0).map(
       s => {
