@@ -66,22 +66,52 @@
   <!--  styles -->
   <style>
     html {
-      --colorMain: #242424;
-      --colorSecondary: #4183c4;
-      --colorBgMain: #fafafa;
-      --colorBgSecondary: #fff;
-      --colorBorderMain: #999;
-      --colorBorderSecondary: #000;
       --borderSize: 3px;
+
+      /* light */
+      --colorMainLight: #242424;
+      --colorSecondaryLight: #4183c4;
+      --colorBgMainLight: #fafafa;
+      --colorBgSecondaryLight: #fff;
+      --colorBorderMainLight: #999;
+      --colorBorderSecondaryLight: #000;
+
+      /* dark */
+      --colorMainDark: #f8f8f2;
+      --colorSecondaryDark: #f8f8f2;
+      --colorBgMainDark: #282a36;
+      --colorBgSecondaryDark: #6272a4;
+      --colorBorderMainDark: #aaaec9;
+      --colorBorderSecondaryDark: #8be9fd;
+    }
+
+    html{
+      --colorMain: var(--colorMainLight);
+      --colorSecondary: var(--colorSecondaryLight);
+      --colorBgMain: var(--colorBgMainLight);
+      --colorBgSecondary: var(--colorBgSecondaryLight);
+      --colorBorderMain: var(--colorBorderMainLight);
+      --colorBorderSecondary: var(--colorBorderSecondaryLight);
     }
 
     html.darkTheme{
-      --colorMain: #f8f8f2;
-      --colorSecondary: #f8f8f2;
-      --colorBgMain: #282a36;
-      --colorBgSecondary: #44475a;
-      --colorBorderMain: #6272a4;
-      --colorBorderSecondary: #8be9fd;
+      --colorMain: var(--colorMainDark);
+      --colorSecondary: var(--colorSecondaryDark);
+      --colorBgMain: var(--colorBgMainDark);
+      --colorBgSecondary: var(--colorBgSecondaryDark);
+      --colorBorderMain: var(--colorBorderMainDark);
+      --colorBorderSecondary: var(--colorBorderSecondaryDark);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      html{
+        --colorMain: var(--colorMainDark);
+        --colorSecondary: var(--colorSecondaryDark);
+        --colorBgMain: var(--colorBgMainDark);
+        --colorBgSecondary: var(--colorBgSecondaryDark);
+        --colorBorderMain: var(--colorBorderMainDark);
+        --colorBorderSecondary: var(--colorBorderSecondaryDark);
+      }
     }
 
     body{
