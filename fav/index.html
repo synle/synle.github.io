@@ -11,23 +11,29 @@
   <!--  scripts -->
   <script>
     const sites = `
-      hacker news|hn.svelte.dev/top/1
-      echojs|echojs.com
-      woot|woot.com
-      slickdeals|slickdeals.net
-      lifehacker|lifehacker.com
-      theverge|theverge.com
-      //webull|webull.com/quote
-      google news|news.google.com/topstories
-      google finance|finance.google.com
-      //seeking alpha|seekingalpha.com
-      market watch|marketwatch.com
-      cnbc|cnbc.com
-      //motley fool|fool.com
+      // general
+        hacker news|hn.svelte.dev/top/1
+        echojs|echojs.com
+        woot|woot.com
+        slickdeals|slickdeals.net
+        lifehacker|lifehacker.com
+      // stock
+        //webull|webull.com/quote
+        google news|news.google.com/topstories
+        google finance|finance.google.com
+        //seeking alpha|seekingalpha.com
+        //motley fool|fool.com
+        market watch|marketwatch.com
+        cnbc|cnbc.comm
+        wallstreet bets|reddit.com/r/wallstreetbets
+        thetagang|reddit.com/r/thetagang
+        teamblind|teamblind.com
+    // tech
+      engadget|www.engadget.com
+      verge|www.theverge.com
       tech crunch|techcrunch.com
-      wallstreet bets|reddit.com/r/wallstreetbets
-      thetagang|reddit.com/r/thetagang
-      teamblind|teamblind.com
+    // personal
+        synle|synle.github.io
     `
     const sitesData = sites.split('\n').map( s => s.trim().replace('http://', '').replace('https://', '')).filter(s => !!s && s.indexOf('//') !== 0).map(
       s => {
