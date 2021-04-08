@@ -11,31 +11,33 @@
   <!--  scripts -->
   <script>
     const sites = `
-      // general
-        hacker news|hn.svelte.dev/top/1
+      // deals
         echojs|echojs.com
         woot|woot.com
         slickdeals|slickdeals.net
+      // code
+        hacker news|hn.svelte.dev/top/1
+      // general
         lifehacker|lifehacker.com
+        teamblind|teamblind.com
+      // tech
+        engadget|www.engadget.com
+        verge|www.theverge.com
+        tech crunch|techcrunch.com
       // stock
         //webull|webull.com/quote
-        google news|news.google.com/topstories
-        google finance|finance.google.com
         //seeking alpha|seekingalpha.com
         //motley fool|fool.com
+        google news|news.google.com/topstories
+        google finance|finance.google.com
         market watch|marketwatch.com
         cnbc|cnbc.comm
         wallstreet bets|reddit.com/r/wallstreetbets
         thetagang|reddit.com/r/thetagang
-        teamblind|teamblind.com
-    // tech
-      engadget|www.engadget.com
-      verge|www.theverge.com
-      tech crunch|techcrunch.com
-    // personal
+      // personal
         synle|synle.github.io
     `
-    const sitesData = sites.split('\n').map( s => s.trim().replace('http://', '').replace('https://', '')).filter(s => !!s && s.indexOf('//') !== 0).map(
+    const sitesData = sites.split('\n').map( s => s.trim().replace('http://', '').replace('https://', '')).filter(s => !!s && !s.match(/^\/\//)).map(
       s => {
         let url, name;
         const splits = s.split('|');
@@ -59,7 +61,7 @@
     let dom = ''
     for (const site of sitesData){
       dom += `
-        <a href='http://${site.url}' title='${site.name}'">${site.name}</a>
+        <a href='https://${site.url}' title='${site.name}'">${site.name}</a>
       `
     }
     document.querySelector('#fav').innerHTML = dom;
