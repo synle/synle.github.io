@@ -31,7 +31,7 @@
   <div id='commands'></div>
   <div>
     <label for='scriptToRun'>Script to Run:</label>
-    <input id="scriptToRun" list="scriptToRunOptions" type='text' value='git.js' />
+    <input id="scriptToRun" list="scriptToRunOptions" type='text' />
     <datalist id="scriptToRunOptions"></datalist>
   </div>
   <textarea id='output' placeholder='Output' readonly='true' onfocus='selectCommands()'></textarea>
@@ -121,7 +121,7 @@
       ./software/scripts/windows/registry.js
       ./software/scripts/windows/terminal.js
       ./software/scripts/vs-code-configurations.js
-    `.split('\n').map(s => s.replace('./', '').trim()).filter(s => !!s).map(scriptName => `<option>${scriptName}</option>`).join('\n');
+    `.split('\n').map(s => s.replace('./', '').trim()).filter(s => !!s && (s.includes('.js') || s.includes('.sh'))).sort().map(scriptName => `<option>${scriptName}</option>`).join('\n');
     document.querySelector('#scriptToRunOptions').innerHTML = scriptToRunOptions;
     
 
