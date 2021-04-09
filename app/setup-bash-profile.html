@@ -21,6 +21,7 @@
     label, div{user-select: none;}
     label, input{cursor: pointer}
     label, div, input, textarea{ font-size: 1rem}
+    input[type=text], textarea{ display: block; width: 100%}
   </style>
 </head>
 <body>
@@ -28,7 +29,11 @@
     <h1>Set up Bash Profile</h1>
   </div>
   <div id='commands'></div>
-  
+  <div>
+    <label for='scriptToRun'>Script to Run:</label>
+    <input id="scriptToRun" list="scriptToRunOptions" type='text' value='git.js' />
+    <datalist id="scriptToRunOptions"></datalist>
+  </div>
   <textarea id='output' placeholder='Output' readonly='true' onfocus='selectCommands()'></textarea>
   
   <a href='https://github.com/synle/bashrc' target='_blank'>Open bashrc repo</a>
@@ -53,6 +58,15 @@
         text: 'Setup etc Hosts',
         script: `curl -s https://raw.githubusercontent.com/synle/bashrc/master/setup-hosts.sh | sudo bash`,
       },
+      {
+        text: 'Test Full Run live',
+        script: `curl -s https://raw.githubusercontent.com/synle/bashrc/master/test-full-run-live.sh | bash`,
+      },
+      {
+        text: 'Test Single Script Live',
+        script: `export TEST_SCRIPT_FILES="git.js" && curl -s https://raw.githubusercontent.com/synle/bashrc/master/test-live.sh | bash`,
+        shouldShowScriptNameInput: true
+      }
     ].map(config => ({
       idx: `command-option-${++idx}`,
       ...config,
@@ -79,11 +93,19 @@
     function updateScript(){
       let newCommands = [];
 
-      const selectedScript = (document.querySelector("[name='choice-setup']:checked").value);
+      const selectedScriptIdx = (document.querySelector("[name='choice-setup']:checked").value);
+      const selectedScript =configsByKey[selectedScriptIdx];
       
-      newCommands.push(configsByKey[selectedScript].script);
+      newCommands.push(selectedScript.script);
+
+      if(selectedScript.shouldShowScriptNameInput){
+        document.querySelector('#scriptToRun').style.display = 'block'
+      } else {
+        document.querySelector('#scriptToRun').style.display = 'none'
+      }
 
       document.querySelector('#output').value= newCommands.join('\n')
+      
       
       selectCommands();
     }
