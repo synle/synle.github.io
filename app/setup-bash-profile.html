@@ -27,36 +27,61 @@
   <div>
     <h1>Set up Bash Profile</h1>
   </div>
-  <div>
-    <input onchange='updateScript()' type='checkbox' id='choice-setup-dependencies' value='setup-dependencies.sh' />
-    <label for='choice-setup-dependencies'>Setup Depedencies</label>
-
-    <input onchange='updateScript()' type='radio' name='choice-setup' id='choice-setup-full' value='setup-full.sh' checked='true' />
-    <label for='choice-setup-full'>Setup Full Profile</label>
-
-    <input onchange='updateScript()' type='radio' name='choice-setup' id='choice-setup-lightweight' value='setup-lightweight.sh' />
-    <label for='choice-setup-lightweight'>Setup Lightweight Profile</label>
-  </div>
+  <div id='commands'></div>
   
   <textarea id='output' placeholder='Output' readonly='true' onfocus='selectCommands()'></textarea>
   
-  <a href='https://github.com/synle/bashrc'>bashrc repo</a>
+  <a href='https://github.com/synle/bashrc' target='_blank'>Open bashrc repo</a>
   
   <script>
+    let idx = Date.now();
+    const configs = [
+      {
+        text: 'Setup Dependencies',
+        script: `. /dev/stdin <<< "$(curl -s https://raw.githubusercontent.com/synle/bashrc/master/setup-dependencies.sh)"`,
+      },
+      {
+        text: 'Setup Full Profile',
+        script: `. /dev/stdin <<< "$(curl -s https://raw.githubusercontent.com/synle/bashrc/master/setup-full.sh?$(date +%s))"`,
+        checked: true,
+      },
+      {
+        text: 'Setup Lightweight Profile',
+        script: `. /dev/stdin <<< "$(curl -s https://raw.githubusercontent.com/synle/bashrc/master/setup-lightweight.sh?$(date +%s))"`,
+      },
+      {
+        text: 'Setup etc Hosts',
+        script: `curl -s https://raw.githubusercontent.com/synle/bashrc/master/setup-hosts.sh | sudo bash`,
+      },
+    ].map(config => ({
+      idx: `command-option-${++idx}`,
+      ...config,
+    }));
+
+    const configsByKey = {};
+    for(const config of configs){
+      configsByKey[config.idx] = config;
+    }
+
+    function init(){
+      for(const config of configs){
+        const domCommand = document.createElement('div');
+        domCommand.innerHTML =`
+          <input onchange='updateScript()' type='radio' name='choice-setup' id='${config.idx}' value='${config.idx}' ${config.checked ? 'checked' : ''} />
+          <label for='${config.idx}'>${config.text}</label>
+        `
+        document.querySelector('#commands').appendChild(domCommand);
+      }
+
+      updateScript();
+    }
+    
     function updateScript(){
       let newCommands = [];
 
-      if(document.querySelector('#choice-setup-dependencies').checked){
-        newCommands.push('. /dev/stdin <<< "$(curl -s https://raw.githubusercontent.com/synle/bashrc/master/setup-dependencies.sh)"');
-      }
-
-      if(document.querySelector('#choice-setup-full').checked){
-        newCommands.push('. /dev/stdin <<< "$(curl -s https://raw.githubusercontent.com/synle/bashrc/master/setup-full.sh)"');
-      }
-
-      if(document.querySelector('#choice-setup-lightweight').checked){
-        newCommands.push('. /dev/stdin <<< "$(curl -s https://raw.githubusercontent.com/synle/bashrc/master/setup-lightweight.sh)"');
-      }
+      const selectedScript = (document.querySelector("[name='choice-setup']:checked").value);
+      
+      newCommands.push(configsByKey[selectedScript].script);
 
       document.querySelector('#output').value= newCommands.join('\n')
       
@@ -67,7 +92,8 @@
       document.querySelector('#output').select();
       document.execCommand("copy");
     }
-    updateScript();
+
+    init();
   </script>
 </body>
 </html>
