@@ -32,7 +32,7 @@
   <div id='commands'></div>
   <div>
     <label for='scriptToRun'>Script to Run:</label>
-    <input id="scriptToRun" list="scriptToRunOptions" type='text' />
+    <input id="scriptToRun" list="scriptToRunOptions" type='text' onchange='updateScript()' />
     <datalist id="scriptToRunOptions"></datalist>
   </div>
   <textarea id='output' placeholder='Output' readonly='true' onfocus='selectCommands()'></textarea>
@@ -65,7 +65,7 @@
       },
       {
         text: 'Test Single Script Live',
-        script: `export TEST_SCRIPT_FILES="git.js" && curl -s https://raw.githubusercontent.com/synle/bashrc/master/test-live.sh | bash`,
+        script: `export TEST_SCRIPT_FILES="<SCRIPT_TO_RUN>" && curl -s https://raw.githubusercontent.com/synle/bashrc/master/test-live.sh | bash`,
         shouldShowScriptNameInput: true
       }
     ].map(config => ({
@@ -146,7 +146,7 @@
       const selectedScriptIdx = (document.querySelector("[name='choice-setup']:checked").value);
       const selectedScript =configsByKey[selectedScriptIdx];
       
-      newCommands.push(selectedScript.script);
+      newCommands.push(selectedScript.script.replace('<SCRIPT_TO_RUN>', document.querySelector('#scriptToRun').value));
 
       if(selectedScript.shouldShowScriptNameInput){
         document.querySelector('#scriptToRun').style.display = 'block'
