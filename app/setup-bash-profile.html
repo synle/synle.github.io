@@ -1,87 +1,110 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>synle/bashrc Setting up Bash Script</title>
-  <style>
-    html{
-      font-size: 18px;
-      padding: 10px 20px;
-    }
-    *{
-      box-sizing: border-box
-    }
-    #output{
-      width: 100%;
-      height: 300px;
-      padding: 10px;
-    }
-    div { margin-bottom: 20px;}
-    label, div{user-select: none;}
-    label, input{cursor: pointer}
-    label, div, input, textarea{ font-size: 1rem}
-    input[type=text], textarea{ display: block; width: 100%}
-  </style>
-</head>
-<body>
-  <div>
-    <h1>Set up Bash Profile</h1>
-  </div>
-  <div id='commands'></div>
-  <div>
-    <label for='scriptToRun'>Script to Run:</label>
-    <input id="scriptToRun" list="scriptToRunOptions" type='text' />
-    <datalist id="scriptToRunOptions"></datalist>
-  </div>
-  <textarea id='output' placeholder='Output' readonly='true' onfocus='selectCommands()'></textarea>
-  
-  <a href='https://github.com/synle/bashrc' target='_blank'>Open bashrc repo</a>
-  
-  <script>
-    let idx = Date.now();
-    const configs = [
-      {
-        text: 'Setup Dependencies',
-        script: `. /dev/stdin <<< "$(curl -s https://raw.githubusercontent.com/synle/bashrc/master/setup-dependencies.sh)"`,
-      },
-      {
-        text: 'Setup Full Profile',
-        script: `. /dev/stdin <<< "$(curl -s https://raw.githubusercontent.com/synle/bashrc/master/setup-full.sh?$(date +%s))"`,
-        checked: true,
-      },
-      {
-        text: 'Setup Lightweight Profile',
-        script: `. /dev/stdin <<< "$(curl -s https://raw.githubusercontent.com/synle/bashrc/master/setup-lightweight.sh?$(date +%s))"`,
-      },
-      {
-        text: 'Setup etc Hosts',
-        script: `curl -s https://raw.githubusercontent.com/synle/bashrc/master/setup-hosts.sh | sudo bash`,
-      },
-      {
-        text: 'Test Full Run live',
-        script: `curl -s https://raw.githubusercontent.com/synle/bashrc/master/test-full-run-live.sh | bash`,
-      },
-      {
-        text: 'Test Single Script Live',
-        script: `export TEST_SCRIPT_FILES="git.js" && curl -s https://raw.githubusercontent.com/synle/bashrc/master/test-live.sh | bash`,
-        shouldShowScriptNameInput: true
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>synle/bashrc Setting up Bash Script</title>
+    <style>
+      html {
+        font-size: 18px;
+        padding: 10px 20px;
       }
-    ].map(config => ({
-      idx: `command-option-${++idx}`,
-      ...config,
-    }));
+      * {
+        box-sizing: border-box;
+      }
+      #output {
+        width: 100%;
+        height: 300px;
+        padding: 10px;
+      }
+      div {
+        margin-bottom: 20px;
+      }
+      label,
+      div {
+        user-select: none;
+      }
+      label,
+      input {
+        cursor: pointer;
+      }
+      label,
+      div,
+      input,
+      textarea {
+        font-size: 1rem;
+      }
+      input[type="text"],
+      textarea {
+        display: block;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1>Set up Bash Profile</h1>
+    </div>
+    <div id="commands"></div>
+    <div>
+      <label for="scriptToRun">Script to Run:</label>
+      <input id="scriptToRun" list="scriptToRunOptions" type="text" />
+      <datalist id="scriptToRunOptions"></datalist>
+    </div>
+    <textarea
+      id="output"
+      placeholder="Output"
+      readonly="true"
+      onfocus="selectCommands()"
+    ></textarea>
 
-    const configsByKey = {};
-    for(const config of configs){
-      configsByKey[config.idx] = config;
-    }
+    <a href="https://github.com/synle/bashrc" target="_blank"
+      >Open bashrc repo</a
+    >
 
+    <script>
+      let idx = Date.now();
+      const configs = [
+        {
+          text: "Setup Dependencies",
+          script: `. /dev/stdin <<< "$(curl -s https://raw.githubusercontent.com/synle/bashrc/master/setup-dependencies.sh)"`,
+        },
+        {
+          text: "Setup Full Profile",
+          script: `. /dev/stdin <<< "$(curl -s https://raw.githubusercontent.com/synle/bashrc/master/setup-full.sh?$(date +%s))"`,
+          checked: true,
+        },
+        {
+          text: "Setup Lightweight Profile",
+          script: `. /dev/stdin <<< "$(curl -s https://raw.githubusercontent.com/synle/bashrc/master/setup-lightweight.sh?$(date +%s))"`,
+        },
+        {
+          text: "Setup etc Hosts",
+          script: `curl -s https://raw.githubusercontent.com/synle/bashrc/master/setup-hosts.sh | sudo bash`,
+        },
+        {
+          text: "Test Full Run live",
+          script: `curl -s https://raw.githubusercontent.com/synle/bashrc/master/test-full-run-live.sh | bash`,
+        },
+        {
+          text: "Test Single Script Live",
+          script: `export TEST_SCRIPT_FILES="git.js" && curl -s https://raw.githubusercontent.com/synle/bashrc/master/test-live.sh | bash`,
+          shouldShowScriptNameInput: true,
+        },
+      ].map((config) => ({
+        idx: `command-option-${++idx}`,
+        ...config,
+      }));
 
-    // available scripts
-    // update it with 
-    // find . | grep software/script
-    const scriptToRunOptions=`
+      const configsByKey = {};
+      for (const config of configs) {
+        configsByKey[config.idx] = config;
+      }
+
+      // available scripts
+      // update it with
+      // find . | grep software/script
+      const scriptToRunOptions = `
       ./software/scripts
       ./software/scripts/etc-hosts.blocked-hosts.config.js
       ./software/scripts/_common-one-time-run.sh
@@ -121,50 +144,59 @@
       ./software/scripts/windows/registry.js
       ./software/scripts/windows/terminal.js
       ./software/scripts/vs-code-configurations.js
-    `.split('\n').map(s => s.replace('./', '').trim()).filter(s => !!s && (s.includes('.js') || s.includes('.sh'))).sort().map(scriptName => `<option>${scriptName}</option>`).join('\n');
-    document.querySelector('#scriptToRunOptions').innerHTML = scriptToRunOptions;
-    
+    `
+        .split("\n")
+        .map((s) => s.replace("./", "").trim())
+        .filter((s) => !!s && (s.includes(".js") || s.includes(".sh")))
+        .sort()
+        .map((scriptName) => `<option>${scriptName}</option>`)
+        .join("\n");
+      document.querySelector(
+        "#scriptToRunOptions"
+      ).innerHTML = scriptToRunOptions;
 
-
-    function init(){
-      for(const config of configs){
-        const domCommand = document.createElement('div');
-        domCommand.innerHTML =`
-          <input onchange='updateScript()' type='radio' name='choice-setup' id='${config.idx}' value='${config.idx}' ${config.checked ? 'checked' : ''} />
+      function init() {
+        for (const config of configs) {
+          const domCommand = document.createElement("div");
+          domCommand.innerHTML = `
+          <input onchange='updateScript()' type='radio' name='choice-setup' id='${
+            config.idx
+          }' value='${config.idx}' ${config.checked ? "checked" : ""} />
           <label for='${config.idx}'>${config.text}</label>
-        `
-        document.querySelector('#commands').appendChild(domCommand);
+        `;
+          document.querySelector("#commands").appendChild(domCommand);
+        }
+
+        updateScript();
       }
 
-      updateScript();
-    }
-    
-    function updateScript(){
-      let newCommands = [];
+      function updateScript() {
+        let newCommands = [];
 
-      const selectedScriptIdx = (document.querySelector("[name='choice-setup']:checked").value);
-      const selectedScript =configsByKey[selectedScriptIdx];
-      
-      newCommands.push(selectedScript.script);
+        const selectedScriptIdx = document.querySelector(
+          "[name='choice-setup']:checked"
+        ).value;
+        const selectedScript = configsByKey[selectedScriptIdx];
 
-      if(selectedScript.shouldShowScriptNameInput){
-        document.querySelector('#scriptToRun').style.display = 'block'
-      } else {
-        document.querySelector('#scriptToRun').style.display = 'none'
+        newCommands.push(selectedScript.script);
+
+        if (selectedScript.shouldShowScriptNameInput) {
+          document.querySelector("#scriptToRun").style.display = "block";
+        } else {
+          document.querySelector("#scriptToRun").style.display = "none";
+        }
+
+        document.querySelector("#output").value = newCommands.join("\n");
+
+        selectCommands();
       }
 
-      document.querySelector('#output').value= newCommands.join('\n')
-      
-      
-      selectCommands();
-    }
+      function selectCommands() {
+        document.querySelector("#output").select();
+        document.execCommand("copy");
+      }
 
-    function selectCommands(){
-      document.querySelector('#output').select();
-      document.execCommand("copy");
-    }
-
-    init();
-  </script>
-</body>
+      init();
+    </script>
+  </body>
 </html>
