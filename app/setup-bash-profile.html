@@ -32,7 +32,7 @@
   <div id='commands'></div>
   <div>
     <label for='scriptToRun'>Script to Run:</label>
-    <input id="scriptToRun" list="scriptToRunOptions" type='text' onblur='updateScript()' />
+    <input id="scriptToRun" list="scriptToRunOptions" type='text' onchange='updateScript()' />
     <datalist id="scriptToRunOptions"></datalist>
   </div>
   <textarea id='output' placeholder='Output' readonly='true' onfocus='selectCommands()'></textarea>
