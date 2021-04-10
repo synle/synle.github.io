@@ -113,7 +113,7 @@
       async function init() {
         // available scripts
         let scriptToRunOptions = await fetch(
-          `https://raw.githubusercontent.com/synle/bashrc/master/software/script-list.config`
+          `https://raw.githubusercontent.com/synle/bashrc/master/software/metadata/script-list.config`
         ).then((res) => res.text());
         scriptToRunOptions = scriptToRunOptions
           .split("\n")
