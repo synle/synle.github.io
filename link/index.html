@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Link Fix</title>
+</head>
+<body>
+  <input  id='input' />
+  <div id='output' style="display: none"></div>
+  <button onClick="onGo()">Go</button>
+  <style>
+    #input{
+      width: 100%;
+      border: 1px solid blue;
+      margin-bottom: 10px;
+    }
+    
+    #output{
+      border: 1px solid red;
+      margin-bottom: 10px;
+    }
+  </style>
+  <script>
+  function onGo(){
+    let url
+
+    url = document.querySelector('#input').value.trim()
+    url = decodeURIComponent(url).match(/&[a-z]+=http[s]*:\/\/[a-z0-9:?=&.\/-]+/gi)[0].match(/http[s]*:\/\/[a-z0-9:?=&.\/-]+/gi)
+
+    document.querySelector('#output').innerHTML = `<a href="${url}" target="_blank">${url}</a>`
+        document.querySelector('#output').style.display = 'block'
+  }
+  </script>
+</body>
+</html>
