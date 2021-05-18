@@ -37,6 +37,7 @@
       // personal
         synle|synle.github.io
         bashrc|synle.github.io/app/setup-bash-profile.html
+        fix link|https://synle.github.io/link/
     `
     const sitesData = sites.split('\n').map( s => s.trim().replace('http://', '').replace('https://', '')).filter(s => !!s && !s.match(/^\/\//)).map(
       s => {
