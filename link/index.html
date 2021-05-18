@@ -35,9 +35,20 @@
   </style>
   <script>
   function _fixSeekingAlphaLink(url){
+    // https://seekingalpha.com/amp/article/4278986-simple-path-to-early-retirement-investing
     if(url.includes('seekingalpha')){
       url = url.replace('seekingalpha.com/article/', '').replace('seekingalpha.com/amp/article/', '').replace(/http[s]*:\/\//,'')
       return `https://seekingalpha.com/amp/article/${url}`      
+    }
+    
+    return null;
+  }
+
+  function _fixCnbcLink(url){
+    // https://www.cnbc.com/amp/2021/05/18/yellen-pushes-higher-taxes-stronger-unions-more-competition-to-us-chamber.html
+    if(url.includes('cnbc.com')){
+      url = url.replace('www.cnbc.com', '').replace('cnbc.com', '').replace(/http[s]*:\/\//,'')
+      return `https://www.cnbc.com/amp/${url}`      
     }
     
     return null;
@@ -46,15 +57,20 @@
   function onGo(){
     let url
 
-    url = document.querySelector('#input').value.trim();
+    url = document.querySelector('#input').value.trim() || '';
     
-    if(url.toLowerCase().includes('seekingalpha')){
+    if(!url){
       url = _fixSeekingAlphaLink(url);
-    } else {
+    }
+
+    if(!url){
+      url = _fixCnbcLink(url);
+    }
+
+    if(!url){
+      // else try this
       url = decodeURIComponent(url).match(/&[a-z]+=http[s]*:\/\/[a-z0-9:?=&.\/-]+/gi)[0].match(/http[s]*:\/\/[a-z0-9:?=&.\/-]+/gi)
     }
-    
-    url = url || '';
 
     document.querySelector('#output').innerHTML = `<a href="${url}" target="_blank">${url}</a>`
     document.querySelector('#output').style.display = 'block'
