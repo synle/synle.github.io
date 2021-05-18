@@ -6,14 +6,18 @@
   <title>Link Fix</title>
 </head>
 <body>
-  <input  id='input' />
-  <div id='output' style="display: none"></div>
-  <button onClick="onGo()">Go</button>
+  <form onSubmit="return onGo()">
+    <input id='input' placeholder='Enter URL to fix' />
+    <div id='output' style="display: none"></div>
+    <button type='submit' onClick="onGo()">Go</button>
+  </form>
   <style>
     #input{
       width: 100%;
       border: 1px solid blue;
       margin-bottom: 10px;
+      padding: 5px 10px;
+      border: 1px solid #ccc;
     }
     
     #output{
@@ -22,16 +26,28 @@
     }
   </style>
   <script>
+  function _fixSeekingAlphaLink(url){
+    url = url.replace('seekingalpha.com/article/', '').replace('seekingalpha.com/amp/article/', '').replace(/http[s]*:\/\//,'')
+    return `https://seekingalpha.com/amp/article/${url}`
+  }
+    
   function onGo(){
     let url
 
-    url = document.querySelector('#input').value.trim()
-    url = decodeURIComponent(url).match(/&[a-z]+=http[s]*:\/\/[a-z0-9:?=&.\/-]+/gi)[0].match(/http[s]*:\/\/[a-z0-9:?=&.\/-]+/gi)
+    url = document.querySelector('#input').value.trim();
+    
+    if(url.toLowerCase().includes('seekingalpha')){
+      url = _fixSeekingAlphaLink(url);
+    } else {
+      url = decodeURIComponent(url).match(/&[a-z]+=http[s]*:\/\/[a-z0-9:?=&.\/-]+/gi)[0].match(/http[s]*:\/\/[a-z0-9:?=&.\/-]+/gi)
+    }
 
     document.querySelector('#output').innerHTML = `<a href="${url}" target="_blank">${url}</a>`
     document.querySelector('#output').style.display = 'block'
     
     location.href = url;
+    
+    return false;
   }
   </script>
 </body>
