@@ -55,28 +55,32 @@
   }
     
   function onGo(){
-    let url
+    try{
+      let url
 
-    url = document.querySelector('#input').value.trim() || '';
-    
-    if(!url){
-      url = _fixSeekingAlphaLink(url);
-    }
+      url = document.querySelector('#input').value.trim() || '';
+      
+      if(!url){
+        url = _fixSeekingAlphaLink(url);
+      }
 
-    if(!url){
-      url = _fixCnbcLink(url);
-    }
+      if(!url){
+        url = _fixCnbcLink(url);
+      }
 
-    if(!url){
-      // else try this
-      url = decodeURIComponent(url).match(/&[a-z]+=http[s]*:\/\/[a-z0-9:?=&.\/-]+/gi)[0].match(/http[s]*:\/\/[a-z0-9:?=&.\/-]+/gi)
-    }
+      if(!url){
+        // else try this
+        url = decodeURIComponent(url).match(/&[a-z]+=http[s]*:\/\/[a-z0-9:?=&.\/-]+/gi)[0].match(/http[s]*:\/\/[a-z0-9:?=&.\/-]+/gi)
+      }
 
-    document.querySelector('#output').innerHTML = `<a href="${url}" target="_blank">${url}</a>`
-    document.querySelector('#output').style.display = 'block'
+      document.querySelector('#output').innerHTML = `<a href="${url}" target="_blank">${url}</a>`
+      document.querySelector('#output').style.display = 'block'
 
-    if(url.includes('http')){
-      location.href = url;
+      if(url.includes('http')){
+        location.href = url;
+      }
+    } catch(err){
+      
     }
     
     return false;
