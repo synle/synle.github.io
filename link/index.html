@@ -82,7 +82,7 @@
         } else {
           url = decodeURIComponent(url)
             .match(/&[a-z]+=http[s]*:\/\/[a-z0-9:?=&.\/-]+/gi)[0]
-            .match(/http[s]*:\/\/[a-z0-9:?=&.\/-]+/gi);
+            .match(/http[s]*:\/\/[a-z0-9:?=&.\/-]+/gi)[0];
         }
 
         document.querySelector(
