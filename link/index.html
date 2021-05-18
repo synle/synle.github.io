@@ -41,65 +41,70 @@
     }
   </style>
   <script>
-  function _isSeekingAlphaLink(url){
-    return (url.includes('seekingalpha');
-  }
-  function _fixSeekingAlphaLink(url){
-    // https://seekingalpha.com/amp/article/4278986-simple-path-to-early-retirement-investing
-      url = url.replace('seekingalpha.com/article/', '').replace('seekingalpha.com/amp/article/', '').replace(/http[s]*:\/\//,'')
-      return `https://seekingalpha.com/amp/article/${url}`      
-    return null;
-  }
-
-  function _isCnbcLink(url){
-    return (url.includes('cnbc.com');
-  }
-  function _fixCnbcLink(url){
-    // https://www.cnbc.com/amp/2021/05/18/yellen-pushes-higher-taxes-stronger-unions-more-competition-to-us-chamber.html
-      url = url.replace('www.cnbc.com', '').replace('cnbc.com', '').replace(/http[s]*:\/\//,'')
-      return `https://www.cnbc.com/amp/${url}`      
-    return null;
-  }
-    
-  function onGo(){
-    try{
-      let url
-
-      url = document.querySelector('#input').value.trim() || '';
-
-
-      if(false){
-        // dummy
-      }
-      else if(_isSeekingAlphaLink(url)){
-        url = _fixSeekingAlphaLink(url);
-      }
-      else if(_isCnbcLink(url)){
-        url = _fixCnbcLink(url);
-      }
-      else {
-        url = decodeURIComponent(url).match(/&[a-z]+=http[s]*:\/\/[a-z0-9:?=&.\/-]+/gi)[0].match(/http[s]*:\/\/[a-z0-9:?=&.\/-]+/gi)
-      }
-
-      document.querySelector('#output').innerHTML = `<a href="${url}" target="_blank">${url}</a>`
-      document.querySelector('#output').style.display = 'block'
-
-      if(url.includes('http')){
-        location.href = url;
-      }
-    } catch(err){
-      
+    function _isSeekingAlphaLink(url) {
+      return url.includes("seekingalpha");
     }
-    
-    return false;
-  }
-    
-  // use hash url for referrer
-  document.querySelector('#input').value = location.hash.substr(1)
-    
-//   if(document.querySelector('#input').value.includes('http')){
-//     onGo();
-//   }
+    function _fixSeekingAlphaLink(url) {
+      // https://seekingalpha.com/amp/article/4278986-simple-path-to-early-retirement-investing
+      url = url
+        .replace("seekingalpha.com/article/", "")
+        .replace("seekingalpha.com/amp/article/", "")
+        .replace(/http[s]*:\/\//, "");
+      return `https://seekingalpha.com/amp/article/${url}`;
+      return null;
+    }
+
+    function _isCnbcLink(url) {
+      return url.includes("cnbc.com");
+    }
+    function _fixCnbcLink(url) {
+      // https://www.cnbc.com/amp/2021/05/18/yellen-pushes-higher-taxes-stronger-unions-more-competition-to-us-chamber.html
+      url = url
+        .replace("www.cnbc.com", "")
+        .replace("cnbc.com", "")
+        .replace(/http[s]*:\/\//, "");
+      return `https://www.cnbc.com/amp/${url}`;
+      return null;
+    }
+
+    function onGo() {
+      try {
+        let url;
+
+        url = document.querySelector("#input").value.trim() || "";
+
+        if (false) {
+          // dummy
+        } else if (_isSeekingAlphaLink(url)) {
+          url = _fixSeekingAlphaLink(url);
+        } else if (_isCnbcLink(url)) {
+          url = _fixCnbcLink(url);
+        } else {
+          url = decodeURIComponent(url)
+            .match(/&[a-z]+=http[s]*:\/\/[a-z0-9:?=&.\/-]+/gi)[0]
+            .match(/http[s]*:\/\/[a-z0-9:?=&.\/-]+/gi);
+        }
+
+        document.querySelector(
+          "#output"
+        ).innerHTML = `<a href="${url}" target="_blank">${url}</a>`;
+        document.querySelector("#output").style.display = "block";
+
+        if (url.includes("http")) {
+          location.href = url;
+        }
+      } catch (err) {}
+
+      return false;
+    }
+
+    // use hash url for referrer
+    document.querySelector("#input").value = location.hash.substr(1);
+
+    //   if(document.querySelector('#input').value.includes('http')){
+    //     onGo();
+    //   }
+
   </script>
 </body>
 </html>
