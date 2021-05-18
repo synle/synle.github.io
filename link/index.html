@@ -38,6 +38,8 @@
       padding: 8px 20px;
       color: white;
       background: blue;
+      font-size: 18px;
+      border: 1px solid #ccc;
     }
   </style>
   <script>
@@ -92,6 +94,7 @@
 
         if (url.includes("http")) {
           location.href = url;
+          document.body.innerHTML = `<h1>Loading page ${url}</h1>`
         }
       } catch (err) {}
 
