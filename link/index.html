@@ -35,7 +35,7 @@
   </style>
   <script>
   function _fixSeekingAlphaLink(url){
-    if(seekingalpha.includes('seekingalpha')){
+    if(url.includes('seekingalpha')){
       url = url.replace('seekingalpha.com/article/', '').replace('seekingalpha.com/amp/article/', '').replace(/http[s]*:\/\//,'')
       return `https://seekingalpha.com/amp/article/${url}`      
     }
@@ -64,6 +64,13 @@
     }
     
     return false;
+  }
+    
+  // use hash url for referrer
+  document.querySelector('#input').value = location.hash.substr(1)
+    
+  if(document.querySelector('#input').value.includes('http')){
+    onGo();
   }
   </script>
 </body>
