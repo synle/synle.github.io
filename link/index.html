@@ -16,6 +16,10 @@
       box-sizing: border-box;
     }
     
+    body{
+      margin: 5px 10px;
+    }
+    
     #input{
       width: 100%;
       border: 1px solid blue;
@@ -31,8 +35,12 @@
   </style>
   <script>
   function _fixSeekingAlphaLink(url){
-    url = url.replace('seekingalpha.com/article/', '').replace('seekingalpha.com/amp/article/', '').replace(/http[s]*:\/\//,'')
-    return `https://seekingalpha.com/amp/article/${url}`
+    if(seekingalpha.includes('seekingalpha')){
+      url = url.replace('seekingalpha.com/article/', '').replace('seekingalpha.com/amp/article/', '').replace(/http[s]*:\/\//,'')
+      return `https://seekingalpha.com/amp/article/${url}`      
+    }
+    
+    return null;
   }
     
   function onGo(){
@@ -45,11 +53,15 @@
     } else {
       url = decodeURIComponent(url).match(/&[a-z]+=http[s]*:\/\/[a-z0-9:?=&.\/-]+/gi)[0].match(/http[s]*:\/\/[a-z0-9:?=&.\/-]+/gi)
     }
+    
+    url = url || '';
 
     document.querySelector('#output').innerHTML = `<a href="${url}" target="_blank">${url}</a>`
     document.querySelector('#output').style.display = 'block'
-    
-    location.href = url;
+
+    if(url.includes('http')){
+      location.href = url;
+    }
     
     return false;
   }
