@@ -75,7 +75,7 @@
     }
 
     function _isFoolLink(url) {
-      return url.includes("cnbc.com");
+      return url.includes("fool.com");
     }
     function _fixFoolLink(url) {
       // https://www.fool.com/amp/investing/2021/05/19/an-att-dividend-cut-is-coming-buy-this-telecom-ins/
@@ -97,6 +97,8 @@
           url = _fixSeekingAlphaLink(url);
         } else if (_isCnbcLink(url)) {
           url = _fixCnbcLink(url);
+        } else if (_isFoolLink(url)) {
+          url = _fixFoolLink(url);
         } else {
           url = decodeURIComponent(url)
             .match(/&[a-z]+=http[s]*:\/\/[a-z0-9:?=&.\/-]+/gi)[0]
@@ -112,7 +114,9 @@
           location.href = url;
           document.body.innerHTML = `<h3>Loading page <span style="color: blue;">${url}</span></h3>`;
         }
-      } catch (err) {}
+      } catch (err) {
+        console.log(err);
+      }
 
       return false;
     }
