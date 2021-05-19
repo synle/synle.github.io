@@ -10,6 +10,7 @@
     <input id='input' placeholder='Enter URL to fix' />
     <div id='output' style="display: none"></div>
     <button type='submit' onClick="onGo()">Go</button>
+    <pre id='code'></pre>
   </form>
   <style>
     *{
@@ -23,26 +24,38 @@
     #input{
       width: 100%;
       border: 1px solid blue;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
       padding: 8px 10px;
       border: 1px solid #ccc;
     }
     
     #output{
       border: 1px solid red;
-      margin-bottom: 10px;
+      margin-bottom: 15px;
       padding: 10px 20px;
     }
     
     button{
-      padding: 8px 20px;
+      padding: 8px 30px;
       color: white;
       background: blue;
       font-size: 18px;
       border: 1px solid #ccc;
       cursor: pointer;
     }
+    
+    #code{
+      border: 1px solid #ccc;
+      margin-top: 20px;
+      padding: 10px;
+      background: #efefef;
+    }
   </style>
+  <script>
+    document.querySelector('#code').innerText = `
+    javascript:(function()%7Blocation.href %3D %60https%3A%2F%2Fsynle.github.io%2Flink%2F%23%24%7Blocation.href%7D%60%7D)()%3B
+    `;
+  </script>
   <script>
     function cleanupUrl(str) {
       return str
