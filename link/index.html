@@ -69,7 +69,7 @@
     }
     function _fixCnbcLink(url) {
       // https://www.cnbc.com/amp/2021/05/18/yellen-pushes-higher-taxes-stronger-unions-more-competition-to-us-chamber.html
-      url = cleanupUrl(url.replace("www.cnbc.com", "").replace("cnbc.com", ""));
+      url = cleanupUrl(url.replace("www.cnbc.com", "").replace("cnbc.com", "").replace("amp", ""));
       return `https://www.cnbc.com/amp/${url}`;
     }
 
