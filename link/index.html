@@ -121,7 +121,7 @@
     }
 
     // use hash url for referrer
-    document.querySelector("#input").value = location.hash.substr(1);
+    document.querySelector("#input").value = location.hash.substr(1) || document.referrer;
 
     const URL_MATCHERS = [
       _isSeekingAlphaLink,
