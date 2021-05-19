@@ -43,6 +43,13 @@
     }
   </style>
   <script>
+    String.prototype.cleanupUrl = () => {
+      return this.replace(/^http[s]*:/, "")
+        .replace(/^[\/]+/, '')
+        .replace(/[\/]+$/, '')
+        .trim()
+    }
+
     function _isSeekingAlphaLink(url) {
       return url.includes("seekingalpha");
     }
@@ -51,9 +58,8 @@
       url = url
         .replace("seekingalpha.com/article/", "")
         .replace("seekingalpha.com/amp/article/", "")
-        .replace(/http[s]*:\/\//, "");
+        .cleanupUrl();
       return `https://seekingalpha.com/amp/article/${url}`;
-      return null;
     }
 
     function _isCnbcLink(url) {
@@ -64,11 +70,23 @@
       url = url
         .replace("www.cnbc.com", "")
         .replace("cnbc.com", "")
-        .replace(/http[s]*:\/\//, "");
+        .cleanupUrl();
       return `https://www.cnbc.com/amp/${url}`;
-      return null;
     }
-
+    
+    function _isFoolLink(url) {
+      return url.includes("cnbc.com");
+    }
+    function _fixFoolLink(url) {
+      // https://www.fool.com/amp/investing/2021/05/19/an-att-dividend-cut-is-coming-buy-this-telecom-ins/
+      url = url
+        .replace("www.fool.com", "")
+        .replace("fool.com", "")
+        .replace("amp", "")
+        .cleanupUrl();
+      return `https://www.fool.com/amp/${url}`;
+    }
+    
     function onGo() {
       try {
         let url;
