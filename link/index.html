@@ -109,7 +109,7 @@
 
         if (url.includes("http")) {
           location.href = url;
-          document.body.innerHTML = `<h1>Loading page ${url}</h1>`;
+          document.body.innerHTML = `<h3>Loading page <span style="color: blue;">${url}</span></h3>`;
         }
       } catch (err) {}
 
@@ -125,7 +125,7 @@
       _isFoolLink,
     ]
 
-    if(URL_MATCHERS.some(matcher => matcher(document.querySelector('#input').value)){
+    if(URL_MATCHERS.some(matcher => matcher(document.querySelector('#input').value))){
       onGo();
     }
   </script>
