@@ -43,11 +43,12 @@
     }
   </style>
   <script>
-    String.prototype.cleanupUrl = () => {
-      return this.replace(/^http[s]*:/, "")
-        .replace(/^[\/]+/, '')
-        .replace(/[\/]+$/, '')
-        .trim()
+    function cleanupUrl(str) {
+      return str
+        .replace(/^http[s]*:/, "")
+        .replace(/^[\/]+/, "")
+        .replace(/[\/]+$/, "")
+        .trim();
     }
 
     function _isSeekingAlphaLink(url) {
@@ -55,10 +56,11 @@
     }
     function _fixSeekingAlphaLink(url) {
       // https://seekingalpha.com/amp/article/4278986-simple-path-to-early-retirement-investing
-      url = url
-        .replace("seekingalpha.com/article/", "")
-        .replace("seekingalpha.com/amp/article/", "")
-        .cleanupUrl();
+      url = cleanupUrl(
+        url
+          .replace("seekingalpha.com/article/", "")
+          .replace("seekingalpha.com/amp/article/", "")
+      );
       return `https://seekingalpha.com/amp/article/${url}`;
     }
 
@@ -67,26 +69,21 @@
     }
     function _fixCnbcLink(url) {
       // https://www.cnbc.com/amp/2021/05/18/yellen-pushes-higher-taxes-stronger-unions-more-competition-to-us-chamber.html
-      url = url
-        .replace("www.cnbc.com", "")
-        .replace("cnbc.com", "")
-        .cleanupUrl();
+      url = cleanupUrl(url.replace("www.cnbc.com", "").replace("cnbc.com", ""));
       return `https://www.cnbc.com/amp/${url}`;
     }
-    
+
     function _isFoolLink(url) {
       return url.includes("cnbc.com");
     }
     function _fixFoolLink(url) {
       // https://www.fool.com/amp/investing/2021/05/19/an-att-dividend-cut-is-coming-buy-this-telecom-ins/
-      url = url
-        .replace("www.fool.com", "")
-        .replace("fool.com", "")
-        .replace("amp", "")
-        .cleanupUrl();
+      url = cleanupUrl(
+        url.replace("www.fool.com", "").replace("fool.com", "").replace("amp", "")
+      );
       return `https://www.fool.com/amp/${url}`;
     }
-    
+
     function onGo() {
       try {
         let url;
@@ -112,7 +109,7 @@
 
         if (url.includes("http")) {
           location.href = url;
-          document.body.innerHTML = `<h1>Loading page ${url}</h1>`
+          document.body.innerHTML = `<h1>Loading page ${url}</h1>`;
         }
       } catch (err) {}
 
@@ -122,10 +119,15 @@
     // use hash url for referrer
     document.querySelector("#input").value = location.hash.substr(1);
 
-    //   if(document.querySelector('#input').value.includes('http')){
-    //     onGo();
-    //   }
+    const URL_MATCHERS = [
+      _isSeekingAlphaLink,
+      _isCnbcLink,
+      _isFoolLink,
+    ]
 
+    if(URL_MATCHERS.some(matcher => matcher(document.querySelector('#input').value)){
+      onGo();
+    }
   </script>
 </body>
 </html>
