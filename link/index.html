@@ -60,94 +60,100 @@
     `;
   </script>
   <script>
-    function cleanupUrl(str) {
-      return str
-        .replace(/^http[s]*:/, "")
-        .replace(/^[\/]+/, "")
-        .trim();
-    }
-
-    function _isSeekingAlphaLink(url) {
-      return url.includes("seekingalpha");
-    }
-    function _fixSeekingAlphaLink(url) {
-      // https://seekingalpha.com/amp/article/4278986-simple-path-to-early-retirement-investing
-      url = cleanupUrl(
-        url
-          .replace("seekingalpha.com/article/", "")
-          .replace("seekingalpha.com/amp/article/", "")
-      );
-      return `https://seekingalpha.com/amp/article/${url}`;
-    }
-
-    function _isCnbcLink(url) {
-      return url.includes("cnbc.com");
-    }
-    function _fixCnbcLink(url) {
-      // https://www.cnbc.com/amp/2021/05/18/yellen-pushes-higher-taxes-stronger-unions-more-competition-to-us-chamber.html
-      url = cleanupUrl(url.replace("www.cnbc.com", "").replace("cnbc.com", "").replace("amp", ""));
-      return `https://www.cnbc.com/amp/${url}`;
-    }
-
-    function _isFoolLink(url) {
-      return url.includes("fool.com");
-    }
-    function _fixFoolLink(url) {
-      // https://www.fool.com/amp/investing/2021/05/19/an-att-dividend-cut-is-coming-buy-this-telecom-ins/
-      url = cleanupUrl(
-        url.replace("www.fool.com", "").replace("fool.com", "").replace("amp", "")
-      );
-      return `https://www.fool.com/amp/${url}`;
-    }
-
-    function onGo() {
-      try {
-        let url;
-
-        url = document.querySelector("#input").value.trim() || "";
-
-        if (false) {
-          // dummy
-        } else if (_isSeekingAlphaLink(url)) {
-          url = _fixSeekingAlphaLink(url);
-        } else if (_isCnbcLink(url)) {
-          url = _fixCnbcLink(url);
-        } else if (_isFoolLink(url)) {
-          url = _fixFoolLink(url);
-        } else {
-          url = decodeURIComponent(url)
-            .match(/&[a-z]+=http[s]*:\/\/[a-z0-9:?=&.\/-]+/gi)[0]
-            .match(/http[s]*:\/\/[a-z0-9:?=&.\/-]+/gi)[0];
-        }
-
-        document.querySelector(
-          "#output"
-        ).innerHTML = `<a href="${url}" target="_blank">${url}</a>`;
-        document.querySelector("#output").style.display = "block";
-
-        if (url.includes("http")) {
-          location.href = url;
-          document.body.innerHTML = `<h3>Loading page <span style="color: blue;">${url}</span></h3>`;
-        }
-      } catch (err) {
-        console.log(err);
+    (() => {
+      function cleanupUrl(str) {
+        return str
+          .replace(/^http[s]*:/, "")
+          .replace(/^[\/]+/, "")
+          .trim();
       }
 
-      return false;
-    }
+      // seeking alpha
+      function isSeekingAlphaLink(url) {
+        return url.includes("seekingalpha");
+      }
+      function fixSeekingAlphaLink(url) {
+        // https://seekingalpha.com/amp/article/4278986-simple-path-to-early-retirement-investing
+        url = cleanupUrl(
+          url
+            .replace("seekingalpha.com/article/", "")
+            .replace("seekingalpha.com/amp/article/", "")
+        );
+        return `https://seekingalpha.com/amp/article/${url}`;
+      }
 
-    // use hash url for referrer
-    document.querySelector("#input").value = location.hash.substr(1) || document.referrer;
+      // cnbc
+      function isCnbcLink(url) {
+        return url.includes("cnbc.com");
+      }
+      function fixCnbcLink(url) {
+        // https://www.cnbc.com/amp/2021/05/18/yellen-pushes-higher-taxes-stronger-unions-more-competition-to-us-chamber.html
+        url = cleanupUrl(url.replace("www.cnbc.com", "").replace("cnbc.com", "").replace("amp", ""));
+        return `https://www.cnbc.com/amp/${url}`;
+      }
 
-    const URL_MATCHERS = [
-      _isSeekingAlphaLink,
-      _isCnbcLink,
-      _isFoolLink,
-    ]
+      // fool
+      function isFoolLink(url) {
+        return url.includes("fool.com");
+      }
+      function fixFoolLink(url) {
+        // https://www.fool.com/amp/investing/2021/05/19/an-att-dividend-cut-is-coming-buy-this-telecom-ins/
+        url = cleanupUrl(
+          url.replace("www.fool.com", "").replace("fool.com", "").replace("amp", "")
+        );
+        return `https://www.fool.com/amp/${url}`;
+      }
 
-    if(URL_MATCHERS.some(matcher => matcher(document.querySelector('#input').value))){
-      onGo();
-    }
+      // start
+      function onGo() {
+        try {
+          let url;
+
+          url = document.querySelector("#input").value.trim() || "";
+
+          if (false) {
+            // dummy
+          } else if (isSeekingAlphaLink(url)) {
+            url = fixSeekingAlphaLink(url);
+          } else if (isCnbcLink(url)) {
+            url = fixCnbcLink(url);
+          } else if (isFoolLink(url)) {
+            url = fixFoolLink(url);
+          } else {
+            url = decodeURIComponent(url)
+              .match(/&[a-z]+=http[s]*:\/\/[a-z0-9:?=&.\/-]+/gi)[0]
+              .match(/http[s]*:\/\/[a-z0-9:?=&.\/-]+/gi)[0];
+          }
+
+          document.querySelector(
+            "#output"
+          ).innerHTML = `<a href="${url}" target="_blank">${url}</a>`;
+          document.querySelector("#output").style.display = "block";
+
+          if (url.includes("http")) {
+            location.href = url;
+            document.body.innerHTML = `<h3>Loading page <span style="color: blue;">${url}</span></h3>`;
+          }
+        } catch (err) {
+          console.log(err);
+        }
+
+        return false;
+      }
+
+      // use hash url for referrer
+      document.querySelector("#input").value = location.hash.substr(1) || document.referrer;
+
+      const URL_MATCHERS = [
+        isSeekingAlphaLink,
+        isCnbcLink,
+        isFoolLink,
+      ]
+
+      if(URL_MATCHERS.some(matcher => matcher(document.querySelector('#input').value))){
+        onGo();
+      }
+    })()
   </script>
 </body>
 </html>
