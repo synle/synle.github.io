@@ -128,7 +128,7 @@
       }
 
       // start
-      function onGo() {
+      window.onGo = function onGo() {
         try {
           let url;
 
@@ -145,7 +145,7 @@
           } else if (isAmazonLink(url)) {
             url = fixAmazonLink(url);
             setOutput(url);
-            return; // for amazon link, just return the product id
+            return false; // for amazon link, just return the product id
           } else {
             url = decodeURIComponent(url)
               .match(/&[a-z]+=http[s]*:\/\/[a-z0-9:?=&.\/-]+/gi)[0]
