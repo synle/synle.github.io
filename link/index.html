@@ -131,6 +131,7 @@
       window.onGo = function onGo() {
         try {
           let url;
+          let shouldHandleRedirect = true;
 
           url = document.querySelector("#input").value.trim() || "";
 
@@ -145,18 +146,20 @@
           } else if (isAmazonLink(url)) {
             url = fixAmazonLink(url);
             setOutput(url);
-            return false; // for amazon link, just return the product id
+            shouldHandleRedirect = false; // for amazon link, just return the product id
           } else {
             url = decodeURIComponent(url)
               .match(/&[a-z]+=http[s]*:\/\/[a-z0-9:?=&.\/-]+/gi)[0]
               .match(/http[s]*:\/\/[a-z0-9:?=&.\/-]+/gi)[0];
           }
 
-          setOutput(`<a href="${url}" target="_blank">${url}</a>`);
+          if(shouldHandleRedirect){
+            setOutput(`<a href="${url}" target="_blank">${url}</a>`);
 
-          if (url.includes("http")) {
-            location.href = url;
-            document.body.innerHTML = `<h3>Loading page <span style="color: blue;">${url}</span></h3>`;
+            if (url.includes("http")) {
+              location.href = url;
+              document.body.innerHTML = `<h3>Loading page <span style="color: blue;">${url}</span></h3>`;
+            }
           }
         } catch (err) {
           console.log(err);
