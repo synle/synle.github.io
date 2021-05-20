@@ -103,6 +103,29 @@
         );
         return `https://www.fool.com/amp/${url}`;
       }
+      
+      // amazon
+      function isAmazonLink(url) {
+        return url.includes("amazon.com");
+      }
+      function fixAmazonLink(url) {
+        // https://www.amazon.com/gp/product/B07GTMGKYV?creative=9325&camp=1789&tag=dealnewscom&m=ATVPDKIKX0DER&psc=1&ascsubtag=385qwzf25qx45o1cdgj3eK1ghXIRwjfb
+        url = url.substr(url.indexOf('/product/'))
+        url = url.substr(0, url.indexOf('?'))
+
+        url = cleanupUrl(url.replace('product/', ''));
+
+        setOutput(`url`);
+
+        return url;
+      }
+
+      function setOutput(html){
+        document.querySelector(
+          "#output"
+        ).innerHTML = html;
+        document.querySelector("#output").style.display = html.length > 0 ? "block" : 'hidden';
+      }
 
       // start
       function onGo() {
@@ -119,16 +142,17 @@
             url = fixCnbcLink(url);
           } else if (isFoolLink(url)) {
             url = fixFoolLink(url);
+          } else if (isAmazonLink(url)) {
+            url = fixAmazonLink(url);
+            setOutput(url);
+            return; // for amazon link, just return the product id
           } else {
             url = decodeURIComponent(url)
               .match(/&[a-z]+=http[s]*:\/\/[a-z0-9:?=&.\/-]+/gi)[0]
               .match(/http[s]*:\/\/[a-z0-9:?=&.\/-]+/gi)[0];
           }
 
-          document.querySelector(
-            "#output"
-          ).innerHTML = `<a href="${url}" target="_blank">${url}</a>`;
-          document.querySelector("#output").style.display = "block";
+          setOutput(`<a href="${url}" target="_blank">${url}</a>`);
 
           if (url.includes("http")) {
             location.href = url;
