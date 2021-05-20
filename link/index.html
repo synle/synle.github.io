@@ -113,7 +113,7 @@
         url = url.substr(url.indexOf('/product/'))
         url = url.substr(0, url.indexOf('?'))
 
-        url = cleanupUrl(url.replace('product/', ''));
+        url = cleanupUrl(url.replace('product/', '').replace('/', ''));
 
         setOutput(`url`);
 
