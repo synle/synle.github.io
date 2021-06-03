@@ -76,11 +76,12 @@
         // https://seekingalpha.com/amp/article/4278986-simple-path-to-early-retirement-investing
         url = cleanupUrl(
           url
-            .replace("seekingalpha.com/article/", "")
-            .replace("seekingalpha.com/amp/article/", "")
+            .replace(/seekingalpha.com\/amp\/[a-z]+\//i, "")
+            .replace(/seekingalpha.com\/[a-z]+\//i, "")
         );
         return `https://seekingalpha.com/amp/article/${url}`;
       }
+      
 
       // cnbc
       function isCnbcLink(url) {
