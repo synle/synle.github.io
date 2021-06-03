@@ -9,8 +9,8 @@
   <form onSubmit="return onGo()">
     <input id='input' placeholder='Enter URL to fix' />
     <div id='output' style="display: none"></div>
-    <button type='submit' onClick="onGo()">Go</button>
-    <pre id='code'></pre>
+    <button type='submit' onClick="window.onGo()">Go</button>
+    <button type='button' onClick="window.onShowFixLinkBookmark()" style="margin-left: 20px">Show Bookmarklet</button>
   </form>
   <style>
     *{
@@ -37,28 +37,17 @@
     
     button{
       padding: 8px 30px;
-      color: white;
-      background: blue;
       font-size: 18px;
       border: 1px solid #ccc;
       cursor: pointer;
+      color: black;
+      background: white;
     }
-    
-    #code{
-      border: 1px solid #ccc;
-      margin-top: 20px;
-      padding: 10px;
-      background: #efefef;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      display: none;
+    button[type=submit]{
+      color: white;
+      background: blue;
     }
   </style>
-  <script>
-    document.querySelector('#code').innerText = `
-    javascript:(function()%7Blocation.href %3D %60https%3A%2F%2Fsynle.github.io%2Flink%2F%23%24%7Blocation.href%7D%60%7D)()%3B
-    `;
-  </script>
   <script>
     (() => {
       function cleanupUrl(str) {
@@ -167,6 +156,10 @@
         }
 
         return false;
+      }
+
+      window.onShowFixLinkBookmark = () => {
+        prompt('Fix Link Bookmarklet', `javascript:(function()%7Blocation.href %3D %60https%3A%2F%2Fsynle.github.io%2Flink%2F%23%24%7Blocation.href%7D%60%7D)()%3B`);
       }
 
       // use hash url for referrer
