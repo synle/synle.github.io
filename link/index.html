@@ -170,7 +170,11 @@
       }
 
       // use hash url for referrer
-      document.querySelector("#input").value = location.hash.substr(1) || document.referrer;
+      let defaultUrl = location.hash.substr(1) || document.referrer || '';
+
+      if(!defaultUrl.includes(/synle.github.io/i)){
+        document.querySelector("#input").value = defaultUrl;
+      }
 
       const URL_MATCHERS = [
         isSeekingAlphaLink,
