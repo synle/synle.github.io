@@ -168,7 +168,7 @@
       // use hash url for referrer
       let defaultUrl = location.hash.substr(1) || document.referrer || '';
 
-      if(!defaultUrl.includes(/synle.github.io/i)){
+      if(!defaultUrl.includes('synle.github.io')){
         document.querySelector("#input").value = defaultUrl;
       }
 
