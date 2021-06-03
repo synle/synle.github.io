@@ -65,11 +65,14 @@
         // https://seekingalpha.com/amp/article/4278986-simple-path-to-early-retirement-investing
         url = cleanupUrl(
           url
-            .replace(/seekingalpha.com\/amp\/[a-z]+\//i, "")
-            .replace(/seekingalpha.com\/[a-z]+\//i, "")
+            .replace("seekingalpha.com/amp/", "")
+            .replace("seekingalpha.com/", "")
         );
-        return `https://seekingalpha.com/amp/article/${url}`;
+        return `https://seekingalpha.com/amp/${url}`;
       }
+
+      fixSeekingAlphaLink('https://seekingalpha.com/news/3702883-splunk-analysts-cut-price-targets-after-earnings-with-too-many-moving-parts')
+
       
 
       // cnbc
