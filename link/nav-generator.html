@@ -90,13 +90,17 @@
             body{
               border: 1px solid black;
               background: black;
-              width: 250px;
               margin: auto;
+              width: 500px;
             }
             p{
               padding: 5px 10px;
               margin-bottom: 5px;
               background: white;
+            }
+            a{
+              font-size: 18px;
+              font-weight: bold;
             }
           </style>
           ${output.join("\n")}
@@ -114,32 +118,6 @@
         `.trim()
       }
 
-      
-      
-      /*
-      use this api to copy the raw html
-      copy(decodeURIComponent(``))
-      
-      
-    document.body.innerHTML = `
-          <style>
-            body{
-              border: 1px solid black;
-              background: black;
-              width: 250px;
-              margin: auto;
-            }
-            p{
-              padding: 5px 10px;
-              margin-bottom: 5px;
-              background: white;
-            }
-          </style>
-          <p><a class='link' href="http://aaa.com">aaa</a></p>
-<p><a class='link' href="http://bbb.com">bbb</a></p>
-        `
-        `
-    */
       window.generateSchemaFromDomLink = () => {
         document.querySelector("#input").value = document
           .querySelector("#input")
