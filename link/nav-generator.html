@@ -36,7 +36,7 @@
         color: white;
       }
     </style>
-    <form onsubmit="submitForm(); return false;">
+    <form onsubmit="return window.submitForm();">
       <div>
         <textarea id="input" placeholder="Input..." required></textarea>
         <textarea
@@ -51,7 +51,7 @@
         <button type="submit" onclick="window.submitForm = generateSchemaFromDomLink" style="display: none">
           Create Schema From Dom Links
         </button>
-        <button type="submit" onclick="window.generateSchemaFromBookmarklet()">
+        <button type="submit" onclick="window.submitForm = generateSchemaFromBookmarklet">
           Create Schema From Bookmarklet
         </button>
         <a href='https://github.com/synle/synle.github.io/blob/master/link/nav-generator.html'>Source Code</a>
