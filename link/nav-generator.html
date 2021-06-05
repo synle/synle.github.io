@@ -1,1 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Nav Generator</title>
+  </head>
+  <body>
+    <style>
+      textarea {
+        display: block;
+        width: 100%;
+        height: 190px;
+        margin-bottom: 20px;
+        background: white;
+        border: 1px solid black;
+      }
 
+      * {
+        box-sizing: border-box;
+      }
+
+      button {
+        padding: 10px 20px;
+        background: black;
+        border: 1px solid black;
+        color: white;
+      }
+    </style>
+    <textarea id="input" placeholder="navigation"></textarea>
+    <textarea
+      id="output"
+      placeholder="enter input to generate output"
+      readonly="true"
+    ></textarea>
+    <button onclick="window.generateNav()">Generate DOM Link</button>
+    <button onclick="window.generateSchema()">
+      Generate Schema From Dom Links
+    </button>
+
+    <script>
+      const LINK_SPLIT = "|||";
+
+      /*
+    http://aaa.com|||aaa
+    http://bbb.com|||bbb
+    */
+      window.generateNav = () => {
+        document.querySelector("#input").value = document
+          .querySelector("#input")
+          .value.split("\n")
+          .map((r) => r.trim())
+          .join("\n");
+
+        let input = document.querySelector("#input").value;
+        let output = [];
+
+        for (const link of input
+          .split("\n")
+          .map((r) => r.trim())
+          .filter((r) => !!r)) {
+          let [fullLink, description] = link
+            .split(LINK_SPLIT)
+            .map((r) => r.trim());
+
+          output.push(
+            `<p><a class='link' href="${fullLink}">${description}</a></p>`
+          );
+        }
+
+        document.querySelector("#output").value = `
+        document.body.innerHTML = \`
+          <style>
+            body{
+              border: 1px solid black;
+              background: white;
+              width: 250px;
+              margin: auto;
+            }
+            p{
+              padding: 5px 10px;
+              margin-bottom: 5px;
+            }
+          </style>
+          ${output.join("\n")}
+        \`
+      `.trim();
+      };
+
+      /*
+    document.body.innerHTML = `
+          <style>
+            body{
+              border: 1px solid black;
+              background: white;
+              width: 250px;
+              margin: auto;
+            }
+            p{
+              padding: 5px 10px;
+              margin-bottom: 5px;
+            }
+          </style>
+          <p><a class='link' href="http://aaa.com">aaa</a></p>
+<p><a class='link' href="http://bbb.com">bbb</a></p>
+        `
+        `
+    */
+      window.generateSchema = () => {
+        document.querySelector("#input").value = document
+          .querySelector("#input")
+          .value.split("\n")
+          .map((r) => r.trim())
+          .join("\n");
+
+        let input = document.querySelector("#input").value;
+        let output = [];
+
+        const elem = document.createElement("div");
+        elem.innerHTML = input;
+
+        const links = elem.querySelectorAll("a.link");
+
+        for (const link of links) {
+          let fullLink = link.href;
+          let description = link.innerHTML;
+
+          output.push(`${fullLink}${LINK_SPLIT}${description}`);
+        }
+
+        document.querySelector("#output").value = output.join("\n").trim();
+      };
+    </script>
+  </body>
+</html>
