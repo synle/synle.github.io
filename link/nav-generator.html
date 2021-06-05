@@ -31,12 +31,12 @@
         font-weight: bold;
       }
       
-      button[type='button']{
+      button[type='submit']{
         background: blue;
         color: white;
       }
     </style>
-    <section>
+    <form onsubmit="submitForm(); return false;">
       <div>
         <textarea id="input" placeholder="Input..." required></textarea>
         <textarea
@@ -46,20 +46,21 @@
         ></textarea>
       </div>
       <div>
-        <button type="button" onclick="window.generateBookmarklet()">Create Link Bookmarklet</button>
-        <button type="button" onclick="window.generateDom()">Create Link DOM</button>
-        <button type="button" onclick="window.generateSchemaFromDomLink()" style="display: none">
+        <button type="submit" onclick="window.submitForm = generateBookmarklet">Create Link Bookmarklet</button>
+        <button type="submit" onclick="window.submitForm = generateDom">Create Link DOM</button>
+        <button type="submit" onclick="window.submitForm = generateSchemaFromDomLink" style="display: none">
           Create Schema From Dom Links
         </button>
-        <button type="button" onclick="window.generateSchemaFromBookmarklet()">
+        <button type="submit" onclick="window.generateSchemaFromBookmarklet()">
           Create Schema From Bookmarklet
         </button>
         <a href='https://github.com/synle/synle.github.io/blob/master/link/nav-generator.html'>Source Code</a>
       </div>
-    </section>
+    </form>
 
     <script>
       const LINK_SPLIT = "|||";
+      
 
       /*
       http://aaa.com|||aaa
