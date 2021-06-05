@@ -40,12 +40,15 @@
       placeholder="enter input to generate output"
       readonly="true"
     ></textarea>
-    <button onclick="window.generateNav()">Generate DOM Link</button>
-    <button onclick="window.generateSchema()">
+    <button onclick="window.generateDom()">Generate Link DOM</button>
+    <button onclick="window.generateBookmarklet()">Generate Link Bookmarklet</button>
+    <button onclick="window.generateSchemaFromDomLink()">
       Generate Schema From Dom Links
     </button>
+    <button onclick="window.generateSchemaFromBookmarklet()">
+      Generate Schema From Bookmarklet
+    </button>
     <div>
-      <a href='https://caiorss.github.io/bookmarklet-maker/'>Bookmarklet Maker</a>
       <a href='https://github.com/synle/synle.github.io/blob/master/link/nav-generator.html'>Github Source</a>
     </div>
 
@@ -56,7 +59,7 @@
     http://aaa.com|||aaa
     http://bbb.com|||bbb
     */
-      window.generateNav = () => {
+      window.generateDom = () => {
         document.querySelector("#input").value = document
           .querySelector("#input")
           .value.split("\n")
@@ -98,8 +101,24 @@
         \`
       `.trim();
       };
+      
+      window.generateBookmarklet = () => {
+        window.generateDom();
+        
+        const output = document.querySelector("#output").value;
+        
+        document.querySelector("#output").value = `
+        javascript:${encodeURIComponent(`(function(){${output}})()`)}
+        `.trim()
+      }
 
+      
+      
       /*
+      use this api to copy the raw html
+      copy(decodeURIComponent(``))
+      
+      
     document.body.innerHTML = `
           <style>
             body{
@@ -119,7 +138,7 @@
         `
         `
     */
-      window.generateSchema = () => {
+      window.generateSchemaFromDomLink = () => {
         document.querySelector("#input").value = document
           .querySelector("#input")
           .value.split("\n")
@@ -143,6 +162,12 @@
 
         document.querySelector("#output").value = output.join("\n").trim();
       };
+      
+      window.generateSchemaFromBookmarklet = () => {
+        const input = document.querySelector("#input").value;
+        document.querySelector("#input").value = decodeURIComponent(input);
+        window.generateSchemaFromDomLink();
+      }
     </script>
   </body>
 </html>
