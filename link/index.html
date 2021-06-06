@@ -1,176 +1,195 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>Link Fix</title>
-</head>
-<body>
-  <form onSubmit="return onGo()">
-    <input id='input' placeholder='Enter URL to fix' />
-    <div id='output' style="display: none"></div>
-    <div style='display: flex; margin-bottom: 15px;'>
-      <button type='submit' onClick="window.onGo()">Go</button>
-      <button type='button' onClick="window.onShowFixLinkBookmark()">Show Bookmarklet</button>
-      <a href='https://synle.github.io/link/nav-generator.html'>Navigation Generator</a>
-      <a href='https://github.com/synle/synle.github.io/blob/master/link/index.html'>Source Code</a>
-    </div>
-  </form>
-  <style>
-    *{
-      box-sizing: border-box;
-      font-family: monospace;
-      font-size: 18px;
-    }
-    
-    body{
-      margin: 5px 10px;
-    }
-    
-    #input{
-      width: 100%;
-      border: 1px solid blue;
-      margin-bottom: 15px;
-      padding: 8px 10px;
-      border: 1px solid #ccc;
-    }
-    
-    #output, #bookmark{
-      border: 1px solid red;
-      margin-bottom: 15px;
-      padding: 10px 20px;
-      width: 100%;
-      height: 250px;
-    }
-    
-    button, a {
-      padding: 10px 20px;
-      margin-right: 20px;
-      background: #ddd;
-      color: black;
-      border: 1px solid black;
-      font-weight: bold;
-    }
-    
-    button[type=submit]{
-      color: white;
-      background: blue;
-    }
-  </style>
-  <script>
-    (() => {
-      function cleanupUrl(str) {
-        return str
-          .replace(/^http[s]*:/, "")
-          .replace(/^[\/]+/, "")
-          .trim();
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Link Fix</title>
+  </head>
+  <body>
+    <form onSubmit="return onGo()">
+      <input id="input" placeholder="Enter URL to fix" />
+      <div id="output" style="display: none"></div>
+      <div style="display: flex; margin-bottom: 15px">
+        <button type="submit" onClick="window.onGo()">Go</button>
+        <button type="button" onClick="window.onShowFixLinkBookmark()">
+          Show Bookmarklet
+        </button>
+        <a href="https://synle.github.io/link/nav-generator.html"
+          >Navigation Generator</a
+        >
+        <a
+          href="https://github.com/synle/synle.github.io/blob/master/link/index.html"
+          >Source Code</a
+        >
+      </div>
+    </form>
+    <style>
+      * {
+        box-sizing: border-box;
+        font-family: monospace;
+        font-size: 18px;
       }
 
-      // seeking alpha
-      function isSeekingAlphaLink(url) {
-        return url.includes("seekingalpha");
-      }
-      function fixSeekingAlphaLink(url) {
-        // https://seekingalpha.com/amp/article/4278986-simple-path-to-early-retirement-investing
-        // https://seekingalpha.com/article/4278986-simple-path-to-early-retirement-investing
-        // https://seekingalpha.com/news/3702883-splunk-analysts-cut-price-targets-after-earnings-with-too-many-moving-parts 
-        url = cleanupUrl(
-          url
-            .replace("seekingalpha.com/amp/", "")
-            .replace("seekingalpha.com/", "")
-        );
-        return `https://seekingalpha.com/amp/${url}`;
+      body {
+        margin: 5px 10px;
       }
 
-      // cnbc
-      function isCnbcLink(url) {
-        return url.includes("cnbc.com");
-      }
-      function fixCnbcLink(url) {
-        // https://www.cnbc.com/amp/2021/05/18/yellen-pushes-higher-taxes-stronger-unions-more-competition-to-us-chamber.html
-        url = cleanupUrl(url.replace("www.cnbc.com", "").replace("cnbc.com", "").replace("amp", ""));
-        return `https://www.cnbc.com/amp/${url}`;
+      #input {
+        width: 100%;
+        border: 1px solid blue;
+        margin-bottom: 15px;
+        padding: 8px 10px;
+        border: 1px solid #ccc;
       }
 
-      // fool
-      function isFoolLink(url) {
-        return url.includes("fool.com");
-      }
-      function fixFoolLink(url) {
-        // https://www.fool.com/amp/investing/2021/05/19/an-att-dividend-cut-is-coming-buy-this-telecom-ins/
-        url = cleanupUrl(
-          url.replace("www.fool.com", "").replace("fool.com", "").replace("amp", "")
-        );
-        return `https://www.fool.com/amp/${url}`;
-      }
-      
-      // amazon
-      function isAmazonLink(url) {
-        return url.includes("amazon.com");
-      }
-      function fixAmazonLink(url) {
-        // https://www.amazon.com/gp/product/B07GTMGKYV?creative=9325&camp=1789&tag=dealnewscom&m=ATVPDKIKX0DER&psc=1&ascsubtag=385qwzf25qx45o1cdgj3eK1ghXIRwjfb
-        url = url.substr(url.indexOf('/product/'))
-        url = url.substr(0, url.indexOf('?'))
-
-        url = cleanupUrl(url.replace('product/', '').replace('/', ''));
-
-        setOutput(`url`);
-
-        return url;
+      #output,
+      #bookmark {
+        border: 1px solid red;
+        margin-bottom: 15px;
+        padding: 10px 20px;
+        width: 100%;
+        height: 250px;
       }
 
-      function setOutput(html){
-        document.querySelector(
-          "#output"
-        ).innerHTML = html;
-        document.querySelector("#output").style.display = html.length > 0 ? "block" : 'hidden';
+      button,
+      a {
+        padding: 10px 20px;
+        margin-right: 20px;
+        background: #ddd;
+        color: black;
+        border: 1px solid black;
+        font-weight: bold;
       }
 
-      // start
-      window.onGo = function onGo() {
-        try {
-          let url;
-          let shouldHandleRedirect = true;
-
-          url = document.querySelector("#input").value.trim() || "";
-
-          if (false) {
-            // dummy
-          } else if (isSeekingAlphaLink(url)) {
-            url = fixSeekingAlphaLink(url);
-          } else if (isCnbcLink(url)) {
-            url = fixCnbcLink(url);
-          } else if (isFoolLink(url)) {
-            url = fixFoolLink(url);
-          } else if (isAmazonLink(url)) {
-            url = fixAmazonLink(url);
-            setOutput(url);
-            shouldHandleRedirect = false; // for amazon link, just return the product id
-          } else {
-            url = decodeURIComponent(url)
-              .match(/&[a-z]+=http[s]*:\/\/[a-z0-9:?=&.\/-]+/gi)[0]
-              .match(/http[s]*:\/\/[a-z0-9:?=&.\/-]+/gi)[0];
-          }
-
-          if(shouldHandleRedirect){
-            setOutput(`<a href="${url}" target="_blank">${url}</a>`);
-
-            if (url.includes("http")) {
-              location.href = url;
-              document.body.innerHTML = `<h3>Loading page <span style="color: blue;">${url}</span></h3>`;
-            }
-          }
-        } catch (err) {
-          console.log(err);
+      button[type="submit"] {
+        color: white;
+        background: blue;
+      }
+    </style>
+    <script>
+      (() => {
+        function cleanupUrl(str) {
+          return str
+            .replace(/^http[s]*:/, "")
+            .replace(/^[\/]+/, "")
+            .trim();
         }
 
-        return false;
-      }
+        // seeking alpha
+        function isSeekingAlphaLink(url) {
+          return url.includes("seekingalpha");
+        }
+        function fixSeekingAlphaLink(url) {
+          // https://seekingalpha.com/amp/article/4278986-simple-path-to-early-retirement-investing
+          // https://seekingalpha.com/article/4278986-simple-path-to-early-retirement-investing
+          // https://seekingalpha.com/news/3702883-splunk-analysts-cut-price-targets-after-earnings-with-too-many-moving-parts
+          url = cleanupUrl(
+            url
+              .replace("seekingalpha.com/amp/", "")
+              .replace("seekingalpha.com/", "")
+          );
+          return `https://seekingalpha.com/amp/${url}`;
+        }
 
-      window.onShowFixLinkBookmark = () => {
-        const fixLinkAppUrl = 'https://synle.github.io/link';
-        const source = 'javascript:' + encodeURIComponent(`
+        // cnbc
+        function isCnbcLink(url) {
+          return url.includes("cnbc.com");
+        }
+        function fixCnbcLink(url) {
+          // https://www.cnbc.com/amp/2021/05/18/yellen-pushes-higher-taxes-stronger-unions-more-competition-to-us-chamber.html
+          url = cleanupUrl(
+            url
+              .replace("www.cnbc.com", "")
+              .replace("cnbc.com", "")
+              .replace("amp", "")
+          );
+          return `https://www.cnbc.com/amp/${url}`;
+        }
+
+        // fool
+        function isFoolLink(url) {
+          return url.includes("fool.com");
+        }
+        function fixFoolLink(url) {
+          // https://www.fool.com/amp/investing/2021/05/19/an-att-dividend-cut-is-coming-buy-this-telecom-ins/
+          url = cleanupUrl(
+            url
+              .replace("www.fool.com", "")
+              .replace("fool.com", "")
+              .replace("amp", "")
+          );
+          return `https://www.fool.com/amp/${url}`;
+        }
+
+        // amazon
+        function isAmazonLink(url) {
+          return url.includes("amazon.com");
+        }
+        function fixAmazonLink(url) {
+          // https://www.amazon.com/gp/product/B07GTMGKYV?creative=9325&camp=1789&tag=dealnewscom&m=ATVPDKIKX0DER&psc=1&ascsubtag=385qwzf25qx45o1cdgj3eK1ghXIRwjfb
+          url = url.substr(url.indexOf("/product/"));
+          url = url.substr(0, url.indexOf("?"));
+
+          url = cleanupUrl(url.replace("product/", "").replace("/", ""));
+
+          setOutput(`url`);
+
+          return url;
+        }
+
+        function setOutput(html) {
+          document.querySelector("#output").innerHTML = html;
+          document.querySelector("#output").style.display =
+            html.length > 0 ? "block" : "hidden";
+        }
+
+        // start
+        window.onGo = function onGo() {
+          try {
+            let url;
+            let shouldHandleRedirect = true;
+
+            url = document.querySelector("#input").value.trim() || "";
+
+            if (false) {
+              // dummy
+            } else if (isSeekingAlphaLink(url)) {
+              url = fixSeekingAlphaLink(url);
+            } else if (isCnbcLink(url)) {
+              url = fixCnbcLink(url);
+            } else if (isFoolLink(url)) {
+              url = fixFoolLink(url);
+            } else if (isAmazonLink(url)) {
+              url = fixAmazonLink(url);
+              setOutput(url);
+              shouldHandleRedirect = false; // for amazon link, just return the product id
+            } else {
+              url = decodeURIComponent(url)
+                .match(/&[a-z]+=http[s]*:\/\/[a-z0-9:?=&.\/-]+/gi)[0]
+                .match(/http[s]*:\/\/[a-z0-9:?=&.\/-]+/gi)[0];
+            }
+
+            if (shouldHandleRedirect) {
+              setOutput(`<a href="${url}" target="_blank">${url}</a>`);
+
+              if (url.includes("http")) {
+                location.href = url;
+                document.body.innerHTML = `<h3>Loading page <span style="color: blue;">${url}</span></h3>`;
+              }
+            }
+          } catch (err) {
+            console.log(err);
+          }
+
+          return false;
+        };
+
+        window.onShowFixLinkBookmark = () => {
+          const fixLinkAppUrl = "https://synle.github.io/link";
+          const source =
+            "javascript:" +
+            encodeURIComponent(
+              `
           (function(){
             try{
               try{
@@ -182,39 +201,42 @@
               alert('Error: ' + err);
             }
           })();
-        `.trim())
+        `.trim()
+            );
 
-        let bookmarkDom = document.querySelector('#bookmark');
-        if(!document.querySelector('#bookmark')){
-          bookmarkDom = document.createElement('textarea');
-          bookmarkDom.id = 'bookmark';
-          bookmarkDom.addEventListener('blur', () => { bookmarkDom.remove() });
-          bookmarkDom.addEventListener('focus', () => { 
-            bookmarkDom.select();
-            document.execCommand("copy");
-          });          
-          document.body.append(bookmarkDom);
+          let bookmarkDom = document.querySelector("#bookmark");
+          if (!document.querySelector("#bookmark")) {
+            bookmarkDom = document.createElement("textarea");
+            bookmarkDom.id = "bookmark";
+            bookmarkDom.addEventListener("blur", () => {
+              bookmarkDom.remove();
+            });
+            bookmarkDom.addEventListener("focus", () => {
+              bookmarkDom.select();
+              document.execCommand("copy");
+            });
+            document.body.append(bookmarkDom);
+          }
+          bookmarkDom.value = source;
+        };
+
+        // use hash url for referrer
+        let defaultUrl = location.hash.substr(1) || document.referrer || "";
+
+        if (!defaultUrl.includes("synle.github.io")) {
+          document.querySelector("#input").value = defaultUrl;
         }
-        bookmarkDom.value = source;
-      }
 
-      // use hash url for referrer
-      let defaultUrl = location.hash.substr(1) || document.referrer || '';
+        const URL_MATCHERS = [isSeekingAlphaLink, isCnbcLink, isFoolLink];
 
-      if(!defaultUrl.includes('synle.github.io')){
-        document.querySelector("#input").value = defaultUrl;
-      }
-
-      const URL_MATCHERS = [
-        isSeekingAlphaLink,
-        isCnbcLink,
-        isFoolLink,
-      ]
-
-      if(URL_MATCHERS.some(matcher => matcher(document.querySelector('#input').value))){
-        onGo();
-      }
-    })()
-  </script>
-</body>
+        if (
+          URL_MATCHERS.some((matcher) =>
+            matcher(document.querySelector("#input").value)
+          )
+        ) {
+          onGo();
+        }
+      })();
+    </script>
+  </body>
 </html>
