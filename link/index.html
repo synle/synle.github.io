@@ -9,10 +9,12 @@
   <form onSubmit="return onGo()">
     <input id='input' placeholder='Enter URL to fix' />
     <div id='output' style="display: none"></div>
-    <button type='submit' onClick="window.onGo()">Go</button>
-    <button type='button' onClick="window.onShowFixLinkBookmark()">Show Bookmarklet</button>
-    <a href='https://synle.github.io/link/nav-generator.html'>Navigation Generator</a>
-    <a href='https://github.com/synle/synle.github.io/blob/master/link/index.html'>Source Code</a>
+    <div style='display: flex; margin-bottom: 15px;'>
+      <button type='submit' onClick="window.onGo()">Go</button>
+      <button type='button' onClick="window.onShowFixLinkBookmark()">Show Bookmarklet</button>
+      <a href='https://synle.github.io/link/nav-generator.html'>Navigation Generator</a>
+      <a href='https://github.com/synle/synle.github.io/blob/master/link/index.html'>Source Code</a>
+    </div>
   </form>
   <style>
     *{
@@ -33,10 +35,12 @@
       border: 1px solid #ccc;
     }
     
-    #output{
+    #output, #bookmark{
       border: 1px solid red;
       margin-bottom: 15px;
       padding: 10px 20px;
+      width: 100%;
+      height: 250px;
     }
     
     button, a {
@@ -165,7 +169,15 @@
       }
 
       window.onShowFixLinkBookmark = () => {
-        prompt('Fix Link Bookmarklet', `javascript:(function()%7Bconst%20fixLinkAppUrl%20%3D%20'https%3A%2F%2Fsynle.github.io%2Flink'%3B%0A%0Atry%7B%0A%20%20try%7B%0A%20%20%20%20location.href%20%3D%20%60%24%7BfixLinkAppUrl%7D%2F%23%24%7Blocation.href%7D%60%0A%20%20%7D%20catch(err)%7B%0A%20%20%20%20location.href%20%3D%20%60%24%7BfixLinkAppUrl%7D%60%0A%20%20%7D%0A%7D%20catch(err)%7B%0A%20%20alert('Error%3A%20'%20%2B%20err)%3B%0A%7D%7D)()%3B`);
+        const source = `javascript:(function()%7Bconst%20fixLinkAppUrl%20%3D%20'https%3A%2F%2Fsynle.github.io%2Flink'%3B%0A%0Atry%7B%0A%20%20try%7B%0A%20%20%20%20location.href%20%3D%20%60%24%7BfixLinkAppUrl%7D%2F%23%24%7Blocation.href%7D%60%0A%20%20%7D%20catch(err)%7B%0A%20%20%20%20location.href%20%3D%20%60%24%7BfixLinkAppUrl%7D%60%0A%20%20%7D%0A%7D%20catch(err)%7B%0A%20%20alert('Error%3A%20'%20%2B%20err)%3B%0A%7D%7D)()%3B`
+        debugger
+        let bookmarkDom = document.querySelector('#bookmark');
+        if(!document.querySelector('#bookmark')){
+          bookmarkDom = document.createElement('textarea');
+          bookmarkDom.id = 'bookmark';
+          document.body.append(bookmarkDom);
+        }
+        bookmarkDom.value = source;
       }
 
       // use hash url for referrer
