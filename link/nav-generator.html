@@ -146,6 +146,7 @@
         document.querySelector("#output").value = `
         javascript:${encodeURIComponent(`(function(){${output}})()`)}
         `.trim()
+        document.querySelector("#output").focus();
       }
 
       window.generateSchemaFromDomLink = () => {
@@ -179,6 +180,7 @@
         }
 
         document.querySelector("#output").value = output.join("\n").trim();
+        document.querySelector("#output").focus();
       };
       
       window.generateSchemaFromBookmarklet = () => {
