@@ -60,7 +60,7 @@
 
     <script>
       const LINK_SPLIT = "|||";
-      
+      const SECTION_HEADER_SPLIT= '#';
 
       /*
       http://aaa.com|||aaa
@@ -81,13 +81,21 @@
           .split("\n")
           .map((r) => r.trim())
           .filter((r) => !!r)) {
-          let [fullLink, description] = link
-            .split(LINK_SPLIT)
-            .map((r) => r.trim());
-
-          output.push(
-            `<p><a class='link' href="${fullLink}">${description}</a></p>`
-          );
+          if(link.indexOf(SECTION_HEADER_SPLIT) === 0){
+            const description = link.replace(SECTION_HEADER_SPLIT, '').trim();
+            
+            output.push(
+              `<h2 class='header'>${description}</h2>`
+            );
+          } else {
+            const [fullLink, description] = link
+              .split(LINK_SPLIT)
+              .map((r) => r.trim());
+            
+            output.push(
+              `<a class='link' href="${fullLink}">${description}</a>`
+            );
+          }
         }
 
         document.querySelector("#output").value = `
@@ -97,16 +105,29 @@
               border: 1px solid black;
               background: black;
               margin: auto;
-              width: 500px;
+              width: 600px;
+              font-family: 'arial';
             }
-            p{
-              padding: 5px 10px;
-              margin-bottom: 5px;
-              background: white;
+            a, h2{
+              padding: 10px 20px;
+              margin-bottom: 8px;
             }
             a{
               font-size: 18px;
-              font-weight: bold;
+              background: white;
+              display: block;
+              margin-left: 25px;
+              text-decoration: none;
+            }
+            a:hover{
+              background: #ccc;
+            }
+            h2{
+              font-weight: 900;
+              font-size: 18px;
+              padding: 0;
+              color: white;
+              margin-top: 25px;
             }
           </style>
           ${output.join("\n")}
@@ -137,13 +158,21 @@
         const elem = document.createElement("div");
         elem.innerHTML = input;
 
-        const links = elem.querySelectorAll("a.link");
+        const elems = elem.querySelectorAll(".link,.header");
 
-        for (const link of links) {
-          let fullLink = link.href;
-          let description = link.innerHTML;
+        for (const elem of elems) {
+          if(elem.classList.contains('link')){
+            const link = elem;
+            let fullLink = link.href;
+            let description = link.innerHTML;
 
-          output.push(`${fullLink}${LINK_SPLIT}${description}`);
+            output.push(`${fullLink}${LINK_SPLIT}${description}`);
+          } else {
+            const header = elem;
+            let description = link.innerHTML;
+
+            output.push(`${SECTION_HEADER_SPLIT} ${description}`);
+          }
         }
 
         document.querySelector("#output").value = output.join("\n").trim();
