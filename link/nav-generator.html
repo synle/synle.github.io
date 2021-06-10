@@ -36,7 +36,7 @@
         color: white;
       }
     </style>
-    <form onsubmit="window.submitForm(); return false;">
+    <form onsubmit="try{window.submitForm();} catch(e){console.log(e.stack)} return false;">
       <div>
         <textarea id="input" placeholder="Input..." required></textarea>
         <textarea
@@ -169,7 +169,7 @@
             output.push(`${fullLink}${LINK_SPLIT}${description}`);
           } else {
             const header = elem;
-            let description = link.innerHTML;
+            let description = header.innerHTML;
 
             output.push(`${SECTION_HEADER_SPLIT} ${description}`);
           }
