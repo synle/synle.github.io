@@ -132,10 +132,47 @@
               color: white;
               margin-top: 25px;
             }
+            button{
+              margin: 20px auto;
+              padding: 10px 20px;
+              background: white;
+              color: black;
+              border: 1px solid black;
+              display: block;
+            }
           </style>
+
           ${output.join("\n")}
+
+          <button onClick='window.onViewSchema()'>View Schema Source</button>
         \`
-      `.trim();
+
+        eval(\`
+          window.onViewSchema = () => {
+            var LINK_SPLIT = "|||";
+            var SECTION_HEADER_SPLIT = "#";
+            var output = [];
+            var elems = document.querySelectorAll(".link,.header");
+            for (var elem of elems) {
+                if (elem.classList.contains("link")) {
+                    var link = elem;
+                    var fullLink = link.href;
+                    var description = link.innerHTML;
+                    output.push(fullLink + LINK_SPLIT + description);
+              } else {
+                var header = elem;
+                var description = header.innerHTML;
+
+                output.push(SECTION_HEADER_SPLIT + description);
+              }
+            };
+
+            output = output.join("<br />").trim()
+
+            document.body.innerHTML = output;
+          }
+        \`)
+      `.trim().replace(/js_script/g, 'script');
       };
       
       window.generateBookmarklet = () => {
