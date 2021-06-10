@@ -54,6 +54,9 @@
         <button type="submit" onclick="window.submitForm = generateSchemaFromBookmarklet">
           Create Schema From Bookmarklet
         </button>
+        <button type="submit" onclick="window.submitForm = testNav">
+          Test Nav
+        </button>        
         <a href='https://github.com/synle/synle.github.io/blob/master/link/nav-generator.html'>Source Code</a>
       </div>
     </form>
@@ -228,6 +231,12 @@
         window.generateSchemaFromDomLink();
       }
       
+      window.testNav = () => {
+        generateDom();
+        eval(document.querySelector('#output').value);
+      }
+      
+      // on load put focus on input
       document.querySelector("#input").focus();
     </script>
   </body>
