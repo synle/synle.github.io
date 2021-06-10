@@ -105,6 +105,7 @@
               margin: auto !important;
               width: 600px;
               font-family: 'arial';
+              overflow-y: auto !important;
             }
             body, body:before, body:after{
               border: 1px solid black;
@@ -185,6 +186,8 @@
         document.querySelector("#input").value = decodeURIComponent(input);
         window.generateSchemaFromDomLink();
       }
+      
+      document.querySelector("#input").foucs();
     </script>
   </body>
 </html>
