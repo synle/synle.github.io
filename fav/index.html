@@ -172,22 +172,25 @@ const sites = `
       display: block;
       font-size: 1.1rem;
     }
-
-    #fav span{
+    
+    #fav > span{
       grid-column-start: 1;
       grid-column-end: 2;
+    }
+    
+    #fav > span + a{
+      grid-column-start: 1;
+      grid-column-end: 2;
+    }
+
+    #fav > span{
       font-weight: 900;
       padding-left: 1rem;
       border-left: 10px solid var(--colorLink);
       color: var(--colorLink);
     }
-    
-    #fav span + a{
-      grid-column-start: 1;
-      grid-column-end: 2;
-    }
 
-    #fav a{
+    #fav > a{
       border: var(--borderSize) solid var(--colorBorderMain);
       padding: 1rem 0.5rem;
       text-overflow: ellipsis;
@@ -199,7 +202,7 @@ const sites = `
       border-radius: 5px;
     }
 
-    #fav a:active{
+    #fav > a:active{
       filter: invert(100%);
     }
 
