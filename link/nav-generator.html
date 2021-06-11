@@ -29,6 +29,7 @@
       button, a {
         padding: 10px 20px;
         margin-right: 20px;
+        margin-bottom: 20px;
         background: #ddd;
         color: black;
         border: 1px solid black;
@@ -56,7 +57,7 @@
           readonly="true"
         ></textarea>
       </div>
-      <div style="display: flex;">
+      <div style="display: flex; flex-wrap: wrap;">
         <button type="submit" onclick="window.submitForm = generateBookmarklet">Create Link Bookmarklet</button>
         <button type="submit" onclick="window.submitForm = generateDom"  style="display: none">Create Link DOM</button>
         <button type="submit" onclick="window.submitForm = generateSchemaFromDomLink" style="display: none">
