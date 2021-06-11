@@ -11,21 +11,21 @@
   <!--  scripts -->
   <script>
     const sites = `
-      // deals
+      # deals
         echojs|echojs.com
         woot|woot.com
         slickdeals|slickdeals.net
-      // code
+      # code
         hacker news|hn.svelte.dev/top/1
-      // general
+      # general
         lifehacker|lifehacker.com
         teamblind|teamblind.com
-      // tech
+      # tech
         google news|news.google.com/topstories
         engadget|www.engadget.com
         verge|www.theverge.com
         tech crunch|techcrunch.com
-      // stock
+      # stock
         //webull|webull.com/quote
         //seeking alpha|seekingalpha.com
         //motley fool|fool.com
@@ -34,7 +34,7 @@
         cnbc|cnbc.com
         wallstreet bets|reddit.com/r/wallstreetbets
         thetagang|reddit.com/r/thetagang
-      // personal
+      # personal
         synle|synle.github.io
         bashrc|synle.github.io/app/setup-bash-profile.html
         fix link|https://synle.github.io/link/index.html
@@ -43,30 +43,47 @@
     `
     const sitesData = sites.split('\n').map( s => s.trim().replace('http://', '').replace('https://', '')).filter(s => !!s && !s.match(/^\/\//)).map(
       s => {
-        let url, name;
-        const splits = s.split('|');
+        if(s[0] === '#'){
+          return {
+            name: s.replace(/#/g, '').trim(),
+            type: 'section',
+          }
+        } else {
+          let url, name;
+          const splits = s.split('|');
 
-        if(splits.length === 2){
-          url = splits[1];
-          name = splits[0];
-        }
-        else {
-          url = s;
-          name = s.substr(0, s.indexOf('/') > 0 ? s.indexOf('/') : s.length);
-        }
+          if(splits.length === 2){
+            url = splits[1];
+            name = splits[0];
+          }
+          else {
+            url = s;
+            name = s.substr(0, s.indexOf('/') > 0 ? s.indexOf('/') : s.length);
+          }
 
-        return {
-          url,
-          name: name.toUpperCase(),
+          return {
+            url,
+            name: name,
+            type: 'link',
+          }
         }
       }
     )
 
     let dom = ''
     for (const site of sitesData){
-      dom += `
-        <a href='https://${site.url}' title='${site.name}'">${site.name}</a>
-      `
+      switch(site.type){
+        case 'section':
+          dom += `
+            <span>${site.name}</span>
+          `
+          break;
+        case 'link':
+          dom += `
+            <a href='https://${site.url}' title='${site.name}'">${site.name}</a>
+          `
+          break;
+      }      
     }
     document.querySelector('#fav').innerHTML = dom;
 
@@ -87,6 +104,7 @@
       --colorBgSecondaryLight: #fff;
       --colorBorderMainLight: #999;
       --colorBorderSecondaryLight: #000;
+      --colorLink: blue;
 
       /* dark */
       --colorMainDark: #f8f8f2;
@@ -95,6 +113,7 @@
       --colorBgSecondaryDark: #6272a4;
       --colorBorderMainDark: #aaaec9;
       --colorBorderSecondaryDark: #8be9fd;
+      --colorLink: #f1fa8c;
     }
 
     html{
@@ -144,7 +163,19 @@
       justify-content: center;
     }
 
+    #fav span{
+      text-transform: uppercase;
+      grid-column-start: 1;
+      grid-column-end: none;
+      font-weight: 900;
+      font-size: 1.1rem;
+      padding-left: 1rem;
+      border-left: 10px solid var(--colorLink);
+      color: var(--colorLink);
+    }
+
     #fav a{
+      text-transform: uppercase;
       display: block;
       border: var(--borderSize) solid var(--colorBorderMain);
       padding: 1rem 0.5rem;
