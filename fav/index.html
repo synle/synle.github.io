@@ -160,9 +160,10 @@ const sites = `
     }
 
     #fav{
-      width: 100%;
+      width: 700px;
+      margin:  auto;
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 180px));
+      grid-template-columns: 180px 180px 180px;
       grid-gap: 2rem 1.2rem;
       justify-content: center;
     }
@@ -175,7 +176,7 @@ const sites = `
     
     #fav > span{
       grid-column-start: 1;
-      grid-column-end: none;
+      grid-column-end: span;
     }
     
     #fav > span + a{
