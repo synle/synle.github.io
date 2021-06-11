@@ -8,39 +8,43 @@
     <div id='fav'></div>
   </body>
 
-  <!--  scripts -->
+  <!-- meta data -->
   <script>
-    const sites = `
-      # deals
-        echojs|echojs.com
-        woot|woot.com
-        slickdeals|slickdeals.net
-      # code
-        hacker news|hn.svelte.dev/top/1
-      # general
-        lifehacker|lifehacker.com
-        teamblind|teamblind.com
-      # tech
-        google news|news.google.com/topstories
-        engadget|www.engadget.com
-        verge|www.theverge.com
-        tech crunch|techcrunch.com
-      # stock
-        //webull|webull.com/quote
-        //seeking alpha|seekingalpha.com
-        //motley fool|fool.com
-        google finance|www.google.com/finance/portfolio/watchlist
-        market watch|marketwatch.com
-        cnbc|cnbc.com
-        wallstreet bets|reddit.com/r/wallstreetbets
-        thetagang|reddit.com/r/thetagang
-      # personal
-        synle|synle.github.io
-        bashrc|synle.github.io/app/setup-bash-profile.html
-        fix link|https://synle.github.io/link/index.html
-        nav generator|https://synle.github.io/link/nav-generator.html
-        plex|https://app.plex.tv
-    `
+const sites = `
+# deals
+  echojs|echojs.com
+  woot|woot.com
+  slickdeals|slickdeals.net
+# code
+  hacker news|hn.svelte.dev/top/1
+# general
+  lifehacker|lifehacker.com
+  teamblind|teamblind.com
+# tech
+  google news|news.google.com/topstories
+  engadget|www.engadget.com
+  verge|www.theverge.com
+  tech crunch|techcrunch.com
+# stock
+  //webull|webull.com/quote
+  //seeking alpha|seekingalpha.com
+  //motley fool|fool.com
+  google finance|www.google.com/finance/portfolio/watchlist
+  market watch|marketwatch.com
+  cnbc|cnbc.com
+  wallstreet bets|reddit.com/r/wallstreetbets
+  thetagang|reddit.com/r/thetagang
+# personal
+  synle|synle.github.io
+  bashrc|synle.github.io/app/setup-bash-profile.html
+  fix link|https://synle.github.io/link/index.html
+  nav generator|https://synle.github.io/link/nav-generator.html
+  plex|https://app.plex.tv
+`
+  </script>
+
+  <!-- script starts here -->
+  <script>
     const sitesData = sites.split('\n').map( s => s.trim().replace('http://', '').replace('https://', '')).filter(s => !!s && !s.match(/^\/\//)).map(
       s => {
         if(s[0] === '#'){
