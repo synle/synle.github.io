@@ -166,26 +166,32 @@ const sites = `
       grid-gap: 2rem 1.2rem;
       justify-content: center;
     }
+    
+    #fav > * {
+      text-transform: uppercase;
+      display: block;
+      font-size: 1.1rem;
+    }
 
     #fav span{
-      text-transform: uppercase;
       grid-column-start: 1;
-      grid-column-end: none;
+      grid-column-end: 2;
       font-weight: 900;
-      font-size: 1.1rem;
       padding-left: 1rem;
       border-left: 10px solid var(--colorLink);
       color: var(--colorLink);
     }
+    
+    #fav span + a{
+      grid-column-start: 1;
+      grid-column-end: 2;
+    }
 
     #fav a{
-      text-transform: uppercase;
-      display: block;
       border: var(--borderSize) solid var(--colorBorderMain);
       padding: 1rem 0.5rem;
       text-overflow: ellipsis;
       overflow: hidden;
-      font-size: 1.1rem;
       background: var(--colorBgSecondary);
       color: var(--colorSecondary);
       text-align: center;
