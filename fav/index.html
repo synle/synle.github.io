@@ -6,6 +6,9 @@
   </head>
   <body>
     <div id='fav'></div>
+    <div style='text-align: center; margin: 2rem 1rem;'>
+      <a target="_blank" href='https://github.com/synle/synle.github.io/blob/master/fav/index.html'>View Source</a>
+    </div>
   </body>
 
   <!-- meta data -->
@@ -108,7 +111,7 @@ const sites = `
       --colorBgSecondaryLight: #fff;
       --colorBorderMainLight: #999;
       --colorBorderSecondaryLight: #000;
-      --colorLink: blue;
+      --colorLinkLight: blue;
 
       /* dark */
       --colorMainDark: #f8f8f2;
@@ -117,7 +120,7 @@ const sites = `
       --colorBgSecondaryDark: #6272a4;
       --colorBorderMainDark: #aaaec9;
       --colorBorderSecondaryDark: #8be9fd;
-      --colorLink: #f1fa8c;
+      --colorLinkDark: #f1fa8c;
     }
 
     html{
@@ -127,6 +130,7 @@ const sites = `
       --colorBgSecondary: var(--colorBgSecondaryLight);
       --colorBorderMain: var(--colorBorderMainLight);
       --colorBorderSecondary: var(--colorBorderSecondaryLight);
+      --colorLink: var(--colorLinkLight);
     }
 
     html.darkTheme{
@@ -136,6 +140,7 @@ const sites = `
       --colorBgSecondary: var(--colorBgSecondaryDark);
       --colorBorderMain: var(--colorBorderMainDark);
       --colorBorderSecondary: var(--colorBorderSecondaryDark);
+      --colorLink: var(--colorLinkDark);
     }
 
     @media (prefers-color-scheme: dark) {
@@ -146,6 +151,7 @@ const sites = `
         --colorBgSecondary: var(--colorBgSecondaryDark);
         --colorBorderMain: var(--colorBorderMainDark);
         --colorBorderSecondary: var(--colorBorderSecondaryDark);
+        --colorLink: var(--colorLinkDark);
       }
     }
 
@@ -153,10 +159,6 @@ const sites = `
       background: var(--colorBgMain);
       color: var(--colorMain);
       font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
     }
 
     #fav{
@@ -199,7 +201,6 @@ const sites = `
       text-overflow: ellipsis;
       overflow: hidden;
       background: var(--colorBgSecondary);
-      color: var(--colorSecondary);
       text-align: center;
       text-decoration: none;
       border-radius: 5px;
@@ -209,8 +210,12 @@ const sites = `
       filter: invert(100%);
     }
 
-    #fav a:hover {
-      opacity: 1;
+    a {
+      color: var(--colorSecondary);
+      font-weight:  600;
+    }
+
+    a:hover {
       border-color: var(--colorBorderSecondary);
     }
   </style>
