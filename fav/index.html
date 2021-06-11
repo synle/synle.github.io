@@ -39,6 +39,7 @@
         bashrc|synle.github.io/app/setup-bash-profile.html
         fix link|https://synle.github.io/link/index.html
         nav generator|https://synle.github.io/link/nav-generator.html
+        plex|https://app.plex.tv
     `
     const sitesData = sites.split('\n').map( s => s.trim().replace('http://', '').replace('https://', '')).filter(s => !!s && !s.match(/^\/\//)).map(
       s => {
