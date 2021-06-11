@@ -63,8 +63,10 @@
         </button>
         <button type="submit" onclick="window.submitForm = testNav">
           Test Nav
-        </button>        
-        <a href='https://github.com/synle/synle.github.io/blob/master/link/nav-generator.html'>Source Code</a>
+        </button>
+        <button type="button" onclick="window.submitForm = viewSource">
+          View Source
+        </button>
       </div>
     </form>
 
@@ -242,6 +244,10 @@
       window.testNav = () => {
         generateDom();
         eval(document.querySelector('#output').value);
+      }
+      
+      window.viewSource = () => {
+        location.href = 'https://github.com/synle/synle.github.io/blob/master/link/nav-generator.html';
       }
       
       // on load put focus on input
