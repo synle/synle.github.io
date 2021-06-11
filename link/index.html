@@ -48,19 +48,25 @@
         height: 250px;
       }
 
-      button,
-      a {
+      button, a {
         padding: 10px 20px;
         margin-right: 20px;
         background: #ddd;
         color: black;
         border: 1px solid black;
         font-weight: bold;
+        cursor: pointer;
+        text-decoration: none;
+        opacity: 0.65;
       }
-
-      button[type="submit"] {
-        color: white;
+      
+      a:hover, button:hover{
+        opacity: 1;
+      }
+      
+      button[type='submit']{
         background: blue;
+        color: white;
       }
     </style>
     <script>
