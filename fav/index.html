@@ -5,11 +5,137 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
   <body>
-    <div id='fav'></div>
-    <div style='text-align: center; margin: 2rem 1rem;'>
-      <a target="_blank" href='https://github.com/synle/synle.github.io/blob/master/fav/index.html'>View Source</a>
+    <div id='fav'>
+      <div id='bot'>
+        <a target="_blank" href='https://github.com/synle/synle.github.io/blob/master/fav/index.html'>View Source</a>
+      </div>
     </div>
   </body>
+  
+    <!--  styles -->
+  <style>
+    html {
+      --borderSize: 3px;
+
+      /* light */
+      --colorMainLight: #242424;
+      --colorSecondaryLight: #4183c4;
+      --colorBgMainLight: #fafafa;
+      --colorBgSecondaryLight: #fff;
+      --colorBorderMainLight: #999;
+      --colorBorderSecondaryLight: #000;
+      --colorLinkLight: blue;
+
+      /* dark */
+      --colorMainDark: #f8f8f2;
+      --colorSecondaryDark: #f8f8f2;
+      --colorBgMainDark: #282a36;
+      --colorBgSecondaryDark: #6272a4;
+      --colorBorderMainDark: #aaaec9;
+      --colorBorderSecondaryDark: #8be9fd;
+      --colorLinkDark: #f1fa8c;
+    }
+
+    html{
+      --colorMain: var(--colorMainLight);
+      --colorSecondary: var(--colorSecondaryLight);
+      --colorBgMain: var(--colorBgMainLight);
+      --colorBgSecondary: var(--colorBgSecondaryLight);
+      --colorBorderMain: var(--colorBorderMainLight);
+      --colorBorderSecondary: var(--colorBorderSecondaryLight);
+      --colorLink: var(--colorLinkLight);
+    }
+
+    html.darkTheme{
+      --colorMain: var(--colorMainDark);
+      --colorSecondary: var(--colorSecondaryDark);
+      --colorBgMain: var(--colorBgMainDark);
+      --colorBgSecondary: var(--colorBgSecondaryDark);
+      --colorBorderMain: var(--colorBorderMainDark);
+      --colorBorderSecondary: var(--colorBorderSecondaryDark);
+      --colorLink: var(--colorLinkDark);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      html{
+        --colorMain: var(--colorMainDark);
+        --colorSecondary: var(--colorSecondaryDark);
+        --colorBgMain: var(--colorBgMainDark);
+        --colorBgSecondary: var(--colorBgSecondaryDark);
+        --colorBorderMain: var(--colorBorderMainDark);
+        --colorBorderSecondary: var(--colorBorderSecondaryDark);
+        --colorLink: var(--colorLinkDark);
+      }
+    }
+
+    body{
+      background: var(--colorBgMain);
+      color: var(--colorMain);
+      font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #fav{
+      width: 800px;
+      margin:  auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, 180px);
+      grid-gap: 2rem 1.2rem;
+      justify-content: center;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+    }
+    
+    #fav > * {
+      text-transform: uppercase;
+      display: block;
+      font-size: 1.1rem;
+    }
+    
+    #fav > span, #fav > #bot{
+      grid-column-start: 1;
+      grid-column-end: span;
+    }
+    
+    #fav > span + a{
+      grid-column-start: 1;
+      grid-column-end: 2;
+    }
+
+    #fav > span{
+      font-weight: 900;
+      padding-left: 1rem;
+      border-left: 10px solid var(--colorLink);
+      color: var(--colorLink);
+    }
+
+    #fav > a{
+      border: var(--borderSize) solid var(--colorBorderMain);
+      padding: 1rem 0.5rem;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      background: var(--colorBgSecondary);
+      text-align: center;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+
+    #fav > a:active{
+      filter: invert(100%);
+    }
+
+    a {
+      color: var(--colorSecondary);
+      font-weight:  600;
+    }
+
+    a:hover {
+      border-color: var(--colorBorderSecondary);
+    }
+  </style>
 
   <!-- meta data -->
   <script>
@@ -93,131 +219,12 @@ const sites = `
           break;
       }      
     }
-    document.querySelector('#fav').innerHTML = dom;
+    
+    document.querySelector('#fav').innerHTML = dom + document.querySelector('#fav').innerHTML;
 
     // dark or day theme
     const isDarkMode = new Date().getHours() >= 19 || new Date().getHours() <= 8;
     document.querySelector('html').classList.toggle('darkTheme', isDarkMode)
   </script>
 
-  <!--  styles -->
-  <style>
-    html {
-      --borderSize: 3px;
-
-      /* light */
-      --colorMainLight: #242424;
-      --colorSecondaryLight: #4183c4;
-      --colorBgMainLight: #fafafa;
-      --colorBgSecondaryLight: #fff;
-      --colorBorderMainLight: #999;
-      --colorBorderSecondaryLight: #000;
-      --colorLinkLight: blue;
-
-      /* dark */
-      --colorMainDark: #f8f8f2;
-      --colorSecondaryDark: #f8f8f2;
-      --colorBgMainDark: #282a36;
-      --colorBgSecondaryDark: #6272a4;
-      --colorBorderMainDark: #aaaec9;
-      --colorBorderSecondaryDark: #8be9fd;
-      --colorLinkDark: #f1fa8c;
-    }
-
-    html{
-      --colorMain: var(--colorMainLight);
-      --colorSecondary: var(--colorSecondaryLight);
-      --colorBgMain: var(--colorBgMainLight);
-      --colorBgSecondary: var(--colorBgSecondaryLight);
-      --colorBorderMain: var(--colorBorderMainLight);
-      --colorBorderSecondary: var(--colorBorderSecondaryLight);
-      --colorLink: var(--colorLinkLight);
-    }
-
-    html.darkTheme{
-      --colorMain: var(--colorMainDark);
-      --colorSecondary: var(--colorSecondaryDark);
-      --colorBgMain: var(--colorBgMainDark);
-      --colorBgSecondary: var(--colorBgSecondaryDark);
-      --colorBorderMain: var(--colorBorderMainDark);
-      --colorBorderSecondary: var(--colorBorderSecondaryDark);
-      --colorLink: var(--colorLinkDark);
-    }
-
-    @media (prefers-color-scheme: dark) {
-      html{
-        --colorMain: var(--colorMainDark);
-        --colorSecondary: var(--colorSecondaryDark);
-        --colorBgMain: var(--colorBgMainDark);
-        --colorBgSecondary: var(--colorBgSecondaryDark);
-        --colorBorderMain: var(--colorBorderMainDark);
-        --colorBorderSecondary: var(--colorBorderSecondaryDark);
-        --colorLink: var(--colorLinkDark);
-      }
-    }
-
-    body{
-      background: var(--colorBgMain);
-      color: var(--colorMain);
-      font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    }
-
-    #fav{
-      width: 800px;
-      margin:  auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, 180px);
-      grid-gap: 2rem 1.2rem;
-      justify-content: center;
-      margin-top: 1rem;
-      margin-bottom: 1rem;
-    }
-    
-    #fav > * {
-      text-transform: uppercase;
-      display: block;
-      font-size: 1.1rem;
-    }
-    
-    #fav > span{
-      grid-column-start: 1;
-      grid-column-end: span;
-    }
-    
-    #fav > span + a{
-      grid-column-start: 1;
-      grid-column-end: 2;
-    }
-
-    #fav > span{
-      font-weight: 900;
-      padding-left: 1rem;
-      border-left: 10px solid var(--colorLink);
-      color: var(--colorLink);
-    }
-
-    #fav > a{
-      border: var(--borderSize) solid var(--colorBorderMain);
-      padding: 1rem 0.5rem;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      background: var(--colorBgSecondary);
-      text-align: center;
-      text-decoration: none;
-      border-radius: 5px;
-    }
-
-    #fav > a:active{
-      filter: invert(100%);
-    }
-
-    a {
-      color: var(--colorSecondary);
-      font-weight:  600;
-    }
-
-    a:hover {
-      border-color: var(--colorBorderSecondary);
-    }
-  </style>
 </html
