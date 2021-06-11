@@ -56,13 +56,16 @@
         <button type="button" onClick="window.onShowFixLinkBookmark()">
           Show Bookmarklet
         </button>
-        <a
-          href="https://github.com/synle/synle.github.io/blob/master/link/index.html"
-          >Source Code</a
-        >
+        <button type="button" onclick="viewSource()">
+          View Source
+        </button>
       </div>
     </form>
     <script>
+      window.viewSource = () => {
+        location.href = 'https://github.com/synle/synle.github.io/blob/master/link/index.html';
+      }
+      
       (() => {
         function cleanupUrl(str) {
           return str
