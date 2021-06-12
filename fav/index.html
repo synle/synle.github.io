@@ -22,6 +22,7 @@
       --colorSecondaryLight: #4183c4;
       --colorBgMainLight: #fafafa;
       --colorBgSecondaryLight: #fff;
+      --colorBgSectionLight: #6272a4;
       --colorBorderMainLight: #999;
       --colorBorderSecondaryLight: #000;
       --colorLinkLight: #4183c4;
@@ -31,6 +32,7 @@
       --colorSecondaryDark: #f8f8f2;
       --colorBgMainDark: #282a36;
       --colorBgSecondaryDark: #6272a4;
+      --colorBgSectionDark: #000;
       --colorBorderMainDark: #aaaec9;
       --colorBorderSecondaryDark: #8be9fd;
       --colorLinkDark: #f1fa8c;
@@ -41,6 +43,7 @@
       --colorSecondary: var(--colorSecondaryLight);
       --colorBgMain: var(--colorBgMainLight);
       --colorBgSecondary: var(--colorBgSecondaryLight);
+      --colorBgSection: var(--colorBgSectionLight);
       --colorBorderMain: var(--colorBorderMainLight);
       --colorBorderSecondary: var(--colorBorderSecondaryLight);
       --colorLink: var(--colorLinkLight);
@@ -51,6 +54,7 @@
       --colorSecondary: var(--colorSecondaryDark);
       --colorBgMain: var(--colorBgMainDark);
       --colorBgSecondary: var(--colorBgSecondaryDark);
+      --colorBgSection: var(--colorBgSectionDark);
       --colorBorderMain: var(--colorBorderMainDark);
       --colorBorderSecondary: var(--colorBorderSecondaryDark);
       --colorLink: var(--colorLinkDark);
@@ -103,11 +107,12 @@
       grid-column: 1/2;
     }
 
-    #fav > span{
+    #fav > span, #fav > #bot{
       font-weight: 900;
-      padding-left: 1rem;
+      padding: 0.5rem 1rem;
       border-left: 10px solid var(--colorLink);
       color: var(--colorLink);
+      background: var(--colorBgSection);
     }
 
     #fav > a{
@@ -124,8 +129,7 @@
     #fav > #bot {
       margin-top: 1rem;
       margin-bottom: 2rem;
-      padding: 0.5rem 1rem;
-      border-left: 10px solid var(--colorBorderMain);
+      border-color:var(--colorBorderMain);
     }
 
     a {
