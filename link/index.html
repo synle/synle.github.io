@@ -48,6 +48,7 @@
         color: white;
       }
     </style>
+    <h1></h1>
     <form onSubmit="return onGo()">
       <input id="input" placeholder="Enter URL to fix" required />
       <div id="output" style="display: none"></div>
@@ -238,6 +239,11 @@
         }
         
         document.querySelector('#input').focus();
+        
+        // getting and setting the page title
+        try {
+          document.querySelector('h1').innerText = document.location.href.match(/[a-z-A-Z0-9]+.html/)[0].trim()
+        } catch(err){}
       })();
     </script>
   </body>
