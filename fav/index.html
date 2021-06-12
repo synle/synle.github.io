@@ -49,17 +49,6 @@
       --colorLink: var(--colorLinkLight);
     }
 
-/*     html.darkTheme{
-      --colorMain: var(--colorMainDark);
-      --colorSecondary: var(--colorSecondaryDark);
-      --colorBgMain: var(--colorBgMainDark);
-      --colorBgSecondary: var(--colorBgSecondaryDark);
-      --colorBgSection: var(--colorBgSectionDark);
-      --colorBorderMain: var(--colorBorderMainDark);
-      --colorBorderSecondary: var(--colorBorderSecondaryDark);
-      --colorLink: var(--colorLinkDark);
-    } */
-
     @media (prefers-color-scheme: dark) {
       html{
         --colorMain: var(--colorMainDark);
@@ -228,10 +217,6 @@ const sites = `
     }
     
     document.querySelector('#fav').innerHTML = dom + document.querySelector('#fav').innerHTML;
-
-    // dark or day theme
-    const isDarkMode = new Date().getHours() >= 19 || new Date().getHours() <= 8;
-    document.querySelector('html').classList.toggle('darkTheme', isDarkMode)
   </script>
 
 </html
