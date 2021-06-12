@@ -242,7 +242,7 @@
         
         // getting and setting the page title
         try {
-          document.querySelector('h1').innerText = document.location.href.match(/[a-z-A-Z0-9]+.html/)[0].trim()
+          document.querySelector('h1').innerText = document.location.href.match(/[a-z-A-Z0-9]+\/[a-z-A-Z0-9]+.html/)[0].trim()
         } catch(err){}
       })();
     </script>
