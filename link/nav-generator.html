@@ -48,6 +48,8 @@
         color: white;
       }
     </style>
+    
+    <h1></h1>
     <form onsubmit="try{window.submitForm();} catch(e){console.log(e.stack)} return false;">
       <div>
         <textarea id="input" placeholder="Input..." required></textarea>
@@ -76,187 +78,194 @@
     </form>
 
     <script>
-      const LINK_SPLIT = "|||";
-      const SECTION_HEADER_SPLIT= '#';
+      (() => {
+        const LINK_SPLIT = "|||";
+        const SECTION_HEADER_SPLIT= '#';
 
-      /*
-      http://aaa.com|||aaa
-      http://bbb.com|||bbb
-      */
-      window.generateDom = () => {
-        document.querySelector("#input").value = document
-          .querySelector("#input")
-          .value.split("\n")
-          .map((r) => r.trim())
-          .join("\n");
+        /*
+        http://aaa.com|||aaa
+        http://bbb.com|||bbb
+        */
+        window.generateDom = () => {
+          document.querySelector("#input").value = document
+            .querySelector("#input")
+            .value.split("\n")
+            .map((r) => r.trim())
+            .join("\n");
 
-        let input = document.querySelector("#input").value;
-        
-        let output = [];
+          let input = document.querySelector("#input").value;
 
-        for (const link of input
-          .split("\n")
-          .map((r) => r.trim())
-          .filter((r) => !!r)) {
-          if(link.indexOf(SECTION_HEADER_SPLIT) === 0){
-            const description = link.replace(SECTION_HEADER_SPLIT, '').trim();
-            
-            output.push(
-              `<h2 class='header'>${description}</h2>`
-            );
-          } else {
-            const [fullLink, description] = link
-              .split(LINK_SPLIT)
-              .map((r) => r.trim());
-            
-            output.push(
-              `<a class='link' href="${fullLink}">${description}</a>`
-            );
+          let output = [];
+
+          for (const link of input
+            .split("\n")
+            .map((r) => r.trim())
+            .filter((r) => !!r)) {
+            if(link.indexOf(SECTION_HEADER_SPLIT) === 0){
+              const description = link.replace(SECTION_HEADER_SPLIT, '').trim();
+
+              output.push(
+                `<h2 class='header'>${description}</h2>`
+              );
+            } else {
+              const [fullLink, description] = link
+                .split(LINK_SPLIT)
+                .map((r) => r.trim());
+
+              output.push(
+                `<a class='link' href="${fullLink}">${description}</a>`
+              );
+            }
           }
-        }
 
-        document.querySelector("#output").value = `
-        document.body.innerHTML = \`
-          <style>
-            body{
-              margin: auto !important;
-              width: 600px;
-              font-family: 'arial';
-              overflow-y: auto !important;
-            }
-            html, body, body:before, body:after{
-              border: none !important;
-              background-color: black !important;
-            }
-            a, h2{
-              padding: 10px 20px;
-              margin-bottom: 8px;
-            }
-            a{
-              font-size: 18px;
-              background: white;
-              color: blue;
-              display: block;
-              margin-left: 25px;
-              text-decoration: none;
-            }
-            a:hover, button:hover{
-              filter: invert(.9);
-              cursor: pointer;
-            }
-            h2{
-              font-weight: 900;
-              font-size: 18px;
-              padding: 0;
-              color: white;
-              margin-top: 25px;
-            }
-            button{
-              font-size: 18px;
-              margin: 40px auto;
-              padding: 10px 20px;
-              color: white;
-              background: #333;
-              border: 1px solid #333;
-              display: block;
-            }
-          </style>
-
-          ${output.join("\n")}<br />
-
-          <button onClick='window.onViewSchema()'>View Schema Source</button>
-        \`
-
-        eval(\`
-          window.onViewSchema = () => {
-            var LINK_SPLIT = "|||";
-            var SECTION_HEADER_SPLIT = "#";
-            var output = [];
-            var elems = document.querySelectorAll(".link,.header");
-            for (var elem of elems) {
-                if (elem.classList.contains("link")) {
-                    var link = elem;
-                    var fullLink = link.href;
-                    var description = link.innerHTML;
-                    output.push(fullLink + LINK_SPLIT + description);
-              } else {
-                var header = elem;
-                var description = header.innerHTML;
-
-                output.push(SECTION_HEADER_SPLIT + description);
+          document.querySelector("#output").value = `
+          document.body.innerHTML = \`
+            <style>
+              body{
+                margin: auto !important;
+                width: 600px;
+                font-family: 'arial';
+                overflow-y: auto !important;
               }
-            };
+              html, body, body:before, body:after{
+                border: none !important;
+                background-color: black !important;
+              }
+              a, h2{
+                padding: 10px 20px;
+                margin-bottom: 8px;
+              }
+              a{
+                font-size: 18px;
+                background: white;
+                color: blue;
+                display: block;
+                margin-left: 25px;
+                text-decoration: none;
+              }
+              a:hover, button:hover{
+                filter: invert(.9);
+                cursor: pointer;
+              }
+              h2{
+                font-weight: 900;
+                font-size: 18px;
+                padding: 0;
+                color: white;
+                margin-top: 25px;
+              }
+              button{
+                font-size: 18px;
+                margin: 40px auto;
+                padding: 10px 20px;
+                color: white;
+                background: #333;
+                border: 1px solid #333;
+                display: block;
+              }
+            </style>
 
-            output = output.join("<br />").trim()
+            ${output.join("\n")}<br />
 
-            document.body.innerHTML = output + '<br /><br /><a  style="user-select: none" target="_blank" href="https://synle.github.io/link/nav-generator.html">Nav Link Generator</a>';
-          }
-        \`)
-      `.trim().replace(/js_script/g, 'script');
-      };
-      
-      window.generateBookmarklet = () => {
-        window.generateDom();
-        
-        const output = document.querySelector("#output").value;
-        
-        document.querySelector("#output").value = `
-        javascript:${encodeURIComponent(`(function(){${output}})()`)}
-        `.trim()
-        document.querySelector("#output").focus();
-      }
+            <button onClick='window.onViewSchema()'>View Schema Source</button>
+          \`
 
-      window.generateSchemaFromDomLink = () => {
-        document.querySelector("#input").value = document
-          .querySelector("#input")
-          .value.split("\n")
-          .map((r) => r.trim())
-          .join("\n");
+          eval(\`
+            window.onViewSchema = () => {
+              var LINK_SPLIT = "|||";
+              var SECTION_HEADER_SPLIT = "#";
+              var output = [];
+              var elems = document.querySelectorAll(".link,.header");
+              for (var elem of elems) {
+                  if (elem.classList.contains("link")) {
+                      var link = elem;
+                      var fullLink = link.href;
+                      var description = link.innerHTML;
+                      output.push(fullLink + LINK_SPLIT + description);
+                } else {
+                  var header = elem;
+                  var description = header.innerHTML;
 
-        let input = document.querySelector("#input").value;
-        let output = [];
+                  output.push(SECTION_HEADER_SPLIT + description);
+                }
+              };
 
-        const elem = document.createElement("div");
-        elem.innerHTML = input;
+              output = output.join("<br />").trim()
 
-        const elems = elem.querySelectorAll(".link,.header");
+              document.body.innerHTML = output + '<br /><br /><a  style="user-select: none" target="_blank" href="https://synle.github.io/link/nav-generator.html">Nav Link Generator</a>';
+            }
+          \`)
+        `.trim().replace(/js_script/g, 'script');
+        };
 
-        for (const elem of elems) {
-          if(elem.classList.contains('link')){
-            const link = elem;
-            let fullLink = link.href;
-            let description = link.innerHTML;
+        window.generateBookmarklet = () => {
+          window.generateDom();
 
-            output.push(`${fullLink}${LINK_SPLIT}${description}`);
-          } else {
-            const header = elem;
-            let description = header.innerHTML;
+          const output = document.querySelector("#output").value;
 
-            output.push(`${SECTION_HEADER_SPLIT} ${description}`);
-          }
+          document.querySelector("#output").value = `
+          javascript:${encodeURIComponent(`(function(){${output}})()`)}
+          `.trim()
+          document.querySelector("#output").focus();
         }
 
-        document.querySelector("#output").value = output.join("\n").trim();
-        document.querySelector("#output").focus();
-      };
-      
-      window.generateSchemaFromBookmarklet = () => {
-        const input = document.querySelector("#input").value;
-        document.querySelector("#input").value = decodeURIComponent(input);
-        window.generateSchemaFromDomLink();
-      }
-      
-      window.testNav = () => {
-        generateDom();
-        eval(document.querySelector('#output').value);
-      }
-      
-      window.viewSource = () => {
-        location.href = 'https://github.com/synle/synle.github.io/blob/master/link/nav-generator.html';
-      }
-      
-      // on load put focus on input
-      document.querySelector('#input').focus();
+        window.generateSchemaFromDomLink = () => {
+          document.querySelector("#input").value = document
+            .querySelector("#input")
+            .value.split("\n")
+            .map((r) => r.trim())
+            .join("\n");
+
+          let input = document.querySelector("#input").value;
+          let output = [];
+
+          const elem = document.createElement("div");
+          elem.innerHTML = input;
+
+          const elems = elem.querySelectorAll(".link,.header");
+
+          for (const elem of elems) {
+            if(elem.classList.contains('link')){
+              const link = elem;
+              let fullLink = link.href;
+              let description = link.innerHTML;
+
+              output.push(`${fullLink}${LINK_SPLIT}${description}`);
+            } else {
+              const header = elem;
+              let description = header.innerHTML;
+
+              output.push(`${SECTION_HEADER_SPLIT} ${description}`);
+            }
+          }
+
+          document.querySelector("#output").value = output.join("\n").trim();
+          document.querySelector("#output").focus();
+        };
+
+        window.generateSchemaFromBookmarklet = () => {
+          const input = document.querySelector("#input").value;
+          document.querySelector("#input").value = decodeURIComponent(input);
+          window.generateSchemaFromDomLink();
+        }
+
+        window.testNav = () => {
+          generateDom();
+          eval(document.querySelector('#output').value);
+        }
+
+        window.viewSource = () => {
+          location.href = 'https://github.com/synle/synle.github.io/blob/master/link/nav-generator.html';
+        }
+
+        // on load put focus on input
+        document.querySelector('#input').focus();
+
+        // getting and setting the page title
+        try {
+          document.querySelector('h1').innerText = document.location.href.match(/[a-z-A-Z0-9]+.html/)[0].trim()
+        } catch(err){}
+      })()
     </script>
   </body>
 </html>
