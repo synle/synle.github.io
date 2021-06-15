@@ -181,6 +181,18 @@
       background: var(--colorBgSection);
       padding: 1rem 1.2rem;
     }
+    
+    #fav > #hosts > div {
+      display: flex;
+    }
+    
+    #fav > #hosts > div > b{
+      width: 200px;
+    }
+    
+    #fav > #hosts > div > span{
+      text-transform: none;
+    }
   </style>
 
   <!-- script starts here -->
@@ -242,7 +254,7 @@
         );
 
         document.querySelector('#hosts').innerHTML = HOME_HOST_NAMES.map(([hostName, hostIp]) => {
-          return `<div>${hostIp} ${hostName}</div>`
+          return `<div><b>${hostIp}</b> <span>${hostName}</span></div>`
         }).join('\n')
       } catch(err){}
     })()
