@@ -49,7 +49,10 @@
                 display: block;
               }
         </style>
-        <script>          
+        <script>         
+            window.onShowNavs = (data) => {
+                console.log('data', data);
+            }
             window.onViewSchema = () => {
               var LINK_SPLIT = "|||";
               var SECTION_HEADER_SPLIT = "#";
