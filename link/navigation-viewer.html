@@ -1,0 +1,79 @@
+<html>
+    <!--  html -->
+    <head>
+        <title>
+            Nav Links
+        </title>
+        <meta content="width=device-width, initial-scale=1" name="viewport"></meta>
+        <style>
+            body{
+                margin: auto !important;
+                width: 600px;
+                font-family: 'arial';
+                overflow-y: auto !important;
+              }
+              html, body, body:before, body:after{
+                border: none !important;
+                background-color: black !important;
+              }
+              a, h2{
+                padding: 10px 20px;
+                margin-bottom: 8px;
+              }
+              a{
+                font-size: 18px;
+                background: white;
+                color: blue;
+                display: block;
+                margin-left: 25px;
+                text-decoration: none;
+              }
+              a:hover, button:hover{
+                filter: invert(.9);
+                cursor: pointer;
+              }
+              h2{
+                font-weight: 900;
+                font-size: 18px;
+                padding: 0;
+                color: white;
+                margin-top: 25px;
+              }
+              button{
+                font-size: 18px;
+                margin: 40px auto;
+                padding: 10px 20px;
+                color: white;
+                background: #333;
+                border: 1px solid #333;
+                display: block;
+              }
+        </style>
+        <script>          
+            window.onViewSchema = () => {
+              var LINK_SPLIT = "|||";
+              var SECTION_HEADER_SPLIT = "#";
+              var output = [];
+              var elems = document.querySelectorAll(".link,.header");
+              for (var elem of elems) {
+                  if (elem.classList.contains("link")) {
+                      var link = elem;
+                      var fullLink = link.href;
+                      var description = link.innerHTML;
+                      output.push(fullLink + LINK_SPLIT + description);
+                } else {
+                  var header = elem;
+                  var description = header.innerHTML;
+                  output.push(SECTION_HEADER_SPLIT + description);
+                }
+              };
+              output = output.join("<br />").trim()
+              document.body.innerHTML = output + '<br /><br /><a  style="user-select: none" target="_blank" href="https://synle.github.io/link/nav-generator.html">Nav Link Generator</a>';
+            }          
+        </script>
+    </head>
+    <body>
+      <div id='body'></div>
+      <div><button onclick="window.onViewSchema()">View Schema Source</button></div>
+    </body>
+</html>
