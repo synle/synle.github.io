@@ -20,7 +20,13 @@ window.onViewSchema = () => {
 
     output = output.join("<br />").trim()
 
-    window.schemaData = '<pre>'+output+'</pre>' + '<button onclick="window.onViewLinks()">View Links UI</button><a target="_blank" style="width: 200px; margin: auto;" href="https://synle.github.io/link/nav-generator.html">Nav Link Generator</a>';
+    window.schemaData = `
+      <pre>${output}</pre>
+      <div style="display: flex;">
+        <button onclick="window.onViewLinks()">View Links UI</button>
+        <a target="_blank" style="width: 200px; margin: auto;" href="https://synle.github.io/link/nav-generator.html">Nav Link Generator</a>
+      </div>
+    `;
     window.linkData = document.body.innerHTML;
   }
 
