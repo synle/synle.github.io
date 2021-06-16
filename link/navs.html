@@ -94,34 +94,36 @@
             window.onViewLinks = () => {
               document.body.innerHTML = window.linkData;
             }
-            
-            // init
-            (() => {
-                let output = [];
-                for(const link of  decodeURIComponent(location.search).substr(3).split('\n').map(s => s.trim()).filter(s => !!screen)){  
-                  if(link[0] === '#'){
-                    const description = link.replace('#', '').trim();
-
-                    output.push(
-                      `<h2 class='header'>${description}</h2>`
-                    );
-                  } else {
-                    const [fullLink, description] = link
-                      .split('|||')
-                      .map((r) => r.trim());
-
-                    output.push(
-                      `<a class='link' href="${fullLink}">${description}</a>`
-                    );
-                  }
-                }
-
-                document.querySelector('#body').innerHTML = output.join('\n')
-            })()
         </script>
-    </head>
+    </head
     <body>
       <div id='body'></div>
       <div><button onclick="window.onViewSchema()">View Schema Source</button></div>
+    
+      <script>
+        // init
+        (() => {
+            let output = [];
+            for(const link of  decodeURIComponent(location.search).substr(3).split('\n').map(s => s.trim()).filter(s => !!screen)){  
+              if(link[0] === '#'){
+                const description = link.replace('#', '').trim();
+
+                output.push(
+                  `<h2 class='header'>${description}</h2>`
+                );
+              } else {
+                const [fullLink, description] = link
+                  .split('|||')
+                  .map((r) => r.trim());
+
+                output.push(
+                  `<a class='link' href="${fullLink}">${description}</a>`
+                );
+              }
+            }
+
+            document.querySelector('#body').innerHTML = output.join('\n')
+        })()
+      </script>
     </body>
 </html>
