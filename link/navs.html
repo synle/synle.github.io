@@ -98,8 +98,8 @@
             // init
             (() => {
                 let output = [];
-                for(const line of  decodeURIComponent(location.search).substr(3).split('\n').map(s => s.trim()).filter(s => !!screen)){  
-                  if(line[0] === '#'){
+                for(const link of  decodeURIComponent(location.search).substr(3).split('\n').map(s => s.trim()).filter(s => !!screen)){  
+                  if(link[0] === '#'){
                     const description = link.replace('#', '').trim();
 
                     output.push(
