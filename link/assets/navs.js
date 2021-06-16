@@ -44,10 +44,14 @@ setTimeout(() => {
     
     
   // other events
-  document.body.addEventListener('keydown', (e) => {
+   document.body.addEventListener('keydown', (e) => {
     switch(e.key){
       case 'Tab':
       case 'Enter':
+      case 'Shift':
+      case 'Control':
+      case 'Alt':
+      case 'Meta':
       case ' ':
         return;
     }
