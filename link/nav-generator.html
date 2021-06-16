@@ -52,7 +52,7 @@
     <h1></h1>
     <form onsubmit="try{window.submitForm();} catch(e){console.log(e.stack)} return false;">
       <div>
-        <textarea id="input" placeholder="Input..." required onchange="window.onFormatInput()"></textarea>
+        <textarea id="input" placeholder="Input..." required onblur="window.onFormatInput()"></textarea>
         <textarea
           id="output"
           placeholder="Output..."
