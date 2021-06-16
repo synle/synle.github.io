@@ -30,3 +30,8 @@ window.onViewSchema = () => {
 window.onViewLinks = () => {
   document.body.innerHTML = window.linkData;
 }
+
+// script to run after the page has loaded
+setTimeout(() => {
+    document.body.innerHTML += `<div><button onClick='window.onViewSchema()'>View Schema Source</button></div>`
+});
