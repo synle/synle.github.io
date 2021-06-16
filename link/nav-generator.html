@@ -52,7 +52,7 @@
     <h1></h1>
     <form onsubmit="try{window.submitForm();} catch(e){console.log(e.stack)} return false;">
       <div>
-        <textarea id="input" placeholder="Input..." required></textarea>
+        <textarea id="input" placeholder="Input..." required onchange="window.onFormatInput()"></textarea>
         <textarea
           id="output"
           placeholder="Output..."
@@ -82,17 +82,19 @@
         const LINK_SPLIT = "|||";
         const SECTION_HEADER_SPLIT= '#';
 
-        /*
-        http://aaa.com|||aaa
-        http://bbb.com|||bbb
-        */
-        window.generateDom = () => {
+        window.onFormatInput = () => {
           document.querySelector("#input").value = document
             .querySelector("#input")
             .value.split("\n")
             .map((r) => r.trim())
             .join("\n");
+        }
 
+        /*
+        http://aaa.com|||aaa
+        http://bbb.com|||bbb
+        */
+        window.generateDom = () => {
           let input = document.querySelector("#input").value;
 
           let output = [];
@@ -222,13 +224,20 @@
         };
 
         window.generateBookmarklet = () => {
-          window.generateDom();
+          let input = document.querySelector("#input").value;
 
-          const output = document.querySelector("#output").value;
+          if(input.length <= 2000) {
+            document.querySelector("#output").innerHTML = `https://synle.github.io/link/navs.html?d=${encodeURIComponent(input)}`
+          } else {
+            window.generateDom();
 
-          document.querySelector("#output").value = `
-          javascript:${encodeURIComponent(`(function(){${output}})()`)}
-          `.trim()
+            const output = document.querySelector("#output").value;
+
+            document.querySelector("#output").value = `
+            javascript:${encodeURIComponent(`(function(){${output}})()`)}
+            `.trim()
+          }
+
           document.querySelector("#output").focus();
         }
 
