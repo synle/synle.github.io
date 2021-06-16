@@ -48,7 +48,7 @@ setTimeout(() => {
     switch(e.key){
       case 'Tab':
       case 'Enter':
-      case ' '
+      case ' ':
         return;
     }
 
