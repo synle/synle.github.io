@@ -55,7 +55,7 @@ setTimeout(() => {
     if(document.activeElement !== document.querySelector('#search')){
       if(document.querySelectorAll('a.link') && document.querySelectorAll('a.link').length > 0){
         if(!document.querySelector('#search')){
-            document.body.innerHTML = `<input id="search" style="margin-top: 1rem;background: #666; font-size: 18px; padding: 8px 10px;width: 100%;border: 1px solid #ccc;" placeholder="Search">` + document.body.innerHTML
+            document.body.innerHTML = `<input id="search" autocomplete="off" style="margin-top: 1rem;background: #666; font-size: 18px; padding: 8px 10px;width: 100%;border: 1px solid #ccc;" placeholder="Search">` + document.body.innerHTML
 
             document.querySelector('#search').addEventListener('blur', (e) => {
               window.focused = false;
@@ -79,4 +79,5 @@ setTimeout(() => {
       document.querySelector('#search').focus();
     }
   })
+  //
 });
