@@ -61,7 +61,7 @@
       </div>
       <div style="display: flex; flex-wrap: wrap;">
         <button type="submit" onclick="window.submitForm = generateBookmarklet">Create Link Bookmarklet</button>
-        <button type="submit" onclick="window.submitForm = generateDom"  style="display: none">Create Link DOM</button>
+        <button type="submit" onclick="window.submitForm = generateDomForBookmarklet"  style="display: none">Create Link DOM</button>
         <button type="submit" onclick="window.submitForm = generateSchemaFromDomLink" style="display: none">
           Create Schema From Dom Links
         </button>
@@ -91,11 +91,7 @@
             .trim();
         }
 
-        /*
-        http://aaa.com|||aaa
-        http://bbb.com|||bbb
-        */
-        window.generateDom = () => {
+        window.generateDomForDataURI = () => {
           let input = document.querySelector("#input").value;
 
           let output = [];
@@ -121,125 +117,113 @@
             }
           }
 
-          document.querySelector("#output").value = `
-            document.head.innerHTML = \`
-            <style>
-                *{ 
-                  color: white; 
-                  box-sizing: border-box;
-                }
-                body{
-                  margin: auto !important;
-                  width: 900px;
-                  font-family: 'arial';
-                  overflow-y: auto !important;
-                }
-                html, body, body:before, body:after{
-                  border: none !important;
-                  background-color: black !important;
-                }
-                a, h2{
-                  padding: 10px 20px;
-                  margin-bottom: 8px;
-                }
-                a{
-                  font-size: 18px;
-                  background: white;
-                  color: blue;
-                  display: block;
-                  margin-left: 25px;
-                  text-decoration: none;
-                  user-select: none
-                }
-                a:hover, button:hover{
-                  filter: invert(.9);
-                  cursor: pointer;
-                }
-                h2{
-                  font-weight: 900;
-                  font-size: 18px;
-                  padding: 0;
-                  color: white;
-                  margin-top: 25px;
-                }
-                button{
-                  font-size: 18px;
-                  margin: 40px auto;
-                  padding: 10px 20px;
-                  color: white;
-                  background: #333;
-                  border: 1px solid #333;
-                  display: block;
-                  user-select: none
-                }
-                pre{
-                  background: #333;
-                  border: #666;
-                  padding: 8px 10px;
-                  overflow:hidden;
-                }
-              </style>
-          \`
-
-          document.body.innerHTML = \`
-            ${output.join("\n")}<br />
-
-            <button onClick='window.onViewSchema()'>View Schema Source</button>
-          \`
-
-          eval(\`
-            window.onViewSchema = () => {
-              if(!window.schemaData){
-                var LINK_SPLIT = "|||";
-                var SECTION_HEADER_SPLIT = "#";
-                var output = [];
-                var elems = document.querySelectorAll(".link,.header");
-                for (var elem of elems) {
-                    if (elem.classList.contains("link")) {
-                        var link = elem;
-                        var fullLink = link.href;
-                        var description = link.innerHTML;
-                        output.push(fullLink + LINK_SPLIT + description);
-                  } else {
-                    var header = elem;
-                    var description = header.innerHTML;
-
-                    output.push(SECTION_HEADER_SPLIT + description);
+          let rawOutput = `
+            <html>
+              <head>
+                <style>
+                  *{ 
+                    color: white; 
+                    box-sizing: border-box;
                   }
-                };
+                  body{
+                    margin: auto !important;
+                    width: 900px;
+                    font-family: 'arial';
+                    overflow-y: auto !important;
+                  }
+                  html, body, body:before, body:after{
+                    border: none !important;
+                    background-color: black !important;
+                  }
+                  a, h2{
+                    padding: 10px 20px;
+                    margin-bottom: 8px;
+                  }
+                  a{
+                    font-size: 18px;
+                    background: white;
+                    color: blue;
+                    display: block;
+                    margin-left: 25px;
+                    text-decoration: none;
+                    user-select: none
+                  }
+                  a:hover, button:hover{
+                    filter: invert(.9);
+                    cursor: pointer;
+                  }
+                  h2{
+                    font-weight: 900;
+                    font-size: 18px;
+                    padding: 0;
+                    color: white;
+                    margin-top: 25px;
+                  }
+                  button{
+                    font-size: 18px;
+                    margin: 40px auto;
+                    padding: 10px 20px;
+                    color: white;
+                    background: #333;
+                    border: 1px solid #333;
+                    display: block;
+                    user-select: none
+                  }
+                  pre{
+                    background: #333;
+                    border: #666;
+                    padding: 8px 10px;
+                    overflow:hidden;
+                  }
+                </style>
+                <js_script>
+                    window.onViewSchema = () => {
+                      if(!window.schemaData){
+                        var LINK_SPLIT = "|||";
+                        var SECTION_HEADER_SPLIT = "#";
+                        var output = [];
+                        var elems = document.querySelectorAll(".link,.header");
+                        for (var elem of elems) {
+                            if (elem.classList.contains("link")) {
+                                var link = elem;
+                                var fullLink = link.href;
+                                var description = link.innerHTML;
+                                output.push(fullLink + LINK_SPLIT + description);
+                          } else {
+                            var header = elem;
+                            var description = header.innerHTML;
 
-                output = output.join("<br />").trim()
+                            output.push(SECTION_HEADER_SPLIT + description);
+                          }
+                        };
 
-                window.schemaData = '<pre>'+output+'</pre>' + '<button onclick="window.onViewLinks()">View Links UI</button><a target="_blank" style="width: 200px; margin: auto;" href="https://synle.github.io/link/nav-generator.html">Nav Link Generator</a>';
-                window.linkData = document.body.innerHTML;
-              }
-              
-              document.body.innerHTML = window.schemaData;
-            }
+                        output = output.join("<br />").trim()
 
-            window.onViewLinks = () => {
-              document.body.innerHTML = window.linkData;
-            }
-          \`)
-        `.trim().replace(/js_script/g, 'script');
+                        window.schemaData = '<pre>'+output+'</pre>' + '<button onclick="window.onViewLinks()">View Links UI</button><a target="_blank" style="width: 200px; margin: auto;" href="https://synle.github.io/link/nav-generator.html">Nav Link Generator</a>';
+                        window.linkData = document.body.innerHTML;
+                      }
+                      
+                      document.body.innerHTML = window.schemaData;
+                    }
+
+                    window.onViewLinks = () => {
+                      document.body.innerHTML = window.linkData;
+                    }
+                  </js_script>
+              </head>
+              <body>
+                <div>${output.join("\n")}</div>
+                <div><button onClick='window.onViewSchema()'>View Schema Source</button></div>
+              </body>
+            </html>
+          `.trim().replace(/js_script/g, 'script');
+
+          document.querySelector("#output").value = 'data:text/html,' + encodeURIComponent(rawOutput);
+          document.querySelector("#output").focus();
         };
 
         window.generateBookmarklet = () => {
-          let input = document.querySelector("#input").value;
-
-          if(input.length <= 2000) {
-            document.querySelector("#output").innerHTML = `https://synle.github.io/link/navs.html?d=${encodeURIComponent(input)}`
-          } else {
-            window.generateDom();
-
-            const output = document.querySelector("#output").value;
-
-            document.querySelector("#output").value = `
-            javascript:${encodeURIComponent(`(function(){${output}})()`)}
-            `.trim()
-          }
-
-          document.querySelector("#output").focus();
+          window.generateDomForDataURI();
         }
 
         window.generateSchemaFromDomLink = () => {
@@ -283,7 +267,7 @@
         }
 
         window.testNav = () => {
-          generateDom();
+          generateDomForBookmarklet();
           eval(document.querySelector('#output').value);
         }
 
