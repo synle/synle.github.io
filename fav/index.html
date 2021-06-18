@@ -253,7 +253,7 @@
       document.querySelector('#fav').innerHTML = dom + document.querySelector('#fav').innerHTML;
 
       try{
-        const HOME_HOST_NAMES = (await fetch(`https://raw.githubusercontent.com/synle/bashrc/master/software/metadata/ip-address.json`).then(r => r.json())).filter(
+        const HOME_HOST_NAMES = (await fetch(`https://raw.githubusercontent.com/synle/bashrc/master/software/metadata/ip-address.json`).then(r => r.text()).then(r => eval(r))).filter(
           (hostSplits) =>
             hostSplits.length === 2 &&
             hostSplits[0].length > 0 &&
