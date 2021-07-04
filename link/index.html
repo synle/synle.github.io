@@ -21,7 +21,7 @@
         border: 1px solid black;
         padding: 10px 15px;
       }
-      
+
       textarea {
         height: 190px;
       }
@@ -66,7 +66,7 @@
       window.viewSource = () => {
         location.href = 'https://github.com/synle/synle.github.io/blob/master/link/index.html';
       }
-      
+
       (() => {
         function cleanupUrl(str) {
           return str
@@ -118,7 +118,7 @@
               .replace("fool.com", "")
               .replace("amp", "")
           );
-          return `https://www.fool.com/amp/${url}`;
+          return `https://www.fool.com/${url}`;
         }
 
         // amazon
@@ -237,9 +237,9 @@
         ) {
           onGo();
         }
-        
+
         document.querySelector('#input').focus();
-        
+
         // getting and setting the page title
         try {
           document.querySelector('h1').innerText = document.location.href.match(/[a-z-A-Z0-9]+\/[a-z-A-Z0-9]+.html/)[0].trim()
