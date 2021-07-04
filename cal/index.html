@@ -101,6 +101,16 @@
           document.getElementById("txt-from").value = moment().format('HH:mm');
           document.getElementById("txt-to").value = moment().add(1, 'hours').format('HH:mm');
 
+
+          try{
+            const urlSearchParams = new URLSearchParams(window.location.search);
+            const params = Object.fromEntries(urlSearchParams.entries());
+            document.querySelector('#txt-text').value = params.subject;
+            document.querySelector('#txt-details').value = params.body;
+          } catch(err){
+
+          }
+
           document.querySelector('#form-cal').addEventListener('submit', (e) => {
             e.preventDefault();
 
