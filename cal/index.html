@@ -143,7 +143,7 @@
           function generateLink(data){
             // https://stackoverflow.com/questions/22757908/what-parameters-are-required-to-create-an-add-to-google-calendar-link
             const {text, details, location, dateFrom, dateTo} = data;
-            return `https://calendar.google.com/calendar/u/0/r/eventedit?dates=${dateFrom}/${dateTo}&trp=true&text=${text}&location=${location}&details=${details}`
+            return `https://calendar.google.com/calendar/u/0/r/eventedit?dates=${dateFrom}/${dateTo}&trp=true&text=${encodeURIComponent(text)}&location=${encodeURIComponent(location)}&details=${encodeURIComponent(details)}`
           }
         }
       )();
