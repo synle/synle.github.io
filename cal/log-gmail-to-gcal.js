@@ -22,9 +22,9 @@ if(!window.gmail){
   const emailDom = gmail.dom.email(gmail.get.email_id());
   const contentDom = document.createElement('span');
   contentDom.innerHTML = emailDom.body() || '';
-  const body = contentDom.innerText.split('\n').map(s => s.trim()).join('\n').replace(/[\n\r ][\n\r ]+/g, '\n\n').trim();
+  const body = contentDom.innerText.replace(/\.[ ]+/g, '.\n').split('\n').map(s => s.trim()).join('\n').replace(/[\n\r ][\n\r ]+/g, '\n\n').trim();
   contentDom.remove();
 
 
-  window.open(`https://synle.github.io/cal?subject=${subject}&body=${body}`)
+  window.open(`https://synle.github.io/cal?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`)
 })()
