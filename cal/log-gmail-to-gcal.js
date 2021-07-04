@@ -19,7 +19,7 @@ if(!window.gmail){
 
 // do work
 (async function(){
-  const text = gmail.get.email_subject()
+  const text = gmail.get.email_subject().trim();
 
   // body
   const emailDom = gmail.dom.email(gmail.get.email_id());
