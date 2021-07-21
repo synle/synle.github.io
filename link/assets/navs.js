@@ -38,7 +38,7 @@ window.onViewLinks = (linkDomHTML) => {
   
   if(linkDomHTML){
     let rawLinkHTML = linkDomHTML.split('\n').map(r => {
-      let [linkUrl, linkText] = r.split('|||');
+      let [linkUrl, linkText] = r.split(LINK_SPLIT);
       linkUrl = (linkUrl || '').trim();
       linkText = (linkText || '').trim();
       
@@ -46,7 +46,7 @@ window.onViewLinks = (linkDomHTML) => {
         return `<a class="link" href="${linkUrl}">${linkText}</a>`;
       }
       
-      if(linkUrl[0] === '#'){
+      if(linkUrl[0] === SECTION_HEADER_SPLIT){
         linkUrl = linkUrl.replace(/#/g, '');
         return `<h2 class="header">${linkUrl}</h2>`
       }
@@ -63,6 +63,11 @@ window.onViewLinks = (linkDomHTML) => {
 
 // init
 setTimeout(() => {
+  if(!location.href.includes('data:text/html')){
+    // only do this for the main page not the data encoded
+    return;
+  }
+  
   // script to run after the page has loaded
   window.onViewLinks();
     
