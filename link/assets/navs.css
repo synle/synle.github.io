@@ -65,4 +65,10 @@ button{
 #search{
   position: sticky;
   top: 0;
+  margin-top: 10px;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white;
+ 
 }
