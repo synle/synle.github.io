@@ -70,7 +70,7 @@ setTimeout(() => {
               val = val.trim().toLowerCase();
 
               for(const anchor of document.querySelectorAll('a')){
-                if(val === '' || anchor.innerText.toLowerCase().includes(val)){
+                if(val === '' || anchor.innerText.toLowerCase().includes(val) || anchor.href.toLowerCase().includes(val)){
                   anchor.style.display = 'block';
                 } else {
                   anchor.style.display = 'none';
