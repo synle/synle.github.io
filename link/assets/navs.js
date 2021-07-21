@@ -58,7 +58,10 @@ window.onViewLinks = (linkDomHTML) => {
     rawLinkHTML = `<div>${rawLinkHTML}</div>`
     
     document.body.innerHTML = rawLinkHTML;
+  } else {
+    document.body.innerHTML = '';
   }
+  
   document.body.innerHTML += `<div><button onClick='window.onViewSchema()'>View Schema Source</button></div>`
 }
 
