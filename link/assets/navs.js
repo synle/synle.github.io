@@ -24,7 +24,7 @@ window.onViewSchema = () => {
 
   const rawSchemaDataDom = `
     <div><h1>Navigation Form</h1></div>
-    <textarea id='input'>${output}</textarea>
+    <textarea id='input' placeholder="Bookmarklet Schema">${output}</textarea>
     <div style="display: flex;">
       <button onclick="window.onViewLinks(document.querySelector('#input').value)">View Links UI</button>
       <button onclick="window.onGetGeneratedBookmarkletLink(document.querySelector('#input').value)">Get Bookmarklet Link</button>
@@ -126,9 +126,9 @@ window.searchBookmarklet = (val) => {
 setTimeout(() => {
   if(location.href.includes('data:text/html')){
     // append the on view schema button
-    document.body.innerHTML = `<div><input id='search' onInput="window.searchBookmarklet(document.querySelector('#search').value)"/></div>` 
+    document.body.innerHTML = `<div><input id='search' onInput="window.searchBookmarklet(document.querySelector('#search').value)" placeholder="Search bookmarklet"/></div>` 
       + document.body.innerHTML
-      `<div><button onClick='window.onViewSchema()'>View Schema Source</button></div>`;
+      + `<div><button onClick='window.onViewSchema()'>View Schema Source</button></div>`;
 
     return
   }
