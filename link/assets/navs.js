@@ -31,12 +31,12 @@ window.onViewSchema = () => {
     </div>
   `;
   
-  window.zoominInput = (e) => {
-    e.style.height = '1000px';
+  window.zoominInput = (target) => {
+    target.style.height = '1000px';
   }
   
-  window.zoominOutput = (e) => {
-    e.style.height = '';
+  window.zoominOutput = (target) => {
+    target.style.height = '';
   }
 
   document.body.innerHTML = rawSchemaDataDom;
