@@ -1,21 +1,25 @@
 const LINK_SPLIT = "|";
 const SECTION_HEADER_SPLIT= '#';
+const TITLE_SPLIT = '!';
 
 window.onViewSchema = () => {
   var output = [];
-  var elems = document.querySelectorAll(".link,.header");
+  var elems = document.querySelectorAll(".title,.link,.header");
   for (var elem of elems) {
-      if (elem.classList.contains("link")) {
-          var link = elem;
-          var fullLink = link.href;
-          var description = link.innerHTML;
-          output.push(`${description}${LINK_SPLIT}${fullLink}`);
-    } else {
-      var header = elem;
-      var description = header.innerHTML;
+      if (elem.classList.contains("title")) {
+        var description = link.innerText.trim();
+        output.push(`${TITLE_SPLIT}${description}`);
+      } else if (elem.classList.contains("link")) {
+        var link = elem;
+        var fullLink = link.href;
+        var description = link.innerHTML;
+        output.push(`${description}${LINK_SPLIT}${fullLink}`);
+      } else {
+        var header = elem;
+        var description = header.innerHTML;
 
-      output.push(SECTION_HEADER_SPLIT + description);
-    }
+        output.push(SECTION_HEADER_SPLIT + description);
+      }
   };
 
   output = output.join("\n").trim()
@@ -65,7 +69,14 @@ window.getNavBookmarkletFromSchema = (input) => {
     .split("\n")
     .map((r) => r.trim())
     .filter((r) => !!r)) {
-    if(link.indexOf(SECTION_HEADER_SPLIT) === 0){
+    if(link.indexOf(TITLE_SPLIT) === 0){
+      const description = link.replace(TITLE_SPLIT, '').trim();
+
+      output.push(
+        `<h1 class='title'>${description}</h1>`
+      );
+    }
+    else if(link.indexOf(SECTION_HEADER_SPLIT) === 0){
       const description = link.replace(SECTION_HEADER_SPLIT, '').trim();
 
       output.push(
@@ -113,9 +124,17 @@ window.searchBookmarklet = (val) => {
 
 window.getLinkDom = (linkDomHTML) => {
   let rawLinkHTML = linkDomHTML.split('\n').map(r => {
-    if(r[0] === SECTION_HEADER_SPLIT){
-      // header
-      const headerText = r.replace(/#/g, '');
+    const link = r;
+    
+    if(link.indexOf(TITLE_SPLIT) === 0){
+      // page title
+      const headerText = r.replace(TITLE_SPLIT, '').trim();
+      return `<h1 class="header">${headerText}</h1>`
+    }
+    
+    if(link.indexOf(SECTION_HEADER_SPLIT) === 0){
+      // section header
+      const headerText = r.replace(SECTION_HEADER_SPLIT, '').trim();
       return `<h2 class="header">${headerText}</h2>`
     }
     
