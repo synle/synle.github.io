@@ -113,17 +113,18 @@ window.searchBookmarklet = (val) => {
 
 window.getLinkDom = (linkDomHTML) => {
   let rawLinkHTML = linkDomHTML.split('\n').map(r => {
-    let [linkUrl, linkText] = r.split(LINK_SPLIT);
+    if(r[0] === SECTION_HEADER_SPLIT){
+      // header
+      const headerText = r.replace(/#/g, '');
+      return `<h2 class="header">${headerText}</h2>`
+    }
+    
+    let [linkText, linkUrl] = r.split(LINK_SPLIT);
     linkUrl = (linkUrl || '').trim();
     linkText = (linkText || '').trim();
 
     if(linkUrl && linkText){
       return `<a class="link" href="${linkUrl}">${linkText}</a>`;
-    }
-
-    if(linkUrl[0] === SECTION_HEADER_SPLIT){
-      linkUrl = linkUrl.replace(/#/g, '');
-      return `<h2 class="header">${linkUrl}</h2>`
     }
 
     return undefined;
