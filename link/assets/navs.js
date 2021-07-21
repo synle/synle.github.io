@@ -23,6 +23,7 @@ window.onViewSchema = () => {
   output = output.join("<br />").trim()
 
   const rawSchemaDataDom = `
+    <div><h1>Navigation Form</h1></div>
     <pre id='schemaDataContainer' contenteditable="true">${output}</pre>
     <div style="display: flex;">
       <button onclick="window.onViewLinks(document.querySelector('#schemaDataContainer').innerText)">View Links UI</button>
