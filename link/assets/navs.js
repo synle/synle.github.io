@@ -119,13 +119,18 @@ window.getLinkDom = (linkDomHTML) => {
       return `<h2 class="header">${headerText}</h2>`
     }
     
-    let [linkText, linkUrl] = r.split(LINK_SPLIT);
-    linkUrl = (linkUrl || '').trim();
-    linkText = (linkText || '').trim();
+    try{
+      let linkText, linkUrl;
+      linkText = r.substr(0, r.indexOf(LINK_SPLIT))
+      linkUrl = r.substr(r.indexOf(LINK_SPLIT) + 1)
+      
+      linkUrl = (linkUrl || '').trim();
+      linkText = (linkText || '').trim();
 
-    if(linkUrl && linkText){
-      return `<a class="link" href="${linkUrl}">${linkText}</a>`;
-    }
+      if(linkUrl && linkText){
+        return `<a class="link" href="${linkUrl}">${linkText}</a>`;
+      }
+    } catch (err){}
 
     return undefined;
   }).filter(r => !!r).join('\n');
