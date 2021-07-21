@@ -33,13 +33,15 @@ a{
   user-select: none;
   box-shadow: 0 1.6px 3.6px 0 rgb(0 0 0 / 13%), 0 0.3px 0.9px 0 rgb(0 0 0 / 11%);
 }
+a,button{
+  transition: all 0.25s ease-out;
+}
 a:hover, button:hover{
   filter: invert(.9);
   cursor: pointer;
 }
 a:active, button:active{
   filter: invert(.75);
-  transition: all 0.3s ease-out;
 }
 h2{
   font-weight: 900;
