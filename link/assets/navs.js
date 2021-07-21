@@ -20,7 +20,7 @@ window.onViewSchema = () => {
     }
   };
 
-  output = output.join("<br />").trim()
+  output = output.join("\n").trim()
 
   const rawSchemaDataDom = `
     <div><h1>Navigation Form</h1></div>
