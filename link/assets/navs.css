@@ -12,7 +12,7 @@ html, body, body:before, body:after{
   border: none !important;
   background-color: black !important;
 }
-a, h2{
+a, h2, h1{
   padding: 10px 20px;
   margin-bottom: 8px;
 }
