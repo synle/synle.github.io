@@ -33,7 +33,7 @@ window.onViewSchema = () => {
   `;
   
   window.zoominInput = (target) => {
-    target.style.height = (document.body.clientHeight - 450 ) + 'px';
+    target.style.height = (document.body.clientHeight - 150 ) + 'px';
   }
   
   window.zoominOutput = (target) => {
