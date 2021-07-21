@@ -156,7 +156,7 @@ setTimeout(() => {
           }
       }
 
-      document.querySelector('#search').focus();
+      document.querySelector('#search') && document.querySelector('#search').focus();
     }
   })
   //
