@@ -7,7 +7,7 @@ window.onViewSchema = () => {
   var elems = document.querySelectorAll(".title,.link,.header");
   for (var elem of elems) {
       if (elem.classList.contains("title")) {
-        var description = link.innerText.trim();
+        var description = elem.innerText.trim();
         output.push(`${TITLE_SPLIT}${description}`);
       } else if (elem.classList.contains("link")) {
         var link = elem;
@@ -63,6 +63,7 @@ window.onGetGeneratedBookmarkletLink = (input) => {
 
 window.getNavBookmarkletFromSchema = (input) => {
   let output = [];
+  let foundNavigation = false;
 
   for (const link of (input || '')
     .trim()
@@ -71,6 +72,8 @@ window.getNavBookmarkletFromSchema = (input) => {
     .filter((r) => !!r)) {
     if(link.indexOf(TITLE_SPLIT) === 0){
       const description = link.replace(TITLE_SPLIT, '').trim();
+      
+      foundNavigation = true;
 
       output.push(
         `<h1 class='title'>${description}</h1>`
@@ -92,6 +95,12 @@ window.getNavBookmarkletFromSchema = (input) => {
       );
     }
   }
+  
+  if(!foundNavigation){
+    output.unshift(
+      `<h1 class='title'>Navigation ${new Date().toLocaleString()}</h1>`
+    );
+  }
 
   let rawOutput = `
     <html>
@@ -103,7 +112,7 @@ window.getNavBookmarkletFromSchema = (input) => {
         <js_script src="https://synle.github.io/link/assets/navs.js"></js_script>
         <js_script>
           window.onViewLinks(document.body.innerHTML);
-          document.title = (document.querySelector('.title').innerText || 'Navigation').trim();
+          document.title = document.querySelector('.title').innerText.trim();
         </js_script>
       </body>
     </html>
