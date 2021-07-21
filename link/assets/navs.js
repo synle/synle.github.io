@@ -24,13 +24,20 @@ window.onViewSchema = () => {
 
   const rawSchemaDataDom = `
     <div><h1>Navigation Form</h1></div>
-    <textarea id='input' placeholder="Bookmarklet Input Schema">${output}</textarea>
-    <textarea id='output' placeholder="Bookmarklet Output">${output}</textarea>
+    <textarea id='input' placeholder="Bookmarklet Input Schema" onfocus="window.zoominInput(this)" onblur="window.zoominOutput(this); window.onGetGeneratedBookmarkletLink(document.querySelector('#input').value)">${output}</textarea>
+    <textarea id='output' placeholder="Bookmarklet Output" onfocus="window.zoominInput(this)" onblur="window.zoominOutput(this);">${output}</textarea>
     <div style="display: flex;">
       <button onclick="window.onViewLinks(window.getLinkDom(document.querySelector('#input').value))">View Links UI</button>
-      <button onclick="window.onGetGeneratedBookmarkletLink(document.querySelector('#input').value)">Get Bookmarklet Link</button>
     </div>
   `;
+  
+  window.zoominInput = (e) => {
+    e.style.height = '1000px';
+  }
+  
+  window.zoominOutput = (e) => {
+    e.style.height = '';
+  }
 
   document.body.innerHTML = rawSchemaDataDom;
   
