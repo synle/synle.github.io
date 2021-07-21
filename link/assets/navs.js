@@ -97,11 +97,14 @@ window.getNavBookmarkletFromSchema = (input) => {
     <html>
       <head>
         <link rel="stylesheet" type="text/css" href="https://synle.github.io/link/assets/navs.css">
-        <js_script src="https://synle.github.io/link/assets/navs.js"></js_script>
       </head>
       <body>
         <div>${output.join("\n")}</div>
-        <js_script>window.onViewLinks(document.body.innerHTML)</js_script>
+        <js_script src="https://synle.github.io/link/assets/navs.js"></js_script>
+        <js_script>
+          window.onViewLinks(document.body.innerHTML);
+          document.title = (document.querySelector('.title').innerText || 'Navigation').trim();
+        </js_script>
       </body>
     </html>
   `.trim().replace(/js_script/g, 'script');
