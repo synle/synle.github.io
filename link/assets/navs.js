@@ -23,7 +23,7 @@ window.onViewSchema = () => {
     window.schemaData = `
       <pre contenteditable="true">${output}</pre>
       <div style="display: flex;">
-        <button onclick="window.onViewLinks()">View Links UI</button>
+        <button onclick="window.onViewLinks(window.linkData)">View Links UI</button>
         <a target="_blank" style="width: 200px; margin: auto;" href="https://synle.github.io/link/nav-generator.html">Nav Link Generator</a>
       </div>
     `;
@@ -33,14 +33,17 @@ window.onViewSchema = () => {
   document.body.innerHTML = window.schemaData;
 }
 
-window.onViewLinks = () => {
-  document.body.innerHTML = window.linkData;
+window.onViewLinks = (linkDomHTML) => {
+  if(linkDomHTML){
+    document.body.innerHTML = linkDomHTML;
+  }
+  document.body.innerHTML += `<div><button onClick='window.onViewSchema()'>View Schema Source</button></div>`
 }
 
 // init
 setTimeout(() => {
   // script to run after the page has loaded
-  document.body.innerHTML += `<div><button onClick='window.onViewSchema()'>View Schema Source</button></div>`
+  window.onViewLinks();
     
     
   // other events
