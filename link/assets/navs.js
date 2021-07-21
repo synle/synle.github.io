@@ -33,6 +33,8 @@ window.onViewSchema = () => {
   `;
 
   document.body.innerHTML = rawSchemaDataDom;
+  
+  document.querySelector('#input').focus();
 }
 
 window.onViewLinks = (linkDomHTML) => {
