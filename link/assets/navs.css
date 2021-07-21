@@ -16,9 +16,10 @@ html, body, body:before, body:after{
 }
 h1,h2,h3{
   padding-left: 0;
-}
-h1,h2{
   margin-bottom: 8px; 
+}
+h1{
+  font-size: 36px;
 }
 a{
   font-size: 18px;
