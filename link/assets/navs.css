@@ -69,9 +69,10 @@ button{
 }
 #input, #output{
   height: 150px;
-  white-space: nowrap;
-  overflow: scroll hidden;
   transition: all 0.25s ease-out;
+}
+#input{
+  white-space: nowrap;
 }
 #output{
   background: #6272a4;
