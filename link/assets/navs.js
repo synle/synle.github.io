@@ -24,10 +24,10 @@ window.onViewSchema = () => {
 
   const rawSchemaDataDom = `
     <div><h1>Navigation Form</h1></div>
-    <pre id='schemaDataContainer' contenteditable="true">${output}</pre>
+    <textarea id='input'>${output}</textarea>
     <div style="display: flex;">
-      <button onclick="window.onViewLinks(document.querySelector('#schemaDataContainer').innerText)">View Links UI</button>
-      <button onclick="window.onGetGeneratedBookmarkletLink(document.querySelector('#schemaDataContainer').innerText)">Get Bookmarklet Link</button>
+      <button onclick="window.onViewLinks(document.querySelector('#input').value)">View Links UI</button>
+      <button onclick="window.onGetGeneratedBookmarkletLink(document.querySelector('#input').value)">Get Bookmarklet Link</button>
     </div>
   `;
 
