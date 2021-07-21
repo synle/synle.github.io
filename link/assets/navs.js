@@ -90,6 +90,7 @@ window.getNavBookmarkletFromSchema = (input) => {
       </head>
       <body>
         <div>${output.join("\n")}</div>
+        <js_script>window.onViewLinks(document.body.innerHTML)</js_script>
       </body>
     </html>
   `.trim().replace(/js_script/g, 'script');
@@ -132,13 +133,3 @@ window.getLinkDom = (linkDomHTML) => {
   
   return rawLinkHTML;
 }
-
-// init
-setTimeout(() => {
-  if(location.href.includes('data:text/html')){
-    // append the on view schema button
-    window.onViewLinks(document.body.innerHTML);
-
-    return
-  }
-});
