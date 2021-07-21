@@ -46,7 +46,7 @@ button{
   display: block;
   user-select: none
 }
-pre{
+#input{
   background: #333;
   border: #666;
   padding: 8px 10px;
