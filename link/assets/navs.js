@@ -1,9 +1,7 @@
-const LINK_SPLIT = "|||";
+const LINK_SPLIT = "|";
 const SECTION_HEADER_SPLIT= '#';
 
 window.onViewSchema = () => {
-  var LINK_SPLIT = "|||";
-  var SECTION_HEADER_SPLIT = "#";
   var output = [];
   var elems = document.querySelectorAll(".link,.header");
   for (var elem of elems) {
@@ -11,7 +9,7 @@ window.onViewSchema = () => {
           var link = elem;
           var fullLink = link.href;
           var description = link.innerHTML;
-          output.push(fullLink + LINK_SPLIT + description);
+          output.push(`${description}${LINK_SPLIT}${fullLink}`);
     } else {
       var header = elem;
       var description = header.innerHTML;
@@ -74,7 +72,7 @@ window.getNavBookmarkletFromSchema = (input) => {
         `<h2 class='header'>${description}</h2>`
       );
     } else {
-      const [fullLink, description] = link
+      const [description, fullLink] = link
         .split(LINK_SPLIT)
         .map((r) => r.trim());
 
