@@ -61,6 +61,45 @@ window.onViewLinks = (linkDomHTML) => {
   document.body.innerHTML += `<div><button onClick='window.onViewSchema()'>View Schema Source</button></div>`
 }
 
+window.getNavBookmarkletFromSchema = (input) => {
+  let output = [];
+
+  for (const link of input
+    .split("\n")
+    .map((r) => r.trim())
+    .filter((r) => !!r)) {
+    if(link.indexOf(SECTION_HEADER_SPLIT) === 0){
+      const description = link.replace(SECTION_HEADER_SPLIT, '').trim();
+
+      output.push(
+        `<h2 class='header'>${description}</h2>`
+      );
+    } else {
+      const [fullLink, description] = link
+        .split(LINK_SPLIT)
+        .map((r) => r.trim());
+
+      output.push(
+        `<a class='link' href="${fullLink}">${description}</a>`
+      );
+    }
+  }
+
+  let rawOutput = `
+    <html>
+      <head>
+        <link rel="stylesheet" type="text/css" href="https://synle.github.io/link/assets/navs.css">
+        <js_script src="https://synle.github.io/link/assets/navs.js"></js_script>
+      </head>
+      <body>
+        <div>${output.join("\n")}</div>
+      </body>
+    </html>
+  `.trim().replace(/js_script/g, 'script');
+
+  return 'data:text/html,' + encodeURIComponent(rawOutput);
+}
+
 // init
 setTimeout(() => {
   if(!location.href.includes('data:text/html')){
