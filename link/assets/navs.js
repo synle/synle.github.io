@@ -28,6 +28,7 @@ window.onViewSchema = () => {
     <textarea id='output' placeholder="Bookmarklet Output" onfocus="window.zoominInput(this)" onblur="window.zoominOutput(this);">${output}</textarea>
     <div style="display: flex;">
       <button onclick="window.onViewLinks(window.getLinkDom(document.querySelector('#input').value))">View Links UI</button>
+      <a target="_blank" style="width: 200px; margin: auto;" href="https://github.com/synle/synle.github.io/blob/master/link/assets/navs.js">View Source</a>
     </div>
   `;
   
