@@ -8,7 +8,7 @@ window.onViewSchema = () => {
   for (var elem of elems) {
     if (elem.classList.contains("title")) {
       var description = elem.innerText.trim();
-      output.push(`${TITLE_SPLIT} ${description}`);
+      output.push(`\n${TITLE_SPLIT} ${description}`);
     } else if (elem.classList.contains("link")) {
       var link = elem;
       var fullLink = link.href;
@@ -18,7 +18,7 @@ window.onViewSchema = () => {
       var header = elem;
       var description = header.innerHTML;
 
-      output.push(`${SECTION_HEADER_SPLIT} ${description}`);
+      output.push(`\n${SECTION_HEADER_SPLIT} ${description}`);
     }
   }
 
