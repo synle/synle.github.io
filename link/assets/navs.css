@@ -46,12 +46,14 @@ button{
   display: block;
   user-select: none
 }
-#input{
+#search, #input{
   background: #333;
   border: 1px solid #666;
   padding: 8px 10px;
   font-size: 14px;
   font-family: monospace;
   width: 100%;
+}
+#input{
   height: 800px;
 }
