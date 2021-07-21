@@ -51,9 +51,10 @@ window.onViewSchema = () => {
 
 window.onViewLinks = (linkDomHTML) => {  
   // append the extra stuffs
-  document.body.innerHTML = `<input id='search' onInput="window.searchBookmarklet(document.querySelector('#search').value)" placeholder="Search bookmarklet" style="display: block" autofocus />` 
-      + linkDomHTML
+  document.body.innerHTML = linkDomHTML
       + `<div><button onClick='window.onViewSchema()'>View Schema Source</button></div>`;
+  
+  document.querySelector('.title').insertAdjacentHTML('afterend', `<input id='search' onInput="window.searchBookmarklet(document.querySelector('#search').value)" placeholder="Search bookmarklet" style="display: block" autofocus />`);
 }
 
 window.onGetGeneratedBookmarkletLink = (input) => {
