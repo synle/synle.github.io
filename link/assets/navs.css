@@ -17,14 +17,15 @@ html, body, body:before, body:after{
 h1,h2,h3{
   padding-left: 0;
 }
-a, h1, h2{
-  padding: 10px 20px;
-  margin-bottom: 8px;
+h1,h2{
+  margin-bottom: 8px; 
 }
 a{
   font-size: 18px;
   background: white;
   color: blue;
+  padding: 10px 20px;
+  margin-bottom: 8px;
   display: block;
   margin-left: 25px;
   text-decoration: none;
