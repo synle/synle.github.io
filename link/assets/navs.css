@@ -54,8 +54,8 @@ button{
   font-family: monospace;
   width: 100%;
 }
-#input{
-  height: 800px;
+#input, #output{
+  height: 500px;
 }
 #search{
   position: sticky;
