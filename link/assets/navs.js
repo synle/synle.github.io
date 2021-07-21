@@ -24,7 +24,8 @@ window.onViewSchema = () => {
 
   const rawSchemaDataDom = `
     <div><h1>Navigation Form</h1></div>
-    <textarea id='input' placeholder="Bookmarklet Schema">${output}</textarea>
+    <textarea id='input' placeholder="Bookmarklet Input Schema">${output}</textarea>
+    <textarea id='output' placeholder="Bookmarklet Output">${output}</textarea>
     <div style="display: flex;">
       <button onclick="window.onViewLinks(document.querySelector('#input').value)">View Links UI</button>
       <button onclick="window.onGetGeneratedBookmarkletLink(document.querySelector('#input').value)">Get Bookmarklet Link</button>
@@ -66,7 +67,8 @@ window.onViewLinks = (linkDomHTML) => {
 }
 
 window.onGetGeneratedBookmarkletLink = (input) => {
-  prompt('New BookmarkLink: ', window.getNavBookmarkletFromSchema(input));
+  document.querySelector('#output').value = window.getNavBookmarkletFromSchema(input);
+  document.querySelector('#output').focus();
 }
 
 window.getNavBookmarkletFromSchema = (input) => {
