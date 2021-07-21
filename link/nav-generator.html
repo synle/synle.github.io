@@ -1,159 +1,11 @@
-<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Nav Generator</title>
+    <link rel="stylesheet" type="text/css" href="https://synle.github.io/link/assets/navs.css">
     <script src="https://synle.github.io/link/assets/navs.js"></script>
-  </head>
-  <body>
-    <style>
-      * {
-        box-sizing: border-box;
-        font-size: 18px;
-        font-family: monospace;
-      }
-
-      textarea, input {
-        display: block;
-        width: 100%;
-        margin-bottom: 20px;
-        background: white;
-        border: 1px solid black;
-        padding: 10px 15px;
-      }
-      
-      textarea {
-        height: 190px;
-      }
-
-      button, a {
-        padding: 10px 20px;
-        margin-right: 20px;
-        margin-bottom: 20px;
-        background: #ddd;
-        color: black;
-        border: 1px solid black;
-        font-weight: bold;
-        cursor: pointer;
-        text-decoration: none;
-        opacity: 0.65;
-      }
-
-      a:hover, button:hover{
-        opacity: 1;
-      }
-
-      button[type='submit']{
-        background: blue;
-        color: white;
-      }
-    </style>
-    
-    <h1></h1>
-    <form onsubmit="try{window.submitForm();} catch(e){console.log(e.stack)} return false;">
-      <div>
-        <textarea id="input" placeholder="Input..." required onblur="window.onFormatInput()"></textarea>
-        <textarea
-          id="output"
-          placeholder="Output..."
-          readonly="true"
-        ></textarea>
-      </div>
-      <div style="display: flex; flex-wrap: wrap;">
-        <button type="submit" onclick="window.submitForm = generateBookmarklet">Create Link Bookmarklet</button>
-        <button type="submit" onclick="window.submitForm = generateSchemaFromBookmarklet">
-          Create Schema From Bookmarklet
-        </button>
-        <button type="submit" onclick="window.submitForm = testNav">
-          Test Nav
-        </button>
-        <button type="button" onclick="viewSource()">
-          View Source
-        </button>
-      </div>
-    </form>
-
     <script>
       (() => {
-        window.onFormatInput = () => {
-          document.querySelector("#input").value = document
-            .querySelector("#input")
-            .value.split("\n")
-            .map((r) => r.trim())
-            .join("\n")
-            .trim();
-        }
-
-        window.generateDomForDataURI = () => {
-          const input = document.querySelector("#input").value;
-          const output = window.getNavBookmarkletFromSchema(input);
-
-          document.querySelector("#output").value = output;
-          document.querySelector("#output").focus();
-        };
-
-        window.generateBookmarklet = () => {
-          window.generateDomForDataURI();
-        }
-
-        window.generateSchemaFromDomLink = () => {
-          document.querySelector("#input").value = document
-            .querySelector("#input")
-            .value.split("\n")
-            .map((r) => r.trim())
-            .join("\n");
-
-          let input = document.querySelector("#input").value;
-          let output = [];
-
-          const elem = document.createElement("div");
-          elem.innerHTML = input;
-
-          const elems = elem.querySelectorAll(".link,.header");
-
-          for (const elem of elems) {
-            if(elem.classList.contains('link')){
-              const link = elem;
-              let fullLink = link.href;
-              let description = link.innerHTML;
-
-              output.push(`${fullLink}${LINK_SPLIT}${description}`);
-            } else {
-              const header = elem;
-              let description = header.innerHTML;
-
-              output.push(`${SECTION_HEADER_SPLIT} ${description}`);
-            }
-          }
-
-          document.querySelector("#output").value = output.join("\n").trim();
-          document.querySelector("#output").focus();
-        };
-
-        window.generateSchemaFromBookmarklet = () => {
-          const input = document.querySelector("#input").value;
-          document.querySelector("#input").value = decodeURIComponent(input);
-          window.generateSchemaFromDomLink();
-        }
-        
-
-        window.testNav = () => {
-          generateDomForDataURI();
-
-          // open the new tab for testing
-          const base64URL = document.querySelector('#output').value;
-          var win = window.open();
-          win.document.write('<iframe src="' + base64URL  + '" frameborder="0" style="border:0; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%;" allowfullscreen></iframe>');
-        }
-
-
-        window.viewSource = () => {
-          location.href = 'https://github.com/synle/synle.github.io/blob/master/link/nav-generator.html';
-        }
-
         // on load put focus on input
-        document.querySelector('#input').focus();
+        window.onViewSchema();
 
         // getting and setting the page title
         try {
@@ -161,5 +13,7 @@
         } catch(err){}
       })()
     </script>
+  </head>
+  <body>
   </body>
 </html>
