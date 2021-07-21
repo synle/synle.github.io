@@ -57,3 +57,7 @@ button{
 #input{
   height: 800px;
 }
+#search{
+  position: sticky;
+  top: 0;
+}
