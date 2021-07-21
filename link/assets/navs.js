@@ -109,56 +109,27 @@ window.getNavBookmarkletFromSchema = (input) => {
   return 'data:text/html,' + encodeURIComponent(rawOutput);
 }
 
+
+window.searchBookmarklet = (val) => {
+  val = val.trim().toLowerCase();
+
+  for(const anchor of document.querySelectorAll('a')){
+    if(val === '' || anchor.innerText.toLowerCase().includes(val) || anchor.href.toLowerCase().includes(val)){
+      anchor.style.display = 'block';
+    } else {
+      anchor.style.display = 'none';
+    }
+  }
+}
+
 // init
 setTimeout(() => {
-  if(!location.href.includes('data:text/html')){
-    // only do this for the main page not the data encoded
-    return;
+  if(location.href.includes('data:text/html')){
+    // append the on view schema button
+    document.body.innerHTML = `<div><input id='search' onInput="window.searchBookmarklet(document.querySelector('#search').value)"/></div>` 
+      + document.body.innerHTML
+      `<div><button onClick='window.onViewSchema()'>View Schema Source</button></div>`;
+
+    return
   }
-  
-  // script to run after the page has loaded
-  // append the on view schema button
-  document.body.innerHTML += `<div><button onClick='window.onViewSchema()'>View Schema Source</button></div>`
-    
-  // other events
-   document.body.addEventListener('keydown', (e) => {
-    switch(e.key){
-      case 'Tab':
-      case 'Enter':
-      case 'Shift':
-      case 'Control':
-      case 'Alt':
-      case 'Meta':
-      case ' ':
-        return;
-    }
-
-    if(document.activeElement !== document.querySelector('#search')){
-      if(document.querySelectorAll('a.link') && document.querySelectorAll('a.link').length > 0){
-        if(!document.querySelector('#search')){
-            document.body.innerHTML = `<input id="search" autocomplete="off" style="margin-top: 1rem;background: #666; font-size: 18px; padding: 8px 10px;width: 100%;border: 1px solid #ccc;" placeholder="Search">` + document.body.innerHTML
-
-            document.querySelector('#search').addEventListener('blur', (e) => {
-              window.focused = false;
-            })
-            document.querySelector('#search').addEventListener('input', (e) => search(e.target.value))
-
-            function search(val){
-              val = val.trim().toLowerCase();
-
-              for(const anchor of document.querySelectorAll('a')){
-                if(val === '' || anchor.innerText.toLowerCase().includes(val) || anchor.href.toLowerCase().includes(val)){
-                  anchor.style.display = 'block';
-                } else {
-                  anchor.style.display = 'none';
-                }
-              }
-            }
-          }
-      }
-
-      document.querySelector('#search') && document.querySelector('#search').focus();
-    }
-  })
-  //
 });
