@@ -21,7 +21,7 @@ window.onViewSchema = () => {
     output = output.join("<br />").trim()
 
     window.schemaData = `
-      <pre>${output}</pre>
+      <pre contenteditable="true">${output}</pre>
       <div style="display: flex;">
         <button onclick="window.onViewLinks()">View Links UI</button>
         <a target="_blank" style="width: 200px; margin: auto;" href="https://synle.github.io/link/nav-generator.html">Nav Link Generator</a>
