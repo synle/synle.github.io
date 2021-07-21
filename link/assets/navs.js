@@ -117,7 +117,8 @@ setTimeout(() => {
   }
   
   // script to run after the page has loaded
-  window.onViewLinks();
+  // append the on view schema button
+  document.body.innerHTML += `<div><button onClick='window.onViewSchema()'>View Schema Source</button></div>`
     
   // other events
    document.body.addEventListener('keydown', (e) => {
