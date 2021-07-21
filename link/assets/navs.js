@@ -1,41 +1,62 @@
+const LINK_SPLIT = "|||";
+const SECTION_HEADER_SPLIT= '#';
+
 window.onViewSchema = () => {
-  if(!window.schemaData){
-    var LINK_SPLIT = "|||";
-    var SECTION_HEADER_SPLIT = "#";
-    var output = [];
-    var elems = document.querySelectorAll(".link,.header");
-    for (var elem of elems) {
-        if (elem.classList.contains("link")) {
-            var link = elem;
-            var fullLink = link.href;
-            var description = link.innerHTML;
-            output.push(fullLink + LINK_SPLIT + description);
-      } else {
-        var header = elem;
-        var description = header.innerHTML;
+  var LINK_SPLIT = "|||";
+  var SECTION_HEADER_SPLIT = "#";
+  var output = [];
+  var elems = document.querySelectorAll(".link,.header");
+  for (var elem of elems) {
+      if (elem.classList.contains("link")) {
+          var link = elem;
+          var fullLink = link.href;
+          var description = link.innerHTML;
+          output.push(fullLink + LINK_SPLIT + description);
+    } else {
+      var header = elem;
+      var description = header.innerHTML;
 
-        output.push(SECTION_HEADER_SPLIT + description);
-      }
-    };
+      output.push(SECTION_HEADER_SPLIT + description);
+    }
+  };
 
-    output = output.join("<br />").trim()
+  output = output.join("<br />").trim()
 
-    window.schemaData = `
-      <pre contenteditable="true">${output}</pre>
-      <div style="display: flex;">
-        <button onclick="window.onViewLinks(window.linkData)">View Links UI</button>
-        <a target="_blank" style="width: 200px; margin: auto;" href="https://synle.github.io/link/nav-generator.html">Nav Link Generator</a>
-      </div>
-    `;
-    window.linkData = document.body.innerHTML;
-  }
+  const rawSchemaDataDom = `
+    <pre id='schemaDataContainer' contenteditable="true">${output}</pre>
+    <div style="display: flex;">
+      <button onclick="window.onViewLinks(document.querySelector('#schemaDataContainer').innerText)">View Links UI</button>
+      <a target="_blank" style="width: 200px; margin: auto;" href="https://synle.github.io/link/nav-generator.html">Nav Link Generator</a>
+    </div>
+  `;
 
-  document.body.innerHTML = window.schemaData;
+  document.body.innerHTML = rawSchemaDataDom;
 }
 
 window.onViewLinks = (linkDomHTML) => {
+  linkDomHTML = (linkDomHTML || '').trim();
+  
   if(linkDomHTML){
-    document.body.innerHTML = linkDomHTML;
+    let rawLinkHTML = linkDomHTML.split('\n').map(r => {
+      let [linkUrl, linkText] = r.split('|||');
+      linkUrl = (linkUrl || '').trim();
+      linkText = (linkText || '').trim();
+      
+      if(linkUrl && linkText){
+        return `<a class="link" href="${linkUrl}">${linkText}</a>`;
+      }
+      
+      if(linkUrl[0] === '#'){
+        linkUrl = linkUrl.replace(/#/g, '');
+        return `<h2 class="header">${linkUrl}</h2>`
+      }
+      
+      return undefined;
+    }).filter(r => !!r).join('\n');
+    
+    rawLinkHTML = `<div>${rawLinkHTML}</div>`
+    
+    document.body.innerHTML = rawLinkHTML;
   }
   document.body.innerHTML += `<div><button onClick='window.onViewSchema()'>View Schema Source</button></div>`
 }
@@ -44,7 +65,6 @@ window.onViewLinks = (linkDomHTML) => {
 setTimeout(() => {
   // script to run after the page has loaded
   window.onViewLinks();
-    
     
   // other events
    document.body.addEventListener('keydown', (e) => {
