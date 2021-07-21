@@ -27,7 +27,7 @@ window.onViewSchema = () => {
     <textarea id='input' placeholder="Bookmarklet Input Schema">${output}</textarea>
     <textarea id='output' placeholder="Bookmarklet Output">${output}</textarea>
     <div style="display: flex;">
-      <button onclick="window.onViewLinks(document.querySelector('#input').value)">View Links UI</button>
+      <button onclick="window.onViewLinks(window.getLinkDom(document.querySelector('#input').value))">View Links UI</button>
       <button onclick="window.onGetGeneratedBookmarkletLink(document.querySelector('#input').value)">Get Bookmarklet Link</button>
     </div>
   `;
@@ -37,35 +37,11 @@ window.onViewSchema = () => {
   document.querySelector('#input').focus();
 }
 
-window.onViewLinks = (linkDomHTML) => {
-  linkDomHTML = (linkDomHTML || '').trim();
-  
-  if(linkDomHTML){
-    let rawLinkHTML = linkDomHTML.split('\n').map(r => {
-      let [linkUrl, linkText] = r.split(LINK_SPLIT);
-      linkUrl = (linkUrl || '').trim();
-      linkText = (linkText || '').trim();
-      
-      if(linkUrl && linkText){
-        return `<a class="link" href="${linkUrl}">${linkText}</a>`;
-      }
-      
-      if(linkUrl[0] === SECTION_HEADER_SPLIT){
-        linkUrl = linkUrl.replace(/#/g, '');
-        return `<h2 class="header">${linkUrl}</h2>`
-      }
-      
-      return undefined;
-    }).filter(r => !!r).join('\n');
-    
-    rawLinkHTML = `<div>${rawLinkHTML}</div>`
-    
-    document.body.innerHTML = rawLinkHTML;
-  } else {
-    document.body.innerHTML = '';
-  }
-  
-  document.body.innerHTML += `<div><button onClick='window.onViewSchema()'>View Schema Source</button></div>`
+window.onViewLinks = (linkDomHTML) => {  
+  // append the extra stuffs
+  document.body.innerHTML = `<input id='search' onInput="window.searchBookmarklet(document.querySelector('#search').value)" placeholder="Search bookmarklet" style="display: block" />` 
+      + rawLinkHTML
+      + `<div><button onClick='window.onViewSchema()'>View Schema Source</button></div>`;
 }
 
 window.onGetGeneratedBookmarkletLink = (input) => {
@@ -126,13 +102,34 @@ window.searchBookmarklet = (val) => {
   }
 }
 
+window.getLinkDom = (linkDomHTML) => {
+  let rawLinkHTML = linkDomHTML.split('\n').map(r => {
+    let [linkUrl, linkText] = r.split(LINK_SPLIT);
+    linkUrl = (linkUrl || '').trim();
+    linkText = (linkText || '').trim();
+
+    if(linkUrl && linkText){
+      return `<a class="link" href="${linkUrl}">${linkText}</a>`;
+    }
+
+    if(linkUrl[0] === SECTION_HEADER_SPLIT){
+      linkUrl = linkUrl.replace(/#/g, '');
+      return `<h2 class="header">${linkUrl}</h2>`
+    }
+
+    return undefined;
+  }).filter(r => !!r).join('\n');
+
+  rawLinkHTML = `<div>${rawLinkHTML}</div>`
+  
+  return rawLinkHTML;
+}
+
 // init
 setTimeout(() => {
   if(location.href.includes('data:text/html')){
     // append the on view schema button
-    document.body.innerHTML = `<div><input id='search' onInput="window.searchBookmarklet(document.querySelector('#search').value)" placeholder="Search bookmarklet"/></div>` 
-      + document.body.innerHTML
-      + `<div><button onClick='window.onViewSchema()'>View Schema Source</button></div>`;
+    window.onViewLinks(document.body.innerHTML);
 
     return
   }
