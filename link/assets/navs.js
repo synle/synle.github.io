@@ -26,7 +26,7 @@ window.onViewSchema = () => {
     <pre id='schemaDataContainer' contenteditable="true">${output}</pre>
     <div style="display: flex;">
       <button onclick="window.onViewLinks(document.querySelector('#schemaDataContainer').innerText)">View Links UI</button>
-      <button onclick="window.onGetGeneratedBookmarkletLink(document.querySelector('#schemaDataContainer').innerText)">View Links UI</button>
+      <button onclick="window.onGetGeneratedBookmarkletLink(document.querySelector('#schemaDataContainer').innerText)">Get Bookmarklet Link</button>
       <a target="_blank" style="width: 200px; margin: auto;" href="https://synle.github.io/link/nav-generator.html">Nav Link Generator</a>
     </div>
   `;
