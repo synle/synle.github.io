@@ -25,7 +25,7 @@ window.onViewSchema = () => {
   const rawSchemaDataDom = `
     <div><h1>Navigation Form</h1></div>
     <textarea id='input' placeholder="Bookmarklet Input Schema" onfocus="window.zoominInput(this)" onblur="window.zoominOutput(this); window.onGetGeneratedBookmarkletLink(document.querySelector('#input').value)">${output}</textarea>
-    <textarea id='output' placeholder="Bookmarklet Output" onfocus="window.zoominInput(this)" onblur="window.zoominOutput(this);">${output}</textarea>
+    <textarea id='output' placeholder="Bookmarklet Output" onfocus="window.zoominInput(this)" onblur="window.zoominOutput(this);"></textarea>
     <div style="display: flex;">
       <button onclick="window.onViewLinks(window.getLinkDom(document.querySelector('#input').value))">View Links UI</button>
       <a target="_blank" style="width: 200px; margin: auto;" href="https://github.com/synle/synle.github.io/blob/master/link/assets/navs.js">View Source</a>
@@ -43,6 +43,8 @@ window.onViewSchema = () => {
   document.body.innerHTML = rawSchemaDataDom;
   
   document.querySelector('#input').focus();
+  
+  window.onGetGeneratedBookmarkletLink(document.querySelector('#input').value);
 }
 
 window.onViewLinks = (linkDomHTML) => {  
