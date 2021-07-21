@@ -32,6 +32,10 @@ a:hover, button:hover{
   filter: invert(.9);
   cursor: pointer;
 }
+a:active, button:active{
+  filter: invert(.75);
+  transition: all 0.3s ease-out;
+}
 h2{
   font-weight: 900;
   font-size: 18px;
@@ -60,7 +64,7 @@ button{
 }
 #input, #output{
   height: 150px;
-  transition: all 0.3s ease-out;
+  transition: all 0.25s ease-out;
 }
 #output{
   background: #6272a4;
