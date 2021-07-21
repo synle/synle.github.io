@@ -131,7 +131,10 @@ window.searchBookmarklet = (val) => {
 
 window.getLinkDom = (linkDomHTML) => {
   let rawLinkHTML = linkDomHTML
+    .trim()
     .split("\n")
+    .map((r) => r.trim())
+    .filter((r) => !!r)
     .map((r) => {
       const link = r;
 
