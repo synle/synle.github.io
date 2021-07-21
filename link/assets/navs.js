@@ -8,17 +8,17 @@ window.onViewSchema = () => {
   for (var elem of elems) {
       if (elem.classList.contains("title")) {
         var description = elem.innerText.trim();
-        output.push(`${TITLE_SPLIT}${description}`);
+        output.push(`${TITLE_SPLIT} ${description}`);
       } else if (elem.classList.contains("link")) {
         var link = elem;
         var fullLink = link.href;
         var description = link.innerHTML;
-        output.push(`${description}${LINK_SPLIT}${fullLink}`);
+        output.push(`${description} ${LINK_SPLIT} ${fullLink}`);
       } else {
         var header = elem;
         var description = header.innerHTML;
 
-        output.push(SECTION_HEADER_SPLIT + description);
+        output.push(`${SECTION_HEADER_SPLIT} ${description}`);
       }
   };
 
@@ -153,11 +153,8 @@ window.getLinkDom = (linkDomHTML) => {
     
     try{
       let linkText, linkUrl;
-      linkText = r.substr(0, r.indexOf(LINK_SPLIT))
-      linkUrl = r.substr(r.indexOf(LINK_SPLIT) + 1)
-      
-      linkUrl = (linkUrl || '').trim();
-      linkText = (linkText || '').trim();
+      linkText = r.substr(0, r.indexOf(LINK_SPLIT)).trim();
+      linkUrl = r.substr(r.indexOf(LINK_SPLIT) + 1).trim();
 
       if(linkUrl && linkText){
         return `<a class="link" href="${linkUrl}">${linkText}</a>`;
