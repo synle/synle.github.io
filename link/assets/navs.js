@@ -141,7 +141,7 @@ window.getLinkDom = (linkDomHTML) => {
     if(link.indexOf(TITLE_SPLIT) === 0){
       // page title
       const headerText = r.replace(TITLE_SPLIT, '').trim();
-      return `<h1 class="header">${headerText}</h1>`
+      return `<h1 class="title">${headerText}</h1>`
     }
     
     if(link.indexOf(SECTION_HEADER_SPLIT) === 0){
