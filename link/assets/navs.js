@@ -42,9 +42,9 @@ window.onViewSchema = () => {
 
   document.body.innerHTML = rawSchemaDataDom;
   
-  document.querySelector('#input').focus();
-  
   window.onGetGeneratedBookmarkletLink(document.querySelector('#input').value);
+  
+  document.querySelector('#input').focus();
 }
 
 window.onViewLinks = (linkDomHTML) => {  
