@@ -41,17 +41,24 @@ a,
 a {
   background: #6272a4;
   color: #fff;
-  padding: 10px 20px;
   display: block;
   text-decoration: none;
   user-select: none;
 }
 a,
 button {
+  padding: 10px 20px;
   transition: all 0.25s ease-out;
   cursor: pointer;
   border: 2px solid #aaaec9;
   border-radius: 5px;
+}
+button {
+  margin: 0 auto 0 auto;
+  background: #333;
+  border: 2px solid #fff;
+  display: block;
+  user-select: none;
 }
 a:hover,
 button:hover,
@@ -69,14 +76,6 @@ button:active {
 h2 {
   font-size: 18px;
   padding: 0;
-}
-button {
-  margin: 0 auto 0 auto;
-  padding: 10px 20px;
-  background: #333;
-  border: 1px solid #333;
-  display: block;
-  user-select: none;
 }
 
 #fav{
