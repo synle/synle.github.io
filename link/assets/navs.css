@@ -91,7 +91,7 @@ button {
   margin-bottom: 1rem;
 }
 
-#fav .header{
+#fav .header, #fav .title, #fav #search{
   grid-column: 1/-1;
 }
 
