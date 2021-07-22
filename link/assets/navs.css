@@ -9,6 +9,8 @@ body{
   width: 900px;
   font-family: 'arial';
   overflow-y: auto !important;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 html, body, body:before, body:after{
   border: none !important;
