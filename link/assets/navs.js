@@ -28,10 +28,11 @@ window.onViewSchema = () => {
     <div><h1>Navigation Form</h1></div>
     <div style="display: flex; margin-bottom: 1rem; align-items:center">
       <button onclick="window.onViewLinks(window.getLinkDom(document.querySelector('#input').value))">View Links UI</button>
+      <button onclick="window.onTestNav()">Test Nav</button>
       <a target="_blank" style="text-align: center; margin: auto;" href="https://github.com/synle/synle.github.io/blob/master/link/assets/navs.js">View Source</a>
     </div>
-    <textarea id='input' placeholder="Bookmarklet Input Schema" wrap="soft" onfocus="window.zoominInput(this)" onblur="window.zoominOutput(this); window.onGetGeneratedBookmarkletLink(document.querySelector('#input').value)">${output}</textarea>
-    <textarea id='output' placeholder="Bookmarklet Output" wrap="soft" onfocus="window.zoominInput(this)" onblur="window.zoominOutput(this);"></textarea>
+    <textarea id='input' placeholder="Bookmarklet Input Schema" wrap="soft" onfocus="window.zoominInput(this)" onblur="window.zoominOutput(this);=" onkeyup="window.onGetGeneratedBookmarkletLink(document.querySelector('#input').value)">${output}</textarea>
+    <textarea id='output' placeholder="Bookmarklet Output" wrap="soft" onfocus="window.zoominInput(this)" onblur="window.zoominOutput(this);" readonly></textarea>
   `;
 
   window.zoominInput = (target) => {
@@ -45,8 +46,6 @@ window.onViewSchema = () => {
   document.body.innerHTML = rawSchemaDataDom;
 
   window.onGetGeneratedBookmarkletLink(document.querySelector("#input").value);
-
-  document.querySelector("#input").focus();
 };
 
 window.onViewLinks = (linkDomHTML) => {
@@ -66,7 +65,6 @@ window.onViewLinks = (linkDomHTML) => {
 
 window.onGetGeneratedBookmarkletLink = (input) => {
   document.querySelector("#output").value = window.getNavBookmarkletFromSchema(input);
-  document.querySelector("#output").focus();
 };
 
 window.getNavBookmarkletFromSchema = (input) => {
@@ -172,6 +170,13 @@ window.getLinkDom = (linkDomHTML) => {
 
   return rawLinkHTML;
 };
+
+window.onTestNav = () => {
+  // open the new tab for testing
+  const base64URL = document.querySelector('#output').value;
+  var win = window.open();
+  win.document.write('<iframe src="' + base64URL  + '" frameborder="0" style="border:0; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%;" allowfullscreen></iframe>');
+}
 
 // insert zoom scale of 1 for mobile
 document.head.insertAdjacentHTML('beforeend', `<meta name="viewport" content="width=device-width, initial-scale=1" />`)
