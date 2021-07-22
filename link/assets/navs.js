@@ -167,7 +167,7 @@ window.getLinkDom = (linkDomHTML) => {
     .filter((r) => !!r)
     .join("\n");
 
-  rawLinkHTML = `<div>${rawLinkHTML}</div>`;
+  rawLinkHTML = `<div id='fav'>${rawLinkHTML}</div>`;
 
   return rawLinkHTML;
 };
