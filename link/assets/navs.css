@@ -21,8 +21,10 @@ h1,h2,h3{
 h1{
   font-size: 30px;
 }
+button, a, #search, #input, #output {
+  font-size: 16px;
+}
 a{
-  font-size: 18px;
   background: white;
   color: blue;
   padding: 10px 20px;
@@ -51,7 +53,6 @@ h2{
   margin-top: 25px;
 }
 button{
-  font-size: 18px;
   margin: 0 auto 0 auto;
   padding: 10px 20px;
   color: white;
@@ -64,7 +65,6 @@ button{
   background: #333;
   border: 1px solid #666;
   padding: 8px 10px;
-  font-size: 14px;
   font-family: monospace;
   width: 100%;
   box-shadow: 0 1.6px 3.6px 0 rgb(0 0 0 / 13%), 0 0.3px 0.9px 0 rgb(0 0 0 / 11%);
@@ -84,4 +84,17 @@ button{
   position: sticky;
   top: 0;
   margin-top: 25px;
+}
+
+only screen and (min-width:321px) and (max-width:768px){
+  body{
+    width: calc(100% - 20px);
+  }
+  
+  h1{
+    font-size: 16px;
+  }
+  button, a, #search, #input, #output {
+    font-size: 14px;
+  }
 }
