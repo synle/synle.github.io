@@ -25,14 +25,16 @@ window.onViewSchema = () => {
   output = output.join("\n").trim();
 
   const rawSchemaDataDom = `
-    <div><h1>Navigation Form</h1></div>
-    <div style="display: flex; margin-bottom: 1rem; align-items:center">
-      <button onclick="window.onViewLinks(window.getLinkDom(document.querySelector('#input').value))">View Links UI</button>
-      <button onclick="window.onTestNav()">Test Nav</button>
-      <a target="_blank" style="text-align: center; margin: auto;" href="https://github.com/synle/synle.github.io/blob/master/link/assets/navs.js">View Source</a>
+    <div id='command'>
+      <div><h1>Navigation Form</h1></div>
+      <div style="display: flex; margin-bottom: 1rem; align-items:center">
+        <button onclick="window.onViewLinks(window.getLinkDom(document.querySelector('#input').value))">View Links UI</button>
+        <button onclick="window.onTestNav()">Test Nav</button>
+        <a target="_blank" style="text-align: center; margin: auto;" href="https://github.com/synle/synle.github.io/blob/master/link/assets/navs.js">View Source</a>
+      </div>
+      <textarea id='input' placeholder="Bookmarklet Input Schema" wrap="soft" onfocus="window.zoominInput(this)" onblur="window.zoominOutput(this)" onkeyup="window.onGetGeneratedBookmarkletLink(document.querySelector('#input').value)">${output}</textarea>
+      <textarea id='output' placeholder="Bookmarklet Output" wrap="soft" onfocus="window.zoominInput(this)" onblur="window.zoominOutput(this)"></textarea>
     </div>
-    <textarea id='input' placeholder="Bookmarklet Input Schema" wrap="soft" onfocus="window.zoominInput(this)" onblur="window.zoominOutput(this)" onkeyup="window.onGetGeneratedBookmarkletLink(document.querySelector('#input').value)">${output}</textarea>
-    <textarea id='output' placeholder="Bookmarklet Output" wrap="soft" onfocus="window.zoominInput(this)" onblur="window.zoominOutput(this)"></textarea>
   `;
 
   window.zoominInput = (target) => {
