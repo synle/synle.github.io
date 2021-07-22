@@ -80,7 +80,7 @@ button {
 #fav{
   margin: auto;
   display: grid;
-  grid-template-columns: repeat(auto-fill, 300px);
+  grid-template-columns: 250px 250px 250px;
   grid-gap: 1rem 1.25rem;
   justify-content: center;
 }
