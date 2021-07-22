@@ -84,7 +84,7 @@ button {
   margin: auto;
   display: grid;
   grid-template-columns: repeat(auto-fill, 300px);
-  grid-gap: 2rem 1.2rem;
+  grid-gap: 1rem 1.25rem;
   justify-content: center;
 }
 
