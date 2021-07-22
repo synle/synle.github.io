@@ -26,7 +26,7 @@ window.onViewSchema = () => {
 
   const rawSchemaDataDom = `
     <div><h1>Navigation Form</h1></div>
-    <div style="display: flex; margin-bottom: 10px;">
+    <div style="display: flex; margin-bottom: 10px; align-items:center">
       <button onclick="window.onViewLinks(window.getLinkDom(document.querySelector('#input').value))">View Links UI</button>
       <a target="_blank" style="text-align: center; margin: auto;" href="https://github.com/synle/synle.github.io/blob/master/link/assets/navs.js">View Source</a>
     </div>
@@ -51,7 +51,10 @@ window.onViewSchema = () => {
 
 window.onViewLinks = (linkDomHTML) => {
   // append the extra stuffs
-  document.body.innerHTML = linkDomHTML + `<div><button onClick='window.onViewSchema()'>View Schema Source</button></div>`;
+  document.body.innerHTML = linkDomHTML 
+    + `<div style="display: flex; margin-bottom: 10px; align-items:center">
+        <button onClick='window.onViewSchema()'>View Schema Source</button>
+      </div>`;
 
   document
     .querySelector(".title")
