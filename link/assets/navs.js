@@ -31,8 +31,8 @@ window.onViewSchema = () => {
       <button onclick="window.onTestNav()">Test Nav</button>
       <a target="_blank" style="text-align: center; margin: auto;" href="https://github.com/synle/synle.github.io/blob/master/link/assets/navs.js">View Source</a>
     </div>
-    <textarea id='input' placeholder="Bookmarklet Input Schema" wrap="soft" onfocus="window.zoominInput(this)" onblur="window.zoominOutput(this);=" onkeyup="window.onGetGeneratedBookmarkletLink(document.querySelector('#input').value)">${output}</textarea>
-    <textarea id='output' placeholder="Bookmarklet Output" wrap="soft" onfocus="window.zoominInput(this)" onblur="window.zoominOutput(this);"></textarea>
+    <textarea id='input' placeholder="Bookmarklet Input Schema" wrap="soft" onfocus="window.zoominInput(this)" onblur="window.zoominOutput(this)" onkeyup="window.onGetGeneratedBookmarkletLink(document.querySelector('#input').value)">${output}</textarea>
+    <textarea id='output' placeholder="Bookmarklet Output" wrap="soft" onfocus="window.zoominInput(this)" onblur="window.zoominOutput(this)"></textarea>
   `;
 
   window.zoominInput = (target) => {
@@ -50,8 +50,9 @@ window.onViewSchema = () => {
 
 window.onViewLinks = (linkDomHTML) => {
   // append the extra stuffs
-  document.body.innerHTML = linkDomHTML 
-    + `<div style="display: flex; margin-top: 1rem; align-items:center">
+  document.body.innerHTML =
+    linkDomHTML +
+    `<div style="display: flex; margin-top: 1rem; align-items:center">
         <button onClick='window.onViewSchema()'>View Schema Source</button>
       </div>`;
 
@@ -173,10 +174,14 @@ window.getLinkDom = (linkDomHTML) => {
 
 window.onTestNav = () => {
   // open the new tab for testing
-  const base64URL = document.querySelector('#output').value;
+  const base64URL = document.querySelector("#output").value;
   var win = window.open();
-  win.document.write('<iframe src="' + base64URL  + '" frameborder="0" style="border:0; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%;" allowfullscreen></iframe>');
-}
+  win.document.write(
+    '<iframe src="' +
+      base64URL +
+      '" frameborder="0" style="border:0; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%;" allowfullscreen></iframe>'
+  );
+};
 
 // insert zoom scale of 1 for mobile
-document.head.insertAdjacentHTML('beforeend', `<meta name="viewport" content="width=device-width, initial-scale=1" />`)
+document.head.insertAdjacentHTML("beforeend", `<meta name="viewport" content="width=device-width, initial-scale=1" />`);
