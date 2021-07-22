@@ -39,7 +39,7 @@ a{
 a,button{
   transition: all 0.25s ease-out;
 }
-a:hover, button:hover, a:focused, button:focused, input:focused, textarea:focused{
+a:hover, button:hover, a:focus, button:focus, input:focus, textarea:focus{
   filter: invert(.9);
   cursor: pointer;
 }
