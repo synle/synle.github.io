@@ -46,7 +46,6 @@ a {
   display: block;
   text-decoration: none;
   user-select: none;
-  box-shadow: 0 1.6px 3.6px 0 rgb(0 0 0 / 13%), 0 0.3px 0.9px 0 rgb(0 0 0 / 11%);
 }
 a,
 button {
@@ -59,7 +58,8 @@ a:focus,
 button:focus,
 input:focus,
 textarea:focus {
-  filter: invert(0.05);
+  filter: invert(0.1);
+  box-shadow: 0 1.6px 3.6px 0 rgb(0 0 0 / 13%), 0 0.3px 0.9px 0 rgb(0 0 0 / 11%);
 }
 a:active,
 button:active {
