@@ -67,13 +67,20 @@ a:hover,
 button:hover,
 a:focus,
 button:focus,
-input:focus,
-textarea:focus,
 a:active,
 button:active{
   filter: invert(0.9);
-  border-color: #f1fa8c;
   box-shadow: 0 1.6px 3.6px 0 rgb(0 0 0 / 13%), 0 0.3px 0.9px 0 rgb(0 0 0 / 11%);
+}
+a:hover,
+button:hover,
+a:focus,
+button:focus,
+a:active,
+button:active,
+input:focus,
+textarea:focus {
+  border: 3px solid #f1fa8c;
 }
 #fav{
   margin: auto;
