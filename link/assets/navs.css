@@ -107,6 +107,9 @@ textarea:focus {
   background: #000;
   border-left: 6px solid #f1fa8c;
   padding: 0.5rem 0.9rem;
+  position: sticky;
+  z-index: 1;
+  top: 38px;
 }
 
 #search,
