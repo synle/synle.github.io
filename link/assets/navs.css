@@ -1,32 +1,42 @@
-*{ 
+* {
   box-sizing: border-box;
 }
-*, ::placeholder{
+*,
+::placeholder {
   color: white;
 }
-body{
+body {
   margin: auto !important;
   width: 900px;
-  font-family: 'arial';
+  font-family: "arial";
   overflow-y: auto !important;
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
-html, body, body:before, body:after{
+html,
+body,
+body:before,
+body:after {
   border: none !important;
   background-color: black !important;
 }
-h1,h2,h3{
+h1,
+h2,
+h3 {
   padding-left: 0;
-  margin-bottom: 1rem; 
+  margin-bottom: 1rem;
 }
-h1{
+h1 {
   font-size: 30px;
 }
-button, a, #search, #input, #output {
+button,
+a,
+#search,
+#input,
+#output {
   font-size: 16px;
 }
-a{
+a {
   background: white;
   color: blue;
   padding: 10px 20px;
@@ -36,33 +46,42 @@ a{
   user-select: none;
   box-shadow: 0 1.6px 3.6px 0 rgb(0 0 0 / 13%), 0 0.3px 0.9px 0 rgb(0 0 0 / 11%);
 }
-a,button{
+a,
+button {
   transition: all 0.25s ease-out;
 }
-a:hover, button:hover, a:focus, button:focus, input:focus, textarea:focus{
-  filter: invert(.9);
+a:hover,
+button:hover,
+a:focus,
+button:focus,
+input:focus,
+textarea:focus {
+  filter: invert(0.9);
   cursor: pointer;
 }
-a:active, button:active{
-  filter: invert(.75);
+a:active,
+button:active {
+  filter: invert(0.75);
 }
-h2{
+h2 {
   font-weight: 900;
   font-size: 18px;
   padding: 0;
   color: white;
   margin-top: 1.5rem;
 }
-button{
+button {
   margin: 0 auto 0 auto;
   padding: 10px 20px;
   color: white;
   background: #333;
   border: 1px solid #333;
   display: block;
-  user-select: none
+  user-select: none;
 }
-#search, #input, #output{
+#search,
+#input,
+#output {
   background: #333;
   border: 1px solid #666;
   padding: 8px 10px;
@@ -70,35 +89,40 @@ button{
   width: 100%;
   box-shadow: 0 1.6px 3.6px 0 rgb(0 0 0 / 13%), 0 0.3px 0.9px 0 rgb(0 0 0 / 11%);
 }
-#input, #output{
+#input,
+#output {
   height: 150px;
   transition: all 0.25s ease-out;
 }
-#input{
+#input {
   white-space: nowrap;
 }
-#output{
+#output {
   background: #6272a4;
   margin-top: 1rem;
 }
-#search{
+#search {
   position: sticky;
   top: 0;
   margin-top: 1.5rem;
 }
 
-@media only screen and (min-width:321px) and (max-width:768px){
-  body{
+@media only screen and (min-width: 321px) and (max-width: 768px) {
+  body {
     width: calc(100% - 20px);
   }
-  
-  h1{
+
+  h1 {
     font-size: 16px;
   }
-  h2{
+  h2 {
     font-size: 16px;
   }
-  button, a, #search, #input, #output {
+  button,
+  a,
+  #search,
+  #input,
+  #output {
     font-size: 16px;
   }
 }
