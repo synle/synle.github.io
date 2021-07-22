@@ -95,6 +95,9 @@ button{
   h1{
     font-size: 16px;
   }
+  h2{
+    font-size: 16px;
+  }
   button, a, #search, #input, #output {
     font-size: 14px;
   }
