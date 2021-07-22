@@ -94,6 +94,14 @@ textarea:focus {
   grid-column: 1/-1;
 }
 
+#fav .title{
+  text-transform: uppercase;
+  text-align: center;
+  border-bottom: 2px solid #f1fa8c;
+  padding-bottom: 1rem;
+  margin-bottom: 0.5rem;
+}
+
 #fav .header{
   background: #000;
   border-left: 6px solid #f1fa8c;
