@@ -112,8 +112,8 @@ textarea:focus {
 #input,
 #output {
   background: #333;
-  border: 1px solid #666;
-  padding: 8px 10px;
+  border: 2px solid #666;
+  padding: 0.5rem 0.7rem;
   font-family: monospace;
   width: 100%;
   box-shadow: 0 1.6px 3.6px 0 rgb(0 0 0 / 13%), 0 0.3px 0.9px 0 rgb(0 0 0 / 11%);
