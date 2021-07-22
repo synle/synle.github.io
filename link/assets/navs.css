@@ -57,7 +57,7 @@ a:focus,
 button:focus,
 input:focus,
 textarea:focus {
-  filter: invert(0.925);
+  filter: invert(0.25);
 }
 a:active,
 button:active {
