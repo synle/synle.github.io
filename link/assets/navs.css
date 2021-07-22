@@ -132,6 +132,12 @@ textarea:focus {
   grid-gap: 1rem 1.2rem;
 }
 
+@media only screen and (min-width: 769px) and (max-width: 900px) {
+  #fav{
+    grid-template-columns: 250px 250px;
+  }
+}
+
 @media only screen and (min-width: 321px) and (max-width: 768px) {
   body {
     width: calc(100% - 40px);
