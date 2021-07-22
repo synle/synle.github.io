@@ -29,10 +29,10 @@ h3 {
   margin: 0;
 }
 h1 {
-  font-size: 24px;
+  font-size: 22px;
 }
 h2 {
-  font-size: 18px;
+  font-size: 16px;
 }
 button,
 a,
@@ -97,7 +97,7 @@ textarea:focus {
 #fav .header{
   background: #000;
   border-left: 6px solid #f1fa8c;
-  padding-left: 1rem;
+  padding: 0.7rem 0.9rem;
 }
 
 #search,
