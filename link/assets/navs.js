@@ -51,7 +51,7 @@ window.onViewSchema = () => {
 window.onViewLinks = (linkDomHTML) => {
   // append the extra stuffs
   document.body.innerHTML = linkDomHTML 
-    + `<div style="display: flex; margin-top: 1rem; margin-bottom: 1rem; align-items:center">
+    + `<div style="display: flex; margin-top: 1rem; align-items:center">
         <button onClick='window.onViewSchema()'>View Schema Source</button>
       </div>`;
 
