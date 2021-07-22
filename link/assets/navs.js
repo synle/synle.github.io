@@ -104,7 +104,7 @@ window.getNavBookmarkletFromSchema = (input) => {
         <link rel="stylesheet" type="text/css" href="https://synle.github.io/link/assets/navs.css">
       </head>
       <body>
-        <div>${output.join("\n")}</div>
+        <div id='fav'>${output.join("\n")}</div>
         <js_script src="https://synle.github.io/link/assets/navs.js"></js_script>
         <js_script>
           window.onViewLinks(document.body.innerHTML);
