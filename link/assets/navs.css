@@ -39,8 +39,8 @@ a,
   font-size: 16px;
 }
 a {
-  background: white;
-  color: blue;
+  background: #6272a4;
+  color: #fff;
   padding: 10px 20px;
   display: block;
   text-decoration: none;
@@ -50,6 +50,8 @@ a,
 button {
   transition: all 0.25s ease-out;
   cursor: pointer;
+  border: 2px solid #aaaec9;
+  border-radius: 5px;
 }
 a:hover,
 button:hover,
