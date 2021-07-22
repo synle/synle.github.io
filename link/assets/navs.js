@@ -26,7 +26,7 @@ window.onViewSchema = () => {
 
   const rawSchemaDataDom = `
     <div><h1>Navigation Form</h1></div>
-    <div style="display: flex;">
+    <div style="display: flex; margin-bottom: 10px;">
       <button onclick="window.onViewLinks(window.getLinkDom(document.querySelector('#input').value))">View Links UI</button>
       <a target="_blank" style="text-align: center; margin: auto;" href="https://github.com/synle/synle.github.io/blob/master/link/assets/navs.js">View Source</a>
     </div>
@@ -35,11 +35,11 @@ window.onViewSchema = () => {
   `;
 
   window.zoominInput = (target) => {
-    target.style.height = document.body.clientHeight - 300 + "px";
+    target.style.minHeight = document.body.clientHeight - 275 + "px";
   };
 
   window.zoominOutput = (target) => {
-    target.style.height = "";
+    target.style.minHeight = "";
   };
 
   document.body.innerHTML = rawSchemaDataDom;
