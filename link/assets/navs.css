@@ -49,6 +49,7 @@ a {
 a,
 button {
   transition: all 0.25s ease-out;
+  cursor: pointer;
 }
 a:hover,
 button:hover,
@@ -56,8 +57,7 @@ a:focus,
 button:focus,
 input:focus,
 textarea:focus {
-  filter: invert(0.9);
-  cursor: pointer;
+  filter: invert(0.925);
 }
 a:active,
 button:active {
