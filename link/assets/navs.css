@@ -3,7 +3,7 @@
 }
 *,
 ::placeholder {
-  color: white;
+  color: #fff;
 }
 html {
   margin-top: 1rem;
@@ -20,7 +20,7 @@ body,
 body:before,
 body:after {
   border: none !important;
-  background-color: black !important;
+  background-color: #282a36 !important;
 }
 h1,
 h2,
@@ -92,6 +92,12 @@ textarea:focus {
 
 #fav .header, #fav .title, #fav #search{
   grid-column: 1/-1;
+}
+
+#fav .header{
+  background: #000;
+  border-left: 6px solid #f1fa8c;
+  padding-left: 1rem;
 }
 
 #search,
