@@ -169,3 +169,6 @@ window.getLinkDom = (linkDomHTML) => {
 
   return rawLinkHTML;
 };
+
+// insert zoom scale of 1 for mobile
+document.head.insertAdjacentHTML('beforeend', `<meta name="viewport" content="width=device-width, initial-scale=1" />`)
