@@ -80,7 +80,7 @@ a:active,
 button:active,
 input:focus,
 textarea:focus {
-  border: 3px solid #f1fa8c;
+  border: 2px solid #f1fa8c;
 }
 #fav{
   margin: auto;
