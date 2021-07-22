@@ -191,4 +191,6 @@ window.onTestNav = () => {
 };
 
 // insert zoom scale of 1 for mobile
-document.head.insertAdjacentHTML("beforeend", `<meta name="viewport" content="width=device-width, initial-scale=1" />`);
+document.head.insertAdjacentHTML("beforeend", `
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+`.trim());
