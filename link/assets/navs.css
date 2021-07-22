@@ -81,6 +81,20 @@ button {
   display: block;
   user-select: none;
 }
+#fav{
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 300px);
+  grid-gap: 2rem 1.2rem;
+  justify-content: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+#fav .header{
+  grid-column: 1/-1;
+}
+
 #search,
 #input,
 #output {
