@@ -103,11 +103,13 @@ window.getNavBookmarkletFromSchema = (input) => {
   let rawOutput = `
     <html>
       <head>
-        <link rel="stylesheet" type="text/css" href="https://synle.github.io/link/assets/navs.css">
+        <link rel="stylesheet" type="text/css" href="https://synle.github.io/link/assets/navs.css" />
+        <link rel="stylesheet" type="text/css" href="https://synle.github.io/link/assets/navs.less />
+        <js_script src="//cdn.jsdelivr.net/npm/less@4.1.1" />
       </head>
       <body>
         <div id='fav'>${output.join("\n")}</div>
-        <js_script src="https://synle.github.io/link/assets/navs.js"></js_script>
+        <js_script src="https://synle.github.io/link/assets/navs.js" />
         <js_script>
           window.onViewLinks(document.body.innerHTML);
           document.title = document.querySelector('.title').innerText.trim();
