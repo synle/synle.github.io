@@ -9,17 +9,28 @@
   <script src="https://synle.github.io/link/assets/navs.js"></script>
    <!-- meta data -->
   <script>
-    (async () => {
-    let HOME_HOST_NAMES;
-    try {
-        HOME_HOST_NAMES = (await fetch(`https://raw.githubusercontent.com/synle/bashrc/master/software/metadata/ip-address.json`).then(r => r.text()).then(r => eval(r))).filter(
-            (hostSplits) => hostSplits.length === 2 && hostSplits[0].length > 0 && hostSplits[1].length > 0);
-        HOME_HOST_NAMES = HOME_HOST_NAMES.map(([hostName, hostIp]) => {
-            return `${hostIp}\t${hostName}`
-        }).join('\n')
-    } catch (err) {}
+(async () => {
+  let HOME_HOST_NAMES;
+  try {
+    HOME_HOST_NAMES = (
+      await fetch(
+        `https://raw.githubusercontent.com/synle/bashrc/master/software/metadata/ip-address.json`
+      )
+        .then((r) => r.text())
+        .then((r) => eval(r))
+    ).filter(
+      (hostSplits) =>
+        hostSplits.length === 2 &&
+        hostSplits[0].length > 0 &&
+        hostSplits[1].length > 0
+    );
+    HOME_HOST_NAMES = HOME_HOST_NAMES.map(([hostName, hostIp]) => {
+      return `${hostIp}\t${hostName}`;
+    }).join("\n");
+  } catch (err) {}
 
-    const schema = `
+  const schema = `
+! Favorites
 
 # deals
 woot|woot.com
@@ -78,13 +89,12 @@ calendar|calendar.google.com/calendar
 ${HOME_HOST_NAMES}
 \`\`\`
 
-
-# View Source
 View Source|https://github.com/synle/synle.github.io/blob/master/fav/index.html
     `;
-      
-    window.onViewLinks(document.body.innerHTML);
-    document.title = document.querySelector('.title').innerText.trim();
-})()
+
+  document.body.innerHTML = window.getLinkDom(schema);
+  window.onViewLinks(document.body.innerHTML, false);
+  document.title = document.querySelector(".title").innerText.trim();
+})();
   </script>
 </html
