@@ -1,6 +1,7 @@
 const LINK_SPLIT = "|";
 const SECTION_HEADER_SPLIT = "#";
 const TITLE_SPLIT = "!";
+const SECTION_BLOCK_SPLIT = "```";
 
 window.onViewSchema = () => {
   var output = [];
