@@ -25,7 +25,8 @@ html {
 }
 body {
   margin: auto !important;
-  width: 900px;
+  min-width: calc(100% - 30px);
+  max-width: 900px;
   font-family: "arial";
   overflow-y: auto !important;
 }
@@ -161,10 +162,6 @@ textarea:focus {
 }
 
 @media only screen and (max-width: 500px) {
-  body {
-    width: calc(100% - 40px);
-  }
-
   html {
     --fontSize1: 16px;
     --fontSize2: 16px;
