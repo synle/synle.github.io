@@ -115,6 +115,7 @@ window.getLinkDom = (linkDomHTML) => {
   const lines = linkDomHTML
     .trim()
     .split("\n")
+    .filter((r) => r.indexOf('//') !== 0)
     .map((r) => r.trim());
 
   if (lines[0][0] !== "!") {
