@@ -1,11 +1,11 @@
 const LINK_SPLIT = "|";
-const SECTION_HEADER_SPLIT = "#";
+const HEADER_SPLIT = "#";
 const TITLE_SPLIT = "!";
-const SECTION_BLOCK_SPLIT = "```";
+const BLOCK_SPLIT = "```";
 
 window.onViewSchema = () => {
   var output = [];
-  var elems = document.querySelectorAll(".title,.link,.header,.section");
+  var elems = document.querySelectorAll(".title,.link,.header,.block");
   for (const elem of elems) {
     if (elem.classList.contains("title")) {
       const description = elem.innerText.trim();
@@ -15,14 +15,14 @@ window.onViewSchema = () => {
       const fullLink = link.href;
       const description = link.innerHTML;
       output.push(`${description} ${LINK_SPLIT} ${fullLink}`);
-    } else if (elem.classList.contains("section")) {
+    } else if (elem.classList.contains("block")) {
       const description = elem.innerText.trim();
-      output.push(`\n${SECTION_BLOCK_SPLIT}\n${description}\n${SECTION_BLOCK_SPLIT}`);
+      output.push(`\n${BLOCK_SPLIT}\n${description}\n${BLOCK_SPLIT}`);
     } else {
       const header = elem;
       const description = header.innerHTML;
 
-      output.push(`\n${SECTION_HEADER_SPLIT} ${description}`);
+      output.push(`\n${HEADER_SPLIT} ${description}`);
     }
   }
 
@@ -124,30 +124,28 @@ window.getLinkDom = (linkDomHTML) => {
 
   const newHTMLLines = [];
 
-  let sectionBuffer = '';
+  let blockBuffer = '';
   let isInABlock = false;
 
   let rawLinkHTML = lines
-    .forEach((r) => {
-      const link = r;
-
+    .forEach((link) => {
       if (link.indexOf(TITLE_SPLIT) === 0) {
         // page title
-        const headerText = r.replace(TITLE_SPLIT, "").trim();
+        const headerText = link.replace(TITLE_SPLIT, "").trim();
         newHTMLLines.push(`<h1 class="title">${headerText}</h1>`);
       }
-      else if (link.indexOf(SECTION_HEADER_SPLIT) === 0) {
+      else if (link.indexOf(HEADER_SPLIT) === 0) {
         // section header
-        const headerText = r.replace(SECTION_HEADER_SPLIT, "").trim();
+        const headerText = link.replace(HEADER_SPLIT, "").trim();
         newHTMLLines.push(`<h2 class="header">${headerText}</h2>`);
       }
-      else if(link.indexOf(SECTION_BLOCK_SPLIT) === 0){
+      else if(link.indexOf(BLOCK_SPLIT) === 0){
         // section block
         if(isInABlock){
           // end of a block
-          newHTMLLines.push(`<pre class="section">${sectionBuffer.trim()}</pre>`);
+          newHTMLLines.push(`<pre class="block">${blockBuffer.trim()}</pre>`);
           isInABlock = false;
-          sectionBuffer = '';
+          blockBuffer = '';
         } else {
           // start a block
           isInABlock = true;
@@ -156,13 +154,13 @@ window.getLinkDom = (linkDomHTML) => {
       else {
         if(isInABlock){
           // is in a block
-          sectionBuffer += link + '\n'
+          blockBuffer += link + '\n'
         } else {
           // anything else is a link
           try {
             let linkText, linkUrl;
-            linkText = r.substr(0, r.indexOf(LINK_SPLIT)).trim();
-            linkUrl = r.substr(r.indexOf(LINK_SPLIT) + 1).trim();
+            linkText = link.substr(0, link.indexOf(LINK_SPLIT)).trim();
+            linkUrl = link.substr(link.indexOf(LINK_SPLIT) + 1).trim();
 
             if (linkUrl && linkText) {
               newHTMLLines.push(`<a class="link" href="${linkUrl}">${linkText}</a>`);
