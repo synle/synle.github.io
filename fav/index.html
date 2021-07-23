@@ -2,34 +2,12 @@
   <!--  html -->
   <head>
     <title>Favorites</title>
-    <link rel="stylesheet" type="text/css" href="https://synle.github.io/link/assets/navs.css">
+    <link rel="stylesheet" type="text/css" href="https://synle.github.io/link/assets/navs.css" />
   </head>
-  <body>
-  </body>  
+  <body></body>
   <script src="https://synle.github.io/link/assets/navs.js"></script>
-   <!-- meta data -->
   <script>
-(async () => {
-  let HOME_HOST_NAMES;
-  try {
-    HOME_HOST_NAMES = (
-      await fetch(
-        `https://raw.githubusercontent.com/synle/bashrc/master/software/metadata/ip-address.json`
-      )
-        .then((r) => r.text())
-        .then((r) => eval(r))
-    ).filter(
-      (hostSplits) =>
-        hostSplits.length === 2 &&
-        hostSplits[0].length > 0 &&
-        hostSplits[1].length > 0
-    );
-    HOME_HOST_NAMES = HOME_HOST_NAMES.map(([hostName, hostIp]) => {
-      return `${hostIp}\t${hostName}`;
-    }).join("\n");
-  } catch (err) {}
-
-  const schema = `
+    const SITE_SCHEMA = `
 ! Favorites
 
 # deals
@@ -54,8 +32,7 @@ tech crunch|techcrunch.com
 //webull|webull.com/quote
 //seeking alpha|seekingalpha.com
 //motley fool|fool.com
-stock watchlist|www.cnbc.com/watchlist/
-#!/watchlist/1958898
+stock watchlist|www.cnbc.com/watchlist/#!/watchlist/1958898
 google finance|www.google.com/finance/portfolio/watchlist
 yahoo finance|https://finance.yahoo.com
 market watch|marketwatch.com
@@ -82,19 +59,45 @@ torrent|https://bit.ly/3pVvM2N
 synle|synle.github.io
 email|mail.google.com/mail
 calendar|calendar.google.com/calendar
+`
+      .split("\n")
+      .map((r) => r.trim())
+      .join("\n");
+  </script>
+  <script>
+    (async () => {
+      let HOME_HOST_NAMES;
+      try {
+        HOME_HOST_NAMES = (
+          await fetch(`https://raw.githubusercontent.com/synle/bashrc/master/software/metadata/ip-address.json`)
+            .then((r) => r.text())
+            .then((r) => eval(r))
+        ).filter((hostSplits) => hostSplits.length === 2 && hostSplits[0].length > 0 && hostSplits[1].length > 0);
+        HOME_HOST_NAMES = HOME_HOST_NAMES.map(([hostName, hostIp]) => {
+          return `${hostIp}\t${hostName}`;
+        }).join("\n");
+      } catch (err) {}
 
+      const schema = "";
 
+      schema += SITE_SCHEMA;
+
+      // host mapping
+      schema += `
 # Host Mappings
 \`\`\`
 ${HOME_HOST_NAMES}
 \`\`\`
+`;
 
+      // view source button
+      schema += `
 View Source|https://github.com/synle/synle.github.io/blob/master/fav/index.html
-    `;
+    `.trim();
 
-  document.body.innerHTML = window.getLinkDom(schema);
-  window.onViewLinks(document.body.innerHTML, false);
-  document.title = document.querySelector(".title").innerText.trim();
-})();
+      document.body.innerHTML = window.getLinkDom(schema);
+      window.onViewLinks(document.body.innerHTML, false);
+      document.title = document.querySelector(".title").innerText.trim();
+    })();
   </script>
-</html
+</html>
