@@ -26,7 +26,7 @@ window.onViewSchema = () => {
 
   const rawSchemaDataDom = `
     <div id='command'>
-      <div><h1>Navigation Form</h1></div>
+      <div><h1 class='title'>Navigation Form</h1></div>
       <div style="display: flex; align-items:center">
         <button onclick="window.onViewLinks(window.getLinkDom(document.querySelector('#input').value))">View Links UI</button>
         <button onclick="window.onTestNav()">Test Nav</button>
