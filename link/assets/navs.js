@@ -71,34 +71,7 @@ window.onGetGeneratedBookmarkletLink = (input) => {
 };
 
 window.getNavBookmarkletFromSchema = (input) => {
-  let output = [];
-  let foundNavigation = false;
-
-  for (const link of (input || "")
-    .trim()
-    .split("\n")
-    .map((r) => r.trim())
-    .filter((r) => !!r)) {
-    if (link.indexOf(TITLE_SPLIT) === 0) {
-      const description = link.replace(TITLE_SPLIT, "").trim();
-
-      foundNavigation = true;
-
-      output.push(`<h1 class='title'>${description}</h1>`);
-    } else if (link.indexOf(SECTION_HEADER_SPLIT) === 0) {
-      const description = link.replace(SECTION_HEADER_SPLIT, "").trim();
-
-      output.push(`<h2 class='header'>${description}</h2>`);
-    } else {
-      const [description, fullLink] = link.split(LINK_SPLIT).map((r) => r.trim());
-
-      output.push(`<a class='link' href="${fullLink}">${description}</a>`);
-    }
-  }
-
-  if (!foundNavigation) {
-    output.unshift(`<h1 class='title'>Navigation ${new Date().toLocaleString()}</h1>`);
-  }
+  let output = window.getLinkDom(input);
 
   let rawOutput = `
     <html>
@@ -106,7 +79,7 @@ window.getNavBookmarkletFromSchema = (input) => {
         <link rel="stylesheet/less" type="text/css" href="https://synle.github.io/link/assets/navs.css" />
       </head>
       <body>
-        <div id='fav'>${output.join("\n")}</div>
+        <div id='fav'>${output}</div>
         <js_script src="https://synle.github.io/link/assets/navs.js"></js_script>
         <js_script>
           window.onViewLinks(document.body.innerHTML);
@@ -134,11 +107,18 @@ window.searchBookmarklet = (val) => {
 };
 
 window.getLinkDom = (linkDomHTML) => {
-  let rawLinkHTML = linkDomHTML
+  const lines = linkDomHTML
     .trim()
     .split("\n")
     .map((r) => r.trim())
     .filter((r) => !!r)
+
+  if(lines[0][0] !== '!'){
+    const headerSchemaSampleCode = `${TITLE_SPLIT} Unnamed Navigation - ${new Date().toLocaleString()}`;
+    lines.unshift(headerSchemaSampleCode)
+  }
+
+  let rawLinkHTML = lines
     .map((r) => {
       const link = r;
 
