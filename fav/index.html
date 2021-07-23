@@ -2,270 +2,89 @@
   <!--  html -->
   <head>
     <title>Favorites</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="https://synle.github.io/link/assets/navs.css">
   </head>
   <body>
-    <div id='fav'>
-      <span>Host Mappings</span>
-      <div id='hosts'></div>
-      <div id='bot'>
-        <a target="_blank" href='https://github.com/synle/synle.github.io/blob/master/fav/index.html'>View Source</a>
-      </div>
-    </div>
-  </body>
-  
+  </body>  
+  <script src="https://synle.github.io/link/assets/navs.js"></script>
    <!-- meta data -->
   <script>
-    const sites = `
-    # deals
-      woot|woot.com
-      slickdeals|slickdeals.net
-    # code
-      hacker news|hn.svelte.dev/top/1
-      echojs|echojs.com
-    # general news
-      lifehacker|lifehacker.com
-      engadget|engadget.com
-    # tech
-      google news|news.google.com/topstories
-      engadget|www.engadget.com
-      verge|www.theverge.com
-      tech crunch|techcrunch.com
-    # stock
-      //webull|webull.com/quote
-      //seeking alpha|seekingalpha.com
-      //motley fool|fool.com
-      stock watchlist|www.cnbc.com/watchlist/#!/watchlist/1958898
-      google finance|www.google.com/finance/portfolio/watchlist
-      yahoo finance|https://finance.yahoo.com
-      market watch|marketwatch.com
-      cnbc|cnbc.com
-      //wallstreet bets|reddit.com/r/wallstreetbets
-      //thetagang|reddit.com/r/thetagang
-      nasdaq|nasdaq.com
-      zacks|zacks.com
-    # utils
-      IP Location|https://whatismyipaddress.com/
-      plex|https://app.plex.tv
-      bashrc|synle.github.io/app/setup-bash-profile.html
-      fix link|https://synle.github.io/link/index.html
-      nav generator|https://synle.github.io/link/nav-generator.html
-    # code
-      Code Spaces|github.com/codespaces
-    # misc
-      torrent|https://bit.ly/3pVvM2N
-    # personal
-      synle|synle.github.io
-      email|mail.google.com/mail
-      calendar|calendar.google.com/calendar
-    `
-    </script>
-  
-  <!--  styles -->
-  <style>
-    html {
-      --borderSize: 3px;
-
-      /* light */
-      --colorMainLight: #242424;
-      --colorSecondaryLight: #4183c4;
-      --colorBgMainLight: #fafafa;
-      --colorBgSecondaryLight: #fff;
-      --colorBgSectionLight: #dedede;
-      --colorBorderMainLight: #999;
-      --colorBorderSecondaryLight: #000;
-      --colorLinkLight: #4183c4;
-
-      /* dark */
-      --colorMainDark: #f8f8f2;
-      --colorSecondaryDark: #f8f8f2;
-      --colorBgMainDark: #282a36;
-      --colorBgSecondaryDark: #6272a4;
-      --colorBgSectionDark: #000;
-      --colorBorderMainDark: #aaaec9;
-      --colorBorderSecondaryDark: #8be9fd;
-      --colorLinkDark: #f1fa8c;
-    }
-
-    html{
-      --colorMain: var(--colorMainLight);
-      --colorSecondary: var(--colorSecondaryLight);
-      --colorBgMain: var(--colorBgMainLight);
-      --colorBgSecondary: var(--colorBgSecondaryLight);
-      --colorBgSection: var(--colorBgSectionLight);
-      --colorBorderMain: var(--colorBorderMainLight);
-      --colorBorderSecondary: var(--colorBorderSecondaryLight);
-      --colorLink: var(--colorLinkLight);
-    }
-
-    @media (prefers-color-scheme: dark) {
-      html{
-        --colorMain: var(--colorMainDark);
-        --colorSecondary: var(--colorSecondaryDark);
-        --colorBgMain: var(--colorBgMainDark);
-        --colorBgSecondary: var(--colorBgSecondaryDark);
-        --colorBgSection: var(--colorBgSectionDark);
-        --colorBorderMain: var(--colorBorderMainDark);
-        --colorBorderSecondary: var(--colorBorderSecondaryDark);
-        --colorLink: var(--colorLinkDark);
-      }
-    }
-
-    body{
-      background: var(--colorBgMain);
-      color: var(--colorMain);
-      font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-    }
-
-    #fav{
-      width: 800px;
-      margin:  auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, 180px);
-      grid-gap: 2rem 1.2rem;
-      justify-content: center;
-      margin-top: 1rem;
-      margin-bottom: 1rem;
-    }
-    
-    #fav > * {
-      text-transform: uppercase;
-      display: block;
-      font-size: 1.1rem;
-    }
-    
-    #fav > span, #fav > #bot, #fav > #hosts{
-      grid-column: 1/-1;
-    }
-    
-    #fav > span + a{
-      grid-column: 1/2;
-    }
-
-    #fav > span, #fav > #bot{
-      font-weight: 900;
-      padding: 0.5rem 1rem;
-      border-left: 10px solid var(--colorLink);
-      color: var(--colorLink);
-      background: var(--colorBgSection);
-    }
-
-    #fav > a{
-      border: var(--borderSize) solid var(--colorBorderMain);
-      padding: 1rem 0.5rem;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      background: var(--colorBgSecondary);
-      text-align: center;
-      text-decoration: none;
-      border-radius: 5px;
-    }
-    
-    #fav > #bot {
-      margin-top: 1rem;
-      margin-bottom: 2rem;
-      border-color:var(--colorBorderMain);
-    }
-
-    a {
-      color: var(--colorSecondary);
-      font-weight:  600;
-      text-decoration: none;
-    }
-
-    a:hover, a:active{
-      filter: invert(25%);
-    }
-
-    #fav > #hosts {
-      font-family:  monospace;
-      background: var(--colorBgSection);
-      padding: 1rem 1.2rem;
-      font-size: 14px;
-    }
-    
-    #fav > #hosts > div {
-      display: flex;
-      max-width: 350px;
-    }
-    
-    #fav > #hosts > div > b{
-      max-width: 225px;
-    }
-    
-    #fav > #hosts > div > span{
-      text-transform: none;
-      text-align: right;
-      flex-grow: 1;
-    }
-  </style>
-
-  <!-- script starts here -->
-  <script>
     (async () => {
-      const sitesData = sites.split('\n').map( s => s.trim().replace('http://', '').replace('https://', '')).filter(s => !!s && !s.match(/^\/\//)).map(
-        s => {
-          if(s[0] === '#'){
-            return {
-              name: s.replace(/#/g, '').trim(),
-              type: 'section',
-            }
-          } else {
-            let url, name;
-            const splits = s.split('|');
-
-            if(splits.length === 2){
-              url = splits[1];
-              name = splits[0];
-            }
-            else {
-              url = s;
-              name = s.substr(0, s.indexOf('/') > 0 ? s.indexOf('/') : s.length);
-            }
-
-            return {
-              url,
-              name: name,
-              type: 'link',
-            }
-          }
-        }
-      )
-
-      let dom = ''
-      for (const site of sitesData){
-        switch(site.type){
-          case 'section':
-            dom += `
-              <span>${site.name}</span>
-            `
-            break;
-          case 'link':
-            dom += `
-              <a href='https://${site.url}' title='${site.name}'">${site.name}</a>
-            `
-            break;
-        }      
-      }
-      
-      document.querySelector('#fav').innerHTML = dom + document.querySelector('#fav').innerHTML;
-
-      try{
-        const HOME_HOST_NAMES = (await fetch(`https://raw.githubusercontent.com/synle/bashrc/master/software/metadata/ip-address.json`).then(r => r.text()).then(r => eval(r))).filter(
-          (hostSplits) =>
-            hostSplits.length === 2 &&
-            hostSplits[0].length > 0 &&
-            hostSplits[1].length > 0
-        );
-
-        document.querySelector('#hosts').innerHTML = HOME_HOST_NAMES.map(([hostName, hostIp]) => {
-          return `<div><b>${hostIp}</b> <span>${hostName}</span></div>`
+    let HOME_HOST_NAMES;
+    try {
+        HOME_HOST_NAMES = (await fetch(`https://raw.githubusercontent.com/synle/bashrc/master/software/metadata/ip-address.json`).then(r => r.text()).then(r => eval(r))).filter(
+            (hostSplits) => hostSplits.length === 2 && hostSplits[0].length > 0 && hostSplits[1].length > 0);
+        HOME_HOST_NAMES = HOME_HOST_NAMES.map(([hostName, hostIp]) => {
+            return `${hostIp}\t${hostName}`
         }).join('\n')
-      } catch(err){}
-    })()
+    } catch (err) {}
+
+    const schema = `
+
+# deals
+woot|woot.com
+slickdeals|slickdeals.net
+
+# code
+hacker news|hn.svelte.dev/top/1
+echojs|echojs.com
+
+# general news
+lifehacker|lifehacker.com
+engadget|engadget.com
+
+# tech
+google news|news.google.com/topstories
+engadget|www.engadget.com
+verge|www.theverge.com
+tech crunch|techcrunch.com
+
+# stock
+//webull|webull.com/quote
+//seeking alpha|seekingalpha.com
+//motley fool|fool.com
+stock watchlist|www.cnbc.com/watchlist/
+#!/watchlist/1958898
+google finance|www.google.com/finance/portfolio/watchlist
+yahoo finance|https://finance.yahoo.com
+market watch|marketwatch.com
+cnbc|cnbc.com
+//wallstreet bets|reddit.com/r/wallstreetbets
+//thetagang|reddit.com/r/thetagang
+nasdaq|nasdaq.com
+zacks|zacks.com
+
+# utils
+IP Location|https://whatismyipaddress.com/
+plex|https://app.plex.tv
+bashrc|synle.github.io/app/setup-bash-profile.html
+fix link|https://synle.github.io/link/index.html
+nav generator|https://synle.github.io/link/nav-generator.html
+
+# code
+Code Spaces|github.com/codespaces
+
+# misc
+torrent|https://bit.ly/3pVvM2N
+
+# personal
+synle|synle.github.io
+email|mail.google.com/mail
+calendar|calendar.google.com/calendar
+
+
+# Host Mappings
+\`\`\`
+${HOME_HOST_NAMES}
+\`\`\`
+
+
+# View Source
+View Source|https://github.com/synle/synle.github.io/blob/master/fav/index.html
+    `;
+      
+    window.onViewLinks(document.body.innerHTML);
+    document.title = document.querySelector('.title').innerText.trim();
+})()
   </script>
 </html
