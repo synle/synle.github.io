@@ -68,11 +68,14 @@ window.onViewSchema = () => {
     function insertAtCursor(myField, myValue) {
       var startPos = myField.selectionStart;
       var endPos = myField.selectionEnd;
-      myField.value = myField.value.substring(0, startPos)
-          + myValue
-          + myField.value.substring(endPos);
+      
+      if(startPos === endPos){
+        myField.value = myField.value.substring(0, startPos)
+            + myValue
+            + myField.value.substring(endPos);
 
-      myField.setSelectionRange(startPos + myValue.length, endPos + myValue.length)
+        myField.setSelectionRange(startPos + myValue.length, endPos + myValue.length)
+      }
     }
 
 
