@@ -52,6 +52,41 @@ window.onViewSchema = () => {
   document.body.innerHTML = rawSchemaDataDom;
 
   window.onGetGeneratedBookmarkletLink(document.querySelector("#input").value);
+  
+  // hook up the tab and shift tab to do modification
+  document.querySelector('#input').addEventListener('keydown', (e) => {
+    const TAB_INDENT = '  '
+    if(e.key === 'Tab'){
+      e.preventDefault();
+      if(e.shiftKey === true){
+        deleteAtCursor(e.target, TAB_INDENT.length)
+      } else {
+        insertAtCursor(e.target, TAB_INDENT)
+      }    
+    }
+
+    function insertAtCursor(myField, myValue) {
+      var startPos = myField.selectionStart;
+      var endPos = myField.selectionEnd;
+      myField.value = myField.value.substring(0, startPos)
+          + myValue
+          + myField.value.substring(endPos);
+
+      myField.setSelectionRange(startPos + myValue.length, endPos + myValue.length)
+    }
+
+
+    function deleteAtCursor(myField, length) {
+      var startPos = myField.selectionStart;
+      var endPos = myField.selectionEnd;
+
+      myField.value = myField.value.substring(0, startPos - 2)
+          + myField.value.substring(endPos);
+
+
+      myField.setSelectionRange(startPos - length, endPos - length)
+    }
+  })
 };
 
 window.onViewLinks = (linkDomHTML, hideSchemaForm) => {
