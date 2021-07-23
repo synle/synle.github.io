@@ -4,11 +4,9 @@ html {
   --spaceSize1: 0.5rem;
   --spaceSize2: 0.7rem;
   --spaceSize3: 0.8rem;
-  --spaceSize4: 0.9rem;
-  --spaceSize5: 1rem;
-  --spaceSize6: 1.25rem;
-  --spaceSize7: 1.2rem;
-  --spaceSize8: 3rem;
+  --spaceSize4: 1rem;
+  --spaceSize5: 1.25rem;
+  --spaceSize6: 3rem;
 
   --fontSize1: 16px;
   --fontSize2: 16px;
@@ -22,8 +20,8 @@ html {
   color: #fff;
 }
 html {
-  margin-top: var(--spaceSize5);
-  margin-bottom: var(--spaceSize8);
+  margin-top: var(--spaceSize4);
+  margin-bottom: var(--spaceSize6);
 }
 body {
   margin: auto !important;
@@ -102,7 +100,7 @@ textarea:focus {
   margin: auto;
   display: grid;
   grid-template-columns: var(--gridColumnLayout);
-  grid-gap: var(--spaceSize5) var(--spaceSize6);
+  grid-gap: var(--spaceSize4) var(--spaceSize5);
   justify-content: center;
 }
 
@@ -115,13 +113,13 @@ textarea:focus {
   text-align: center;
   border-top: 2px solid #f1fa8c;
   border-bottom: 2px solid #f1fa8c;
-  padding: var(--spaceSize5);
+  padding: var(--spaceSize4);
 }
 
 .header{
   background: #000;
   border-left: 6px solid #f1fa8c;
-  padding: var(--spaceSize1) var(--spaceSize4);
+  padding: var(--spaceSize1) var(--spaceSize3);
   position: sticky;
   z-index: 1;
   top: 38px;
@@ -153,7 +151,7 @@ textarea:focus {
 }
 #command{
   display: grid;
-  grid-gap: var(--spaceSize5) var(--spaceSize7);
+  grid-gap: var(--spaceSize4) var(--spaceSize5);
 }
 
 @media only screen and (min-width: 501px) and (max-width: 750px) {
