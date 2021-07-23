@@ -132,13 +132,13 @@ textarea:focus {
   background: #333;
   border: var(--borderSize1) solid #666;
   padding: var(--spaceSize1) var(--spaceSize2);
-  font-family: monospace;
   width: 100%;
 }
 #input,
 #output {
   height: 150px;
   transition: all 0.25s ease-out;
+  font-family: monospace;
 }
 #input {
   white-space: nowrap;
@@ -166,6 +166,6 @@ textarea:focus {
     --fontSize1: 16px;
     --fontSize2: 16px;
     --fontSize3: 16px;
-    --gridColumnLayout: calc(100% - 40px);
+    --gridColumnLayout: 100%;
   }
 }
