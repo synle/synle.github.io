@@ -64,6 +64,7 @@ button {
   transition: all 0.25s ease-out;
   cursor: pointer;
   border: var(--borderSize1) solid #aaaec9;
+  text-transform: uppercase;
 }
 a {
   background: #6272a4;
