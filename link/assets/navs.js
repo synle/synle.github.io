@@ -116,7 +116,7 @@ window.getLinkDom = (linkDomHTML) => {
     .trim()
     .split("\n")
     .filter((r) => r.indexOf('//') !== 0)
-    .map((r) => r.trim());
+    .map((r) => r.trimEnd());
 
   if (lines[0][0] !== "!") {
     const headerSchemaSampleCode = `${TITLE_SPLIT} Unnamed Navigation - ${new Date().toLocaleString()}`;
