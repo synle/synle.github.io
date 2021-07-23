@@ -38,6 +38,7 @@ body:after {
   border: none !important;
   background-color: #282a36 !important;
 }
+pre,
 h1,
 h2,
 h3 {
@@ -130,6 +131,7 @@ textarea:focus {
 .section{
   background: #000;
   color: #fff;
+  padding: var(--spaceSize1) var(--spaceSize2);
 }
 
 .barLink{
