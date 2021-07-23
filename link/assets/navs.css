@@ -69,7 +69,6 @@ button:focus,
 a:active,
 button:active{
   filter: invert(0.9);
-  outline: none;
 }
 a:hover,
 button:hover,
@@ -81,6 +80,7 @@ input:focus,
 textarea:focus {
   border: 2px solid #8be9fd;
   background: #000;
+  outline: none;
 }
 #fav{
   margin: auto;
