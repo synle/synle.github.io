@@ -80,7 +80,7 @@ window.getNavBookmarkletFromSchema = (input) => {
   let rawOutput = `
     <html>
       <head>
-        <link rel="stylesheet/css" type="text/css" href="https://synle.github.io/link/assets/navs.css" />
+        <link rel="stylesheet" type="text/css" href="https://synle.github.io/link/assets/navs.css">
       </head>
       <body>
         <div id='fav'>${output}</div>
