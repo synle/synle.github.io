@@ -1,5 +1,7 @@
 html {
   --borderSize1: 2px;
+  --borderSize2: 4px;
+  --borderSize3: 5px;
 
   --spaceSize1: 0.5rem;
   --spaceSize2: 0.7rem;
@@ -112,14 +114,14 @@ textarea:focus {
 .title{
   text-transform: uppercase;
   text-align: center;
-  border-top: 2px solid #f1fa8c;
-  border-bottom: 2px solid #f1fa8c;
+  border-top: var(--borderSize2) solid #f1fa8c;
+  border-bottom: var(--borderSize2) solid #f1fa8c;
   padding: var(--spaceSize4);
 }
 
 .header{
   background: #000;
-  border-left: 6px solid #f1fa8c;
+  border-left: var(--borderSize3) solid #f1fa8c;
   padding: var(--spaceSize1) var(--spaceSize3);
   position: sticky;
   z-index: 1;
