@@ -161,7 +161,7 @@ window.getLinkDom = (linkDomHTML) => {
 
           if (linkUrl && linkText) {
             if(linkUrl.indexOf('http://') !== 0 || linkUrl.indexOf('https://') !== 0){
-              linkUrl += `https://`;
+              linkUrl = `https://` + linkUrl;
             }
             
             newHTMLLines.push(`<a class="link" href="${linkUrl}">${linkText}</a>`);
