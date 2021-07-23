@@ -198,6 +198,10 @@ window.onTestNav = () => {
 document.head.insertAdjacentHTML(
   "beforeend",
   `
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-`.trim()
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="page-enter" content="revealtrans(duration=seconds,transition=num)" />
+    <meta http-equiv="page-exit" content="revealtrans(duration=seconds,transition=num)" />
+  `.trim()
 );
