@@ -94,7 +94,7 @@ textarea:focus {
   grid-column: 1/-1;
 }
 
-#fav .title{
+.title{
   text-transform: uppercase;
   text-align: center;
   border-top: 2px solid #f1fa8c;
