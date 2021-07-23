@@ -76,12 +76,9 @@ calendar|calendar.google.com/calendar
             .then((r) => eval(r))
         ).filter((hostSplits) => hostSplits.length === 2 && hostSplits[0].length > 0 && hostSplits[1].length > 0)
           .map(([hostName, hostIp]) => `${hostIp}\t${hostName}`).join("\n");
-        
-        debugger
       } catch (err) {}
 
-      const schema = "";
-
+      let schema = "";
       schema += SITE_SCHEMA;
 
       // host mapping
