@@ -69,7 +69,7 @@ button:focus,
 a:active,
 button:active{
   filter: invert(0.9);
-/*   box-shadow: 0 1.6px 3.6px 0 rgb(0 0 0 / 13%), 0 0.3px 0.9px 0 rgb(0 0 0 / 11%); */
+  outline: none;
 }
 a:hover,
 button:hover,
@@ -119,7 +119,6 @@ textarea:focus {
   padding: 0.5rem 0.7rem;
   font-family: monospace;
   width: 100%;
-/*   box-shadow: 0 1.6px 3.6px 0 rgb(0 0 0 / 13%), 0 0.3px 0.9px 0 rgb(0 0 0 / 11%); */
 }
 #input,
 #output {
