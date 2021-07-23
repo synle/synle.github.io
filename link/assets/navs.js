@@ -5,19 +5,22 @@ const SECTION_BLOCK_SPLIT = "```";
 
 window.onViewSchema = () => {
   var output = [];
-  var elems = document.querySelectorAll(".title,.link,.header");
-  for (var elem of elems) {
+  var elems = document.querySelectorAll(".title,.link,.header,.section");
+  for (const elem of elems) {
     if (elem.classList.contains("title")) {
-      var description = elem.innerText.trim();
+      const description = elem.innerText.trim();
       output.push(`\n${TITLE_SPLIT} ${description}`);
     } else if (elem.classList.contains("link")) {
-      var link = elem;
-      var fullLink = link.href;
-      var description = link.innerHTML;
+      const link = elem;
+      const fullLink = link.href;
+      const description = link.innerHTML;
       output.push(`${description} ${LINK_SPLIT} ${fullLink}`);
+    } else if (elem.classList.contains("section")) {
+      const description = elem.innerText.trim();
+      output.push(`\n${SECTION_BLOCK_SPLIT}\n${description}\n${SECTION_BLOCK_SPLIT}`);
     } else {
-      var header = elem;
-      var description = header.innerHTML;
+      const header = elem;
+      const description = header.innerHTML;
 
       output.push(`\n${SECTION_HEADER_SPLIT} ${description}`);
     }
@@ -77,7 +80,7 @@ window.getNavBookmarkletFromSchema = (input) => {
   let rawOutput = `
     <html>
       <head>
-        <link rel="stylesheet/less" type="text/css" href="https://synle.github.io/link/assets/navs.css" />
+        <link rel="stylesheet/css" type="text/css" href="https://synle.github.io/link/assets/navs.css" />
       </head>
       <body>
         <div id='fav'>${output}</div>
@@ -119,35 +122,57 @@ window.getLinkDom = (linkDomHTML) => {
     lines.unshift(headerSchemaSampleCode)
   }
 
+  const newHTMLLines = [];
+
+  let sectionBuffer = '';
+  let isInABlock = false;
+
   let rawLinkHTML = lines
-    .map((r) => {
+    .forEach((r) => {
       const link = r;
 
       if (link.indexOf(TITLE_SPLIT) === 0) {
         // page title
         const headerText = r.replace(TITLE_SPLIT, "").trim();
-        return `<h1 class="title">${headerText}</h1>`;
+        newHTMLLines.push(`<h1 class="title">${headerText}</h1>`);
       }
-
-      if (link.indexOf(SECTION_HEADER_SPLIT) === 0) {
+      else if (link.indexOf(SECTION_HEADER_SPLIT) === 0) {
         // section header
         const headerText = r.replace(SECTION_HEADER_SPLIT, "").trim();
-        return `<h2 class="header">${headerText}</h2>`;
+        newHTMLLines.push(`<h2 class="header">${headerText}</h2>`);
       }
-
-      try {
-        let linkText, linkUrl;
-        linkText = r.substr(0, r.indexOf(LINK_SPLIT)).trim();
-        linkUrl = r.substr(r.indexOf(LINK_SPLIT) + 1).trim();
-
-        if (linkUrl && linkText) {
-          return `<a class="link" href="${linkUrl}">${linkText}</a>`;
+      else if(link.indexOf(SECTION_BLOCK_SPLIT) === 0){
+        // section block
+        if(isInABlock){
+          // end of a block
+          newHTMLLines.push(`<pre class="section">${sectionBuffer.trim()}</pre>`);
+          isInABlock = false;
+          sectionBuffer = '';
+        } else {
+          // start a block
+          isInABlock = true;
         }
-      } catch (err) {}
+      } 
+      else {
+        if(isInABlock){
+          // is in a block
+          sectionBuffer += link + '\n'
+        } else {
+          // anything else is a link
+          try {
+            let linkText, linkUrl;
+            linkText = r.substr(0, r.indexOf(LINK_SPLIT)).trim();
+            linkUrl = r.substr(r.indexOf(LINK_SPLIT) + 1).trim();
 
-      return undefined;
+            if (linkUrl && linkText) {
+              newHTMLLines.push(`<a class="link" href="${linkUrl}">${linkText}</a>`);
+            }
+          } catch (err) {}
+        }
+      }
     })
-    .filter((r) => !!r)
+
+  rawLinkHTML = newHTMLLines.filter((r) => !!r)
     .join("\n");
 
   rawLinkHTML = `<div id='fav'>${rawLinkHTML}</div>`;
