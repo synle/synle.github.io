@@ -107,7 +107,7 @@ textarea:focus {
   justify-content: center;
 }
 
-#fav .header, #fav .title, #fav #search, #fav .section, #fav .barLink{
+#fav .header, #fav .title, #fav #search, #fav .block, #fav .barLink{
   grid-column: 1/-1;
 }
 
@@ -128,7 +128,7 @@ textarea:focus {
   top: 38px;
 }
 
-.section{
+.block{
   background: #000;
   color: #fff;
   padding: var(--spaceSize1) var(--spaceSize2);
