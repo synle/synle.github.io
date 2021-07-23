@@ -123,6 +123,7 @@ textarea:focus {
   background: #000;
   border-left: var(--borderSize3) solid #f1fa8c;
   padding: var(--spaceSize1) var(--spaceSize2);
+  text-transform: uppercase;
   position: sticky;
   z-index: 1;
   top: 38px;
