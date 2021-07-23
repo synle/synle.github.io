@@ -166,6 +166,6 @@ textarea:focus {
     --fontSize1: 16px;
     --fontSize2: 16px;
     --fontSize3: 16px;
-    --gridColumnLayout: 100%;
+    --gridColumnLayout: calc(100% - 40px);
   }
 }
