@@ -5,7 +5,7 @@ const BLOCK_SPLIT = "```";
 
 window.onViewSchema = () => {
   var output = [];
-  var elems = document.querySelectorAll(".title,.link,.header,.block");
+  var elems = document.querySelectorAll('#fav > *');
   for (const elem of elems) {
     if (elem.classList.contains("title")) {
       const description = elem.innerText.trim();
