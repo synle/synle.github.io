@@ -155,7 +155,7 @@ textarea:focus {
   grid-gap: var(--spaceSize4) var(--spaceSize5);
 }
 
-@media only screen and (min-width: 501px) and (max-width: 750px) {
+@media only screen and (min-width: 501px) and (max-width: 800px) {
   html {
     --gridColumnLayout: 250px 250px;
   }
