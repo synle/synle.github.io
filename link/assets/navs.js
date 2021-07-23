@@ -54,13 +54,14 @@ window.onViewSchema = () => {
   window.onGetGeneratedBookmarkletLink(document.querySelector("#input").value);
 };
 
-window.onViewLinks = (linkDomHTML) => {
-  // append the extra stuffs
-  document.body.innerHTML =
-    linkDomHTML +
-    `<div style="display: flex; margin-top: 1rem; align-items:center">
-        <button onClick='window.onViewSchema()'>View Schema Source</button>
-      </div>`;
+window.onViewLinks = (linkDomHTML, hideSchemaForm) => {
+  if(hideSchemaForm !== false){
+    document.body.innerHTML =
+      linkDomHTML +
+      `<div style="display: flex; margin-top: 1rem; align-items:center">
+          <button onClick='window.onViewSchema()'>View Schema Source</button>
+        </div>`;
+  }
 
   document
     .querySelector(".title")
