@@ -64,6 +64,8 @@ calendar|calendar.google.com/calendar
       .map((r) => r.trim())
       .join("\n");
   </script>
+  
+  <!--  script started  -->
   <script>
     (async () => {
       let HOME_HOST_NAMES;
@@ -72,10 +74,10 @@ calendar|calendar.google.com/calendar
           await fetch(`https://raw.githubusercontent.com/synle/bashrc/master/software/metadata/ip-address.json`)
             .then((r) => r.text())
             .then((r) => eval(r))
-        ).filter((hostSplits) => hostSplits.length === 2 && hostSplits[0].length > 0 && hostSplits[1].length > 0);
-        HOME_HOST_NAMES = HOME_HOST_NAMES.map(([hostName, hostIp]) => {
-          return `${hostIp}\t${hostName}`;
-        }).join("\n");
+        ).filter((hostSplits) => hostSplits.length === 2 && hostSplits[0].length > 0 && hostSplits[1].length > 0)
+          .map(([hostName, hostIp]) => `${hostIp}\t${hostName}`).join("\n");
+        
+        debugger
       } catch (err) {}
 
       const schema = "";
@@ -84,11 +86,13 @@ calendar|calendar.google.com/calendar
 
       // host mapping
       schema += `
-# Host Mappings
-\`\`\`
-${HOME_HOST_NAMES}
-\`\`\`
-`;
+        # Host Mappings
+        \`\`\`
+        ${HOME_HOST_NAMES}
+        \`\`\`
+      `.split("\n")
+        .map((r) => r.trim())
+        .join("\n");
 
       // view source button
       schema += `
