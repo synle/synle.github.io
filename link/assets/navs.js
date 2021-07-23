@@ -160,7 +160,7 @@ window.getLinkDom = (linkDomHTML) => {
           linkUrl = link.substr(link.indexOf(LINK_SPLIT) + 1).trim();
 
           if (linkUrl && linkText) {
-            if(linkUrl.indexOf('http://') !== 0 || linkUrl.indexOf('https://') !== 0){
+            if(linkUrl.indexOf('http://') !== 0 && linkUrl.indexOf('https://') !== 0){
               linkUrl = `https://` + linkUrl;
             }
             
