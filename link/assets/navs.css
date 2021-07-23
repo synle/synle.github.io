@@ -107,7 +107,7 @@ textarea:focus {
   justify-content: center;
 }
 
-#fav .header, #fav .title, #fav #search, #fav .block, #fav .barLink{
+#fav .header, #fav .title, #fav #search, #fav .block{
   grid-column: 1/-1;
 }
 
@@ -132,13 +132,6 @@ textarea:focus {
   background: #000;
   color: #fff;
   padding: var(--spaceSize1) var(--spaceSize2);
-}
-
-.barLink{
-  background: #000;
-  border-left: var(--borderSize3) solid #f1fa8c;
-  padding: var(--spaceSize1) var(--spaceSize2);
-  cursor: pointer;
 }
 
 #search,
