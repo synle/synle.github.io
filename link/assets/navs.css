@@ -1,8 +1,5 @@
-* {
+*, ::placeholder {
   box-sizing: border-box;
-}
-*,
-::placeholder {
   color: #fff;
 }
 html {
@@ -41,19 +38,19 @@ a,
 #output {
   font-size: 16px;
 }
-a {
-  background: #6272a4;
-  color: #fff;
-  display: block;
-  text-decoration: none;
-  user-select: none;
-}
 a,
 button {
   padding: 0.75rem 0.8rem;
   transition: all 0.25s ease-out;
   cursor: pointer;
   border: 2px solid #aaaec9;
+}
+a {
+  background: #6272a4;
+  color: #fff;
+  display: block;
+  text-decoration: none;
+  user-select: none;
 }
 button {
   margin: 0 auto 0 auto;
@@ -102,7 +99,7 @@ textarea:focus {
   padding: 1rem;
 }
 
-#fav .header{
+.header{
   background: #000;
   border-left: 6px solid #f1fa8c;
   padding: 0.5rem 0.9rem;
@@ -135,13 +132,12 @@ textarea:focus {
   position: sticky;
   top: 0;
 }
-
 #command{
   display: grid;
   grid-gap: 1rem 1.2rem;
 }
 
-@media only screen and (min-width: 501px) and (max-width: 900px) {
+@media only screen and (min-width: 501px) and (max-width: 750px) {
   #fav{
     grid-template-columns: 250px 250px;
   }
