@@ -116,61 +116,56 @@ window.getLinkDom = (linkDomHTML) => {
     .split("\n")
     .map((r) => r.trim());
 
-  if(lines[0][0] !== '!'){
+  if (lines[0][0] !== "!") {
     const headerSchemaSampleCode = `${TITLE_SPLIT} Unnamed Navigation - ${new Date().toLocaleString()}`;
-    lines.unshift(headerSchemaSampleCode)
+    lines.unshift(headerSchemaSampleCode);
   }
 
   const newHTMLLines = [];
 
-  let blockBuffer = '';
+  let blockBuffer = "";
   let isInABlock = false;
 
-  let rawLinkHTML = lines
-    .forEach((link) => {
-      if (link.indexOf(TITLE_SPLIT) === 0) {
-        // page title
-        const headerText = link.replace(TITLE_SPLIT, "").trim();
-        newHTMLLines.push(`<h1 class="title">${headerText}</h1>`);
+  let rawLinkHTML = lines.forEach((link) => {
+    if (link.indexOf(TITLE_SPLIT) === 0) {
+      // page title
+      const headerText = link.replace(TITLE_SPLIT, "").trim();
+      newHTMLLines.push(`<h1 class="title">${headerText}</h1>`);
+    } else if (link.indexOf(HEADER_SPLIT) === 0) {
+      // section header
+      const headerText = link.replace(HEADER_SPLIT, "").trim();
+      newHTMLLines.push(`<h2 class="header">${headerText}</h2>`);
+    } else if (link.indexOf(BLOCK_SPLIT) === 0) {
+      // section block
+      if (isInABlock) {
+        // end of a block
+        newHTMLLines.push(`<pre class="block">${blockBuffer.trim()}</pre>`);
+        isInABlock = false;
+        blockBuffer = "";
+      } else {
+        // start a block
+        isInABlock = true;
       }
-      else if (link.indexOf(HEADER_SPLIT) === 0) {
-        // section header
-        const headerText = link.replace(HEADER_SPLIT, "").trim();
-        newHTMLLines.push(`<h2 class="header">${headerText}</h2>`);
-      }
-      else if(link.indexOf(BLOCK_SPLIT) === 0){
-        // section block
-        if(isInABlock){
-          // end of a block
-          newHTMLLines.push(`<pre class="block">${blockBuffer.trim()}</pre>`);
-          isInABlock = false;
-          blockBuffer = '';
-        } else {
-          // start a block
-          isInABlock = true;
-        }
-      } 
-      else {
-        if(isInABlock){
-          // is in a block
-          blockBuffer += link + '\n'
-        } else {
-          // anything else is a link
-          try {
-            let linkText, linkUrl;
-            linkText = link.substr(0, link.indexOf(LINK_SPLIT)).trim();
-            linkUrl = link.substr(link.indexOf(LINK_SPLIT) + 1).trim();
+    } else {
+      if (isInABlock) {
+        // is in a block
+        blockBuffer += link + "\n";
+      } else {
+        // anything else is a link
+        try {
+          let linkText, linkUrl;
+          linkText = link.substr(0, link.indexOf(LINK_SPLIT)).trim();
+          linkUrl = link.substr(link.indexOf(LINK_SPLIT) + 1).trim();
 
-            if (linkUrl && linkText) {
-              newHTMLLines.push(`<a class="link" href="${linkUrl}">${linkText}</a>`);
-            }
-          } catch (err) {}
-        }
+          if (linkUrl && linkText) {
+            newHTMLLines.push(`<a class="link" href="${linkUrl}">${linkText}</a>`);
+          }
+        } catch (err) {}
       }
-    })
+    }
+  });
 
-  rawLinkHTML = newHTMLLines.filter((r) => !!r)
-    .join("\n");
+  rawLinkHTML = newHTMLLines.filter((r) => !!r).join("\n");
 
   rawLinkHTML = `<div id='fav'>${rawLinkHTML}</div>`;
 
@@ -194,6 +189,9 @@ window.onTestNav = () => {
 };
 
 // insert zoom scale of 1 for mobile
-document.head.insertAdjacentHTML("beforeend", `
+document.head.insertAdjacentHTML(
+  "beforeend",
+  `
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-`.trim());
+`.trim()
+);
