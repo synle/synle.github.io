@@ -42,7 +42,7 @@ async function logEventToCalendar(){
 
 // add button to page
 if(!document.querySelector('#btnLogToEvent')){
-  const btns = $$('div').filter( r => r.innerText.trim() === 'More');
+  const btns = document.querySelectorAll('div').filter( r => r.innerText.trim() === 'More');
   const btn = btns[btns.length - 1]
   if(btn){
     btn.insertAdjacentHTML('afterend', `<button id='btnLogToEvent'>Log to Event</button>`);  
