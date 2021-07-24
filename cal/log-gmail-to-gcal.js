@@ -16,24 +16,42 @@ if(!window.gmail){
 
 
 
+async function logEventToCalendar(){
+  try{
+    const text = gmail.get.email_subject().trim();
+
+    // body
+    const emailDom = gmail.dom.email(gmail.get.email_id());
+    const contentDom = document.createElement('span');
+    contentDom.innerHTML = emailDom.body() || '';
+    const details = contentDom.innerText.replace(/\.[ ]+/g, '.\n').split('\n').map(s => s.trim()).join('\n').replace(/[\n\r ][\n\r ]+/g, '\n\n').trim();
+    contentDom.remove();
+
+    const DATE_TIME_FORMAT_TO = 'YYYYMMDDTkkmm00Z';// 20210305T163000Z
+    const dateFrom = moment(emailDom.data().timestamp).format(DATE_TIME_FORMAT_TO);
+    const dateTo = moment(emailDom.data().timestamp).add(1, 'hours').format(DATE_TIME_FORMAT_TO);
+
+    const location = '';
+
+    if(text){
+      // window.open(`https://synle.github.io/cal?subject=${encodeURIComponent(text)}&body=${encodeURIComponent(details)}`)
+      window.open(`https://calendar.google.com/calendar/u/0/r/eventedit?dates=${dateFrom}/${dateTo}&trp=true&text=${encodeURIComponent(text)}&location=${encodeURIComponent(location)}&details=${encodeURIComponent(details)}`);
+    }
+  } catch(err){}
+}
+
+// add button to page
+if(!document.querySelector('#btnLogToEvent')){
+  const btns = $$('div').filter( r => r.innerText.trim() === 'More');
+  const btn = btns[btns.length - 1]
+  if(btn){
+    btn.insertAdjacentHTML('afterend', `<button id='btnLogToEvent'>Log to Event</button>`);  
+    document.querySelector('#btnLogToEvent').addEventListener('click', () => logEventToCalendar())
+  }
+}
+
 
 // do work
 (async function(){
-  const text = gmail.get.email_subject().trim();
-
-  // body
-  const emailDom = gmail.dom.email(gmail.get.email_id());
-  const contentDom = document.createElement('span');
-  contentDom.innerHTML = emailDom.body() || '';
-  const details = contentDom.innerText.replace(/\.[ ]+/g, '.\n').split('\n').map(s => s.trim()).join('\n').replace(/[\n\r ][\n\r ]+/g, '\n\n').trim();
-  contentDom.remove();
-
-  const DATE_TIME_FORMAT_TO = 'YYYYMMDDTkkmm00Z';// 20210305T163000Z
-  const dateFrom = moment(emailDom.data().timestamp).format(DATE_TIME_FORMAT_TO);
-  const dateTo = moment(emailDom.data().timestamp).add(1, 'hours').format(DATE_TIME_FORMAT_TO);
-
-  const location = '';
-
-  // window.open(`https://synle.github.io/cal?subject=${encodeURIComponent(text)}&body=${encodeURIComponent(details)}`)
-  window.open(`https://calendar.google.com/calendar/u/0/r/eventedit?dates=${dateFrom}/${dateTo}&trp=true&text=${encodeURIComponent(text)}&location=${encodeURIComponent(location)}&details=${encodeURIComponent(details)}`);
+  logEventToCalendar();
 })()
