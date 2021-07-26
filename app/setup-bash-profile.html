@@ -264,7 +264,7 @@
           export is_os_chromeos='${is_os_chromeos}';
           export is_os_mingw64='${is_os_mingw64}';
           export is_os_android_termux='${is_os_android_termux}';
-        `.split('\n').map(r => r.trim()).join('\n').trim()
+        `.split('\n').map(r => r.trim()).join('\n').trim() + '\n\n'
       }
 
       function selectCommands() {
