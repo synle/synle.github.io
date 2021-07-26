@@ -133,7 +133,7 @@
         },
         {
           text: "Test Single Script Live",
-          script: `export TEST_SCRIPT_FILES="<SCRIPT_TO_RUN>" && export WRITE_TO_HOME='false' && curl -s https://raw.githubusercontent.com/synle/bashrc/master/test-live.sh | bash`,
+          script: `export TEST_SCRIPT_FILES="<SCRIPT_TO_RUN>" && export DEBUG_WRITE_TO_HOME='<DEBUG_WRITE_TO_HOME>' && curl -s https://raw.githubusercontent.com/synle/bashrc/master/test-live.sh | bash`,
           shouldShowScriptNameInput: true,
         },
       ].map((config) => ({
@@ -188,8 +188,13 @@
           selectedScript.script.replace(
             "<SCRIPT_TO_RUN>",
             document.querySelector("#scriptToRun > input").value.trim()
+          ).replace(
+            "<DEBUG_WRITE_TO_HOME>",
+            '0'
           )
         );
+        
+        
 
         if (selectedScript.shouldShowScriptNameInput) {
           document.querySelector("#scriptToRun").style.display = "block";
