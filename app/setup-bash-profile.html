@@ -218,8 +218,7 @@
           "[name='choice-setup']:checked"
         ).value;
         const selectedScript = configsByKey[selectedScriptIdx];
-        const osFlag = document.querySelector('#osToRun').value.trim();
-
+        
         newCommands.push(
           selectedScript.script.replace(
             "<SCRIPT_TO_RUN>",
@@ -232,7 +231,7 @@
             document.querySelector('#singleScriptType').value.trim()
           ).replace(
             "<OS_FLAGS>",
-            _getOsFlags()
+            _getOsFlags(document.querySelector('#osToRun').value.trim())
           )
         );
         
