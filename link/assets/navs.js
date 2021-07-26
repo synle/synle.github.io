@@ -243,3 +243,11 @@ document.head.insertAdjacentHTML(
     <meta http-equiv="page-exit" content="revealtrans(duration=seconds,transition=num)" />
   `.trim()
 );
+
+// special handling for ctrl + f to focus on searchbox
+document.addEventListener('keydown', (e) => {
+  if(e.key === 'f' && (e.ctrlKey)){
+    document.querySelector('#search') && document.querySelector('#search').focus();
+    e.preventDefault();
+  }
+})
