@@ -81,16 +81,16 @@
             list="scriptToRunOptions"
             type="text"
             onchange="updateScript()"
-           placeholder="Script To Rum"
+            placeholder="Script To Rum"
           />
           <datalist id="scriptToRunOptions"></datalist>
           <b>Script Type:</b>
-          <select id='singleScriptType'>
+          <select id='singleScriptType' onchange="updateScript()">
             <option value="test-live.sh" selected>Use Live Script</option>
             <option value="test.sh">Use Local Script</option>
            </select>
           <b>Debug Write To File:</b>
-          <select id='debugWriteToFile'>
+          <select id='debugWriteToFile' onchange="updateScript()">
             <option value="0" selected>No</option>
             <option value="1">Yes</option>
            </select>
