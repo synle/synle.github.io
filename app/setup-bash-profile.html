@@ -256,15 +256,15 @@
           is_os_chromeos='${is_os_chromeos}'
           is_os_mingw64='${is_os_mingw64}'
           is_os_android_termux='${is_os_android_termux}'
-          """ > ~/.bash_syle_os;
+          """ > ~/.bash_syle_os && \\
           
-          export is_os_darwin_mac='${is_os_darwin_mac}';
-          export is_os_window='${is_os_window}';
-          export is_os_ubuntu='${is_os_ubuntu}';
-          export is_os_chromeos='${is_os_chromeos}';
-          export is_os_mingw64='${is_os_mingw64}';
-          export is_os_android_termux='${is_os_android_termux}';
-        `.split('\n').map(r => r.trim()).join('\n').trim() + '\n\n'
+          export is_os_darwin_mac='${is_os_darwin_mac}' && \\
+          export is_os_window='${is_os_window}' && \\
+          export is_os_ubuntu='${is_os_ubuntu}' && \\
+          export is_os_chromeos='${is_os_chromeos}' && \\
+          export is_os_mingw64='${is_os_mingw64}' && \\
+          export is_os_android_termux='${is_os_android_termux}' && \
+        `.trim()
       }
 
       function selectCommands() {
