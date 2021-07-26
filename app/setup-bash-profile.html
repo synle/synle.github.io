@@ -105,7 +105,7 @@
         <!--     os to run     -->
         <div id='osToRunContainer'>
           <b>OS Type:</b>
-          <select id='osToRun' onchange="updateScript()">
+          <select id='osToRun' onchange="updateScript()" oninput="localStorage.osToRun = document.querySelector('#osToRun').value">
             <option value="windows" selected>Windows with WSL</option>
             <option value="ming_64">Windows with Ming_64</option>
             <option value="mac">Mac OSX</option>
