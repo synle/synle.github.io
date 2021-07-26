@@ -229,7 +229,7 @@
             "<SINGLE_SCRIPT_TO_RUN>",
             document.querySelector('#singleScriptType').value.trim()
           ).replace(
-            "<OS_FLAGS>"
+            "<OS_FLAGS>",
             `
               is_os_darwin_mac='${osFlag === "mac" ? "1" : "0"}'
               is_os_window='${osFlag === "windows" ? "1" : "0"}'
