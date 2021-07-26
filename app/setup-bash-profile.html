@@ -101,11 +101,11 @@
         <div id='osToRunContainer'>
           <select id='osToRun' onchange="updateScript()">
             <option value="windows" selected>Windows with WSL</option>
+            <option value="ming_64">Windows With Ming_64</option>
             <option value="mac">Mac</option>
-            <option value="android_termux">Android Termux</option>
             <option value="chrome_os">Chrome OS with Linux</option>
-            <option value="ubuntu">Chrome OS with Linux</option>
-            <option value="ming_64">Ming_64</option>
+            <option value="ubuntu">Ubuntu</option>
+            <option value="android_termux">Android Termux</option>
           </select>
         </div>
         
@@ -237,7 +237,7 @@
               is_os_chromeos='${osFlag === "chrome_os" ? "1" : "0"}'
               is_os_mingw64='${osFlag === "ming_64" ? "1" : "0"}'
               is_os_android_termux='${osFlag === "android_termux" ? "1" : "0"}'
-            `.split('\n').map(r => r.trim()).join('\n')
+            `.split('\n').map(r => r.trim()).join('\n').trim()
           )
         );
         
