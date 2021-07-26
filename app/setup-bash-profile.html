@@ -216,7 +216,7 @@
           "[name='choice-setup']:checked"
         ).value;
         const selectedScript = configsByKey[selectedScriptIdx];
-        const osFlag = document.querySelector('#osFlag').value.trim()
+        const osFlag = document.querySelector('#osFlag') ? document.querySelector('#osFlag').value.trim() : undefined;
 
         newCommands.push(
           selectedScript.script.replace(
