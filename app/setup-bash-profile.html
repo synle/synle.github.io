@@ -91,8 +91,8 @@
            </select>
           <b>Debug Write To File:</b>
           <select id='debugWriteToFile' onchange="updateScript()">
-            <option value="0" selected>No</option>
-            <option value="1">Yes</option>
+            <option value="" selected>No</option>
+            <option value="&& export DEBUG_WRITE_TO_HOME='1'">Yes</option>
            </select>
         </div>
         <textarea
@@ -151,7 +151,7 @@
         },
         {
           text: "Test Single Script",
-          script: `export TEST_SCRIPT_FILES="<SCRIPT_TO_RUN>" && export DEBUG_WRITE_TO_HOME='<DEBUG_WRITE_TO_HOME>' && curl -s https://raw.githubusercontent.com/synle/bashrc/master/<SINGLE_SCRIPT_TO_RUN> | bash`,
+          script: `export TEST_SCRIPT_FILES="<SCRIPT_TO_RUN>" <DEBUG_WRITE_TO_HOME> && curl -s https://raw.githubusercontent.com/synle/bashrc/master/<SINGLE_SCRIPT_TO_RUN> | bash`,
           shouldShowScriptNameInput: true,
         },
       ].map((config) => ({
