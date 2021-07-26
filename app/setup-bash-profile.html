@@ -136,7 +136,10 @@
         },
         {
           text: "Set up Chrome OS Linux",
-          script: `. /dev/stdin <<< "$(curl -s https://raw.githubusercontent.com/synle/bashrc/master/install-dependencies-chrome-os-linux.sh?$(date +%s))"`
+          script: `
+            . /dev/stdin <<< "$(curl -s https://raw.githubusercontent.com/synle/bashrc/master/install-dependencies-ubuntu.sh?$(date +%s))" &&
+            . /dev/stdin <<< "$(curl -s https://raw.githubusercontent.com/synle/bashrc/master/install-dependencies-chrome-os-linux.sh?$(date +%s))"
+          `
         },
         {
           text: "Setup etc Hosts",
