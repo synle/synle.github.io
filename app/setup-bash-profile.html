@@ -163,11 +163,13 @@
         {
           text: "Test Full Run live",
           script: `curl -s https://raw.githubusercontent.com/synle/bashrc/master/test-full-run-live.sh | bash`,
+          shouldShowOsSelectionInput: true,
         },
         {
           text: "Test Single Script",
           script: `export TEST_SCRIPT_FILES="<SCRIPT_TO_RUN>" <DEBUG_WRITE_TO_HOME> && curl -s https://raw.githubusercontent.com/synle/bashrc/master/<SINGLE_SCRIPT_TO_RUN> | bash`,
           shouldShowScriptNameInput: true,
+          shouldShowOsSelectionInput: true,
         },
       ].map((config) => ({
         idx: `command-option-${++idx}`,
@@ -230,22 +232,40 @@
             document.querySelector('#singleScriptType').value.trim()
           ).replace(
             "<OS_FLAGS>",
-            `
-              echo """
-              is_os_darwin_mac='${osFlag === "mac" ? "1" : "0"}'
-              is_os_window='${osFlag === "windows" ? "1" : "0"}'
-              is_os_ubuntu='${["windows","chrome_os","ubuntu"].indexOf(osFlag) >= 0 ? "1" : "0"}'
-              is_os_chromeos='${osFlag === "chrome_os" ? "1" : "0"}'
-              is_os_mingw64='${osFlag === "ming_64" ? "1" : "0"}'
-              is_os_android_termux='${osFlag === "android_termux" ? "1" : "0"}'
-              """ > ~/.bash_syle_os && \n
-            `.split('\n').map(r => r.trim()).join('\n').trim()
+            _getOsFlags()
           )
         );
         
         document.querySelector("#scriptToRunContainer").style.display = selectedScript.shouldShowScriptNameInput ? "block" : "none";
         document.querySelector("#osToRunContainer").style.display = selectedScript.shouldShowOsSelectionInput ? "block" : "none";
         document.querySelector("#output").value = newCommands.join("\n");
+      }
+      
+      function _getOsFlags(osFlag){
+        var is_os_darwin_mac= osFlag === "mac" ? "1" : "0";
+        var is_os_window= osFlag === "windows" ? "1" : "0";
+        var is_os_ubuntu= ["windows","chrome_os","ubuntu"].indexOf(osFlag) >= 0 ? "1" : "0";
+        var is_os_chromeos= osFlag === "chrome_os" ? "1" : "0";
+        var is_os_mingw64= osFlag === "ming_64" ? "1" : "0";
+        var is_os_android_termux= osFlag === "android_termux" ? "1" : "0";
+
+        return `
+          echo """
+          is_os_darwin_mac='${is_os_darwin_mac}'
+          is_os_window='${is_os_window}'
+          is_os_ubuntu='${is_os_ubuntu}'
+          is_os_chromeos='${is_os_chromeos}'
+          is_os_mingw64='${is_os_mingw64}'
+          is_os_android_termux='${is_os_android_termux}'
+          """ > ~/.bash_syle_os;
+          
+          export is_os_darwin_mac='${is_os_darwin_mac}';
+          export is_os_window='${is_os_window}';
+          export is_os_ubuntu='${is_os_ubuntu}';
+          export is_os_chromeos='${is_os_chromeos}';
+          export is_os_mingw64='${is_os_mingw64}';
+          export is_os_android_termux='${is_os_android_termux}';
+        `.split('\n').map(r => r.trim()).join('\n').trim()
       }
 
       function selectCommands() {
