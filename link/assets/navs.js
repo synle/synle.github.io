@@ -246,7 +246,7 @@ document.head.insertAdjacentHTML(
 
 // special handling for ctrl + f to focus on searchbox
 document.addEventListener('keydown', (e) => {
-  if(e.key === 'f' && (e.ctrlKey)){
+  if(e.key === 'f' && (e.ctrlKey || e.altKey || e.metaKey)){
     document.querySelector('#search') && document.querySelector('#search').focus();
     e.preventDefault();
   }
