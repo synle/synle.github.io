@@ -75,6 +75,7 @@
         <div id="commands"></div>
       </section>
       <form>
+        <!--     script to run     -->
         <div id="scriptToRunContainer">
           <input
             id="singleScriptToUse"
@@ -88,13 +89,26 @@
           <select id='singleScriptType' onchange="updateScript()">
             <option value="test-live.sh" selected>Use Live Script</option>
             <option value="test.sh">Use Local Script</option>
-           </select>
+          </select>
           <b>Debug Write To File:</b>
           <select id='debugWriteToFile' onchange="updateScript()">
             <option value="" selected>No</option>
             <option value="&& export DEBUG_WRITE_TO_HOME='1'">Yes</option>
            </select>
         </div>
+        
+        <!--     os to run     -->
+        <div id='osToRunContainer'>
+          <select id='osToRun' onchange="updateScript()">
+            <option value="windows" selected>Windows with WSL</option>
+            <option value="mac">Mac</option>
+            <option value="android_termux">Android Termux</option>
+            <option value="chrome_os">Chrome OS with Linux</option>
+            <option value="ubuntu">Chrome OS with Linux</option>
+            <option value="ming_64">Ming_64</option>
+          </select>
+        </div>
+        
         <textarea
           id="output"
           placeholder="Output"
@@ -127,8 +141,9 @@
         },
         {
           text: "Setup Full Profile",
-          script: `. /dev/stdin <<< "$(curl -s https://raw.githubusercontent.com/synle/bashrc/master/setup-full.sh?$(date +%s))"`,
+          script: `<OS_FLAGS> . /dev/stdin <<< "$(curl -s https://raw.githubusercontent.com/synle/bashrc/master/setup-full.sh?$(date +%s))"`,
           checked: true,
+          shouldShowOsSelectionInput: true,
         },
         {
           text: "Setup Lightweight Profile",
@@ -201,6 +216,7 @@
           "[name='choice-setup']:checked"
         ).value;
         const selectedScript = configsByKey[selectedScriptIdx];
+        const osFlag = document.querySelector('#osFlag').value.trim()
 
         newCommands.push(
           selectedScript.script.replace(
@@ -212,12 +228,23 @@
           ).replace(
             "<SINGLE_SCRIPT_TO_RUN>",
             document.querySelector('#singleScriptType').value.trim()
+          ).replace(
+            "<OS_FLAGS>"
+            `
+              is_os_darwin_mac='${osFlag === "mac" ? "1" : "0"}'
+              is_os_window='${osFlag === "windows" ? "1" : "0"}'
+              is_os_ubuntu='${["windows","chrome_os","ubuntu"].indexOf(osFlag) >= 0 ? "1" : "0"}'
+              is_os_chromeos='${osFlag === "chrome_os" ? "1" : "0"}'
+              is_os_mingw64='${osFlag === "ming_64" ? "1" : "0"}'
+              is_os_android_termux='${osFlag === "android_termux" ? "1" : "0"}'
+            `.split('\n').map(r => r.trim()).join('\n')
           )
         );
         
         
 
         document.querySelector("#scriptToRunContainer").style.display = selectedScript.shouldShowScriptNameInput ? "block" : "none";
+        document.querySelector("#osToRunContainer").style.display = selectedScript.shouldShowOsSelectionInput ? "block" : "none";
         document.querySelector("#output").value = newCommands.join("\n");
       }
 
