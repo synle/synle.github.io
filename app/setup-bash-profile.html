@@ -77,12 +77,23 @@
       <form>
         <div id="scriptToRun">
           <input
+            id="singleScriptToUse"
             list="scriptToRunOptions"
             type="text"
             onchange="updateScript()"
            placeholder="Script To Rum"
           />
           <datalist id="scriptToRunOptions"></datalist>
+          <b>Script Type:</b>
+          <select id='singleScriptType'>
+            <option value="test-live.sh" selected>Use Live Script</option>
+            <option value="test.sh">Use Local Script</option>
+           </select>
+          <b>Debug Write To File:</b>
+          <select id='debugWriteToFile'>
+            <option value="0" selected>No</option>
+            <option value="1">Yes</option>
+           </select>
         </div>
         <textarea
           id="output"
@@ -132,8 +143,8 @@
           script: `curl -s https://raw.githubusercontent.com/synle/bashrc/master/test-full-run-live.sh | bash`,
         },
         {
-          text: "Test Single Script Live",
-          script: `export TEST_SCRIPT_FILES="<SCRIPT_TO_RUN>" && export DEBUG_WRITE_TO_HOME='<DEBUG_WRITE_TO_HOME>' && curl -s https://raw.githubusercontent.com/synle/bashrc/master/test-live.sh | bash`,
+          text: "Test Single Script",
+          script: `export TEST_SCRIPT_FILES="<SCRIPT_TO_RUN>" && export DEBUG_WRITE_TO_HOME='<DEBUG_WRITE_TO_HOME>' && curl -s https://raw.githubusercontent.com/synle/bashrc/master/<SINGLE_SCRIPT_TO_RUN> | bash`,
           shouldShowScriptNameInput: true,
         },
       ].map((config) => ({
@@ -187,10 +198,13 @@
         newCommands.push(
           selectedScript.script.replace(
             "<SCRIPT_TO_RUN>",
-            document.querySelector("#scriptToRun > input").value.trim()
+            document.querySelector("#singleScriptToUse").value.trim()
           ).replace(
             "<DEBUG_WRITE_TO_HOME>",
-            '0'
+            document.querySelector("#debugWriteToFile").value.trim()
+          ).replace(
+            "<SINGLE_SCRIPT_TO_RUN>",
+            document.querySelector('#singleScriptType').value.trim();
           )
         );
         
