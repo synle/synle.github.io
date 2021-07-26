@@ -99,6 +99,7 @@
         
         <!--     os to run     -->
         <div id='osToRunContainer'>
+          <b>Os Type:</b>
           <select id='osToRun' onchange="updateScript()">
             <option value="windows" selected>Windows with WSL</option>
             <option value="ming_64">Windows With Ming_64</option>
@@ -149,13 +150,13 @@
           text: "Setup Lightweight Profile",
           script: `. /dev/stdin <<< "$(curl -s https://raw.githubusercontent.com/synle/bashrc/master/setup-lightweight.sh?$(date +%s))"`,
         },
-        {
-          text: "Set up Chrome OS Linux",
-          script: `
-            . /dev/stdin <<< "$(curl -s https://raw.githubusercontent.com/synle/bashrc/master/install-dependencies-ubuntu.sh?$(date +%s))" &&
-            . /dev/stdin <<< "$(curl -s https://raw.githubusercontent.com/synle/bashrc/master/install-dependencies-chrome-os-linux.sh?$(date +%s))"
-          `
-        },
+//         {
+//           text: "Set up Chrome OS Linux",
+//           script: `
+//             . /dev/stdin <<< "$(curl -s https://raw.githubusercontent.com/synle/bashrc/master/install-dependencies-ubuntu.sh?$(date +%s))" &&
+//             . /dev/stdin <<< "$(curl -s https://raw.githubusercontent.com/synle/bashrc/master/install-dependencies-chrome-os-linux.sh?$(date +%s))"
+//           `
+//         },
         {
           text: "Setup etc Hosts",
           script: `curl -s https://raw.githubusercontent.com/synle/bashrc/master/setup-hosts.sh | sudo bash`,
