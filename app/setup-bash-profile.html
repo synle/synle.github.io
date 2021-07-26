@@ -187,7 +187,7 @@
         newCommands.push(
           selectedScript.script.replace(
             "<SCRIPT_TO_RUN>",
-            document.querySelector("#scriptToRun").value
+            document.querySelector("#scriptToRun > input").value.trim()
           )
         );
 
