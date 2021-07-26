@@ -249,5 +249,9 @@ document.addEventListener('keydown', (e) => {
   if(e.key === 'f' && (e.ctrlKey || e.altKey || e.metaKey)){
     document.querySelector('#search') && document.querySelector('#search').focus();
     e.preventDefault();
+  } else if(e.key === 'ArrowUp'){
+//     e.preventDefault();
+  } else if(e.key === 'ArrowDown'){
+//     e.preventDefault();
   }
 })
