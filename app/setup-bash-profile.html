@@ -133,7 +133,7 @@
         },
         {
           text: "Test Single Script Live",
-          script: `export TEST_SCRIPT_FILES="<SCRIPT_TO_RUN>" && curl -s https://raw.githubusercontent.com/synle/bashrc/master/test-live.sh | bash`,
+          script: `export TEST_SCRIPT_FILES="<SCRIPT_TO_RUN>" && export WRITE_TO_HOME='false' && curl -s https://raw.githubusercontent.com/synle/bashrc/master/test-live.sh | bash`,
           shouldShowScriptNameInput: true,
         },
       ].map((config) => ({
