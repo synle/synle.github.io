@@ -209,6 +209,9 @@
         }
 
         updateScript();
+        
+        // select the previous
+        document.querySelector('#osToRun').value = localStorage.osToRun || 'windows';
       }
 
       function updateScript() {
