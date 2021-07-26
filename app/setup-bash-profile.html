@@ -75,7 +75,7 @@
         <div id="commands"></div>
       </section>
       <form>
-        <div id="scriptToRun">
+        <div id="scriptToRunContainer">
           <input
             id="singleScriptToUse"
             list="scriptToRunOptions"
@@ -210,12 +210,7 @@
         
         
 
-        if (selectedScript.shouldShowScriptNameInput) {
-          document.querySelector("#scriptToRun").style.display = "block";
-        } else {
-          document.querySelector("#scriptToRun").style.display = "none";
-        }
-
+        document.querySelector("#scriptToRunContainer").style.display = selectedScript.shouldShowScriptNameInput ? "block" : "none";
         document.querySelector("#output").value = newCommands.join("\n");
       }
 
