@@ -246,12 +246,29 @@ document.head.insertAdjacentHTML(
 
 // special handling for ctrl + f to focus on searchbox
 document.addEventListener('keydown', (e) => {
-  if(e.key === 'f' && (e.ctrlKey || e.altKey || e.metaKey)){
-    document.querySelector('#search') && document.querySelector('#search').focus();
-    e.preventDefault();
-  } else if(e.key === 'ArrowUp'){
-//     e.preventDefault();
-  } else if(e.key === 'ArrowDown'){
-//     e.preventDefault();
+  if(document.querySelector('#search')){
+    const links = document.querySelectorAll('a.link');
+    let delta = 0;
+    
+    if(e.key === 'f' && (e.ctrlKey || e.altKey || e.metaKey)){
+      document.querySelector('#search').focus();
+      e.preventDefault();
+    } else if(e.key === 'ArrowUp'){
+      delta = -1;
+    } else if(e.key === 'ArrowDown'){
+      delta = +1;
+    }
+    
+    if(delta !== 0){
+      for(let i = 0; i < links.length; i++){
+        if(links[i] === document.activeElement){
+          if(links[i+delta]){
+            links[i+delta].focus();
+            e.preventDefault();
+          }
+          break;
+        }
+      }
+    }
   }
 })
