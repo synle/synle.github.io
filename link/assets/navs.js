@@ -245,6 +245,7 @@ document.head.insertAdjacentHTML(
 );
 
 // special handling for ctrl + f to focus on searchbox
+// keyboard navigation
 document.addEventListener('keydown', (e) => {
   if(document.querySelector('#search')){
     const links = document.querySelectorAll('a.link');
