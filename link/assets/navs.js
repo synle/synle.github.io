@@ -255,7 +255,7 @@ document.addEventListener('keydown', (e) => {
       delta = -1;
     } else if(e.key === 'ArrowDown' || e.key === 'ArrowRight'){
       delta = +1;
-    } else {
+    } else if(e.key.match(/[a-z0-9]/i)){
       if(document.activeElement !== document.querySelector('#search')){
         document.querySelector('#search').focus();
         e.preventDefault();
