@@ -275,7 +275,5 @@ document.addEventListener('keydown', (e) => {
 });
 
 window.onbeforeunload = function(){
-  document.body.innerHTML  = '<h1>Navigating...</h1>'
+  document.body.innerHTML  = `<h1>Navigating to <u style="font-weight: bold;">${document.activeElement.innerText}</u>...</h1>`
 };
-
-
