@@ -110,6 +110,9 @@ window.onViewLinks = (linkDomHTML, hideSchemaForm) => {
         <datalist id="linkList"></datalist>
       `
     );
+  
+  // setting up the autocomplete
+  document.querySelector('#linkList').innerHTML = [...document.querySelectorAll('a.link')].map(r => `<option>${r.innerText}</option>`).join('')
 };
 
 window.onGetGeneratedBookmarkletLink = (input) => {
