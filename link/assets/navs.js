@@ -274,8 +274,8 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-window.onbeforeunload = function(){
-  if(document.activeElement){
-    document.body.innerHTML  = `<h1>Navigating to <u style="font-weight: bold;">${document.activeElement.innerText}</u>...</h1>`
-  }
-};
+// window.onbeforeunload = function(){
+//   if(document.activeElement){
+//     document.body.innerHTML  = `<h1>Navigating to <u style="font-weight: bold;">${document.activeElement.innerText}</u>...</h1>`
+//   }
+// };
