@@ -81,12 +81,12 @@ calendar|calendar.google.com/calendar
   const STOCKS_LIST = `
     NASDAQ:MSFT
     NASDAQ:NFLX
-    NYSEARCA:ARKK
+    NYSE:ARKK
     NASDAQ:MU
     NYSE:NRZ
     NYSE:DIDI
     NYSE:BABA
-  `.trim().split('\n').map(r => r.trim()).filter(r => !!r);
+  `.trim().split('\n').map(r => r.trim()).filter(r => !!r || r.includes('//'));
   </script>
 
   <!--  script started  -->
@@ -148,7 +148,7 @@ View Source|https://github.com/synle/synle.github.io/blob/master/fav/index.html
         height: 600,
         symbol: "NASDAQ:AAPL",
         interval: "1h",
-        timezone: "PST",
+        timezone: "America/Los_Angeles",
         theme: "dark",
         style: "1",
         locale: "en",
