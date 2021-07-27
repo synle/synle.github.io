@@ -141,11 +141,11 @@ window.searchBookmarklet = (val) => {
   val = val.trim().toLowerCase();
 
   for (const anchor of document.querySelectorAll("a")) {
+    let isHidden = true;
     if (val === "" || anchor.innerText.toLowerCase().includes(val) || anchor.href.toLowerCase().includes(val)) {
-      anchor.style.display = "block";
-    } else {
-      anchor.style.display = "none";
+      isHidden = false;
     }
+    anchor.classList.toggle('hidden', isHidden)
   }
 };
 
