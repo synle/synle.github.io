@@ -105,7 +105,10 @@ window.onViewLinks = (linkDomHTML, hideSchemaForm) => {
     .querySelector(".title")
     .insertAdjacentHTML(
       "afterend",
-      `<input id='search' onInput="window.searchBookmarklet(document.querySelector('#search').value)" placeholder="Search bookmarklet" style="display: block" autofocus autocomplete="off" />`
+      `
+        <input id='search' list="linkList" onInput="window.searchBookmarklet(document.querySelector('#search').value)" placeholder="Search bookmarklet" style="display: block" autofocus autocomplete="off" />
+        <datalist id="linkList"></datalist>
+      `
     );
 };
 
