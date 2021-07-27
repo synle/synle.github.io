@@ -117,9 +117,9 @@ View Source|https://github.com/synle/synle.github.io/blob/master/fav/index.html
 
       // TradingView Widget BEGIN
       document.querySelector("#fav").insertAdjacentHTML(
-        "beforeend",
+        "afterend",
         `
-          <div id="stock" class="tradingview-widget-container" style="grid-column: 1/-1;">
+          <div id="stock" class="tradingview-widget-container" style="margin-top: 2rem">
             <div id="tradingview_e7e63"></div>
             <div class="tradingview-widget-copyright">
               by TradingView
@@ -129,7 +129,7 @@ View Source|https://github.com/synle/synle.github.io/blob/master/fav/index.html
       );
       new TradingView.widget({
         width: 1000,
-        height: 800,
+        height: 600,
         symbol: "NASDAQ:AAPL",
         interval: "D",
         timezone: "Etc/UTC",
