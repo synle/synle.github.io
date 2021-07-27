@@ -274,7 +274,7 @@ document.addEventListener('keydown', (e) => {
       }
     }
   }
-});
+}, true);
 
 // window.onbeforeunload = function(){
 //   if(document.activeElement){
