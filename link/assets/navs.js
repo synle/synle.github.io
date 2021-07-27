@@ -246,22 +246,3 @@ document.head.insertAdjacentHTML(
     <meta http-equiv="page-exit" content="revealtrans(duration=seconds,transition=num)" />
   `.trim()
 );
-
-// special handling for ctrl + f to focus on searchbox
-// keyboard navigation
-document.addEventListener(
-  "keydown",
-  (e) => {
-    if (document.querySelector("#search")) {
-      if (e.key.match(/[a-z0-9]/i)) {
-        if (document.activeElement !== document.querySelector("#search")) {
-          document.querySelector("#search").focus();
-          e.preventDefault();
-        }
-        return;
-      }
-    }
-  },
-  true
-);
-
