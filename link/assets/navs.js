@@ -251,16 +251,17 @@ document.addEventListener('keydown', (e) => {
     const links = document.querySelectorAll('a.link');
     let delta = 0;
 
-    if(e.key === 'ArrowUp' || e.key === 'ArrowLeft'){
-      delta = -1;
-    } else if(e.key === 'ArrowDown' || e.key === 'ArrowRight'){
-      delta = +1;
-    } else if(e.key.match(/[a-z0-9]/i)){
+    if(e.key.match(/[a-z0-9]/i)){
       if(document.activeElement !== document.querySelector('#search')){
         document.querySelector('#search').focus();
         e.preventDefault();
       }
-    }
+      return;
+    }else if(e.key === 'ArrowUp' || e.key === 'ArrowLeft'){
+      delta = -1;
+    } else if(e.key === 'ArrowDown' || e.key === 'ArrowRight'){
+      delta = +1;
+    } 
     
     if(delta !== 0){
       let activeElement = document.activeElement;
