@@ -5,7 +5,7 @@ const BLOCK_SPLIT = "```";
 
 window.onViewSchema = () => {
   var output = [];
-  var elems = document.querySelectorAll('#fav > *');
+  var elems = document.querySelectorAll("#fav > *");
   for (const elem of elems) {
     if (elem.classList.contains("title")) {
       const description = elem.innerText.trim();
@@ -52,48 +52,43 @@ window.onViewSchema = () => {
   document.body.innerHTML = rawSchemaDataDom;
 
   window.onGetGeneratedBookmarkletLink(document.querySelector("#input").value);
-  
+
   // hook up the tab and shift tab to do modification
-  document.querySelector('#input').addEventListener('keydown', (e) => {
-    const TAB_INDENT = '  '
-    if(e.key === 'Tab'){
+  document.querySelector("#input").addEventListener("keydown", (e) => {
+    const TAB_INDENT = "  ";
+    if (e.key === "Tab") {
       e.preventDefault();
-      if(e.shiftKey === true){
-        deleteAtCursor(e.target, TAB_INDENT.length)
+      if (e.shiftKey === true) {
+        deleteAtCursor(e.target, TAB_INDENT.length);
       } else {
-        insertAtCursor(e.target, TAB_INDENT)
-      }    
+        insertAtCursor(e.target, TAB_INDENT);
+      }
     }
 
     function insertAtCursor(myField, myValue) {
       var startPos = myField.selectionStart;
       var endPos = myField.selectionEnd;
-      
-      if(startPos === endPos){
-        myField.value = myField.value.substring(0, startPos)
-            + myValue
-            + myField.value.substring(endPos);
 
-        myField.setSelectionRange(startPos + myValue.length, endPos + myValue.length)
+      if (startPos === endPos) {
+        myField.value = myField.value.substring(0, startPos) + myValue + myField.value.substring(endPos);
+
+        myField.setSelectionRange(startPos + myValue.length, endPos + myValue.length);
       }
     }
-
 
     function deleteAtCursor(myField, length) {
       var startPos = myField.selectionStart;
       var endPos = myField.selectionEnd;
 
-      myField.value = myField.value.substring(0, startPos - 2)
-          + myField.value.substring(endPos);
+      myField.value = myField.value.substring(0, startPos - 2) + myField.value.substring(endPos);
 
-
-      myField.setSelectionRange(startPos - length, endPos - length)
+      myField.setSelectionRange(startPos - length, endPos - length);
     }
-  })
+  });
 };
 
 window.onViewLinks = (linkDomHTML, hideSchemaForm) => {
-  if(hideSchemaForm !== false){
+  if (hideSchemaForm !== false) {
     document.body.innerHTML =
       linkDomHTML +
       `<div style="display: flex; margin-top: 1rem; align-items:center">
@@ -101,18 +96,20 @@ window.onViewLinks = (linkDomHTML, hideSchemaForm) => {
         </div>`;
   }
 
-  document
-    .querySelector(".title")
-    .insertAdjacentHTML(
-      "afterend",
-      `
+  document.querySelector(".title").insertAdjacentHTML(
+    "afterend",
+    `
         <input id='search' list="linkList" onInput="window.searchBookmarklet(document.querySelector('#search').value)" placeholder="Search bookmarklet" style="display: block" autofocus autocomplete="off" />
         <datalist id="linkList"></datalist>
       `
-    );
-  
+  );
+
   // setting up the autocomplete
-  document.querySelector('#linkList').innerHTML = [...document.querySelectorAll('a.link')].map(r => r.innerText).sort().map(r => `<option>${r}</option>`).join('')
+  document.querySelector("#linkList").innerHTML = [...document.querySelectorAll("a.link")]
+    .map((r) => r.innerText)
+    .sort()
+    .map((r) => `<option>${r}</option>`)
+    .join("");
 };
 
 window.onGetGeneratedBookmarkletLink = (input) => {
@@ -151,7 +148,7 @@ window.searchBookmarklet = (val) => {
     if (val === "" || anchor.innerText.toLowerCase().includes(val) || anchor.href.toLowerCase().includes(val)) {
       isHidden = false;
     }
-    anchor.classList.toggle('hidden', isHidden)
+    anchor.classList.toggle("hidden", isHidden);
   }
 };
 
@@ -159,7 +156,7 @@ window.getLinkDom = (linkDomHTML) => {
   const lines = linkDomHTML
     .trim()
     .split("\n")
-    .filter((r) => r.indexOf('//') !== 0)
+    .filter((r) => r.indexOf("//") !== 0)
     .map((r) => r.trimEnd());
 
   if (lines[0][0] !== "!") {
@@ -204,10 +201,10 @@ window.getLinkDom = (linkDomHTML) => {
           linkUrl = link.substr(link.indexOf(LINK_SPLIT) + 1).trim();
 
           if (linkUrl && linkText) {
-            if(linkUrl.indexOf('http://') !== 0 && linkUrl.indexOf('https://') !== 0){
+            if (linkUrl.indexOf("http://") !== 0 && linkUrl.indexOf("https://") !== 0) {
               linkUrl = `https://` + linkUrl;
             }
-            
+
             newHTMLLines.push(`<a class="link" href="${linkUrl}">${linkText}</a>`);
           }
         } catch (err) {}
@@ -252,45 +249,48 @@ document.head.insertAdjacentHTML(
 
 // special handling for ctrl + f to focus on searchbox
 // keyboard navigation
-document.addEventListener('keydown', (e) => {
-  if(document.querySelector('#search')){
-    const links = document.querySelectorAll('a.link:not(.hidden)');
-    let delta = 0;
-  
-    if(e.key === 'Shift' || e.key === 'Tab'){
-      return;
-    }
-    else if(e.key === 'ArrowUp' || e.key === 'ArrowLeft'){
-      delta = -1;
-    } else if(e.key === 'ArrowDown' || e.key === 'ArrowRight'){
-      delta = +1;
-    } else if(e.key.match(/[a-z0-9]/i)){
-      if(document.activeElement !== document.querySelector('#search')){
-        document.querySelector('#search').focus();
-        e.preventDefault();
-      }
-      return;
-    }
+document.addEventListener(
+  "keydown",
+  (e) => {
+    if (document.querySelector("#search")) {
+      const links = document.querySelectorAll("a.link:not(.hidden)");
+      let delta = 0;
 
-    if(delta !== 0){
-      let activeElement = document.activeElement;
-      if(activeElement === document.querySelector('#search')){
-        links[0].focus();
-        e.preventDefault();
-      } else {
-        for(let i = 0; i < links.length; i++){
-          if(links[i] === document.activeElement){
-            if(links[i+delta]){
-              links[i+delta].focus();
-              e.preventDefault();
+      if (e.key === "Shift" || e.key === "Tab") {
+        return;
+      } else if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
+        delta = -1;
+      } else if (e.key === "ArrowDown" || e.key === "ArrowRight") {
+        delta = +1;
+      } else if (e.key.match(/[a-z0-9]/i)) {
+        if (document.activeElement !== document.querySelector("#search")) {
+          document.querySelector("#search").focus();
+          e.preventDefault();
+        }
+        return;
+      }
+
+      if (delta !== 0) {
+        let activeElement = document.activeElement;
+        if (activeElement === document.querySelector("#search")) {
+          links[0].focus();
+          e.preventDefault();
+        } else {
+          for (let i = 0; i < links.length; i++) {
+            if (links[i] === document.activeElement) {
+              if (links[i + delta]) {
+                links[i + delta].focus();
+                e.preventDefault();
+              }
+              break;
             }
-            break;
           }
         }
       }
     }
-  }
-}, true);
+  },
+  true
+);
 
 // window.onbeforeunload = function(){
 //   if(document.activeElement){
