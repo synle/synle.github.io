@@ -272,4 +272,10 @@ document.addEventListener('keydown', (e) => {
       }
     }
   }
-})
+});
+
+window.onbeforeunload = function(){
+  document.body.innerHTML  = '<h1>Navigating...</h1>'
+};
+
+
