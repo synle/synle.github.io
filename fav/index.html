@@ -5,6 +5,7 @@
     <link rel="stylesheet" type="text/css" href="https://synle.github.io/link/assets/navs.css" />
   </head>
   <body></body>
+  <script src="https://s3.tradingview.com/tv.js"></script>
   <script src="https://synle.github.io/link/assets/navs.js"></script>
   <script>
     const SITE_SCHEMA = `
@@ -110,6 +111,41 @@ View Source|https://github.com/synle/synle.github.io/blob/master/fav/index.html
       document.body.innerHTML = window.getLinkDom(schema);
       window.onViewLinks(document.body.innerHTML, false);
       document.title = document.querySelector(".title").innerText.trim();
+      
+      
+      // adding stock symbol
+      <!-- TradingView Widget BEGIN -->
+      document.querySelector('#fav').insertAdjacentHTML('beforeend', 
+        `
+          <div class="tradingview-widget-container" style="grid-column: 1/-1;">
+            <div id="tradingview_e7e63"></div>
+            <div class="tradingview-widget-copyright">
+              by TradingView
+            </div>
+          </div>
+        `);
+         new TradingView.widget(
+          {
+          "width": 800,
+          "height": 450,
+          "symbol": "NASDAQ:AAPL",
+          "interval": "D",
+          "timezone": "Etc/UTC",
+          "theme": "dark",
+          "style": "1",
+          "locale": "en",
+          "toolbar_bg": "#f1f3f6",
+          "enable_publishing": false,
+          "save_image": false,
+          "watchlist": [
+            "NASDAQ:MSFT",
+            "NASDAQ:NFLX"
+          ],
+          "container_id": "tradingview_e7e63"
+        }
+      );
+      
+      <!-- TradingView Widget END -->
     })();
   </script>
 </html>
