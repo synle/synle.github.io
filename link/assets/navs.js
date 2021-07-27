@@ -256,7 +256,7 @@ document.addEventListener(
       const links = document.querySelectorAll("a.link:not(.hidden)");
       let delta = 0;
 
-      if (e.key === "Shift" || e.key === "Tab") {
+      if (e.key === "Shift" || e.key === " " || e.key === "Enter" || e.key === "Tab") {
         return;
       } else if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
         delta = -1;
