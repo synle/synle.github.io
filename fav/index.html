@@ -76,7 +76,7 @@ calendar|calendar.google.com/calendar
       .map((r) => r.trim())
       .join("\n");
   </script>
-  
+
   <!--  script started  -->
   <script>
     (async () => {
@@ -86,8 +86,10 @@ calendar|calendar.google.com/calendar
           await fetch(`https://raw.githubusercontent.com/synle/bashrc/master/software/metadata/ip-address.json`)
             .then((r) => r.text())
             .then((r) => eval(r))
-        ).filter((hostSplits) => hostSplits.length === 2 && hostSplits[0].length > 0 && hostSplits[1].length > 0)
-          .map(([hostName, hostIp]) => `${hostIp}\t${hostName}`).join("\n");
+        )
+          .filter((hostSplits) => hostSplits.length === 2 && hostSplits[0].length > 0 && hostSplits[1].length > 0)
+          .map(([hostName, hostIp]) => `${hostIp}\t${hostName}`)
+          .join("\n");
       } catch (err) {}
 
       let schema = "";
@@ -99,7 +101,8 @@ calendar|calendar.google.com/calendar
         \`\`\`
         ${HOME_HOST_NAMES}
         \`\`\`
-      `.split("\n")
+      `
+        .split("\n")
         .map((r) => r.trim())
         .join("\n");
 
@@ -111,9 +114,10 @@ View Source|https://github.com/synle/synle.github.io/blob/master/fav/index.html
       document.body.innerHTML = window.getLinkDom(schema);
       window.onViewLinks(document.body.innerHTML, false);
       document.title = document.querySelector(".title").innerText.trim();
-      
-      // TradingView Widget BEGIN 
-      document.querySelector('#fav').insertAdjacentHTML('beforeend', 
+
+      // TradingView Widget BEGIN
+      document.querySelector("#fav").insertAdjacentHTML(
+        "beforeend",
         `
           <div class="tradingview-widget-container" style="grid-column: 1/-1;">
             <div id="tradingview_e7e63"></div>
@@ -121,27 +125,23 @@ View Source|https://github.com/synle/synle.github.io/blob/master/fav/index.html
               by TradingView
             </div>
           </div>
-        `);
-         new TradingView.widget(
-          {
-          "width": 800,
-          "height": 450,
-          "symbol": "NASDAQ:AAPL",
-          "interval": "D",
-          "timezone": "Etc/UTC",
-          "theme": "dark",
-          "style": "1",
-          "locale": "en",
-          "toolbar_bg": "#f1f3f6",
-          "enable_publishing": false,
-          "save_image": false,
-          "watchlist": [
-            "NASDAQ:MSFT",
-            "NASDAQ:NFLX"
-          ],
-          "container_id": "tradingview_e7e63"
-        }
+        `
       );
+      new TradingView.widget({
+        width: 800,
+        height: 450,
+        symbol: "NASDAQ:AAPL",
+        interval: "D",
+        timezone: "Etc/UTC",
+        theme: "dark",
+        style: "1",
+        locale: "en",
+        toolbar_bg: "#f1f3f6",
+        enable_publishing: false,
+        save_image: false,
+        watchlist: ["NASDAQ:MSFT", "NASDAQ:NFLX"],
+        container_id: "tradingview_e7e63",
+      });
       // TradingView Widget END
     })();
   </script>
