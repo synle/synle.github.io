@@ -96,6 +96,47 @@ calendar|calendar.google.com/calendar
 
   <!--  script started  -->
   <script>
+    function toggleStock(){
+      // TradingView Widget BEGIN
+      const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+      if (parseInt(vw) < 1100) {
+        return;
+      }
+      
+      if(document.querySelector('#stock')){
+        document.querySelector('#stock').remove();
+        return;
+      }
+      
+      document.querySelector("#fav").insertAdjacentHTML(
+        "afterend",
+        `
+          <div id="stock" class="tradingview-widget-container" style="margin-top: 2rem">
+            <div id="tradingview_e7e63"></div>
+            <div class="tradingview-widget-copyright">
+              by TradingView
+            </div>
+          </div>
+        `
+      );
+      new TradingView.widget({
+        width: 1000,
+        height: 600,
+        symbol: "NASDAQ:AAPL",
+        interval: "15",
+        timezone: "America/Los_Angeles",
+        theme: "dark",
+        style: "1",
+        locale: "en",
+        toolbar_bg: "#f1f3f6",
+        enable_publishing: false,
+        save_image: false,
+        watchlist: STOCKS_LIST,
+        container_id: "tradingview_e7e63",
+      });
+      // TradingView Widget END
+    }
+    
     (async () => {
       let HOME_HOST_NAMES;
       try {
@@ -132,39 +173,10 @@ Nav Code|https://github.com/synle/synle.github.io/blob/master/link/assets/navs.j
       document.body.innerHTML = window.getLinkDom(schema);
       window.onViewLinks(document.body.innerHTML, false);
       document.title = document.querySelector(".title").innerText.trim();
-
-      // TradingView Widget BEGIN
-      const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
-      if (parseInt(vw) < 1100) {
-        return;
-      }
-      document.querySelector("#fav").insertAdjacentHTML(
-        "afterend",
-        `
-          <div id="stock" class="tradingview-widget-container" style="margin-top: 2rem">
-            <div id="tradingview_e7e63"></div>
-            <div class="tradingview-widget-copyright">
-              by TradingView
-            </div>
-          </div>
-        `
-      );
-      new TradingView.widget({
-        width: 1000,
-        height: 600,
-        symbol: "NASDAQ:AAPL",
-        interval: "15",
-        timezone: "America/Los_Angeles",
-        theme: "dark",
-        style: "1",
-        locale: "en",
-        toolbar_bg: "#f1f3f6",
-        enable_publishing: false,
-        save_image: false,
-        watchlist: STOCKS_LIST,
-        container_id: "tradingview_e7e63",
-      });
-      // TradingView Widget END
+      
+      
+      // show stock
+      toggleStock();
     })();
   </script>
 </html>
