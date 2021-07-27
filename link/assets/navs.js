@@ -250,8 +250,11 @@ document.addEventListener('keydown', (e) => {
   if(document.querySelector('#search')){
     const links = document.querySelectorAll('a.link');
     let delta = 0;
-
-    if(e.key === 'ArrowUp' || e.key === 'ArrowLeft'){
+  
+    if(e.key === 'Shift' || e.key === 'Tab'){
+      return;
+    }
+    else if(e.key === 'ArrowUp' || e.key === 'ArrowLeft'){
       delta = -1;
     } else if(e.key === 'ArrowDown' || e.key === 'ArrowRight'){
       delta = +1;
