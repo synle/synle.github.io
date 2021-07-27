@@ -76,10 +76,10 @@ calendar|calendar.google.com/calendar
       .map((r) => r.trim())
       .join("\n");
   </script>
-  
+
   <script>
-  // https://www.tradingview.com/widget/advanced-chart/
-  const STOCKS_LIST = `
+    // https://www.tradingview.com/widget/advanced-chart/
+    const STOCKS_LIST = `
     NASDAQ:MSFT
     NASDAQ:NFLX
     AMEX:ARKK
@@ -87,7 +87,11 @@ calendar|calendar.google.com/calendar
     NYSE:NRZ
     NYSE:DIDI
     NYSE:BABA
-  `.trim().split('\n').map(r => r.trim()).filter(r => !!r || r.includes('//'));
+  `
+      .trim()
+      .split("\n")
+      .map((r) => r.trim())
+      .filter((r) => !!r || r.includes("//"));
   </script>
 
   <!--  script started  -->
@@ -130,8 +134,8 @@ Nav Source|https://github.com/synle/synle.github.io/blob/master/link/assets/navs
       document.title = document.querySelector(".title").innerText.trim();
 
       // TradingView Widget BEGIN
-      const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
-      if(parseInt(vw) < 1100){
+      const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+      if (parseInt(vw) < 1100) {
         return;
       }
       document.querySelector("#fav").insertAdjacentHTML(
