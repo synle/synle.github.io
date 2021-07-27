@@ -76,6 +76,18 @@ calendar|calendar.google.com/calendar
       .map((r) => r.trim())
       .join("\n");
   </script>
+  
+  <script>
+  const STOCKS_LIST = `
+    NASDAQ:MSFT
+    NASDAQ:NFLX
+    NYSEARCA:ARKK
+    NASDAQ:MU
+    NYSE:NRZ
+    NYSE:DIDI
+    NYSE:BABA
+  `.trim().split('\n').map(r => r.trim()).filter(r => !!r);
+  </script>
 
   <!--  script started  -->
   <script>
@@ -139,7 +151,7 @@ View Source|https://github.com/synle/synle.github.io/blob/master/fav/index.html
         toolbar_bg: "#f1f3f6",
         enable_publishing: false,
         save_image: false,
-        watchlist: ["NASDAQ:MSFT", "NASDAQ:NFLX"],
+        watchlist: STOCKS_LIST,
         container_id: "tradingview_e7e63",
       });
       // TradingView Widget END
