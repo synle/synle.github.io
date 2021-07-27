@@ -248,7 +248,7 @@ document.head.insertAdjacentHTML(
 // keyboard navigation
 document.addEventListener('keydown', (e) => {
   if(document.querySelector('#search')){
-    const links = document.querySelectorAll('a.link');
+    const links = document.querySelectorAll('a.link:not(.hidden)');
     let delta = 0;
   
     if(e.key === 'Shift' || e.key === 'Tab'){
