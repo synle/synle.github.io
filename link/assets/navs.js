@@ -263,13 +263,19 @@ document.addEventListener('keydown', (e) => {
     }
     
     if(delta !== 0){
-      for(let i = 0; i < links.length; i++){
-        if(links[i] === document.activeElement){
-          if(links[i+delta]){
-            links[i+delta].focus();
-            e.preventDefault();
+      let activeElement = document.activeElement;
+      if(activeElement === document.querySelector('#search')){
+        links[0].focus();
+        e.preventDefault();
+      } else {
+        for(let i = 0; i < links.length; i++){
+          if(links[i] === document.activeElement){
+            if(links[i+delta]){
+              links[i+delta].focus();
+              e.preventDefault();
+            }
+            break;
           }
-          break;
         }
       }
     }
