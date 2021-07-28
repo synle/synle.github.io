@@ -48,11 +48,11 @@ window.onViewSchema = () => {
   `;
 
   window.zoominInput = (target) => {
-    target.style.minHeight = document.body.clientHeight - 275 + "px";
+    target.style.height = document.body.clientHeight - 275 + "px";
   };
 
   window.zoominOutput = (target) => {
-    target.style.minHeight = "";
+    target.style.height = "";
   };
 
   document.body.innerHTML = rawSchemaDataDom;
