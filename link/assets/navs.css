@@ -111,7 +111,7 @@ textarea:focus {
   grid-column: 1/-1;
 }
 
-a,button, #fav .title, #fav .header, #fav .block, #fav form{
+a,button, #fav .title, #fav .header, #fav .block{
   padding: var(--spaceSize2);
 }
 
@@ -123,9 +123,9 @@ a,button, #fav .title, #fav .header, #fav .block, #fav form{
 }
 
 .header{
+  text-transform: uppercase;
   background: #000;
   border-left: var(--borderSize3) solid #f1fa8c;
-  text-transform: uppercase;
   position: sticky;
   z-index: 1;
   top: 43px;
@@ -133,7 +133,6 @@ a,button, #fav .title, #fav .header, #fav .block, #fav form{
 
 .block{
   background: #000;
-  color: #fff;
 }
 
 #search,
