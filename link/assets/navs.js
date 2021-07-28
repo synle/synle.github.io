@@ -23,7 +23,7 @@ window.onViewSchema = () => {
       }
     } else if (elem.classList.contains("block")) {
       const description = elem.innerText.trim();
-      output.push(`\n${BLOCK_SPLIT}\n${description}\n${BLOCK_SPLIT}`);
+      output.push(`\n${BLOCK_SPLIT}\n${description}\n${BLOCK_SPLIT}\n`);
     } else if (elem.classList.contains("header")) {
       const header = elem;
       const description = header.innerHTML;
