@@ -130,7 +130,7 @@ a,button, #fav .title, #fav .header, #fav .block{
   border-left: var(--borderSize4) solid #f1fa8c;
   position: sticky;
   z-index: 1;
-  top: 39px;
+  top: 0;
 }
 
 .block{
@@ -159,7 +159,7 @@ a,button, #fav .title, #fav .header, #fav .block{
 }
 #searchForm {
   position: sticky;
-  top: 0;
+  bottom: 0;
 }
 #command{
   display: grid;
