@@ -129,7 +129,7 @@ a,button, #fav .title, #fav .header, #fav .block{
   background: #000;
   border-left: var(--borderSize4) solid #f1fa8c;
   position: sticky;
-  z-index: 1;
+  z-index: 0;
   top: 0;
 }
 
@@ -160,6 +160,7 @@ a,button, #fav .title, #fav .header, #fav .block{
 #searchForm {
   position: sticky;
   bottom: 0;
+  z-index: 1;
 }
 #command{
   display: grid;
@@ -194,5 +195,9 @@ a,button, #fav .title, #fav .header, #fav .block{
   
   a,button, #fav .title, #fav .header, #fav .block, input{
     padding: var(--spaceSize1) var(--spaceSize2);
+  }
+  
+  html {
+    margin-bottom: var(--spaceSize3);
   }
 }
