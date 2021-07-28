@@ -10,7 +10,7 @@ html {
   --spaceSize5: 3rem;
 
   --fontSize1: 16px;
-  --fontSize2: 16px;
+  --fontSize2: 16pxg
   --fontSize3: 22px;
 
   --gridColumnLayout: 250px 250px 250px;
@@ -108,7 +108,7 @@ textarea:focus {
   justify-content: center;
 }
 
-#fav .header, #fav .title, #fav #search, #fav .block{
+#fav .header, #fav .title, #fav .block, #fav form{
   grid-column: 1/-1;
 }
 
