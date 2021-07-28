@@ -205,15 +205,17 @@ window.getLinkDom = (linkDomHTML) => {
         let linkText, linkUrl;
 
         try {
-          // new tab link
+          // try parse as new tab link
           linkText = link.substr(0, link.indexOf(NEW_TAB_LINK_SPLIT)).trim();
           linkUrl = link.substr(link.indexOf(NEW_TAB_LINK_SPLIT) + NEW_TAB_LINK_SPLIT.length).trim();
 
           if (linkUrl && linkText) {
             linkType = 'newTabLink';
           }
-        } catch (err) {
-          // same tab link
+        } catch (err) {}
+        
+        if(!linkType){
+          // try parse as same tab link
           try {
             linkText = link.substr(0, link.indexOf(SAME_TAB_LINK_SPLIT)).trim();
             linkUrl = link.substr(link.indexOf(SAME_TAB_LINK_SPLIT) + SAME_TAB_LINK_SPLIT.length).trim();
@@ -224,6 +226,7 @@ window.getLinkDom = (linkDomHTML) => {
           } catch (err) {}
         }
 
+        // if found a link type...
         if(linkType){
           if (linkUrl.indexOf("http://") !== 0 && linkUrl.indexOf("https://") !== 0) {
             linkUrl = `https://` + linkUrl;
