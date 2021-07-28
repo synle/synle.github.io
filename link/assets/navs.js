@@ -42,8 +42,18 @@ window.onViewSchema = () => {
         <button onclick="window.onTestNav()">Test Nav</button>
         <a target="_blank" style="text-align: center; margin: auto;" href="https://github.com/synle/synle.github.io/blob/master/link/assets/navs.js">View Source</a>
       </div>
-      <textarea id='input' placeholder="Bookmarklet Input Schema" wrap="soft" onfocus="window.zoominInput(this)" onblur="window.onGetGeneratedBookmarkletLink(document.querySelector('#input').value)">${output}</textarea>
-      <textarea id='output' placeholder="Bookmarklet Output" wrap="soft" onfocus="window.zoominInput(this)"></textarea>
+      <textarea id='input' 
+        placeholder="Bookmarklet Input Schema" 
+        wrap="soft"
+        spellcheck="false"
+        onfocus="window.zoominInput(this)" 
+        onblur="window.onGetGeneratedBookmarkletLink(document.querySelector('#input').value)">${output}</textarea>
+      <textarea 
+        id='output' 
+        placeholder="Bookmarklet Output" 
+        wrap="soft" 
+        spellcheck="false"
+        onfocus="window.zoominInput(this)"></textarea>
     </div>
   `;
 
@@ -107,7 +117,11 @@ window.onViewLinks = (linkDomHTML, hideSchemaForm) => {
           list="linkList" 
           onInput="window.searchBookmarklet(document.querySelector('#search').value)"
           placeholder="&#x1F50E;&#xFE0E; Search bookmark"
-          style="display: block" autofocus autocomplete="off" required />
+          style="display: block" 
+          autocomplete="off"
+          spellcheck="false"
+          autofocus
+          required />
         <datalist id="linkList"></datalist>
       </form>
     `
