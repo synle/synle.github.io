@@ -188,7 +188,7 @@ a,button, #fav .title, #fav .header, #fav .block{
   }
   
   #fav{
-    grid-gap: 0;
+    grid-gap: var(--spaceSize2) var(--spaceSize2);
   }
   
   a,button, #fav .title, #fav .header, #fav .block, input{
