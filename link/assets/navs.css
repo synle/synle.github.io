@@ -21,8 +21,8 @@ html {
   color: #fff;
 }
 html {
-  margin-top: var(--spaceSize3);
-  margin-bottom: var(--spaceSize5);
+  margin-top: var(--spaceSize2);
+  margin-bottom: var(--spaceSize2);
 }
 body {
   margin: auto !important;
