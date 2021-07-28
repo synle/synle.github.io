@@ -105,9 +105,11 @@ window.onViewLinks = (linkDomHTML, hideSchemaForm) => {
   document.querySelector(".title").insertAdjacentHTML(
     "afterend",
     `
-        <input id='search' list="linkList" onInput="window.searchBookmarklet(document.querySelector('#search').value)" placeholder="Search bookmarklet" style="display: block" autofocus autocomplete="off" />
+      <form onsubmit="return window.onSubmitNavigationSearch();">
+        <input id='search' list="linkList" onInput="window.searchBookmarklet(document.querySelector('#search').value)" placeholder="Search bookmarklet" style="display: block" autofocus autocomplete="off" required />
         <datalist id="linkList"></datalist>
-      `
+      </form>
+    `
   );
 
   // setting up the autocomplete
@@ -264,6 +266,15 @@ window.onTestNav = () => {
     `.trim()
   );
 };
+
+window.onSubmitNavigationSearch = (e) => {
+  const links = document.querySelectorAll("a.link:not(.hidden)");
+  if(links && links.length === 0){
+    location.href = links[0].href;
+  }
+  e.preventDefault();
+  return false;
+}
 
 // insert zoom scale of 1 for mobile
 document.head.insertAdjacentHTML(
