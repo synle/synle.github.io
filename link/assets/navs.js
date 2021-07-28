@@ -267,12 +267,11 @@ window.onTestNav = () => {
   );
 };
 
-window.onSubmitNavigationSearch = (e) => {
+window.onSubmitNavigationSearch = () => {
   const links = document.querySelectorAll("a.link:not(.hidden)");
-  if(links && links.length === 0){
+  if(links && links.length > 0){
     location.href = links[0].href;
   }
-  e.preventDefault();
   return false;
 }
 
