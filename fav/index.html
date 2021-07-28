@@ -100,18 +100,18 @@ calendar|calendar.google.com/calendar
 
   <!--  script started  -->
   <script>
-    function toggleStock(){
+    function toggleStock() {
       // TradingView Widget BEGIN
       const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
       if (parseInt(vw) < 1100) {
         return;
       }
-      
-      if(document.querySelector('#stock')){
-        document.querySelector('#stock').remove();
+
+      if (document.querySelector("#stock")) {
+        document.querySelector("#stock").remove();
         return;
       }
-      
+
       document.querySelector("#fav").insertAdjacentHTML(
         "afterend",
         `
@@ -140,7 +140,7 @@ calendar|calendar.google.com/calendar
       });
       // TradingView Widget END
     }
-    
+
     (async () => {
       let HOME_HOST_NAMES;
       try {
@@ -177,8 +177,7 @@ Nav Code|https://github.com/synle/synle.github.io/blob/master/link/assets/navs.j
       document.body.innerHTML = window.getLinkDom(schema);
       window.onViewLinks(document.body.innerHTML, false);
       document.title = document.querySelector(".title").innerText.trim();
-      
-      
+
       // show stock
       toggleStock();
     })();
