@@ -191,6 +191,10 @@ a,button, #fav .title, #fav .header, #fav .block{
     grid-gap: 0;
   }
   
+  a,button, #fav .title, #fav .header, #fav .block{
+    padding: var(--spaceSize3) var(--spaceSize2);
+  }
+  
   .header + .link{
     border-top-width: var(--borderSize2);
   }
