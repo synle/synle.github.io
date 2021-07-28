@@ -156,7 +156,7 @@ textarea:focus {
 #output {
   background: #6272a4;
 }
-#search {
+#searchForm {
   position: sticky;
   top: 0;
 }
