@@ -206,7 +206,7 @@ window.getLinkDom = (linkDomHTML) => {
 
         try {
           // new tab link
-          linkText = link.substr(0, link.indexOf(SAME_TAB_LINK_SPLITNEW_TAB_LINK_SPLIT)).trim();
+          linkText = link.substr(0, link.indexOf(NEW_TAB_LINK_SPLIT)).trim();
           linkUrl = link.substr(link.indexOf(NEW_TAB_LINK_SPLIT) + 1).trim();
 
           if (linkUrl && linkText) {
