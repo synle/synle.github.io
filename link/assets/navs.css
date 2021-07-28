@@ -129,7 +129,7 @@ a,button, #fav .title, #fav .header, #fav .block{
   border-left: var(--borderSize3) solid #f1fa8c;
   position: sticky;
   z-index: 1;
-  top: 43px;
+  top: 40px;
 }
 
 .block{
