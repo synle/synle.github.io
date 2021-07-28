@@ -191,15 +191,7 @@ a,button, #fav .title, #fav .header, #fav .block{
     grid-gap: 0;
   }
   
-  a,button, #fav .title, #fav .header, #fav .block{
+  a,button, #fav .title, #fav .header, #fav .block, input{
     padding: var(--spaceSize3) var(--spaceSize2);
-  }
-  
-  .header + .link{
-    border-top-width: var(--borderSize2);
-  }
-
-  .link + header{
-    border-top: var(--borderSize2) solid #aaaec9;
   }
 }
