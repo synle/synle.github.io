@@ -234,8 +234,6 @@ window.getLinkDom = (linkDomHTML) => {
           } else { // new_tab_link
             newHTMLLines.push(`<a class="link" href="${linkUrl}" target="_blank">${linkText}</a>`);
           }
-
-          return;
         }
       }
     }
