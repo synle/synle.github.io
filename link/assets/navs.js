@@ -1,4 +1,5 @@
-const LINK_SPLIT = "|";
+const SAME_TAB_LINK_SPLIT = "|";
+const NEW_TAB_LINK_SPLIT = "|||";
 const HEADER_SPLIT = "#";
 const TITLE_SPLIT = "!";
 const BLOCK_SPLIT = "```";
@@ -14,7 +15,12 @@ window.onViewSchema = () => {
       const link = elem;
       const fullLink = link.href;
       const description = link.innerHTML;
-      output.push(`${description} ${LINK_SPLIT} ${fullLink}`);
+
+      if(link.target){// new tab
+        output.push(`${description} ${NEW_TAB_LINK_SPLIT} ${fullLink}`);  
+      } else {// same tab
+        output.push(`${description} ${SAME_TAB_LINK_SPLIT} ${fullLink}`);
+      }
     } else if (elem.classList.contains("block")) {
       const description = elem.innerText.trim();
       output.push(`\n${BLOCK_SPLIT}\n${description}\n${BLOCK_SPLIT}`);
@@ -195,19 +201,42 @@ window.getLinkDom = (linkDomHTML) => {
         blockBuffer += link + "\n";
       } else {
         // anything else is a link
+        let linkType;
+        let linkText, linkUrl;
+
         try {
-          let linkText, linkUrl;
-          linkText = link.substr(0, link.indexOf(LINK_SPLIT)).trim();
-          linkUrl = link.substr(link.indexOf(LINK_SPLIT) + 1).trim();
+          // new tab link
+          linkText = link.substr(0, link.indexOf(SAME_TAB_LINK_SPLITNEW_TAB_LINK_SPLIT)).trim();
+          linkUrl = link.substr(link.indexOf(NEW_TAB_LINK_SPLIT) + 1).trim();
 
           if (linkUrl && linkText) {
-            if (linkUrl.indexOf("http://") !== 0 && linkUrl.indexOf("https://") !== 0) {
-              linkUrl = `https://` + linkUrl;
-            }
-
-            newHTMLLines.push(`<a class="link" href="${linkUrl}">${linkText}</a>`);
+            linkType = 'new_tab_link';
           }
-        } catch (err) {}
+        } catch (err) {
+          // same tab link
+          try {
+            linkText = link.substr(0, link.indexOf(SAME_TAB_LINK_SPLIT)).trim();
+            linkUrl = link.substr(link.indexOf(SAME_TAB_LINK_SPLIT) + 1).trim();
+
+            if (linkUrl && linkText) {
+              linkType = 'same_tab_link';
+            }
+          } catch (err) {}
+        }
+
+        if(linkType){
+          if (linkUrl.indexOf("http://") !== 0 && linkUrl.indexOf("https://") !== 0) {
+            linkUrl = `https://` + linkUrl;
+          }
+
+          if(linkType === 'same_tab_link'){
+            newHTMLLines.push(`<a class="link" href="${linkUrl}">${linkText}</a>`);  
+          } else { // new_tab_link
+            newHTMLLines.push(`<a class="link" href="${linkUrl}" target="_blank">${linkText}</a>`);
+          }
+
+          return;
+        }
       }
     }
   });
