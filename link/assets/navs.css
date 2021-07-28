@@ -192,6 +192,10 @@ a,button, #fav .title, #fav .header, #fav .block{
   }
   
   .header + .link{
-    border-top-width: 4px;
+    border-top-width: var(--borderSize2);
+  }
+
+  .link + header{
+    border-top: var(--borderSize2) solid #aaaec9;
   }
 }
