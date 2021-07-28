@@ -80,10 +80,10 @@ calendar|calendar.google.com/calendar
       .map((r) => r.trim())
       .join("\n");
   </script>
-  
+
   <!--  code / debug schema links  -->
   <script>
-  const DEBUG_LINKS_SCHEMA = `
+    const DEBUG_LINKS_SCHEMA = `
     HTML Code|||https://github.com/synle/synle.github.io/blob/master/fav/index.html
     Nav Code|||https://github.com/synle/synle.github.io/blob/master/link/assets/navs.js
   `.trim();
@@ -151,17 +151,16 @@ calendar|calendar.google.com/calendar
     }
 
     (async () => {
-      let HOST_MAPPING_BLOCK_SCHEMA = '';
+      let HOST_MAPPING_BLOCK_SCHEMA = "";
       try {
-        const HOME_HOST_NAMES = (
-          await fetch(`https://raw.githubusercontent.com/synle/bashrc/master/software/metadata/ip-address.json`)
-            .then((r) => r.text())
-            .then((r) => eval(r))
-        )
-          .filter((hostSplits) => hostSplits.length === 2 && hostSplits[0].length > 0 && hostSplits[1].length > 0)
-          .map(([hostName, hostIp]) => `${hostIp}\t${hostName}`)
-          .join("\n");
-        
+        const HOME_HOST_NAMES = await fetch(`https://raw.githubusercontent.com/synle/bashrc/master/software/metadata/ip-address.json`)
+          .then((r) => r.text())
+          .then((r) =>
+            eval(r)
+              .filter((hostSplits) => hostSplits.length === 2 && hostSplits[0].length > 0 && hostSplits[1].length > 0)
+              .map(([hostName, hostIp]) => `${hostIp}\t${hostName}`)
+              .join("\n")
+          );
         HOST_MAPPING_BLOCK_SCHEMA = `
           # Host Mappings
           \`\`\`
