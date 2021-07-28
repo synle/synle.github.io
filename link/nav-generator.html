@@ -8,6 +8,20 @@
     (() => {
       window.onViewSchema();      
       document.querySelector('#input') && document.querySelector('#input').focus();
+      
+      // add the default
+      document.querySelector('#input').value = `
+      ! Navigation ${new Date().toLocaleString()}
+      
+      # Main Section
+      google|finance.google.com
+      
+      # Notes
+      ```
+      TODO 1
+      TODO 2
+      ```
+      `.split('\n').map(r => r.trim()).join();
     })()
   </script>
 </html>
