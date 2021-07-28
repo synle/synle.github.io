@@ -106,7 +106,7 @@ window.onViewLinks = (linkDomHTML, hideSchemaForm) => {
         <input id='search' 
           list="linkList" 
           onInput="window.searchBookmarklet(document.querySelector('#search').value)"
-          placeholder="Search bookmark &#x1F50D;" 
+          placeholder="&#x1F50E;&#xFE0E; Search bookmark"
           style="display: block" autofocus autocomplete="off" required />
         <datalist id="linkList"></datalist>
       </form>
