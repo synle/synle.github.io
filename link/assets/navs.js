@@ -103,7 +103,11 @@ window.onViewLinks = (linkDomHTML, hideSchemaForm) => {
     "beforeend",
     `
       <form id='searchForm' onsubmit="return window.onSubmitNavigationSearch();">
-        <input id='search' list="linkList" onInput="window.searchBookmarklet(document.querySelector('#search').value)" placeholder="Search bookmarklet" style="display: block" autofocus autocomplete="off" required />
+        <input id='search' 
+          list="linkList" 
+          onInput="window.searchBookmarklet(document.querySelector('#search').value)"
+          placeholder="&#x1F50D; Search bookmarklet" 
+          style="display: block" autofocus autocomplete="off" required />
         <datalist id="linkList"></datalist>
       </form>
     `
