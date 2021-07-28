@@ -173,6 +173,10 @@ textarea:focus {
   html {
     --gridColumnLayout: 250px 250px;
   }
+  
+  #fav{
+    grid-gap: var(--spaceSize1) var(--spaceSize1);
+  }
 }
 
 @media only screen and (max-width: 500px) {
@@ -181,5 +185,9 @@ textarea:focus {
     --fontSize2: 16px;
     --fontSize3: 16px;
     --gridColumnLayout: calc(100% - 20px);
+  }
+  
+  #fav{
+    grid-gap: 0;
   }
 }
