@@ -2,6 +2,7 @@ html {
   --borderSize1: 2px;
   --borderSize2: 4px;
   --borderSize3: 5px;
+  --borderSize4: 0.5rem;
 
   --spaceSize1: 0.5rem;
   --spaceSize2: 0.7rem;
@@ -126,7 +127,7 @@ a,button, #fav .title, #fav .header, #fav .block{
 .header{
   text-transform: uppercase;
   background: #000;
-  border-left: var(--borderSize3) solid #f1fa8c;
+  border-left: var(--borderSize4) solid #f1fa8c;
   position: sticky;
   z-index: 1;
   top: 40px;
