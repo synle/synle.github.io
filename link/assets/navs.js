@@ -105,7 +105,7 @@ window.onViewLinks = (linkDomHTML, hideSchemaForm) => {
   document.querySelector(".title").insertAdjacentHTML(
     "afterend",
     `
-      <form onsubmit="return window.onSubmitNavigationSearch();">
+      <form id='searchForm' onsubmit="return window.onSubmitNavigationSearch();">
         <input id='search' list="linkList" onInput="window.searchBookmarklet(document.querySelector('#search').value)" placeholder="Search bookmarklet" style="display: block" autofocus autocomplete="off" required />
         <datalist id="linkList"></datalist>
       </form>
