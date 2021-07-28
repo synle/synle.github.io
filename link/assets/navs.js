@@ -16,7 +16,7 @@ window.onViewSchema = () => {
       const fullLink = link.href;
       const description = link.innerHTML;
 
-      if(link.target){// new tab
+      if(elem.classList.contains('newTabLink')){// new tab
         output.push(`${description} ${NEW_TAB_LINK_SPLIT} ${fullLink}`);  
       } else {// same tab
         output.push(`${description} ${SAME_TAB_LINK_SPLIT} ${fullLink}`);
@@ -210,7 +210,7 @@ window.getLinkDom = (linkDomHTML) => {
           linkUrl = link.substr(link.indexOf(NEW_TAB_LINK_SPLIT) + NEW_TAB_LINK_SPLIT.length).trim();
 
           if (linkUrl && linkText) {
-            linkType = 'new_tab_link';
+            linkType = 'newTabLink';
           }
         } catch (err) {
           // same tab link
@@ -219,7 +219,7 @@ window.getLinkDom = (linkDomHTML) => {
             linkUrl = link.substr(link.indexOf(SAME_TAB_LINK_SPLIT) + SAME_TAB_LINK_SPLIT.length).trim();
 
             if (linkUrl && linkText) {
-              linkType = 'same_tab_link';
+              linkType = 'sameTabLink';
             }
           } catch (err) {}
         }
@@ -229,10 +229,10 @@ window.getLinkDom = (linkDomHTML) => {
             linkUrl = `https://` + linkUrl;
           }
 
-          if(linkType === 'same_tab_link'){
-            newHTMLLines.push(`<a class="link" href="${linkUrl}">${linkText}</a>`);  
+          if(linkType === 'sameTabLink'){
+            newHTMLLines.push(`<a class="link sameTabLink" href="${linkUrl}">${linkText}</a>`);  
           } else { // new_tab_link
-            newHTMLLines.push(`<a class="link" href="${linkUrl}" target="_blank">${linkText}</a>`);
+            newHTMLLines.push(`<a class="link newTabLink" href="${linkUrl}" target="_blank">${linkText}</a>`);
           }
         }
       }
