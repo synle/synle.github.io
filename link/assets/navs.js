@@ -207,7 +207,7 @@ window.getLinkDom = (linkDomHTML) => {
         try {
           // new tab link
           linkText = link.substr(0, link.indexOf(NEW_TAB_LINK_SPLIT)).trim();
-          linkUrl = link.substr(link.indexOf(NEW_TAB_LINK_SPLIT) + 1).trim();
+          linkUrl = link.substr(link.indexOf(NEW_TAB_LINK_SPLIT) + NEW_TAB_LINK_SPLIT.length).trim();
 
           if (linkUrl && linkText) {
             linkType = 'new_tab_link';
@@ -216,7 +216,7 @@ window.getLinkDom = (linkDomHTML) => {
           // same tab link
           try {
             linkText = link.substr(0, link.indexOf(SAME_TAB_LINK_SPLIT)).trim();
-            linkUrl = link.substr(link.indexOf(SAME_TAB_LINK_SPLIT) + 1).trim();
+            linkUrl = link.substr(link.indexOf(SAME_TAB_LINK_SPLIT) + SAME_TAB_LINK_SPLIT.length).trim();
 
             if (linkUrl && linkText) {
               linkType = 'same_tab_link';
