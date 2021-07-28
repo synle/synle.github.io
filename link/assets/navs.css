@@ -190,4 +190,8 @@ a,button, #fav .title, #fav .header, #fav .block{
   #fav{
     grid-gap: 0;
   }
+  
+  .header + .link{
+    border-top-width: 4px;
+  }
 }
