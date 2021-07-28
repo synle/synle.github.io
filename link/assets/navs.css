@@ -128,7 +128,7 @@ a,button, #fav .title, #fav .header, #fav .block, #fav form{
   text-transform: uppercase;
   position: sticky;
   z-index: 1;
-  top: 38px;
+  top: 43px;
 }
 
 .block{
