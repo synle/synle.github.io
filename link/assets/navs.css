@@ -188,10 +188,10 @@ a,button, #fav .title, #fav .header, #fav .block{
   }
   
   #fav{
-    grid-gap: var(--spaceSize2) var(--spaceSize2);
+    grid-gap: var(--spaceSize1);
   }
   
   a,button, #fav .title, #fav .header, #fav .block, input{
-    padding: var(--spaceSize3) var(--spaceSize2);
+    padding: var(--spaceSize1) var(--spaceSize2);
   }
 }
