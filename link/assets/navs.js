@@ -42,18 +42,14 @@ window.onViewSchema = () => {
         <button onclick="window.onTestNav()">Test Nav</button>
         <a target="_blank" style="text-align: center; margin: auto;" href="https://github.com/synle/synle.github.io/blob/master/link/assets/navs.js">View Source</a>
       </div>
-      <textarea id='input' placeholder="Bookmarklet Input Schema" wrap="soft" onfocus="window.zoominInput(this)" onblur="window.zoominOutput(this); window.onGetGeneratedBookmarkletLink(document.querySelector('#input').value)">${output}</textarea>
-      <textarea id='output' placeholder="Bookmarklet Output" wrap="soft" onfocus="window.zoominInput(this)" onblur="window.zoominOutput(this)"></textarea>
+      <textarea id='input' placeholder="Bookmarklet Input Schema" wrap="soft" onfocus="window.zoominInput(this)" onblur="window.onGetGeneratedBookmarkletLink(document.querySelector('#input').value)">${output}</textarea>
+      <textarea id='output' placeholder="Bookmarklet Output" wrap="soft" onfocus="window.zoominInput(this)"></textarea>
     </div>
   `;
 
   window.zoominInput = (target) => {
     [...document.querySelectorAll('#input,#output')].forEach(r => r.style.height = '');
-    target.style.height = document.body.clientHeight - 400 + "px";
-  };
-
-  window.zoominOutput = (target) => {
-
+    target.style.height = Math.max(450, document.body.clientHeight - 400) + "px";
   };
 
   document.body.innerHTML = rawSchemaDataDom;
