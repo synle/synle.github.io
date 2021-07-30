@@ -59,7 +59,7 @@ window.onViewSchema = () => {
 
   window.zoominInput = (target) => {
     [...document.querySelectorAll('#input,#output')].forEach(r => r.style.height = '');
-    target.style.height = Math.max(450, document.body.clientHeight - 400) + "px";
+    target.style.height = Math.max(450, document.body.clientHeight - 375) + "px";
   };
 
   document.body.innerHTML = rawSchemaDataDom;
