@@ -165,6 +165,13 @@ window.getNavBookmarkletFromSchema = (input) => {
 
 window.searchBookmarklet = (val) => {
   val = val.trim().toLowerCase();
+  
+  if(val.length === 0){
+    for(const elem of document.querySelectorAll('#fav .header, #fav .link')){
+      elem.classList.toggle("hidden", false);
+    }  
+    return;
+  }
 
   // show or hide
   for(const elem of document.querySelectorAll('#fav .header, #fav .link')){
