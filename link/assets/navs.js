@@ -166,14 +166,32 @@ window.getNavBookmarkletFromSchema = (input) => {
 window.searchBookmarklet = (val) => {
   val = val.trim().toLowerCase();
 
-  for (const anchor of document.querySelectorAll("a")) {
-    let isHidden = true;
-    if (val === "" || anchor.innerText.toLowerCase().includes(val) || anchor.href.toLowerCase().includes(val)) {
-      isHidden = false;
-    } else if (anchor.dataset.section && anchor.dataset.section.toLowerCase().trim().includes(val)){
-      isHidden = false;
+  // show or hide
+  for(const elem of document.querySelectorAll('#fav .header, #fav .link')){
+    if(elem.classList.contains('header')){
+      const header = elem;
+      let target = header.nextElementSibling;;
+      let isVisible = false;
+
+      while(target && target.classList.contains('link')){
+        if(!target.classList.contains('hidden')){
+          isVisible = true;
+          break;
+        }
+        target = target.nextElementSibling;
+      }
+
+      console.log(header.innerText.trim(), isVisible ? 'YES' : 'NO')
+    } else if(elem.classList.contains('link')){
+      const anchor = elem;
+      let isHidden = true;
+      if (val === "" || anchor.innerText.toLowerCase().includes(val) || anchor.href.toLowerCase().includes(val)) {
+        isHidden = false;
+      } else if (anchor.dataset.section && anchor.dataset.section.toLowerCase().trim().includes(val)){
+        isHidden = false;
+      }
+      anchor.classList.toggle("hidden", isHidden);
     }
-    anchor.classList.toggle("hidden", isHidden);
   }
 };
 
