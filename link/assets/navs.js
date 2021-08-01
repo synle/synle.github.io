@@ -168,6 +168,8 @@ window.searchBookmarklet = (val) => {
 
   // show or hide
   for(const elem of document.querySelectorAll('#fav .header, #fav .link')){
+    let isHidden = true;
+    
     if(elem.classList.contains('header')){
       const header = elem;
       let target = header.nextElementSibling;;
@@ -181,17 +183,17 @@ window.searchBookmarklet = (val) => {
         target = target.nextElementSibling;
       }
 
-      console.log(header.innerText.trim(), isVisible ? 'YES' : 'NO')
+      isHidden = !isVisible;
     } else if(elem.classList.contains('link')){
       const anchor = elem;
-      let isHidden = true;
       if (val === "" || anchor.innerText.toLowerCase().includes(val) || anchor.href.toLowerCase().includes(val)) {
         isHidden = false;
       } else if (anchor.dataset.section && anchor.dataset.section.toLowerCase().trim().includes(val)){
         isHidden = false;
       }
-      anchor.classList.toggle("hidden", isHidden);
     }
+    
+    elem.classList.toggle("hidden", isHidden);
   }
 };
 
