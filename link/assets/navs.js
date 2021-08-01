@@ -191,6 +191,7 @@ window.getLinkDom = (linkDomHTML) => {
 
   let blockBuffer = "";
   let isInABlock = false;
+  let currentHeaderName = '';
 
   let rawLinkHTML = lines.forEach((link) => {
     if (link.indexOf(TITLE_SPLIT) === 0) {
@@ -201,6 +202,8 @@ window.getLinkDom = (linkDomHTML) => {
       // section header
       const headerText = link.replace(HEADER_SPLIT, "").trim();
       newHTMLLines.push(`<h2 class="header">${headerText}</h2>`);
+      
+      currentHeaderName = headerText;
     } else if (link.indexOf(BLOCK_SPLIT) === 0) {
       // section block
       if (isInABlock) {
@@ -250,9 +253,9 @@ window.getLinkDom = (linkDomHTML) => {
           }
 
           if(linkType === 'sameTabLink'){
-            newHTMLLines.push(`<a class="link sameTabLink" href="${linkUrl}">${linkText}</a>`);  
+            newHTMLLines.push(`<a class="link sameTabLink" href="${linkUrl}" data-section="${currentHeaderName}">${linkText}</a>`);  
           } else { // new_tab_link
-            newHTMLLines.push(`<a class="link newTabLink" href="${linkUrl}" target="_blank">${linkText}</a>`);
+            newHTMLLines.push(`<a class="link newTabLink" href="${linkUrl}" target="_blank" data-section="${currentHeaderName}>${linkText}</a>`);
           }
         }
       }
