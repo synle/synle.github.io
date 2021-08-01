@@ -85,13 +85,16 @@ a:hover,
 button:hover,
 a:active,
 button:active{
-  background: #ff5555;
-  color: #282a36;
+  background: #44475a;
+  color: #fff;
 }
 a:focus,
 button:focus{
-  background: #50fa7b;
-  color: #282a36;
+  background: #44475a;
+  color: ##50fa7b;
+}
+a,button,input{
+  outline: none;
 }
 #fav{
   margin: auto;
