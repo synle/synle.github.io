@@ -244,6 +244,8 @@ window.getLinkDom = (linkDomHTML) => {
         newHTMLLines.push(`<pre class="block">${blockBuffer.trim()}</pre>`);
         isInABlock = false;
         blockBuffer = "";
+        
+        currentHeaderName = ''; // reset the header name
       } else {
         // start a block
         isInABlock = true;
