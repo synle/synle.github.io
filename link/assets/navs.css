@@ -90,12 +90,12 @@ button:active{
   border-color: #50fa7b;
 }
 a:focus,
-button:focus{
+button:focus,
+input:focus,
+textarea:focus{
   background: #222;
   color: ##50fa7b;
   border-color: #ff5555;
-}
-a,button,input{
   outline: none;
 }
 #fav{
