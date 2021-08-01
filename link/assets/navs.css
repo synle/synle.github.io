@@ -87,6 +87,7 @@ a:active,
 button:active{
   background: #44475a;
   color: #fff;
+  border-color: #50fa7b;
 }
 a:focus,
 button:focus{
