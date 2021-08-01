@@ -4,6 +4,15 @@ const HEADER_SPLIT = "#";
 const TITLE_SPLIT = "!";
 const BLOCK_SPLIT = "```";
 
+let hasPendingChanges = false;
+
+window.onbeforeunload = function (e) {
+  if(hasPendingChanges){
+    return 'You have unsaved changes. Do you want to continue with exit?';
+  }
+  return undefined;
+};
+
 window.onViewSchema = () => {
   var output = [];
   var elems = document.querySelectorAll("#fav > *");
@@ -46,6 +55,7 @@ window.onViewSchema = () => {
         placeholder="Bookmarklet Input Schema" 
         wrap="soft"
         spellcheck="false"
+        oninput="hasPendingChanges = true;"
         onfocus="window.zoominInput(this)" 
         onblur="window.onGetGeneratedBookmarkletLink(document.querySelector('#input').value)">${output}</textarea>
       <textarea 
