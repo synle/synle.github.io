@@ -173,7 +173,7 @@ window.searchBookmarklet = (val) => {
     return;
   }
   
-  const matchRegex = new RegExp('^' + val.split('').join('[a-z0-9 ]*'), 'i');
+  const matchRegex = new RegExp('[ ]*' + val.split('').join('[a-z0-9 ]*'), 'i');
 
   // show or hide
   for(const elem of document.querySelectorAll('#fav .link')){
@@ -182,7 +182,7 @@ window.searchBookmarklet = (val) => {
     const anchor = elem;
     if (anchor.innerText.match(matchRegex)) {
       isHidden = false;
-    } else if (anchor.dataset.section && anchor.dataset.section.toLowerCase().trim().includes(val)){
+    } else if (anchor.dataset.section && anchor.dataset.section.match(matchRegex)){
       isHidden = false;
     }
 
