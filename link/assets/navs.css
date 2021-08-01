@@ -93,18 +93,6 @@ button:focus{
   background: #50fa7b;
   color: #282a36;
 }
-a:hover,
-button:hover,
-a:focus,
-button:focus,
-a:active,
-button:active,
-input:focus,
-textarea:focus {
-  border: var(--borderSize1) solid #8be9fd;
-  background: #000;
-  outline: none;
-}
 #fav{
   margin: auto;
   display: grid;
