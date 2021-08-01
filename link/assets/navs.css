@@ -17,7 +17,8 @@ html {
   --gridColumnLayout: 250px 250px 250px;
 }
 
-*, ::placeholder {
+*,
+::placeholder {
   box-sizing: border-box;
   color: #fff;
 }
@@ -84,8 +85,8 @@ button {
 a:hover,
 button:hover,
 input:hover,
-input:hover{
-  background: #44475a;
+input:hover {
+  background: #44475a !important;
   color: #fff;
   border-color: #50fa7b !important;
   outline: none;
@@ -93,13 +94,22 @@ input:hover{
 a:focus,
 button:focus,
 input:focus,
-textarea:focus{
-  background: #222;
+textarea:focus {
+  background: #222 !important;
   color: #fff;
   border-color: #50fa7b !important;
   outline: none;
 }
-#fav{
+
+a,
+button,
+#fav .title,
+#fav .header,
+#fav .block {
+  padding: var(--spaceSize2);
+}
+
+#fav {
   margin: auto;
   display: grid;
   grid-template-columns: var(--gridColumnLayout);
@@ -107,22 +117,21 @@ textarea:focus{
   justify-content: center;
 }
 
-#fav .title, #fav .header, #fav .block, #fav form{
+#fav .title,
+#fav .header,
+#fav .block,
+#fav form {
   grid-column: 1/-1;
 }
 
-a,button, #fav .title, #fav .header, #fav .block{
-  padding: var(--spaceSize2);
-}
-
-.title{
+#fav .title {
   text-transform: uppercase;
   text-align: center;
   border-top: var(--borderSize2) solid #f1fa8c;
   border-bottom: var(--borderSize2) solid #f1fa8c;
 }
 
-.header{
+#fav .header {
   text-transform: uppercase;
   background: #000;
   border-left: var(--borderSize4) solid #f1fa8c;
@@ -131,7 +140,7 @@ a,button, #fav .title, #fav .header, #fav .block{
   top: 0;
 }
 
-.block{
+#fav .block {
   background: #000;
 }
 
@@ -160,12 +169,12 @@ a,button, #fav .title, #fav .header, #fav .block{
   bottom: 0;
   z-index: 1;
 }
-#command{
+#command {
   display: grid;
   grid-gap: var(--spaceSize3) var(--spaceSize4);
 }
 
-.hidden{
+.hidden {
   display: none;
 }
 
@@ -173,8 +182,8 @@ a,button, #fav .title, #fav .header, #fav .block{
   html {
     --gridColumnLayout: 250px 250px;
   }
-  
-  #fav{
+
+  #fav {
     grid-gap: var(--spaceSize1) var(--spaceSize1);
   }
 }
@@ -186,15 +195,20 @@ a,button, #fav .title, #fav .header, #fav .block{
     --fontSize3: 16px;
     --gridColumnLayout: calc(100% - 20px);
   }
-  
-  #fav{
+
+  #fav {
     grid-gap: var(--spaceSize1);
   }
-  
-  a,button, #fav .title, #fav .header, #fav .block, input{
+
+  a,
+  button,
+  #fav .title,
+  #fav .header,
+  #fav .block,
+  input {
     padding: var(--spaceSize1) var(--spaceSize2);
   }
-  
+
   html {
     margin-bottom: var(--spaceSize3);
   }
