@@ -174,31 +174,35 @@ window.searchBookmarklet = (val) => {
   }
 
   // show or hide
-  for(const elem of document.querySelectorAll('#fav .header, #fav .link')){
+  for(const elem of document.querySelectorAll('#fav .link')){
     let isHidden = true;
     
-    if(elem.classList.contains('header')){
-      const header = elem;
-      let target = header.nextElementSibling;;
-      let isVisible = false;
-
-      while(target && target.classList.contains('link')){
-        if(!target.classList.contains('hidden')){
-          isVisible = true;
-          break;
-        }
-        target = target.nextElementSibling;
-      }
-
-      isHidden = !isVisible;
-    } else if(elem.classList.contains('link')){
-      const anchor = elem;
-      if (val === "" || anchor.innerText.toLowerCase().includes(val) || anchor.href.toLowerCase().includes(val)) {
-        isHidden = false;
-      } else if (anchor.dataset.section && anchor.dataset.section.toLowerCase().trim().includes(val)){
-        isHidden = false;
-      }
+    const anchor = elem;
+    if (val === "" || anchor.innerText.toLowerCase().includes(val) || anchor.href.toLowerCase().includes(val)) {
+      isHidden = false;
+    } else if (anchor.dataset.section && anchor.dataset.section.toLowerCase().trim().includes(val)){
+      isHidden = false;
     }
+
+    elem.classList.toggle("hidden", isHidden);
+  }
+  
+  for(const elem of document.querySelectorAll('#fav .header')){
+    let isHidden = true;
+    
+    const header = elem;
+    let target = header.nextElementSibling;;
+    let isVisible = false;
+
+    while(target && target.classList.contains('link')){
+      if(!target.classList.contains('hidden')){
+        isVisible = true;
+        break;
+      }
+      target = target.nextElementSibling;
+    }
+
+    isHidden = !isVisible;
     
     elem.classList.toggle("hidden", isHidden);
   }
