@@ -164,7 +164,7 @@ window.getNavBookmarkletFromSchema = (input) => {
 };
 
 window.searchBookmarklet = (val) => {
-  val = val.trim().toLowerCase();
+  val = val.split(' ').join('').trim();
   
   if(val.length === 0){
     for(const elem of document.querySelectorAll('#fav .header, #fav .link')){
