@@ -172,13 +172,15 @@ window.searchBookmarklet = (val) => {
     }  
     return;
   }
+  
+  const matchRegex = new RegExp(val.split('').join('[a-z0-9 ]*'), 'i');
 
   // show or hide
   for(const elem of document.querySelectorAll('#fav .link')){
     let isHidden = true;
     
     const anchor = elem;
-    if (val === "" || anchor.innerText.toLowerCase().includes(val) || anchor.href.toLowerCase().includes(val)) {
+    if (anchor.innerText.match(matchRegex)) {
       isHidden = false;
     } else if (anchor.dataset.section && anchor.dataset.section.toLowerCase().trim().includes(val)){
       isHidden = false;
