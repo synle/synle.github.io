@@ -8,7 +8,8 @@ let hasPendingChanges = false;
 
 window.onbeforeunload = function (e) {
   if(hasPendingChanges){
-    return 'You have unsaved changes. Do you want to continue with exit?';
+      e.preventDefault();
+      return e.returnValue = 'You have unsaved changes. Do you want to continue with exit?';
   }
   return undefined;
 };
