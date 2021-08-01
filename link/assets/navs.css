@@ -83,11 +83,15 @@ button {
 }
 a:hover,
 button:hover,
-a:focus,
-button:focus,
 a:active,
 button:active{
-  filter: invert(0.9);
+  background: #ff5555;
+  color: #fff;
+}
+a:focus,
+button:focus{
+  background: #50fa7b;
+  color: #282a36;
 }
 a:hover,
 button:hover,
