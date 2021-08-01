@@ -290,7 +290,7 @@ window.getLinkDom = (linkDomHTML) => {
           if(linkType === 'sameTabLink'){
             newHTMLLines.push(`<a class="link sameTabLink" href="${linkUrl}" data-section="${currentHeaderName}">${linkText}</a>`);  
           } else { // new_tab_link
-            newHTMLLines.push(`<a class="link newTabLink" href="${linkUrl}" target="_blank" data-section="${currentHeaderName}>${linkText}</a>`);
+            newHTMLLines.push(`<a class="link newTabLink" href="${linkUrl}" target="_blank" data-section="${currentHeaderName}">${linkText}</a>`);
           }
         }
       }
