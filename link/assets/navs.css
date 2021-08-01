@@ -92,6 +92,7 @@ a:focus,
 button:focus{
   background: #44475a;
   color: ##50fa7b;
+  border-color: #ff5555;
 }
 a,button,input{
   outline: none;
