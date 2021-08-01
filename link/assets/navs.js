@@ -171,7 +171,7 @@ window.searchBookmarklet = (val) => {
     if (val === "" || anchor.innerText.toLowerCase().includes(val) || anchor.href.toLowerCase().includes(val)) {
       isHidden = false;
     } else if (anchor.dataset.section && anchor.dataset.section.toLowerCase().trim().includes(val)){
-      isHidden = true;
+      isHidden = false;
     }
     anchor.classList.toggle("hidden", isHidden);
   }
