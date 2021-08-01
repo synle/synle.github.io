@@ -91,7 +91,7 @@ button:active{
 }
 a:focus,
 button:focus{
-  background: #44475a;
+  background: #222;
   color: ##50fa7b;
   border-color: #ff5555;
 }
