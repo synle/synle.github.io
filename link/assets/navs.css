@@ -83,18 +83,19 @@ button {
 }
 a:hover,
 button:hover,
-a:active,
-button:active{
+input:hover,
+input:hover{
   background: #44475a;
   color: #fff;
-  border-color: #50fa7b;
+  border-color: #50fa7b !important;
+  outline: none;
 }
 a:focus,
 button:focus,
 input:focus,
 textarea:focus{
   background: #222;
-  color: ##50fa7b;
+  color: #fff;
   border-color: #50fa7b !important;
   outline: none;
 }
