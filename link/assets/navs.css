@@ -95,7 +95,7 @@ input:focus,
 textarea:focus{
   background: #222;
   color: ##50fa7b;
-  border-color: #ff5555;
+  border-color: #50fa7b;
   outline: none;
 }
 #fav{
