@@ -86,7 +86,7 @@ button:hover,
 a:active,
 button:active{
   background: #ff5555;
-  color: #fff;
+  color: #282a36;
 }
 a:focus,
 button:focus{
