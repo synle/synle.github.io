@@ -324,7 +324,10 @@ window.onSubmitNavigationSearch = () => {
   const links = document.querySelectorAll("a.link:not(.hidden)");
   if(links && links.length > 0){
     links[0].focus();
-    location.href = links[0].href;
+    
+    if(links.length === 1){
+      location.href = links[0].href;
+    }
   }
   return false;
 }
