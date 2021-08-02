@@ -80,12 +80,12 @@ a,
 button {
   transition: all 0.25s ease-out;
   cursor: pointer;
-  border: var(--borderSize1) solid var(--colorBorderMain);
   text-transform: uppercase;
   font-weight: var(--fontWeightSemiBold);
+  background: var(--colorBgSecondary);
+  border: var(--borderSize1) solid var(--colorBorderMain);
 }
 a {
-  background: var(--colorBgSecondary);
   color: var(--colorTextLink);
   display: block;
   text-decoration: none;
@@ -93,7 +93,6 @@ a {
 }
 button {
   margin: 0 auto 0 auto;
-  background: var(--colorBgSecondary);
   border: var(--borderSize1) solid  var(--colorBorderMain);
   display: block;
   user-select: none;
@@ -142,7 +141,7 @@ button,
 
 #fav .header {
   text-transform: uppercase;
-  background: #000;
+  background: var(--colorBgSecondary);
   border-left: var(--borderSize4) solid var(--colorBgHighlight);
   font-weight: var(--fontWeightBold);
   position: sticky;
