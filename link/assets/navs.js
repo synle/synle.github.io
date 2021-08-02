@@ -140,7 +140,7 @@ window.onViewLinks = (linkDomHTML, hideSchemaForm) => {
   );
 
   // setting up the autocomplete
-  document.querySelector("#linkList").innerHTML = [...document.querySelectorAll("a.link")]
+  document.querySelector("#linkList").innerHTML = [...new Set([...document.querySelectorAll("a.link")])]
     .map((r) => r.innerText)
     .sort()
     .map((r) => `<option>${r}</option>`)
