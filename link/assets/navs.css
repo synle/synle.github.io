@@ -28,6 +28,7 @@ html {
   --colorBoxShadowMain: 0 0 0 3px #0c2d6b;
   
   --fontWeightBold: 600;
+  --fontWeightSemiBold: 600;
 }
 
 *,
@@ -80,6 +81,7 @@ button {
   cursor: pointer;
   border: var(--borderSize1) solid var(--colorBorderMain);
   text-transform: uppercase;
+  font-weight: var(--fontWeightSemiBold);
 }
 a {
   background: var(--colorBgSecondary);
