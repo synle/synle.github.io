@@ -105,7 +105,8 @@ a,
 button,
 #fav .title,
 #fav .header,
-#fav .block {
+#fav .block,
+#command .title {
   padding: var(--spaceSize2);
 }
 
@@ -124,7 +125,8 @@ button,
   grid-column: 1/-1;
 }
 
-#fav .title {
+#fav .title,
+#command .title {
   text-transform: uppercase;
   text-align: center;
   border-top: var(--borderSize2) solid var(--colorBgHighlight);
