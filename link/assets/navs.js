@@ -50,7 +50,8 @@ window.onViewSchema = () => {
       <div style="display: flex; align-items:center">
         <button onclick="window.onViewLinks(window.getLinkDom(document.querySelector('#input').value))">View Links UI</button>
         <button onclick="window.onTestNav()">Test Nav</button>
-        <a target="_blank" style="text-align: center; margin: auto;" href="https://github.com/synle/synle.github.io/blob/master/link/assets/navs.js">View Source</a>
+        <a target="_blank" style="text-align: center; margin: auto;" href="https://github.com/synle/synle.github.io/blob/master/link/assets/navs.js">Nav JS Code</a>
+        <a target="_blank" style="text-align: center; margin: auto;" href="https://github.com/synle/synle.github.io/blob/master/link/assets/navs.css">Nav CSS Code</a>
       </div>
       <textarea id='input' 
         placeholder="Bookmarklet Input Schema" 
