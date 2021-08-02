@@ -154,7 +154,7 @@ button,
 #input,
 #output {
   background: #333;
-  border: var(--borderSize1) solid #666;
+  border: var(--borderSize1) solid var(--colorBorderMain);
   padding: var(--spaceSize1) var(--spaceSize2);
   width: 100%;
 }
