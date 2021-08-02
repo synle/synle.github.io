@@ -105,6 +105,7 @@ a:focus,
 button:focus,
 input:focus,
 textarea:focus {
+  background: var(--colorBgMain);
   box-shadow: var(--colorBoxShadowMain);
 }
 
