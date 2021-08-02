@@ -26,6 +26,8 @@ html {
   --colorBorderSecondary: #30363d;
   
   --colorBoxShadowMain: 0 0 0 3px #0c2d6b;
+  
+  --fontWeightBold: 600;
 }
 
 *,
@@ -132,12 +134,14 @@ button,
   text-align: center;
   border-top: var(--borderSize2) solid #f1fa8c;
   border-bottom: var(--borderSize2) solid #f1fa8c;
+  font-weight: var(--fontWeightBold);
 }
 
 #fav .header {
   text-transform: uppercase;
   background: #000;
   border-left: var(--borderSize4) solid #f1fa8c;
+  font-weight: var(--fontWeightBold);
   position: sticky;
   z-index: 0;
   top: 0;
@@ -150,7 +154,7 @@ button,
 #search,
 #input,
 #output {
-  background: #333;
+  background: var(--colorBgMain);
   border: var(--borderSize1) solid var(--colorBorderMain);
   padding: var(--spaceSize1) var(--spaceSize2);
   width: 100%;
