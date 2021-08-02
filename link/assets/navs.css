@@ -20,6 +20,7 @@ html {
   --colorBgSecondary: #0d1117;
   
   --colorTextMain: #c9d1d9;
+  --colorTextLink: #58a6ff;
 
   --colorBorderMain: #30363d;
   --colorBorderSecondary: #30363d;
@@ -80,7 +81,7 @@ button {
 }
 a {
   background: var(--colorBgSecondary);
-  color: var(--colorTextMain);
+  color: var(--colorTextLink);
   display: block;
   text-decoration: none;
   user-select: none;
@@ -95,15 +96,11 @@ button {
 a:hover,
 button:hover,
 input:hover,
-input:hover {
-  background: #44475a !important;
-  box-shadow: var(--colorBoxShadowMain);
-}
+input:hover,
 a:focus,
 button:focus,
 input:focus,
 textarea:focus {
-  background: #222 !important;
   box-shadow: var(--colorBoxShadowMain);
 }
 
