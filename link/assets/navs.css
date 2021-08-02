@@ -23,6 +23,8 @@ html {
 
   --colorBorderMain: #30363d;
   --colorBorderSecondary: #30363d;
+  
+  --colorBoxShadowMain: 0 0 0 3px #0c2d6b;
 }
 
 *,
@@ -95,16 +97,14 @@ button:hover,
 input:hover,
 input:hover {
   background: #44475a !important;
-  border-color:  var(--colorBorderSecondary) !important;
-  outline: none;
+  box-shadow: var(--colorBoxShadowMain);
 }
 a:focus,
 button:focus,
 input:focus,
 textarea:focus {
   background: #222 !important;
-  border-color:  var(--colorBorderSecondary) !important;
-  outline: none;
+  box-shadow: var(--colorBoxShadowMain);
 }
 
 a,
