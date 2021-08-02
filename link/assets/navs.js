@@ -202,7 +202,7 @@ window.searchBookmarklet = (val) => {
     return;
   }
 
-  const matchRegex = new RegExp("[ ]*" + val.split("").join("[a-z0-9 -]*"), "i");
+  const matchRegex = new RegExp("[ ]*" + val.split("").join("[a-z0-9 -_]*"), "i");
 
   // show or hide
   for (const elem of document.querySelectorAll("#fav .link")) {
