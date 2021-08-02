@@ -17,7 +17,7 @@ html {
   --gridColumnLayout: 250px 250px 250px;
   
   --colorBgMain: #0d1117;
-  --colorBgSecondary: #0d1117;
+  --colorBgSecondary: #161b22;
   --colorBgHighlight: #f1e05a;
   
   --colorTextMain: #c9d1d9;
@@ -29,7 +29,7 @@ html {
   --colorBoxShadowMain: 0 0 0 3px #0c2d6b;
   
   --fontWeightBold: 600;
-  --fontWeightSemiBold: 600;
+  --fontWeightSemiBold: 500;
 }
 
 *,
