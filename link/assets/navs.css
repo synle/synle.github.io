@@ -18,6 +18,7 @@ html {
   
   --colorBgMain: #0d1117;
   --colorBgSecondary: #0d1117;
+  --colorBgHighlight: #f1e05a;
   
   --colorTextMain: #c9d1d9;
   --colorTextLink: #58a6ff;
@@ -134,15 +135,15 @@ button,
 #fav .title {
   text-transform: uppercase;
   text-align: center;
-  border-top: var(--borderSize2) solid #f1fa8c;
-  border-bottom: var(--borderSize2) solid #f1fa8c;
+  border-top: var(--borderSize2) solid var(--colorBgHighlight);
+  border-bottom: var(--borderSize2) solid var(--colorBgHighlight);
   font-weight: var(--fontWeightBold);
 }
 
 #fav .header {
   text-transform: uppercase;
   background: #000;
-  border-left: var(--borderSize4) solid #f1fa8c;
+  border-left: var(--borderSize4) solid var(--colorBgHighlight);
   font-weight: var(--fontWeightBold);
   position: sticky;
   z-index: 0;
