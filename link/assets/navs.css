@@ -84,17 +84,9 @@ button {
   font-weight: var(--fontWeightSemiBold);
   background: var(--colorBgSecondary);
   border: var(--borderSize1) solid var(--colorBorderMain);
-}
-a {
-  color: var(--colorTextLink);
+  margin: 0 auto 0 auto;
   display: block;
   text-decoration: none;
-  user-select: none;
-}
-button {
-  margin: 0 auto 0 auto;
-  border: var(--borderSize1) solid  var(--colorBorderMain);
-  display: block;
   user-select: none;
 }
 a:hover,
