@@ -7,9 +7,10 @@ const BLOCK_SPLIT = "```";
 let hasPendingChanges = false;
 
 window.onbeforeunload = function (e) {
-  if(hasPendingChanges){
-      e.preventDefault();
-      return e.returnValue = 'You have unsaved changes. Do you want to continue with exit?';
+  if (hasPendingChanges) {
+    e.preventDefault();
+    return (e.returnValue =
+      "You have unsaved changes. Do you want to continue with exit?");
   }
   return undefined;
 };
@@ -26,9 +27,11 @@ window.onViewSchema = () => {
       const fullLink = link.href;
       const description = link.innerHTML;
 
-      if(elem.classList.contains('newTabLink')){// new tab
-        output.push(`${description} ${NEW_TAB_LINK_SPLIT} ${fullLink}`);  
-      } else {// same tab
+      if (elem.classList.contains("newTabLink")) {
+        // new tab
+        output.push(`${description} ${NEW_TAB_LINK_SPLIT} ${fullLink}`);
+      } else {
+        // same tab
         output.push(`${description} ${SAME_TAB_LINK_SPLIT} ${fullLink}`);
       }
     } else if (elem.classList.contains("block")) {
@@ -70,8 +73,11 @@ window.onViewSchema = () => {
   `;
 
   window.zoominInput = (target) => {
-    [...document.querySelectorAll('#input,#output')].forEach(r => r.style.height = '');
-    target.style.height = Math.max(450, document.body.clientHeight - 375) + "px";
+    [...document.querySelectorAll("#input,#output")].forEach(
+      (r) => (r.style.height = "")
+    );
+    target.style.height =
+      Math.max(450, document.body.clientHeight - 375) + "px";
   };
 
   document.body.innerHTML = rawSchemaDataDom;
@@ -95,9 +101,15 @@ window.onViewSchema = () => {
       var endPos = myField.selectionEnd;
 
       if (startPos === endPos) {
-        myField.value = myField.value.substring(0, startPos) + myValue + myField.value.substring(endPos);
+        myField.value =
+          myField.value.substring(0, startPos) +
+          myValue +
+          myField.value.substring(endPos);
 
-        myField.setSelectionRange(startPos + myValue.length, endPos + myValue.length);
+        myField.setSelectionRange(
+          startPos + myValue.length,
+          endPos + myValue.length
+        );
       }
     }
 
@@ -105,7 +117,9 @@ window.onViewSchema = () => {
       var startPos = myField.selectionStart;
       var endPos = myField.selectionEnd;
 
-      myField.value = myField.value.substring(0, startPos - 2) + myField.value.substring(endPos);
+      myField.value =
+        myField.value.substring(0, startPos - 2) +
+        myField.value.substring(endPos);
 
       myField.setSelectionRange(startPos - length, endPos - length);
     }
@@ -140,15 +154,18 @@ window.onViewLinks = (linkDomHTML, hideSchemaForm) => {
   );
 
   // setting up the autocomplete
-  document.querySelector("#linkList").innerHTML = [...new Set([...document.querySelectorAll("a.link")])]
-    .map((r) => r.innerText)
-    .sort()
+  document.querySelector("#linkList").innerHTML = [
+    ...new Set(
+      [...document.querySelectorAll("a.link")].map((r) => r.innerText).sort()
+    ),
+  ]
     .map((r) => `<option>${r}</option>`)
-    .join("");
+    .join("\n");
 };
 
 window.onGetGeneratedBookmarkletLink = (input) => {
-  document.querySelector("#output").value = window.getNavBookmarkletFromSchema(input);
+  document.querySelector("#output").value =
+    window.getNavBookmarkletFromSchema(input);
 };
 
 window.getNavBookmarkletFromSchema = (input) => {
@@ -176,40 +193,43 @@ window.getNavBookmarkletFromSchema = (input) => {
 };
 
 window.searchBookmarklet = (val) => {
-  val = val.split(' ').join('').trim();
-  
-  if(val.length === 0){
-    for(const elem of document.querySelectorAll('#fav .header, #fav .link')){
+  val = val.split(" ").join("").trim();
+
+  if (val.length === 0) {
+    for (const elem of document.querySelectorAll("#fav .header, #fav .link")) {
       elem.classList.toggle("hidden", false);
-    }  
+    }
     return;
   }
-  
-  const matchRegex = new RegExp('[ ]*' + val.split('').join('[a-z0-9 ]*'), 'i');
+
+  const matchRegex = new RegExp("[ ]*" + val.split("").join("[a-z0-9 ]*"), "i");
 
   // show or hide
-  for(const elem of document.querySelectorAll('#fav .link')){
+  for (const elem of document.querySelectorAll("#fav .link")) {
     let isHidden = true;
-    
+
     const anchor = elem;
     if (anchor.innerText.match(matchRegex)) {
       isHidden = false;
-    } else if (anchor.dataset.section && anchor.dataset.section.match(matchRegex)){
+    } else if (
+      anchor.dataset.section &&
+      anchor.dataset.section.match(matchRegex)
+    ) {
       isHidden = false;
     }
 
     elem.classList.toggle("hidden", isHidden);
   }
-  
-  for(const elem of document.querySelectorAll('#fav .header')){
+
+  for (const elem of document.querySelectorAll("#fav .header")) {
     let isHidden = true;
-    
+
     const header = elem;
-    let target = header.nextElementSibling;;
+    let target = header.nextElementSibling;
     let isVisible = false;
 
-    while(target && target.classList.contains('link')){
-      if(!target.classList.contains('hidden')){
+    while (target && target.classList.contains("link")) {
+      if (!target.classList.contains("hidden")) {
         isVisible = true;
         break;
       }
@@ -217,7 +237,7 @@ window.searchBookmarklet = (val) => {
     }
 
     isHidden = !isVisible;
-    
+
     elem.classList.toggle("hidden", isHidden);
   }
 };
@@ -238,7 +258,7 @@ window.getLinkDom = (linkDomHTML) => {
 
   let blockBuffer = "";
   let isInABlock = false;
-  let currentHeaderName = '';
+  let currentHeaderName = "";
 
   let rawLinkHTML = lines.forEach((link) => {
     if (link.indexOf(TITLE_SPLIT) === 0) {
@@ -249,7 +269,7 @@ window.getLinkDom = (linkDomHTML) => {
       // section header
       const headerText = link.replace(HEADER_SPLIT, "").trim();
       newHTMLLines.push(`<h2 class="header">${headerText}</h2>`);
-      
+
       currentHeaderName = headerText;
     } else if (link.indexOf(BLOCK_SPLIT) === 0) {
       // section block
@@ -258,8 +278,8 @@ window.getLinkDom = (linkDomHTML) => {
         newHTMLLines.push(`<pre class="block">${blockBuffer.trim()}</pre>`);
         isInABlock = false;
         blockBuffer = "";
-        
-        currentHeaderName = ''; // reset the header name
+
+        currentHeaderName = ""; // reset the header name
       } else {
         // start a block
         isInABlock = true;
@@ -276,35 +296,51 @@ window.getLinkDom = (linkDomHTML) => {
         try {
           // try parse as new tab link
           linkText = link.substr(0, link.indexOf(NEW_TAB_LINK_SPLIT)).trim();
-          linkUrl = link.substr(link.indexOf(NEW_TAB_LINK_SPLIT) + NEW_TAB_LINK_SPLIT.length).trim();
+          linkUrl = link
+            .substr(
+              link.indexOf(NEW_TAB_LINK_SPLIT) + NEW_TAB_LINK_SPLIT.length
+            )
+            .trim();
 
           if (linkUrl && linkText) {
-            linkType = 'newTabLink';
+            linkType = "newTabLink";
           }
         } catch (err) {}
-        
-        if(!linkType){
+
+        if (!linkType) {
           // try parse as same tab link
           try {
             linkText = link.substr(0, link.indexOf(SAME_TAB_LINK_SPLIT)).trim();
-            linkUrl = link.substr(link.indexOf(SAME_TAB_LINK_SPLIT) + SAME_TAB_LINK_SPLIT.length).trim();
+            linkUrl = link
+              .substr(
+                link.indexOf(SAME_TAB_LINK_SPLIT) + SAME_TAB_LINK_SPLIT.length
+              )
+              .trim();
 
             if (linkUrl && linkText) {
-              linkType = 'sameTabLink';
+              linkType = "sameTabLink";
             }
           } catch (err) {}
         }
 
         // if found a link type...
-        if(linkType){
-          if (linkUrl.indexOf("http://") !== 0 && linkUrl.indexOf("https://") !== 0) {
+        if (linkType) {
+          if (
+            linkUrl.indexOf("http://") !== 0 &&
+            linkUrl.indexOf("https://") !== 0
+          ) {
             linkUrl = `https://` + linkUrl;
           }
 
-          if(linkType === 'sameTabLink'){
-            newHTMLLines.push(`<a class="link sameTabLink" href="${linkUrl}" data-section="${currentHeaderName}">${linkText}</a>`);  
-          } else { // new_tab_link
-            newHTMLLines.push(`<a class="link newTabLink" href="${linkUrl}" target="_blank" data-section="${currentHeaderName}">${linkText}</a>`);
+          if (linkType === "sameTabLink") {
+            newHTMLLines.push(
+              `<a class="link sameTabLink" href="${linkUrl}" data-section="${currentHeaderName}">${linkText}</a>`
+            );
+          } else {
+            // new_tab_link
+            newHTMLLines.push(
+              `<a class="link newTabLink" href="${linkUrl}" target="_blank" data-section="${currentHeaderName}">${linkText}</a>`
+            );
           }
         }
       }
@@ -336,15 +372,15 @@ window.onTestNav = () => {
 
 window.onSubmitNavigationSearch = () => {
   const links = document.querySelectorAll("a.link:not(.hidden)");
-  if(links && links.length > 0){
+  if (links && links.length > 0) {
     links[0].focus();
-    
-    if(links.length === 1){
+
+    if (links.length === 1) {
       location.href = links[0].href;
     }
   }
   return false;
-}
+};
 
 // insert zoom scale of 1 for mobile
 document.head.insertAdjacentHTML(
@@ -359,10 +395,10 @@ document.head.insertAdjacentHTML(
 );
 
 // special handling for ctrl + f to focus on searchbox
-document.addEventListener('keydown', (e) => {
-  const searchBox = document.querySelector('#search');
-  if(searchBox){
-    if(e.key === 'f' && (e.ctrlKey || e.altKey || e.metaKey)){
+document.addEventListener("keydown", (e) => {
+  const searchBox = document.querySelector("#search");
+  if (searchBox) {
+    if (e.key === "f" && (e.ctrlKey || e.altKey || e.metaKey)) {
       searchBox.focus();
       e.preventDefault();
     }
