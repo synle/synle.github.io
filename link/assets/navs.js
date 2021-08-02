@@ -47,11 +47,11 @@ window.onViewSchema = () => {
   const rawSchemaDataDom = `
     <div id='command'>
       <div><h1 class='title'>Navigation Form</h1></div>
-      <div style="display: flex; align-items:center">
+      <div style="display: flex; align-items:center; justify-content: space-evenly;">
         <button onclick="window.onViewLinks(window.getLinkDom(document.querySelector('#input').value))">View Links UI</button>
         <button onclick="window.onTestNav()">Test Nav</button>
-        <a target="_blank" style="text-align: center; margin: auto;" href="https://github.com/synle/synle.github.io/blob/master/link/assets/navs.js">Nav JS Code</a>
-        <a target="_blank" style="text-align: center; margin: auto;" href="https://github.com/synle/synle.github.io/blob/master/link/assets/navs.css">Nav CSS Code</a>
+        <a target="_blank" style="text-align: center;" href="https://github.com/synle/synle.github.io/blob/master/link/assets/navs.js">Nav JS Code</a>
+        <a target="_blank" style="text-align: center;" href="https://github.com/synle/synle.github.io/blob/master/link/assets/navs.css">Nav CSS Code</a>
       </div>
       <textarea id='input' 
         placeholder="Bookmarklet Input Schema" 
@@ -116,8 +116,8 @@ window.onViewLinks = (linkDomHTML, hideSchemaForm) => {
   if (hideSchemaForm !== false) {
     document.body.innerHTML =
       linkDomHTML +
-      `<div style="display: flex; margin-top: 1rem; align-items:center">
-          <button onClick='window.onViewSchema()'>View Schema Source</button>
+      `<div style="display: flex; margin-top: 1rem; align-items:center; justify-content: center;">
+          <button onClick='window.onViewSchema()'>View Schema</button>
         </div>`;
   }
 
