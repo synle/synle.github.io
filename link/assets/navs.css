@@ -16,8 +16,13 @@ html {
 
   --gridColumnLayout: 250px 250px 250px;
   
-  --colorBg: #0d1117 !important;
+  --colorBgMain: #0d1117;
+  --colorBgSecondary: #0d1117;
+  
   --colorTextMain: #c9d1d9;
+
+  --colorBorderMain: #30363d;
+  --colorBorderSecondary: #30363d;
 }
 
 *,
@@ -41,7 +46,7 @@ body,
 body:before,
 body:after {
   border: none !important;
-  background-color: var(--colorBg);
+  background-color: var(--colorBgMain) !important;
 }
 form,
 pre,
@@ -68,11 +73,11 @@ a,
 button {
   transition: all 0.25s ease-out;
   cursor: pointer;
-  border: var(--borderSize1) solid #aaaec9;
+  border: var(--borderSize1) solid var(--colorBorderMain);
   text-transform: uppercase;
 }
 a {
-  background: #6272a4;
+  background: var(--colorBgSecondary);
   color: var(--colorTextMain);
   display: block;
   text-decoration: none;
@@ -80,8 +85,8 @@ a {
 }
 button {
   margin: 0 auto 0 auto;
-  background: #333;
-  border: var(--borderSize1) solid #fff;
+  background: var(--colorBgSecondary);
+  border: var(--borderSize1) solid  var(--colorBorderMain);
   display: block;
   user-select: none;
 }
@@ -90,8 +95,7 @@ button:hover,
 input:hover,
 input:hover {
   background: #44475a !important;
-  color: var(--colorTextMain);
-  border-color: #50fa7b !important;
+  border-color:  var(--colorBorderSecondary) !important;
   outline: none;
 }
 a:focus,
@@ -99,8 +103,7 @@ button:focus,
 input:focus,
 textarea:focus {
   background: #222 !important;
-  color: var(--colorTextMain);
-  border-color: #50fa7b !important;
+  border-color:  var(--colorBorderSecondary) !important;
   outline: none;
 }
 
