@@ -15,12 +15,15 @@ html {
   --fontSize3: 22px;
 
   --gridColumnLayout: 250px 250px 250px;
+  
+  --colorBg: #0d1117 !important;
+  --colorTextMain: #c9d1d9;
 }
 
 *,
 ::placeholder {
   box-sizing: border-box;
-  color: #fff;
+  color: var(--colorTextMain);
 }
 html {
   margin-top: var(--spaceSize2);
@@ -38,7 +41,7 @@ body,
 body:before,
 body:after {
   border: none !important;
-  background-color: #282a36 !important;
+  background-color: var(--colorBg);
 }
 form,
 pre,
@@ -70,7 +73,7 @@ button {
 }
 a {
   background: #6272a4;
-  color: #fff;
+  color: var(--colorTextMain);
   display: block;
   text-decoration: none;
   user-select: none;
@@ -87,7 +90,7 @@ button:hover,
 input:hover,
 input:hover {
   background: #44475a !important;
-  color: #fff;
+  color: var(--colorTextMain);
   border-color: #50fa7b !important;
   outline: none;
 }
@@ -96,7 +99,7 @@ button:focus,
 input:focus,
 textarea:focus {
   background: #222 !important;
-  color: #fff;
+  color: var(--colorTextMain);
   border-color: #50fa7b !important;
   outline: none;
 }
