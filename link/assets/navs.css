@@ -82,7 +82,7 @@ button {
   cursor: pointer;
   text-transform: uppercase;
   font-weight: var(--fontWeightSemiBold);
-  background: var(--colorBgSecondary);
+  background: var(--colorBgMain);
   color: var(--colorTextLink);
   border: var(--borderSize1) solid var(--colorBorderMain);
   display: block;
@@ -97,7 +97,7 @@ a:focus,
 button:focus,
 input:focus,
 textarea:focus {
-  background: var(--colorBgMain);
+  background: var(--colorBgSecondary);
   box-shadow: var(--colorBoxShadowMain);
 }
 
