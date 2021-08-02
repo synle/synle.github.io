@@ -83,8 +83,8 @@ button {
   text-transform: uppercase;
   font-weight: var(--fontWeightSemiBold);
   background: var(--colorBgSecondary);
+  color: var(--colorTextLink);
   border: var(--borderSize1) solid var(--colorBorderMain);
-  margin: 0 auto 0 auto;
   display: block;
   text-decoration: none;
   user-select: none;
