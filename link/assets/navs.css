@@ -164,12 +164,7 @@ button,
   height: 150px;
   transition: all 0.25s ease-out;
   font-family: monospace;
-}
-#input {
   white-space: nowrap;
-}
-#output {
-  background: #6272a4;
 }
 #searchForm {
   position: sticky;
