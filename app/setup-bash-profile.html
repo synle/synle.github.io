@@ -84,7 +84,7 @@
     <div id='container'>
       <section id="commands" class='c1'>
       </section>
-      <form class='c2' onsubmit="document.querySelector('#output').focus(); return false;">
+      <form class='c2' onsubmit="selectCommands(); return false;">
         <!--     script to run     -->
         <div id="scriptToRunContainer" class='c2-child'>
           <input
@@ -276,6 +276,7 @@ export is_os_android_termux='${is_os_android_termux}' && \\
       }
 
       function selectCommands() {
+        document.querySelector('#output').focus();
         document.querySelector("#output").select();
         document.execCommand("copy");
       }
