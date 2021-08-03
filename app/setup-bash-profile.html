@@ -84,7 +84,7 @@
     <div id='container'>
       <section id="commands" class='c1'>
       </section>
-      <form class='c2'>
+      <form class='c2' onsubmit="document.querySelector('#output').focus(); return false;">
         <!--     script to run     -->
         <div id="scriptToRunContainer" class='c2-child'>
           <input
@@ -93,6 +93,7 @@
             type="text"
             onchange="updateScript()"
             placeholder="Script To Run"
+            required
           />
           <datalist id="scriptToRunOptions"></datalist>
           <b>Script Type:</b>
