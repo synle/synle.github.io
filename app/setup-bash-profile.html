@@ -241,8 +241,8 @@
           )
         );
         
-        document.querySelector("#scriptToRunContainer").style.display = selectedScript.shouldShowScriptNameInput ? "block" : "none";
-        document.querySelector("#osToRunContainer").style.display = selectedScript.shouldShowOsSelectionInput ? "block" : "none";
+        document.querySelector("#scriptToRunContainer").style.display = selectedScript.shouldShowScriptNameInput ? "" : "none";
+        document.querySelector("#osToRunContainer").style.display = selectedScript.shouldShowOsSelectionInput ? "" : "none";
         document.querySelector("#output").value = newCommands.join("\n");
       }
       
