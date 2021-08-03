@@ -154,9 +154,8 @@
           .sort()
           .map((scriptName) => `<option>${scriptName}</option>`)
           .join("\n");
-        document.querySelector(
-          "#scriptToRunOptions"
-        ).innerHTML = scriptToRunOptions;
+        
+        window.scriptToRunOptionsMetaData = scriptToRunOptions;
 
         for (const config of configs) {
           const domCommand = document.createElement("div");
@@ -212,7 +211,7 @@
               onchange="updateScript()"
               placeholder="Script To Run"
             />
-            <datalist id="scriptToRunOptions"></datalist>
+            <datalist id="scriptToRunOptions">${window.scriptToRunOptionsMetaData}</datalist>
             <b>Script Type:</b>
             <select id='singleScriptType' onchange="updateScript()">
               <option value="test-live.sh" selected>Use Live Script</option>
