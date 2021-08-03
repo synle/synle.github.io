@@ -99,7 +99,7 @@
         </div>
         
         <!--     os to run     -->
-        <div id='osToRunContainer' class='c3'>
+        <div id='osToRunContainer'>
           <b>OS Type:</b>
           <select id='osToRun' onchange="updateScript()" oninput="localStorage.osToRun = document.querySelector('#osToRun').value">
             <option value="windows" selected>Windows with WSL</option>
@@ -119,7 +119,7 @@
         ></textarea>
       </form>
       
-      <div id='bot'>
+      <div id='bot' class='c3'>
         <a
           href="https://github.com/synle/bashrc"
           target="_blank"
