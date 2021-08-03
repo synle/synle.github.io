@@ -82,49 +82,7 @@
     <div id='container'>
       <section id="commands" class='c1'>
       </section>
-      <form class='c2'>
-        <!--     script to run     -->
-        <div id="scriptToRunContainer" class='c2-child'>
-          <input
-            id="singleScriptToUse"
-            list="scriptToRunOptions"
-            type="text"
-            onchange="updateScript()"
-            placeholder="Script To Run"
-          />
-          <datalist id="scriptToRunOptions"></datalist>
-          <b>Script Type:</b>
-          <select id='singleScriptType' onchange="updateScript()">
-            <option value="test-live.sh" selected>Use Live Script</option>
-            <option value="test.sh">Use Local Script</option>
-          </select>
-          <b>Debug Write To File:</b>
-          <select id='debugWriteToFile' onchange="updateScript()">
-            <option value="" selected>No</option>
-            <option value="&& export DEBUG_WRITE_TO_HOME='1'">Yes</option>
-           </select>
-        </div>
-        
-        <!--     os to run     -->
-        <div id='osToRunContainer' class='c2-child'>
-          <b>OS Type:</b>
-          <select id='osToRun' onchange="updateScript()" oninput="localStorage.osToRun = document.querySelector('#osToRun').value">
-            <option value="windows" selected>Windows with WSL</option>
-            <option value="ming_64">Windows with Ming_64</option>
-            <option value="mac">Mac OSX</option>
-            <option value="chrome_os">Chrome OS with Linux</option>
-            <option value="ubuntu">Ubuntu</option>
-            <option value="android_termux">Android Termux</option>
-          </select>
-        </div>
-        
-        <textarea
-          id="output"
-          placeholder="Output"
-          readonly="true"
-          onclick="selectCommands()"
-        ></textarea>
-      </form>
+      <form id='form' class='c2'></form>
       
       <div id='bot' class='c3'>
         <a
@@ -240,10 +198,57 @@
             _getOsFlags(document.querySelector('#osToRun').value.trim())
           )
         );
+                
+        const form = document.querySelector('#form');
         
-        document.querySelector("#scriptToRunContainer").style.display = selectedScript.shouldShowScriptNameInput ? "" : "none";
-        document.querySelector("#osToRunContainer").style.display = selectedScript.shouldShowOsSelectionInput ? "" : "none";
-        document.querySelector("#output").value = newCommands.join("\n");
+        form.innerHTML= '';
+        
+        if(selectedScript.shouldShowScriptNameInput){
+          form.innerHTML += `
+            <input
+              id="singleScriptToUse"
+              list="scriptToRunOptions"
+              type="text"
+              onchange="updateScript()"
+              placeholder="Script To Run"
+            />
+            <datalist id="scriptToRunOptions"></datalist>
+            <b>Script Type:</b>
+            <select id='singleScriptType' onchange="updateScript()">
+              <option value="test-live.sh" selected>Use Live Script</option>
+              <option value="test.sh">Use Local Script</option>
+            </select>
+            <b>Debug Write To File:</b>
+            <select id='debugWriteToFile' onchange="updateScript()">
+              <option value="" selected>No</option>
+              <option value="&& export DEBUG_WRITE_TO_HOME='1'">Yes</option>
+            </select>
+          `.trim();
+        }
+        
+        
+        if(selectedScript.shouldShowOsSelectionInput){
+          form.innerHTML += `
+            <b>OS Type:</b>
+            <select id='osToRun' onchange="updateScript()" oninput="localStorage.osToRun = document.querySelector('#osToRun').value">
+              <option value="windows" selected>Windows with WSL</option>
+              <option value="ming_64">Windows with Ming_64</option>
+              <option value="mac">Mac OSX</option>
+              <option value="chrome_os">Chrome OS with Linux</option>
+              <option value="ubuntu">Ubuntu</option>
+              <option value="android_termux">Android Termux</option>
+            </select>
+          `.trim();
+        }
+        
+        form.innerHTML += `
+          <textarea
+            id="output"
+            placeholder="Output"
+            readonly="true"
+            onclick="selectCommands()"
+          >${newCommands.join("\n")}</textarea>
+        `.trim();
       }
       
       function _getOsFlags(osFlag){
