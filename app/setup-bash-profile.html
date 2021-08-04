@@ -217,7 +217,13 @@
 
         newCommands.push(
           selectedScript.script
-            .replace("<SELECT_SCRIPTS>", [...document.querySelectorAll(".scriptToUse")].map((s) => s.value.trim()).filter(s => !!s.trim()).join("\n"))
+            .replace(
+              "<SELECT_SCRIPTS>",
+              [...document.querySelectorAll(".scriptToUse")]
+                .map((s) => s.value.trim())
+                .filter((s) => !!s.trim())
+                .join("\n")
+            )
             .replace("<DEBUG_WRITE_TO_HOME>", document.querySelector("#debugWriteToFile").value.trim())
             .replace("<SELECTED_RUNNER_SCRIPT>", document.querySelector("#runnerToUse").value.trim())
             .replace("<OS_FLAGS>", _getOsFlags(document.querySelector("#osToRun").value.trim()))
@@ -281,11 +287,12 @@
         const osKeys = Object.keys(osFlags);
 
         return (
-          'NODE_VERSION_TO_USE=12.22.1 && \\\n' + 
-          'nvm install $NODE_VERSION_TO_USE && nvm use $NODE_VERSION_TO_USE && \\\n' + 
-          osKeys.map((key) => `export ${key}='${osFlags[key]}' && \\`).join("\n") +
-          '\n\\\n' + 
-          `echo """\n${osKeys.map((key) => `export ${key}='${osFlags[key]}'`).join("\n")}\n""" > ~/.bash_syle_os && \\\n`
+          [
+            "NODE_VERSION_TO_USE=12.22.1",
+            "nvm install $NODE_VERSION_TO_USE && nvm use $NODE_VERSION_TO_USE",
+            osKeys.map((key) => `export ${key}='${osFlags[key]}'`).join("\n"),
+            `echo """\n${osKeys.map((key) => `export ${key}='${osFlags[key]}'`).join("\n")}\n""" > ~/.bash_syle_os`,
+          ].join(" && \\\n") + " && "
         );
       }
 
