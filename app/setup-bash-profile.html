@@ -283,7 +283,8 @@
 
         return (
           osKeys.map((key) => `export ${key}='${osFlags[key]}' && \\`).join("\n") +
-          `\n\\\necho """\n${osKeys.map((key) => `export ${key}='${osFlags[key]}'`).join("\n")}\n""" > ~/.bash_syle_os && \\\n`
+          '\n\\\n' + 
+          `echo """\n${osKeys.map((key) => `export ${key}='${osFlags[key]}'`).join("\n")}\n""" > ~/.bash_syle_os && \\\n`
         );
       }
 
