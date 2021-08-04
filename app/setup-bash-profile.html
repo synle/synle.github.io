@@ -157,7 +157,7 @@
         },
         {
           text: "Test Single Script",
-          script: `<OS_FLAGS> export TEST_SCRIPT_FILES="""\n<SELECT_SCRIPTS>\n""" <DEBUG_WRITE_TO_HOME> && curl -s https://raw.githubusercontent.com/synle/bashrc/master/<SELECTED_RUNNER_SCRIPT> | bash`,
+          script: `<OS_FLAGS>\\\nexport TEST_SCRIPT_FILES="""\n<SELECT_SCRIPTS>\n""" <DEBUG_WRITE_TO_HOME> && curl -s https://raw.githubusercontent.com/synle/bashrc/master/<SELECTED_RUNNER_SCRIPT> | bash`,
           shouldShowScriptNameInput: true,
           shouldShowOsSelectionInput: true,
         },
