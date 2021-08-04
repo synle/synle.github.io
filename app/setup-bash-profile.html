@@ -91,9 +91,10 @@
       <form class="c2" onsubmit="selectCommands(); return false;">
         <!--     script to run     -->
         <div id="scriptToRunContainer" class="c2-child">
+          <b>Scripts To Run:</b>
           <button id="btnAddScript" onclick="addScriptTextbox()" type="button" style="width: 150px">Add Script</button>
           <datalist id="scriptToRunOptions"></datalist>
-          <b>Script Type:</b>
+          <b>Runner:</b>
           <select id="runnerToUse" onchange="updateScript()">
             <option value="test-live.sh" selected>Use Live Script</option>
             <option value="test.sh">Use Local Script</option>
