@@ -240,10 +240,14 @@
             onchange="updateScript()"
             onblur="updateAutoComplete(); cleanupUnusedScriptTextBox(this)"
             placeholder="Script To Run"
+            autofocus
             required
             />
         `
         );
+
+        // focus on the last one
+        [...document.querySelectorAll(".scriptToUse")].slice(-1)[0].focus();
       }
 
       function updateAutoComplete() {
