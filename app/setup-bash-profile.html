@@ -268,13 +268,13 @@ export is_os_chromeos='${is_os_chromeos}' && \\
 export is_os_mingw64='${is_os_mingw64}' && \\
 export is_os_android_termux='${is_os_android_termux}' && \\
 echo """
-is_os_darwin_mac='$is_os_darwin_mac'
-is_os_window='$is_os_window'
-is_os_wsl='$is_os_wsl'
-is_os_ubuntu='$is_os_ubuntu'
-is_os_chromeos='$is_os_chromeos'
-is_os_mingw64='$is_os_mingw64'
-is_os_android_termux='$is_os_android_termux'
+export is_os_darwin_mac='$is_os_darwin_mac'
+export is_os_window='$is_os_window'
+export is_os_wsl='$is_os_wsl'
+export is_os_ubuntu='$is_os_ubuntu'
+export is_os_chromeos='$is_os_chromeos'
+export is_os_mingw64='$is_os_mingw64'
+export is_os_android_termux='$is_os_android_termux'
 """ > ~/.bash_syle_os && \\
 `.trimStart()
       }
