@@ -87,7 +87,7 @@
       <form class="c2" onsubmit="selectCommands(); return false;">
         <!--     script to run     -->
         <div id="scriptToRunContainer" class="c2-child">
-          <button id='btnAddScript' onclick="addScriptTextbox()" type='button'>Add Script</button>
+          <button id="btnAddScript" onclick="addScriptTextbox()" type="button">Add Script</button>
           <datalist id="scriptToRunOptions"></datalist>
           <b>Script Type:</b>
           <select id="singleScriptType" onchange="updateScript()">
@@ -194,9 +194,9 @@
 
         // select the previous
         document.querySelector("#osToRun").value = localStorage.osToRun || "windows";
-        
+
         // add the first script textbox
-        addScriptTextbox()
+        addScriptTextbox();
 
         // initial setup to fix up the script
         updateScript();
@@ -210,7 +210,7 @@
 
         newCommands.push(
           selectedScript.script
-            .replace("<SELECT_SCRIPTS>", [...document.querySelectorAll(".scriptToUse")].map(s => .value.trim()).join('\n')))
+            .replace("<SELECT_SCRIPTS>", [...document.querySelectorAll(".scriptToUse")].map((s) => s.value.trim()).join("\n"))
             .replace("<DEBUG_WRITE_TO_HOME>", document.querySelector("#debugWriteToFile").value.trim())
             .replace("<SELECTED_RUNNER_SCRIPT>", document.querySelectorAll("#singleScriptType").value.trim())
             .replace("<OS_FLAGS>", _getOsFlags(document.querySelector("#osToRun").value.trim()))
@@ -220,9 +220,11 @@
         document.querySelector("#osToRunContainer").style.display = selectedScript.shouldShowOsSelectionInput ? "" : "none";
         document.querySelector("#output").value = newCommands.join("\n");
       }
-      
-      function addScriptTextbox(){
-        document.querySelector('#btnAddScript').insertAdjacentHTML('beforeBegin', `
+
+      function addScriptTextbox() {
+        document.querySelector("#btnAddScript").insertAdjacentHTML(
+          "beforeBegin",
+          `
           <input
             class="singleScriptToUse"
             list="scriptToRunOptions"
@@ -232,10 +234,11 @@
             placeholder="Script To Run"
             required
             />
-        `)
+        `
+        );
       }
-      
-      function updateAutoComplete(){
+
+      function updateAutoComplete() {
         // TODO: document.querySelectorAll('#scriptToRunOptions option')
       }
 
