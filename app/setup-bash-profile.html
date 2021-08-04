@@ -281,6 +281,8 @@
         const osKeys = Object.keys(osFlags);
 
         return (
+          'NODE_VERSION_TO_USE=12.22.1 && \\\n' + 
+          'nvm install $NODE_VERSION_TO_USE && nvm use $NODE_VERSION_TO_USE && \\\n' + 
           osKeys.map((key) => `export ${key}='${osFlags[key]}' && \\`).join("\n") +
           '\n\\\n' + 
           `echo """\n${osKeys.map((key) => `export ${key}='${osFlags[key]}'`).join("\n")}\n""" > ~/.bash_syle_os && \\\n`
