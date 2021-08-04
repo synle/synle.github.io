@@ -293,7 +293,7 @@
             osKeys.map((key) => `export ${key}='${osFlags[key]}'`).join("\n"),
             `echo """\n${osKeys.map((key) => `export ${key}='${osFlags[key]}'`).join("\n")}\n""" > ~/.bash_syle_os`,
           ].join(" && \\\n") + " && "
-        );
+        ).trim();
       }
 
       function selectCommands() {
