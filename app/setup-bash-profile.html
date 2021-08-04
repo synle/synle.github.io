@@ -218,7 +218,7 @@
 
         newCommands.push(
           selectedScript.script
-            .replace("<SELECT_SCRIPTS>", [...document.querySelectorAll(".scriptToUse")].map((s) => s.value.trim()).join("\n"))
+            .replace("<SELECT_SCRIPTS>", [...document.querySelectorAll(".scriptToUse")].map((s) => s.value.trim()).filter(s => !!s.trim()).join("\n"))
             .replace("<DEBUG_WRITE_TO_HOME>", document.querySelector("#debugWriteToFile").value.trim())
             .replace("<SELECTED_RUNNER_SCRIPT>", document.querySelector("#runnerToUse").value.trim())
             .replace("<OS_FLAGS>", _getOsFlags(document.querySelector("#osToRun").value.trim()))
