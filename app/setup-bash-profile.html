@@ -263,7 +263,7 @@
       }
 
       function cleanupUnusedScriptTextBox(elem) {
-        if (!elem.value.trim()) {
+        if (!elem.value.trim() && [...document.querySelectorAll("#scriptToRunOptions option")].length > 1) {
           elem.remove();
         }
       }
