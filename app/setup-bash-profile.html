@@ -238,7 +238,7 @@
             list="scriptToRunOptions"
             type="text"
             onchange="updateScript()"
-            onblur="updateAutoComplete()"
+            onblur="updateAutoComplete(); cleanupUnusedScriptTextBox(this)"
             placeholder="Script To Run"
             required
             />
@@ -256,6 +256,12 @@
             scriptElem.remove();
           }
         });
+      }
+
+      function cleanupUnusedScriptTextBox(elem) {
+        if (!elem.value.trim()) {
+          elem.remove();
+        }
       }
 
       function _getOsFlags(osFlag) {
