@@ -213,11 +213,12 @@
         `;
           document.querySelector("#commands").appendChild(domCommand);
         }
-
-        updateScript();
         
         // select the previous
         document.querySelector('#osToRun').value = localStorage.osToRun || 'windows';
+        
+        // initial setup to fix up the script
+        updateScript();
       }
 
       function updateScript() {
