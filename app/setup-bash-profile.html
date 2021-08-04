@@ -87,14 +87,7 @@
       <form class="c2" onsubmit="selectCommands(); return false;">
         <!--     script to run     -->
         <div id="scriptToRunContainer" class="c2-child">
-          <input
-            id="singleScriptToUse"
-            list="scriptToRunOptions"
-            type="text"
-            onchange="updateScript()"
-            placeholder="Script To Run"
-            required
-          />
+          <button id='btnAddScript' onclick="addScriptTextbox()" type='button'>Add Script</button>
           <datalist id="scriptToRunOptions"></datalist>
           <b>Script Type:</b>
           <select id="singleScriptType" onchange="updateScript()">
@@ -160,7 +153,7 @@
         },
         {
           text: "Test Single Script",
-          script: `<OS_FLAGS> export TEST_SCRIPT_FILES="<SCRIPT_TO_RUN>" <DEBUG_WRITE_TO_HOME> && curl -s https://raw.githubusercontent.com/synle/bashrc/master/<SINGLE_SCRIPT_TO_RUN> | bash`,
+          script: `<OS_FLAGS> export TEST_SCRIPT_FILES="<SELECT_SCRIPTS>" <DEBUG_WRITE_TO_HOME> && curl -s https://raw.githubusercontent.com/synle/bashrc/master/<SELECTED_RUNNER_SCRIPT> | bash`,
           shouldShowScriptNameInput: true,
           shouldShowOsSelectionInput: true,
         },
@@ -201,6 +194,9 @@
 
         // select the previous
         document.querySelector("#osToRun").value = localStorage.osToRun || "windows";
+        
+        // add the first script textbox
+        addScriptTextbox()
 
         // initial setup to fix up the script
         updateScript();
@@ -214,15 +210,33 @@
 
         newCommands.push(
           selectedScript.script
-            .replace("<SCRIPT_TO_RUN>", document.querySelector("#singleScriptToUse").value.trim())
+            .replace("<SELECT_SCRIPTS>", [...document.querySelectorAll(".scriptToUse")].map(s => .value.trim()).join('\n')))
             .replace("<DEBUG_WRITE_TO_HOME>", document.querySelector("#debugWriteToFile").value.trim())
-            .replace("<SINGLE_SCRIPT_TO_RUN>", document.querySelector("#singleScriptType").value.trim())
+            .replace("<SELECTED_RUNNER_SCRIPT>", document.querySelectorAll("#singleScriptType").value.trim())
             .replace("<OS_FLAGS>", _getOsFlags(document.querySelector("#osToRun").value.trim()))
         );
 
         document.querySelector("#scriptToRunContainer").style.display = selectedScript.shouldShowScriptNameInput ? "" : "none";
         document.querySelector("#osToRunContainer").style.display = selectedScript.shouldShowOsSelectionInput ? "" : "none";
         document.querySelector("#output").value = newCommands.join("\n");
+      }
+      
+      function addScriptTextbox(){
+        document.querySelector('#btnAddScript').insertAdjacentHTML('beforeBegin', `
+          <input
+            class="singleScriptToUse"
+            list="scriptToRunOptions"
+            type="text"
+            onchange="updateScript()"
+            onblur="updateAutoComplete()"
+            placeholder="Script To Run"
+            required
+            />
+        `)
+      }
+      
+      function updateAutoComplete(){
+        // TODO: document.querySelectorAll('#scriptToRunOptions option')
       }
 
       function _getOsFlags(osFlag) {
