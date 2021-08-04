@@ -51,6 +51,7 @@
         padding: 0.5rem 1rem;
         background: #000;
         color: #fff;
+        cursor: pointer;
       }
       #container {
         display: grid;
@@ -87,7 +88,7 @@
       <form class="c2" onsubmit="selectCommands(); return false;">
         <!--     script to run     -->
         <div id="scriptToRunContainer" class="c2-child">
-          <button id="btnAddScript" onclick="addScriptTextbox()" type="button">Add Script</button>
+          <button id="btnAddScript" onclick="addScriptTextbox()" type="button" style='width: 150px;'>Add Script</button>
           <datalist id="scriptToRunOptions"></datalist>
           <b>Script Type:</b>
           <select id="singleScriptType" onchange="updateScript()">
@@ -212,7 +213,7 @@
           selectedScript.script
             .replace("<SELECT_SCRIPTS>", [...document.querySelectorAll(".scriptToUse")].map((s) => s.value.trim()).join("\n"))
             .replace("<DEBUG_WRITE_TO_HOME>", document.querySelector("#debugWriteToFile").value.trim())
-            .replace("<SELECTED_RUNNER_SCRIPT>", document.querySelectorAll("#singleScriptType").value.trim())
+            .replace("<SELECTED_RUNNER_SCRIPT>", document.querySelector("#singleScriptType").value.trim())
             .replace("<OS_FLAGS>", _getOsFlags(document.querySelector("#osToRun").value.trim()))
         );
 
