@@ -251,32 +251,20 @@
       }
       
       function _getOsFlags(osFlag){
-        var is_os_darwin_mac= osFlag === "mac" ? "1" : "0";
-        var is_os_window = osFlag === "windows" ? "1" : "0";
-        var is_os_wsl = is_os_window;
-        var is_os_ubuntu= ["windows","chrome_os","ubuntu"].indexOf(osFlag) >= 0 ? "1" : "0";
-        var is_os_chromeos= osFlag === "chrome_os" ? "1" : "0";
-        var is_os_mingw64= osFlag === "ming_64" ? "1" : "0";
-        var is_os_android_termux= osFlag === "android_termux" ? "1" : "0";
+  const osFlags ={
+        is_os_darwin_mac: osFlag === "mac" ? "1" : "0",
+        is_os_window:  osFlag === "windows" ? "1" : "0",
+        is_os_wsl:  osFlag === "windows" ? "1" : "0",
+        is_os_ubuntu: ["windows","chrome_os","ubuntu"].indexOf(osFlag) >= 0 ? "1" : "0",
+        is_os_chromeos: osFlag === "chrome_os" ? "1" : "0",
+        is_os_mingw64: osFlag === "ming_64" ? "1" : "0",
+        is_os_android_termux: osFlag === "android_termux" ? "1" : "0",
+      }
 
-        return `
-export is_os_darwin_mac='${is_os_darwin_mac}' && \\
-export is_os_window='${is_os_window}' && \\
-export is_os_wsl='${is_os_wsl}' && \\
-export is_os_ubuntu='${is_os_ubuntu}' && \\
-export is_os_chromeos='${is_os_chromeos}' && \\
-export is_os_mingw64='${is_os_mingw64}' && \\
-export is_os_android_termux='${is_os_android_termux}' && \\
-echo """
-export is_os_darwin_mac='$is_os_darwin_mac'
-export is_os_window='$is_os_window'
-export is_os_wsl='$is_os_wsl'
-export is_os_ubuntu='$is_os_ubuntu'
-export is_os_chromeos='$is_os_chromeos'
-export is_os_mingw64='$is_os_mingw64'
-export is_os_android_termux='$is_os_android_termux'
-""" > ~/.bash_syle_os && \\
-`.trimStart()
+      const osKeys = Object.keys(osFlags);
+
+        return osKeys.map(key => `export ${key}='${osFlags[key]}' && \\`).join('\n')
+        + `\necho """\n${osKeys.map(key => `export ${key}='${osFlags[key]}'`).join('\n')}\n""" > ~/.bash_syle_os && \\\n`
       }
 
       function selectCommands() {
