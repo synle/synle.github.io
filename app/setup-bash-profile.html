@@ -15,7 +15,7 @@
         font-size: 18px;
         padding: 10px 20px;
       }
-      h1{
+      h1 {
         margin-bottom: 1rem;
       }
       #output {
@@ -91,7 +91,7 @@
       <form class="c2" onsubmit="selectCommands(); return false;">
         <!--     script to run     -->
         <div id="scriptToRunContainer" class="c2-child">
-          <button id="btnAddScript" onclick="addScriptTextbox()" type="button" style='width: 150px;'>Add Script</button>
+          <button id="btnAddScript" onclick="addScriptTextbox()" type="button" style="width: 150px">Add Script</button>
           <datalist id="scriptToRunOptions"></datalist>
           <b>Script Type:</b>
           <select id="runnerToUse" onchange="updateScript()">
@@ -185,6 +185,9 @@
           .join("\n");
         document.querySelector("#scriptToRunOptions").innerHTML = scriptToRunOptions;
 
+        // back it up
+        window.SCRIPT_TO_RUN_OPTIONS = document.querySelector("#scriptToRunOptions").innerHTML;
+
         for (const config of configs) {
           const domCommand = document.createElement("div");
           domCommand.innerHTML = `
@@ -243,7 +246,15 @@
       }
 
       function updateAutoComplete() {
-        // TODO: document.querySelectorAll('#scriptToRunOptions option')
+        const selectedScriptSet = new Set([...document.querySelectorAll(".scriptToUse")].map((s) => s.value.trim()));
+
+        document.querySelector("#scriptToRunOptions").innerHTML = window.SCRIPT_TO_RUN_OPTIONS;
+
+        [...document.querySelectorAll("#scriptToRunOptions option")].forEach((scriptElem) => {
+          if (selectedScriptSet.has(scriptElem.innerText.trim())) {
+            scriptElem.remove();
+          }
+        });
       }
 
       function _getOsFlags(osFlag) {
