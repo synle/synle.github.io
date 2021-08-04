@@ -91,7 +91,7 @@
           <button id="btnAddScript" onclick="addScriptTextbox()" type="button" style='width: 150px;'>Add Script</button>
           <datalist id="scriptToRunOptions"></datalist>
           <b>Script Type:</b>
-          <select id="singleScriptType" onchange="updateScript()">
+          <select id="runnerToUse" onchange="updateScript()">
             <option value="test-live.sh" selected>Use Live Script</option>
             <option value="test.sh">Use Local Script</option>
           </select>
@@ -213,7 +213,7 @@
           selectedScript.script
             .replace("<SELECT_SCRIPTS>", [...document.querySelectorAll(".scriptToUse")].map((s) => s.value.trim()).join("\n"))
             .replace("<DEBUG_WRITE_TO_HOME>", document.querySelector("#debugWriteToFile").value.trim())
-            .replace("<SELECTED_RUNNER_SCRIPT>", document.querySelector("#singleScriptType").value.trim())
+            .replace("<SELECTED_RUNNER_SCRIPT>", document.querySelector("#runnerToUse").value.trim())
             .replace("<OS_FLAGS>", _getOsFlags(document.querySelector("#osToRun").value.trim()))
         );
 
@@ -227,7 +227,7 @@
           "beforeBegin",
           `
           <input
-            class="singleScriptToUse"
+            class="scriptToUse"
             list="scriptToRunOptions"
             type="text"
             onchange="updateScript()"
