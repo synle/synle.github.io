@@ -295,7 +295,7 @@
           [
             "NODE_VERSION_TO_USE=12.22.1",
             "nvm install $NODE_VERSION_TO_USE && nvm use $NODE_VERSION_TO_USE",
-            osKeys.map((key) => `export ${key}='${osFlags[key]}'`).join("\n"),
+            ...osKeys.map((key) => `export ${key}='${osFlags[key]}'`),
             `echo """\n${osKeys.map((key) => `export ${key}='${osFlags[key]}'`).join("\n")}\n""" > ~/.bash_syle_os`,
           ].join(" && \\\n") + " && "
         ).trim();
