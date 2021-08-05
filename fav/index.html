@@ -104,15 +104,7 @@ code spaces|github.com/codespaces
         const HOME_HOST_NAMES = await fetch(`https://raw.githubusercontent.com/synle/bashrc/master/software/metadata/ip-address.json`)
           .then((r) => r.text())
           .then((r) =>
-            Object.values(
-              eval(r)
-                .filter((hostSplits) => hostSplits.length === 2 && hostSplits[0].length > 0 && hostSplits[1].length > 0)
-                .reduce((res, [hostName, hostIp]) => {
-                  res[hostIp] = res[hostIp] || [hostIp];
-                  res[hostIp].push(hostName);
-                  return res;
-                }, {})
-            )
+              r.split('\n').filter(s => !!s.trim() && s.indexOf('=') !== 0)
               .map(([hostIp, ...hostNames]) => `${hostIp}\n${hostNames.join("\n")}\n`)
               .join("\n")
           );
