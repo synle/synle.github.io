@@ -248,7 +248,7 @@
             list="scriptToRunOptions"
             type="text"
             onchange="updateScript()"
-            onblur="updateAutoComplete(); cleanupUnusedScriptTextBox(this)"
+            onblur="this.value = this.value.trim(); updateAutoComplete(); cleanupUnusedScriptTextBox(this)"
             placeholder="Script To Run"
             autofocus
             required
