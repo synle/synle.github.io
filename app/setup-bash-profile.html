@@ -303,7 +303,7 @@
       }
 
       function selectCommands() {
-        if(document.querySelector('.scriptToUse')[0].value){
+        if(!document.querySelector('.scriptToUse')[0].value){
           document.querySelector('.scriptToUse')[0].focus();
           return;        
         }
