@@ -101,7 +101,7 @@ code spaces|github.com/codespaces
     (async () => {
       let HOST_MAPPING_BLOCK_SCHEMA = "";
       try {
-        const HOME_HOST_NAMES = await fetch(`https://raw.githubusercontent.com/synle/bashrc/master/software/metadata/ip-address.json`)
+        const HOME_HOST_NAMES = await fetch(`https://raw.githubusercontent.com/synle/bashrc/master/software/metadata/ip-address.config`)
           .then((r) => r.text())
           .then((r) => r.split('\n').filter(s => !!s.trim() && s.indexOf('=') !== 0)
               .map((s) => {
