@@ -303,11 +303,6 @@
       }
 
       function selectCommands() {
-        if(!document.querySelector('.scriptToUse')[0].value){
-          document.querySelector('.scriptToUse')[0].focus();
-          return;        
-        }
-        
         document.querySelector("#output").focus();
         document.querySelector("#output").select();
         document.execCommand("copy");
