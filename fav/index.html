@@ -113,7 +113,7 @@ code spaces|github.com/codespaces
                   return res;
                 }, {})
             )
-              .map(([hostIp, ...hostNames]) => `${hostIp.padEnd(16, " ")} : ${hostNames.join(", ")}`)
+              .map(([hostIp, ...hostNames]) => `${hostIp.padEnd(16, " ")} :  ${hostNames.join(", ")}`)
               .join("\n")
           );
         HOST_MAPPING_BLOCK_SCHEMA = `
