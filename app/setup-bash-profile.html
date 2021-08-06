@@ -49,7 +49,7 @@
       }
       a,
       button,
-      input[type=submit]{
+      input[type="submit"] {
         min-width: 100px;
         border: 2px solid #ccc;
         padding: 0.5rem 1rem;
@@ -61,11 +61,16 @@
         font-weight: 600;
         transition: all 0.25s ease-out;
       }
-      a:hover, button:hover, input[type=submit]:hover, a:focus, button:focus, input[type=submit]:focus{
+      a:hover,
+      button:hover,
+      input[type="submit"]:hover,
+      a:focus,
+      button:focus,
+      input[type="submit"]:focus {
         box-shadow: 0 0 0 3px #0c2d6b;
         background: #161b22;
       }
-      button{
+      button {
         text-decoration: none;
         font-weight: 600;
       }
@@ -248,11 +253,11 @@
       }
 
       function addScriptTextbox() {
-        const notEmptyScriptTextboxes = [...document.querySelectorAll(".scriptToUse")].filter(s => s.value.trim());
-        if(notEmptyScriptTextboxes.length > 0){
+        const notEmptyScriptTextboxes = [...document.querySelectorAll(".scriptToUse")].filter((s) => s.value.trim());
+        if (notEmptyScriptTextboxes.length > 0) {
           notEmptyScriptTextboxes[0].focus();
         }
-        
+
         document.querySelector("#btnAddScript").insertAdjacentHTML(
           "beforeBegin",
           `
