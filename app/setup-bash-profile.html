@@ -253,7 +253,7 @@
       }
 
       function addScriptTextbox() {
-        const notEmptyScriptTextboxes = [...document.querySelectorAll(".scriptToUse")].filter((s) => s.value.trim());
+        const notEmptyScriptTextboxes = [...document.querySelectorAll(".scriptToUse")].filter((s) => !s.value.trim());
         if (notEmptyScriptTextboxes.length > 0) {
           notEmptyScriptTextboxes[0].focus();
         }
