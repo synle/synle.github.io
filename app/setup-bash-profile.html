@@ -48,7 +48,8 @@
         padding: 10px;
       }
       a,
-      button {
+      button,
+      input[type=submit]{
         min-width: 100px;
         border: 2px solid #ccc;
         padding: 0.5rem 1rem;
@@ -57,12 +58,16 @@
         cursor: pointer;
         text-transform: uppercase;
         text-decoration: none;
-        transition: all 0.25s ease-out;
         font-weight: 600;
+        transition: all 0.25s ease-out;
       }
-      a:hover, button:hover, a:focus, button:focus{
+      a:hover, button:hover, input[type=submit]:hover, a:focus, button:focus, input[type=submit]:focus{
         box-shadow: 0 0 0 3px #0c2d6b;
         background: #161b22;
+      }
+      button{
+        text-decoration: none;
+        font-weight: 600;
       }
       #container {
         display: grid;
@@ -99,15 +104,15 @@
       <form class="c2" onsubmit="selectCommands(); return false;">
         <!--     script to run     -->
         <div id="scriptToRunContainer" class="c2-child">
-          <b>Scripts To Run:</b>
+          <label>Scripts To Run:</label>
           <button id="btnAddScript" onclick="addScriptTextbox()" type="button" style="width: 150px">Add Script</button>
           <datalist id="scriptToRunOptions"></datalist>
-          <b>Runner:</b>
+          <label>Runner:</label>
           <select id="runnerToUse" onchange="updateScript()">
             <option value="test-live.sh" selected>Use Live Script</option>
             <option value="test.sh">Use Local Script</option>
           </select>
-          <b>Debug Write To File:</b>
+          <label>Debug Write To File:</label>
           <select id="debugWriteToFile" onchange="updateScript()">
             <option value="" selected>No</option>
             <option value="&& export DEBUG_WRITE_TO_HOME='1'">Yes</option>
@@ -116,7 +121,7 @@
 
         <!--     os to run     -->
         <div id="osToRunContainer" class="c2-child">
-          <b>OS Type:</b>
+          <label>OS Type:</label>
           <select id="osToRun" onchange="updateScript()" oninput="localStorage.osToRun = document.querySelector('#osToRun').value">
             <option value="windows" selected>Windows with WSL</option>
             <option value="ming_64">Windows with Ming_64</option>
