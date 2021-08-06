@@ -228,7 +228,7 @@ window.searchBookmarklet = (val) => {
     let target = header.nextElementSibling;
     let isVisible = false;
 
-    while (target && target.classList.contains("link")) {
+    while (target && (target.classList.contains("link") || target.classList.contains("block"))) {
       if (!target.classList.contains("hidden")) {
         isVisible = true;
         break;
