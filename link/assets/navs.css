@@ -14,7 +14,7 @@ html {
   --fontSize2: 16px;
   --fontSize3: 22px;
 
-  --gridColumnLayout: 300px 300px 300px;
+  --gridColumnLayout: 275px 275px 275px;
   
   --colorBgMain: #0d1117;
   --colorBgSecondary: #161b22;
@@ -179,9 +179,9 @@ button,
   display: none;
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 825px) {
   html {
-    --gridColumnLayout: 300px 300px;
+    --gridColumnLayout: 50% 50%;
   }
 
   #fav {
