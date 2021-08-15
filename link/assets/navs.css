@@ -182,11 +182,8 @@ button,
 
 @media only screen and (max-width: 825px) {
   html {
-    --gridColumnLayout: calc(100% - var(--gridGapWidth)) calc(100% - var(--gridGapWidth));
-  }
-
-  #fav {
-    grid-gap: var(--spaceSize1) var(--spaceSize1);
+    --gridGapWidth: 0.5rem;
+    --gridColumnLayout: calc(50% - var(--gridGapWidth)) calc(50% - var(--gridGapWidth));
   }
 }
 
@@ -196,7 +193,7 @@ button,
     --fontSize2: 16px;
     --fontSize3: 16px;
     
-    --gridGapWidth: 0.5rem;
+    --gridGapWidth: 0.25rem;
     --gridColumnLayout: calc(100% - var(--gridGapWidth));
   }
 
