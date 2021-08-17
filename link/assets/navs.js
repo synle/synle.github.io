@@ -261,6 +261,22 @@ window.getLinkDom = (linkDomHTML) => {
   let currentHeaderName = "";
 
   let rawLinkHTML = lines.forEach((link) => {
+    if (isInABlock) {
+      // is in a block
+      if(link.indexOf(BLOCK_SPLIT) === 0){
+        // end of a block
+        newHTMLLines.push(`<pre class="block">${blockBuffer.trim()}</pre>`);
+        isInABlock = false;
+        blockBuffer = "";
+
+        currentHeaderName = ""; // reset the header name
+      } else {
+        blockBuffer += link + "\n";
+      }
+      
+      return;
+    }
+    
     if (link.indexOf(TITLE_SPLIT) === 0) {
       // page title
       const headerText = link.replace(TITLE_SPLIT, "").trim();
@@ -272,23 +288,9 @@ window.getLinkDom = (linkDomHTML) => {
 
       currentHeaderName = headerText;
     } else if (link.indexOf(BLOCK_SPLIT) === 0) {
-      // section block
-      if (isInABlock) {
-        // end of a block
-        newHTMLLines.push(`<pre class="block">${blockBuffer.trim()}</pre>`);
-        isInABlock = false;
-        blockBuffer = "";
-
-        currentHeaderName = ""; // reset the header name
-      } else {
-        // start a block
-        isInABlock = true;
-      }
+      // start a block
+      isInABlock = true;
     } else {
-      if (isInABlock) {
-        // is in a block
-        blockBuffer += link + "\n";
-      } else {
         // anything else is a link
         let linkType;
         let linkText, linkUrl;
@@ -342,7 +344,6 @@ window.getLinkDom = (linkDomHTML) => {
               `<a class="link newTabLink" href="${linkUrl}" target="_blank" data-section="${currentHeaderName}">${linkText}</a>`
             );
           }
-        }
       }
     }
   });
