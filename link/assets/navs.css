@@ -160,6 +160,7 @@ button,
 #fav .tabs {
   background: var(--colorBgSecondary);
   display: flex;
+  font-size: var(--fontSize2);
 }
 
 #fav .tabs tab {
