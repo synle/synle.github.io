@@ -142,14 +142,15 @@ window.onViewSchema = () => {
 };
 
 window.onViewLinks = (linkDomHTML, hideSchemaForm) => {
+  document.body.innerHTML = linkDomHTML;
+  
   if (hideSchemaForm !== false) {
-    document.body.innerHTML =
-      linkDomHTML +
-      `<div style="display: flex; margin-top: 1rem; align-items:center; justify-content: center;">
-          <button onClick='window.onViewSchema()'>View Schema</button>
-        </div>`;
+    document.body.innerHTML += `<div style="display: flex; margin-top: 1rem; align-items:center; justify-content: center;">
+      <button onClick='window.onViewSchema()'>View Schema</button>
+    </div>`;
   }
 
+  // insert the search form
   document.querySelector("#fav").insertAdjacentHTML(
     "beforeend",
     `
