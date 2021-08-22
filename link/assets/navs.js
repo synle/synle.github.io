@@ -41,8 +41,8 @@ window.onViewSchema = () => {
       const blockId = elem.id || '';
       output.push(`\n${BLOCK_SPLIT}${blockId}\n${description}\n${BLOCK_SPLIT}\n`);
     } else if (elem.classList.contains("tabs")) {
-      const tabContent = [...elem.querySelectorAll('tab')].map(t => {
-        return `${t.innerText.trim()}${TAB_TITLE_SPLIT}${tab.dataset.tabId}`
+      const tabContent = [...elem.querySelectorAll('tab')].map(tab => {
+        return `${tab.innerText.trim()}${TAB_TITLE_SPLIT}${tab.dataset.tabId}`
       }).join(TAB_SPLIT);
       
       output.push(`\n${BLOCK_SPLIT}${blockId}\n${description}\n${BLOCK_SPLIT}\n`);
