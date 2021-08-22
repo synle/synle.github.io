@@ -111,7 +111,7 @@
       <div class="row">
         <input
           id="server"
-          required2
+          required
           placeholder
           server
           value="syle@sy-mp"
@@ -174,9 +174,9 @@
           `
         <div class='row inputRow'>
           <input autofocus class='local_ip' list='datalistLocalIp' placeholder='local_ip (localhost)' value='${localIp}' type='text' onBlur="onBlurFormat(this)"/>
-          <input class='local_port' list='datalistPorts' required2 placeholder='local_port' value='${localPort}' type='number' onBlur="onBlurFormat(this)"/>
-          <input class='destination_ip' list='datalistDestIp' required2 placeholder='dest_ip' value='${destinationIp}' type='text' onBlur="onBlurFormat(this)"/>
-          <input class='destination_port' list='datalistPorts' required2 placeholder='dest_port' value='${destinationPort}' type='number' onBlur="onBlurFormat(this)"/>
+          <input class='local_port' list='datalistPorts' required placeholder='local_port' value='${localPort}' type='number' onBlur="onBlurFormat(this)"/>
+          <input class='destination_ip' list='datalistDestIp' required placeholder='dest_ip' value='${destinationIp}' type='text' onBlur="onBlurFormat(this)"/>
+          <input class='destination_port' list='datalistPorts' required placeholder='dest_port' value='${destinationPort}' type='number' onBlur="onBlurFormat(this)"/>
           <button type='button' onClick='onDeleteRow(this)'>X</button>
         </div>
       `
