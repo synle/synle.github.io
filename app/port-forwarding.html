@@ -101,6 +101,10 @@
       </div>
 
       <!-- form content to be dynamically appended-->
+      <datalist id="datalistLocalIp">
+        <option>localhost</option>
+        <option>127.0.0.1</option>
+      </datalist>
       <datalist id="datalistPorts"></datalist>
 
       <div class="row">
@@ -146,27 +150,32 @@
       }
 
       function addRow(localIp, localPort, destinationIp, destinationPort) {
-        localIp = localIp || "localhost";
-        destinationIp = destinationIp || "sy-mp";
-        localPort = localPort || "";
-        destinationPort = destinationPort || "";
+        localIp = (localIp || "localhost").trim();
+        destinationIp = (destinationIp || "sy-mp").trim();
+        localPort = (localPort || "").trim();
+        destinationPort = (destinationPort || "").trim();
 
-        const lastInputRow = getLastInputRow();
-        if (lastInputRow) {
-          localIp = lastInputRow.querySelector(".local_ip").value.trim();
-          destinationIp = lastInputRow
-            .querySelector(".destination_ip")
-            .value.trim();
+        // reuse from last row
+        if (localIp && localPort && destinationIp && destinationPort) {
+          // use what's given
+        } else {
+          const lastInputRow = getLastInputRow();
+          if (lastInputRow) {
+            localIp = lastInputRow.querySelector(".local_ip").value.trim();
+            destinationIp = lastInputRow
+              .querySelector(".destination_ip")
+              .value.trim();
+          }
         }
 
         document.querySelector("#datalistPorts").insertAdjacentHTML(
           "beforebegin",
           `
         <div class='row inputRow'>
-          <input autofocus class='local_ip' placeholder='local_ip (localhost)' value='${localIp}' type='text' onBlur="onBlurFormat(this)"/>
-          <input class='local_port' list="datalistPorts" required placeholder='local_port' value='${localPort}' type='number' onBlur="onBlurFormat(this)"/>
+          <input autofocus class='local_ip' list='datalistLocalIp' placeholder='local_ip (localhost)' value='${localIp}' type='text' onBlur="onBlurFormat(this)"/>
+          <input class='local_port' list='datalistPorts' required placeholder='local_port' value='${localPort}' type='number' onBlur="onBlurFormat(this)"/>
           <input class='destination_ip' required placeholder='dest_ip' value='${destinationIp}' type='text' onBlur="onBlurFormat(this)"/>
-          <input class='destination_port' list="datalistPorts" required placeholder='dest_port' value='${destinationPort}' type='number' onBlur="onBlurFormat(this)"/>
+          <input class='destination_port' list='datalistPorts' required placeholder='dest_port' value='${destinationPort}' type='number' onBlur="onBlurFormat(this)"/>
           <button type='button' onClick='onDeleteRow(this)'>X</button>
         </div>
       `
