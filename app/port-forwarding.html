@@ -250,19 +250,13 @@
 
       // init
       function onInit() {
-        document.querySelector("#datalistPorts").innerHTML = "80,443,8080,3000"
-          .split(",")
-          .sort()
-          .map((port) => `<option>${port}</option>`)
-          .join("\n");
+        const setLocalIps = new Set();
+        const setDestinationIps = new Set();
+        const setPorts = new Set("80,443,8080,3000".split(","));
 
         if (!location.search) {
           addRow();
         } else {
-          const setLocalIps = new Set();
-          const setDestinationIps = new Set();
-          const setPorts = new Set();
-
           location.search
             .split(/[?|]/)
             .filter((r) => r.split(":").length === 4)
@@ -274,24 +268,24 @@
               setDestinationIps.add(destinationIp);
               addRow(localIp, localPort, destinationIp, destinationPort);
             });
+        }
 
-          addDataListOption(
-            document.querySelector("#datalistLocalIp"),
-            setLocalIps
-          );
-          addDataListOption(
-            document.querySelector("#datalistDestIp"),
-            setDestinationIps
-          );
-          addDataListOption(document.querySelector("#datalistPorts"), setPorts);
+        addDataListOption(
+          document.querySelector("#datalistLocalIp"),
+          setLocalIps
+        );
+        addDataListOption(
+          document.querySelector("#datalistDestIp"),
+          setDestinationIps
+        );
+        addDataListOption(document.querySelector("#datalistPorts"), setPorts);
 
-          function addDataListOption(listDom, options) {
-            for (const optionVal of options) {
-              listDom.insertAdjacentHTML(
-                "beforeend",
-                `<option>${optionVal}</option>`
-              );
-            }
+        function addDataListOption(listDom, options) {
+          for (const optionVal of options) {
+            listDom.insertAdjacentHTML(
+              "beforeend",
+              `<option>${optionVal}</option>`
+            );
           }
         }
       }
