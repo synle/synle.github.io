@@ -102,8 +102,9 @@ code spaces|github.com/codespaces
     (async () => {
       let HOST_MAPPING_BLOCK_SCHEMA = "";
       try {
-        const HOME_HOST_NAMES = await fetch(`https://raw.githubusercontent.com/synle/bashrc/master/software/metadata/ip-address.config`)
-          .then((r) => r.text())
+        const hostMappingApiResponse = fetch(`https://raw.githubusercontent.com/synle/bashrc/master/software/metadata/ip-address.config`)
+          .then((r) => r.text());
+        const HOSTNAMES_GROUPED_BY_ID = await hostMappingApiResponse
           .then((r) => r.split('\n').filter(s => !!s.trim() && s.indexOf('=') !== 0)
               .map((s) => {
                 const [hostIp, ...hostNames] = s.split(/[\:,]/gi).map(s => s.trim()).filter(s => s);
@@ -111,19 +112,30 @@ code spaces|github.com/codespaces
               })
               .join("\n")
           );
+        const HOSTNAMES_MAPPINGS = await hostMappingApiResponse
+          .then((r) => r.split('\n').filter(s => !!s.trim() && s.indexOf('=') !== 0)
+              .map((s) => {
+                const [hostIp, ...hostNames] = s.split(/[\:,]/gi).map(s => s.trim()).filter(s => s);
+                return hostNames.map(hostName => `${hostIp} ${hostName}`).join('\n')
+              })
+              .join("\n")
+          );
         HOST_MAPPING_BLOCK_SCHEMA = `
           # Host Mappings
           Host Mapping Ip Config|https://github.com/synle/bashrc/blob/master/software/metadata/ip-address.config
-          >>>Host Files Location|tabHostDir>>>Host Names & IP's|tabHostNames
+          >>>Host Files Location|tabHostDir >>>Host Names & IP's|tabHostNamesGroupedByIp >>>HostMapping | tabHostMappings
           \`\`\`tabHostDir
           # Windows
           c:\\Windows\\System32\\Drivers\\etc\\hosts
           # Linux
           /etc/hosts
           \`\`\`
-          \`\`\`tabHostNames
-          ${HOME_HOST_NAMES}
+          \`\`\`tabHostNamesGroupedByIp
+          ${HOSTNAMES_GROUPED_BY_ID}
           \`\`\`
+          \`\`\`tabHostMappings
+          ${HOSTNAMES_MAPPINGS}
+          \`\`\`          
         `
           .split("\n")
           .map((r) => r.trim())
