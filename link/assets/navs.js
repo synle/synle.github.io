@@ -215,7 +215,7 @@ window.getNavBookmarkletFromSchema = (input) => {
 
 window.searchBookmarklet = () => {
   // remove all non alphanumeric
-  let val = document.querySelector('#search').value.replace(/[\W_]+/gi,"").trim();
+  let val = document.querySelector('#search').value.replace(/[\W_]+/gi," ").replace(/[ ][ ]+/, ' ').trim();
 
   // update the value
   document.querySelector('#search').value = val;
