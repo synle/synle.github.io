@@ -101,11 +101,12 @@
       </div>
 
       <!-- form content to be dynamically appended-->
+      <datalist id="datalistPorts"></datalist>
       <datalist id="datalistLocalIp">
         <option>localhost</option>
         <option>127.0.0.1</option>
       </datalist>
-      <datalist id="datalistPorts"></datalist>
+      <datalist id="datalistDestIp"></datalist>
 
       <div class="row">
         <input
@@ -174,7 +175,7 @@
         <div class='row inputRow'>
           <input autofocus class='local_ip' list='datalistLocalIp' placeholder='local_ip (localhost)' value='${localIp}' type='text' onBlur="onBlurFormat(this)"/>
           <input class='local_port' list='datalistPorts' required placeholder='local_port' value='${localPort}' type='number' onBlur="onBlurFormat(this)"/>
-          <input class='destination_ip' required placeholder='dest_ip' value='${destinationIp}' type='text' onBlur="onBlurFormat(this)"/>
+          <input class='destination_ip' list='datalistDestIp' required placeholder='dest_ip' value='${destinationIp}' type='text' onBlur="onBlurFormat(this)"/>
           <input class='destination_port' list='datalistPorts' required placeholder='dest_port' value='${destinationPort}' type='number' onBlur="onBlurFormat(this)"/>
           <button type='button' onClick='onDeleteRow(this)'>X</button>
         </div>
@@ -258,13 +259,40 @@
         if (!location.search) {
           addRow();
         } else {
+          const setLocalIps = new Set();
+          const setDestinationIps = new Set();
+          const setPorts = new Set();
+
           location.search
             .split(/[?|]/)
             .filter((r) => r.split(":").length === 4)
             .map((r) => r.split(":"))
-            .forEach(([localPort, localIp, destinationIp, destinationPort]) =>
-              addRow(localIp, localPort, destinationIp, destinationPort)
-            );
+            .forEach(([localPort, localIp, destinationIp, destinationPort]) => {
+              setPorts.add(localPort);
+              setPorts.add(destinationPort);
+              setLocalIps.add(localIp);
+              setDestinationIps.add(destinationIp);
+              addRow(localIp, localPort, destinationIp, destinationPort);
+            });
+
+          addDataListOption(
+            document.querySelector("#datalistLocalIp"),
+            setLocalIps
+          );
+          addDataListOption(
+            document.querySelector("#datalistDestIp"),
+            setDestinationIps
+          );
+          addDataListOption(document.querySelector("#datalistPorts"), setPorts);
+
+          function addDataListOption(listDom, options) {
+            for (const optionVal of options) {
+              listDom.insertAdjacentHTML(
+                "beforeend",
+                `<option>${optionVal}</option>`
+              );
+            }
+          }
         }
       }
 
