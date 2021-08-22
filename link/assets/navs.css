@@ -167,8 +167,7 @@ button,
   border-bottom: var(--borderSize4) solid var(--colorBgHighlightSecondary)
 }
 
-#fav .tabs tab.selected
-{
+#fav .tabs tab:hover, #fav .tabs tab.selected{
   border-bottom: var(--borderSize4) solid var(--colorBgHighlight)
 }
 
