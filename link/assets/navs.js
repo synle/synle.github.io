@@ -421,7 +421,7 @@ window.onShowTab = (targetTab) => {
   }
   
   document.querySelector(`#${targetTabId}`).style.display = 'block';
-  targetTab.classList.addClass('selected');
+  targetTab.classList.add('selected');
 }
 
 // insert zoom scale of 1 for mobile
