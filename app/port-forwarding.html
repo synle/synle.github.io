@@ -253,7 +253,7 @@
             .split(/[?|]/)
             .filter((r) => r.split(":").length === 4)
             .map((r) => r.split(":"))
-            .forEach(([localIp, localPort, destinationIp, destinationPort]) =>
+            .forEach(([localPort, localIp, destinationIp, destinationPort]) =>
               addRow(localIp, localPort, destinationIp, destinationPort)
             );
         }
