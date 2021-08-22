@@ -169,6 +169,7 @@ button,
   padding: var(--spaceSize2) var(--spaceSize3) ;
   user-select: none;
   cursor: pointer;
+  text-transform: uppercase;
 }
 
 #fav .tabs tab:hover, #fav .tabs tab.selected{
