@@ -307,7 +307,7 @@ window.getLinkDom = (linkDomHTML) => {
         blockId = link.substr(blockId.indexOf(BLOCK_SPLIT) + BLOCK_SPLIT.length + 1);
       }
     } else if (link.indexOf(TAB_SPLIT) === 0) {
-      // is a tab >>>tabName|blockId>>>tabName1|blockId1
+      // is a tab >>>tabName1|blockId1>>>tabName2|blockId3
       let tabContent = '';
       link.split(TAB_SPLIT).map(r => r.trim()).filter(r => !!r).forEach(t => {
         const [tabName, tabId] = t.split(TAB_TITLE_SPLIT);
