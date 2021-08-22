@@ -164,15 +164,14 @@ button,
 
 #fav .tabs tab {
   flex-grow: 1;
-  border-bottom: var(--borderSize1) solid var(--colorBgHighlightSecondary);
-  padding-top: var(--spaceSize2) ;
-  padding-bottom: var(--spaceSize2) ;
+  border-bottom: var(--borderSize2) solid var(--colorBgHighlightSecondary);
+  padding: var(--spaceSize2) var(--spaceSize3) ;
   user-select: none;
   cursor: pointer;
 }
 
 #fav .tabs tab:hover, #fav .tabs tab.selected{
-  border-bottom: var(--borderSize1) solid var(--colorBgHighlight)
+  border-bottom: var(--borderSize2) solid var(--colorBgHighlight)
 }
 
 #search,
