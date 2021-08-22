@@ -157,7 +157,7 @@ window.onViewLinks = (linkDomHTML, hideSchemaForm) => {
       <form id='searchForm' onsubmit="return window.onSubmitNavigationSearch();">
         <input id='search' 
           list="linkList" 
-          onInput="window.searchBookmarklet(document.querySelector('#search').value)"
+          onInput="window.searchBookmarklet()"
           placeholder="&#x1F50E;&#xFE0E; Search bookmark"
           style="display: block" 
           autocomplete="off"
@@ -213,8 +213,12 @@ window.getNavBookmarkletFromSchema = (input) => {
   return "data:text/html," + encodeURIComponent(rawOutput);
 };
 
-window.searchBookmarklet = (val) => {
-  val = val.split(" ").join("").trim();
+window.searchBookmarklet = () => {
+  // remove all non alphanumeric
+  let val = document.querySelector('#search').value.replace(/[\W_]+/gi,"").trim();
+
+  // update the value
+  document.querySelector('#search').value = val;
 
   if (val.length === 0) {
     for (const elem of document.querySelectorAll("#fav .header, #fav .link")) {
