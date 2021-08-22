@@ -149,8 +149,7 @@ ${HOST_MAPPING_BLOCK_SCHEMA}
 ${DEBUG_LINKS_SCHEMA}
         `.trim();
 
-      document.body.innerHTML = window.getLinkDom(schema);
-      window.onViewLinks(document.body.innerHTML, false);
+      window.onViewLinks(window.getLinkDom(schema), false);
       document.title = document.querySelector(".title").innerText.trim();
     })();
   </script>
