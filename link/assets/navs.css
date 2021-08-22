@@ -176,6 +176,10 @@ button,
   border-bottom: var(--borderSize2) solid var(--colorBgHighlight)
 }
 
+#fav .tabs tab.selected {
+  font-weight: var(--fontWeightSemiBold);
+}
+
 #search,
 #input,
 #output {
