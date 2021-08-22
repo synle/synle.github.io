@@ -306,7 +306,7 @@ window.getLinkDom = (linkDomHTML) => {
       link.split(TAB_SPLIT).map(r => r.trim()).filter(r => !!r).forEach(t => {
         const [tabName, tabId] = t.split(TAB_TITLE_SPLIT);
         if(tabName && tabId){
-          tabContent += `<tab tabId='${tabId}'>${tabName}</tab>`
+          tabContent += `<tab data-tab-id='${tabId}' onClick='window.onShowTab(this)'>${tabName}</tab>`
         }
       });
       
@@ -403,6 +403,10 @@ window.onSubmitNavigationSearch = () => {
   }
   return false;
 };
+
+window.onShowTab = (tab) => {
+  debugger
+}
 
 // insert zoom scale of 1 for mobile
 document.head.insertAdjacentHTML(
