@@ -40,6 +40,12 @@ window.onViewSchema = () => {
       const description = elem.innerText.trim();
       const blockId = elem.id || '';
       output.push(`\n${BLOCK_SPLIT}${blockId}\n${description}\n${BLOCK_SPLIT}\n`);
+    } else if (elem.classList.contains("tabs")) {
+      const tabContent = [...elem.querySelectorAll('tab')].map(t => {
+        return `${t.innerText.trim()}${TAB_TITLE_SPLIT}${tab.dataset.tabId}`
+      }).join(TAB_SPLIT);
+      
+      output.push(`\n${BLOCK_SPLIT}${blockId}\n${description}\n${BLOCK_SPLIT}\n`);
     } else if (elem.classList.contains("header")) {
       const header = elem;
       const description = header.innerHTML;
@@ -306,7 +312,7 @@ window.getLinkDom = (linkDomHTML) => {
       link.split(TAB_SPLIT).map(r => r.trim()).filter(r => !!r).forEach(t => {
         const [tabName, tabId] = t.split(TAB_TITLE_SPLIT);
         if(tabName && tabId){
-          tabContent += `<tab data-tab-id='${tabId}' onClick='window.onShowTab(this)'>${tabName}</tab>`
+          tabContent += `<tab data-tab-id='${tabId}' onclick='window.onShowTab(this)'>${tabName}</tab>`
         }
       });
       
@@ -404,8 +410,18 @@ window.onSubmitNavigationSearch = () => {
   return false;
 };
 
-window.onShowTab = (tab) => {
-  debugger
+window.onShowTab = (targetTab) => {
+  const targetTabId = targetTab.dataset.tabId;
+  const tabs = [...targetTab.parentElement.querySelectorAll('tab')];
+  
+  for(const tab of tabs){
+    const tabId = tab.dataset.tabId;
+    tab.classList.remove('selected');
+    document.querySelector(`#${tabId}`).style.display = 'none';
+  }
+  
+  document.querySelector(`#${targetTabId}`).style.display = 'block';
+  targetTab.classList.addClass('selected');
 }
 
 // insert zoom scale of 1 for mobile
