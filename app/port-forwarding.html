@@ -239,11 +239,15 @@
           })
           .join("|");
         try {
-          if (isFormSubmitted) {
+            const newUrl = `?${urlData}`;
+            if(newUrl !== location.search){
+if (isFormSubmitted) {
             window.history.pushState(null, null, `?${urlData}`);
           } else {
             window.history.replaceState(null, null, `?${urlData}`);
           }
+            }
+          
         } catch (err) {}
       }
 
