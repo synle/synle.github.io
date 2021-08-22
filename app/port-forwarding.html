@@ -1,1 +1,223 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        font-family: monospace !important;
+        font-size: 18px;
+        padding: 10px 20px;
+      }
+      h1 {
+        margin-bottom: 1rem;
+      }
+      label,
+      input,
+      select {
+        cursor: pointer;
+      }
+      label,
+      div,
+      input,
+      textarea,
+      select {
+        font-size: 1rem;
+      }
+      input[type="text"],
+      textarea {
+        display: block;
+        width: 100%;
+      }
+      a,
+      button,
+      input[type="submit"] {
+        min-width: 100px;
+        border: 2px solid #ccc;
+        background: #000;
+        color: #fff;
+        cursor: pointer;
+        text-transform: uppercase;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.25s ease-out;
+      }
+      a:hover,
+      button:hover,
+      input[type="submit"]:hover,
+      a:focus,
+      button:focus,
+      input[type="submit"]:focus {
+        box-shadow: 0 0 0 3px #0c2d6b;
+        background: #161b22;
+      }
+      button,
+      label {
+        text-decoration: none;
+        font-weight: 600;
+      }
+      button,
+      input,
+      select,
+      textarea,
+      a {
+        padding: 0.5rem 0.75rem;
+      }
+
+      .row {
+        display: flex;
+        margin-bottom: 0.5rem;
+      }
+
+      .row > * {
+        flex-grow: 1;
+      }
+
+      #output {
+        font-family: "courier news";
+        border: 2px solid black;
+        background: blue;
+        color: white;
+        padding: 5px;
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="form" onsubmit="onGetCommands(); return false;">
+      <h1>Port Forwarding SSH</h1>
+      <div class="row">
+        <button type="button" onclick="addRow()">Add Row</button>
+      </div>
+
+      <!-- form content to be dynamically appended-->
+      <datalist id="datalistPorts"></datalist>
+
+      <div class="row">
+        <input
+          id="server"
+          required
+          placeholder
+          server
+          value="syle@sy-mp"
+          onBlur="onBlurFormat(this)"
+        />
+      </div>
+
+      <div class="row">
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+    <div id="output"></div>
+
+    <script>
+      // getting and setting the page title
+      try {
+        document.querySelector("h1").innerText = document.location.href
+          .match(/[a-z-A-Z0-9]+\/[a-z-A-Z0-9]+.html/)[0]
+          .trim();
+      } catch (err) {}
+    </script>
+
+    <script>
+      // https://linuxize.com/post/how-to-setup-ssh-tunneling/#:~:text=Windows%20users%20can%20create%20SSH%20tunnels%20using%20the%20PuTTY%20SSH%20client.&text=Launch%20Putty%20and%20enter%20the,Dynamic%20for%20dynamic%20port%20forwarding.
+
+      function getInputRows() {
+        return [...document.querySelectorAll(".inputRow")];
+      }
+
+      function getLastInputRow() {
+        const inputRows = [...document.querySelectorAll(".inputRow")];
+        if (inputRows && inputRows.length > 0) {
+          let lastInputRow = inputRows[inputRows.length - 1];
+          return lastInputRow;
+        }
+        return undefined;
+      }
+
+      function addRow() {
+        let localIp = "localhost";
+        let destinationIp = "sy-mp";
+
+        const lastInputRow = getLastInputRow();
+        if (lastInputRow) {
+          localIp = lastInputRow.querySelector(".local_ip").value.trim();
+          destinationIp = lastInputRow
+            .querySelector(".destination_ip")
+            .value.trim();
+        }
+
+        document.querySelector("#datalistPorts").insertAdjacentHTML(
+          "beforebegin",
+          `
+        <div class='row inputRow'>
+          <input autofocus class='local_ip' placeholder='local_ip (localhost)' value='${localIp}' type='text' onBlur="onBlurFormat(this)"/>
+          <input class='local_port' list="datalistPorts" required placeholder='local_port' type='number' onBlur="onBlurFormat(this)"/>
+          <input class='destination_ip' required placeholder='destination_ip' value='${destinationIp}' type='text' onBlur="onBlurFormat(this)"/>
+          <input class='destination_port' list="datalistPorts" required placeholder='destination_port' type='number' onBlur="onBlurFormat(this)"/>
+          <button type='button' onClick='onDeleteRow(this)'>X</button>
+        </div>
+      `
+        );
+
+        //getLastInputRow().querySelector('input').focus()
+      }
+
+      function onBlurFormat(target) {
+        target.value = target.value.trim();
+      }
+
+      function onGetCommands() {
+        let output = `ssh -L `;
+
+        const inputRows = getInputRows();
+        const tunnelMappings = inputRows
+          .map((dom) => {
+            const local_ip = dom.querySelector(".local_ip").value;
+            const local_port = dom.querySelector(".local_port").value;
+            const destination_ip = dom
+              .querySelector(".destination_ip")
+              .value.trim();
+            const destination_port = dom
+              .querySelector(".destination_port")
+              .value.trim();
+
+            return `${local_port}:${local_ip}:${destination_ip}:${destination_port}`;
+          })
+          .join(" \\\n");
+
+        output += ` \\\n${tunnelMappings}`;
+
+        const server = document.querySelector("#server").value;
+        output += ` \\\n -f -N ${server}`;
+        document.querySelector("#output").innerText = output;
+        document.querySelector("#output").style.display = "flex";
+      }
+
+      function onDeleteRow(target) {
+        const inputRows = getInputRows();
+
+        if (inputRows.length === 1) {
+          return;
+        }
+
+        //if(confirm('delete it')){
+        target.parentElement.remove();
+        //}
+      }
+
+      document.querySelector("#datalistPorts").innerHTML = "80,443,8080,3000"
+        .split(",")
+        .sort()
+        .map((port) => `<option>${port}</option>`)
+        .join("\n");
+      addRow();
+    </script>
+  </body>
+</html>
 
