@@ -21,6 +21,7 @@ html {
   --colorBgMain: #0d1117;
   --colorBgSecondary: #161b22;
   --colorBgHighlight: #f1e05a;
+  --colorBgHighlightSecondary: #c9d1d9;
   
   --colorTextMain: #c9d1d9;
   --colorTextLink: #58a6ff;
@@ -108,7 +109,6 @@ a,
 button,
 #fav .title,
 #fav .header,
-#fav .block,
 #fav .tabs,
 #command .title {
   padding: var(--spaceSize2);
@@ -164,7 +164,7 @@ button,
 
 #fav .tabs tab {
   flex-grow: 1;
-  border-bottom: var(--borderSize4) solid var(--colorBgSecondary)
+  border-bottom: var(--borderSize4) solid var(--colorBgHighlightSecondary)
 }
 
 #fav .tabs tab.selected
