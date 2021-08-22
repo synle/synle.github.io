@@ -164,7 +164,7 @@ button,
 
 #fav .tabs tab {
   flex-grow: 1;
-  border-bottom: var(--borderSize2) solid var(--colorBgHighlightSecondary);
+  border-bottom: var(--borderSize2) solid var(--colorBorderSecondary);
   padding: var(--spaceSize2) var(--spaceSize3) ;
   user-select: none;
   cursor: pointer;
