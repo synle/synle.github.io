@@ -166,6 +166,7 @@ button,
   flex-grow: 1;
   border-bottom: var(--borderSize1) solid var(--colorBgHighlightSecondary);
   user-select: none;
+  cursor: pointer;
 }
 
 #fav .tabs tab:hover, #fav .tabs tab.selected{
