@@ -121,6 +121,7 @@
 
       <div class="row">
         <button type="submit">Submit</button>
+        <button type="button" onClick="onReset()">Reset</button>
       </div>
     </form>
     <div id="output"></div>
@@ -188,7 +189,11 @@
 
       function onBlurFormat(target) {
         target.value = target.value.trim();
-        onGetCommands(false);
+        //onGetCommands(false);
+      }
+
+      function onReset() {
+        location.href = "?";
       }
 
       function onGetCommands(isFormSubmitted) {
