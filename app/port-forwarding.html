@@ -193,6 +193,8 @@
       function onGetCommands() {
         let output = `ssh -L `;
 
+        let needSudo = false;
+
         const inputRows = getInputRows();
         const tunnelMappings = inputRows
           .map((dom) => {
@@ -204,6 +206,10 @@
             const destination_port = dom
               .querySelector(".destination_port")
               .value.trim();
+
+            if (local_ip <= 1024 || destination_ip <= 1024) {
+              needSudo = true;
+            }
 
             return `${local_port}:${local_ip}:${destination_ip}:${destination_port}`;
           })
