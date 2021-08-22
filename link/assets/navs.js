@@ -143,7 +143,7 @@ window.onViewSchema = () => {
 
 window.onViewLinks = (linkDomHTML, hideSchemaForm) => {
   document.body.innerHTML = linkDomHTML;
-  
+
   if (hideSchemaForm !== false) {
     document.body.innerHTML += `<div style="display: flex; margin-top: 1rem; align-items:center; justify-content: center;">
       <button onClick='window.onViewSchema()'>View Schema</button>
@@ -233,12 +233,20 @@ window.searchBookmarklet = (val) => {
     let isHidden = true;
 
     const anchor = elem;
+    const link = elem.href
+      .replace(/http[s]/gi, "")
+      .replace(/www/gi, "")
+      .replace(/html/gi, "")
+      .replace(/index/gi, "")
+      .replace(/[/.]/gi, "");
     if (anchor.innerText.match(matchRegex)) {
       isHidden = false;
     } else if (
       anchor.dataset.section &&
       anchor.dataset.section.match(matchRegex)
     ) {
+      isHidden = false;
+    } else if (link.match(matchRegex)) {
       isHidden = false;
     }
 
