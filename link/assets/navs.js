@@ -3,6 +3,8 @@ const NEW_TAB_LINK_SPLIT = "|||";
 const HEADER_SPLIT = "#";
 const TITLE_SPLIT = "!";
 const BLOCK_SPLIT = "```";
+const TAB_SPLIT = ">>>";
+const TAB_TITLE_SPLIT = "|";
 
 let hasPendingChanges = false;
 
@@ -281,6 +283,7 @@ window.getLinkDom = (linkDomHTML) => {
       return;
     }
     
+    
     if (link.indexOf(TITLE_SPLIT) === 0) {
       // page title
       const headerText = link.replace(TITLE_SPLIT, "").trim();
@@ -297,6 +300,17 @@ window.getLinkDom = (linkDomHTML) => {
       if(link.length > BLOCK_SPLIT.length){
         blockId = link.substr(blockId.indexOf(BLOCK_SPLIT) + BLOCK_SPLIT.length + 1);
       }
+    } else if (link.indexOf(TAB_SPLIT) === 0) {
+      // is a tab >>>tabName|blockId>>>tabName1|blockId1
+      let tabContent = '';
+      link.split(TAB_SPLIT).map(r => r.trim()).filter(r => !!r).forEach(t => {
+        const [tabName, tabId] = t.split(TAB_TITLE_SPLIT);
+        if(tabName && tabId){
+          tabContent += `<tab tabId='${tabId}'>${tabName}</tab>`
+        }
+      });
+      
+      newHTMLLines.push(`<tabs class='tabs'>${tabContent}</tabs>`);
     } else {
         // anything else is a link
         let linkType;
