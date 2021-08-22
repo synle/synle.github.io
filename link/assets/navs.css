@@ -160,7 +160,6 @@ button,
 #fav .tabs {
   background: var(--colorBgSecondary);
   display: flex;
-  font-size: var(--fontSize2);
 }
 
 #fav .tabs tab {
@@ -170,6 +169,7 @@ button,
   user-select: none;
   cursor: pointer;
   text-transform: uppercase;
+  font-size: var(--fontSize2);
 }
 
 #fav .tabs tab:hover, #fav .tabs tab.selected{
