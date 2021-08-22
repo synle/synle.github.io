@@ -244,12 +244,7 @@
             if (isFormSubmitted) {
               window.history.pushState(null, null, `?${urlData}`);
             } else {
-              if (isFirstReplace) {
-                isFirstReplace = false;
-                window.history.pushState(null, null, `?${urlData}`);
-              } else {
-                window.history.replaceState(null, null, `?${urlData}`);
-              }
+              window.history.replaceState(null, null, `?${urlData}`);
             }
           }
         } catch (err) {}
