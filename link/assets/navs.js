@@ -446,3 +446,10 @@ document.addEventListener("keydown", (e) => {
     }
   }
 });
+
+
+// show the first tab
+[...document.querySelectorAll('tabs')].forEach(tabs => {
+  const firstTab = tabs.querySelector('tab');
+  window.onShowTab(firstTab);
+})
