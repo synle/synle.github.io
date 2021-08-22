@@ -38,13 +38,19 @@ window.onViewSchema = () => {
       }
     } else if (elem.classList.contains("block")) {
       const description = elem.innerText.trim();
-      const blockId = elem.id || '';
-      output.push(`\n${BLOCK_SPLIT}${blockId}\n${description}\n${BLOCK_SPLIT}\n`);
+      const blockId = elem.id || "";
+      output.push(
+        `\n${BLOCK_SPLIT}${blockId}\n${description}\n${BLOCK_SPLIT}\n`
+      );
     } else if (elem.classList.contains("tabs")) {
-      const tabContent = [...elem.querySelectorAll('tab')].map(tab => {
-        return `${tab.innerText.trim()}${TAB_TITLE_SPLIT}${tab.dataset.tabId}`
-      }).join(TAB_SPLIT);
-      
+      const tabContent = [...elem.querySelectorAll("tab")]
+        .map((tab) => {
+          return `${tab.innerText.trim()}${TAB_TITLE_SPLIT}${
+            tab.dataset.tabId
+          }`;
+        })
+        .join(TAB_SPLIT);
+
       output.push(`\n${TAB_SPLIT}${tabContent}\n`);
     } else if (elem.classList.contains("header")) {
       const header = elem;
@@ -170,6 +176,12 @@ window.onViewLinks = (linkDomHTML, hideSchemaForm) => {
   ]
     .map((r) => `<option>${r}</option>`)
     .join("\n");
+
+  // show the first tab
+  [...document.querySelectorAll("tabs")].forEach((tabs) => {
+    const firstTab = tabs.querySelector("tab");
+    window.onShowTab(firstTab);
+  });
 };
 
 window.onGetGeneratedBookmarkletLink = (input) => {
@@ -211,7 +223,10 @@ window.searchBookmarklet = (val) => {
     return;
   }
 
-  const matchRegex = new RegExp("[ ]*" + val.split("").join("[a-z0-9 -_]*"), "i");
+  const matchRegex = new RegExp(
+    "[ ]*" + val.split("").join("[a-z0-9 -_]*"),
+    "i"
+  );
 
   // show or hide
   for (const elem of document.querySelectorAll("#fav .link")) {
@@ -237,7 +252,10 @@ window.searchBookmarklet = (val) => {
     let target = header.nextElementSibling;
     let isVisible = false;
 
-    while (target && (target.classList.contains("link") || target.classList.contains("block"))) {
+    while (
+      target &&
+      (target.classList.contains("link") || target.classList.contains("block"))
+    ) {
       if (!target.classList.contains("hidden")) {
         isVisible = true;
         break;
@@ -273,23 +291,24 @@ window.getLinkDom = (linkDomHTML) => {
   let rawLinkHTML = lines.forEach((link) => {
     if (isInABlock) {
       // is in a block
-      if(link.indexOf(BLOCK_SPLIT) === 0){
+      if (link.indexOf(BLOCK_SPLIT) === 0) {
         // end of a block
-        newHTMLLines.push(`<pre class="block" id='${blockId}'>${blockBuffer.trim()}</pre>`);
+        newHTMLLines.push(
+          `<pre class="block" id='${blockId}'>${blockBuffer.trim()}</pre>`
+        );
         isInABlock = false;
         blockBuffer = "";
 
         currentHeaderName = ""; // reset the header name
-        
-        blockId = '';
+
+        blockId = "";
       } else {
         blockBuffer += link + "\n";
       }
-      
+
       return;
     }
-    
-    
+
     if (link.indexOf(TITLE_SPLIT) === 0) {
       // page title
       const headerText = link.replace(TITLE_SPLIT, "").trim();
@@ -303,74 +322,78 @@ window.getLinkDom = (linkDomHTML) => {
     } else if (link.indexOf(BLOCK_SPLIT) === 0) {
       // start a block
       isInABlock = true;
-      if(link.length > BLOCK_SPLIT.length){
-        blockId = link.substr(blockId.indexOf(BLOCK_SPLIT) + BLOCK_SPLIT.length + 1);
+      if (link.length > BLOCK_SPLIT.length) {
+        blockId = link.substr(
+          blockId.indexOf(BLOCK_SPLIT) + BLOCK_SPLIT.length + 1
+        );
       }
     } else if (link.indexOf(TAB_SPLIT) === 0) {
       // is a tab >>>tabName1|blockId1>>>tabName2|blockId3
-      let tabContent = '';
-      link.split(TAB_SPLIT).map(r => r.trim()).filter(r => !!r).forEach(t => {
-        const [tabName, tabId] = t.split(TAB_TITLE_SPLIT);
-        if(tabName && tabId){
-          tabContent += `<tab data-tab-id='${tabId.trim()}' onclick='window.onShowTab(this)'>${tabName.trim()}</tab>`
-        }
-      });
-      
+      let tabContent = "";
+      link
+        .split(TAB_SPLIT)
+        .map((r) => r.trim())
+        .filter((r) => !!r)
+        .forEach((t) => {
+          const [tabName, tabId] = t.split(TAB_TITLE_SPLIT);
+          if (tabName && tabId) {
+            tabContent += `<tab data-tab-id='${tabId.trim()}' onclick='window.onShowTab(this)'>${tabName.trim()}</tab>`;
+          }
+        });
+
       newHTMLLines.push(`<tabs class='tabs'>${tabContent}</tabs>`);
     } else {
-        // anything else is a link
-        let linkType;
-        let linkText, linkUrl;
+      // anything else is a link
+      let linkType;
+      let linkText, linkUrl;
 
+      try {
+        // try parse as new tab link
+        linkText = link.substr(0, link.indexOf(NEW_TAB_LINK_SPLIT)).trim();
+        linkUrl = link
+          .substr(link.indexOf(NEW_TAB_LINK_SPLIT) + NEW_TAB_LINK_SPLIT.length)
+          .trim();
+
+        if (linkUrl && linkText) {
+          linkType = "newTabLink";
+        }
+      } catch (err) {}
+
+      if (!linkType) {
+        // try parse as same tab link
         try {
-          // try parse as new tab link
-          linkText = link.substr(0, link.indexOf(NEW_TAB_LINK_SPLIT)).trim();
+          linkText = link.substr(0, link.indexOf(SAME_TAB_LINK_SPLIT)).trim();
           linkUrl = link
             .substr(
-              link.indexOf(NEW_TAB_LINK_SPLIT) + NEW_TAB_LINK_SPLIT.length
+              link.indexOf(SAME_TAB_LINK_SPLIT) + SAME_TAB_LINK_SPLIT.length
             )
             .trim();
 
           if (linkUrl && linkText) {
-            linkType = "newTabLink";
+            linkType = "sameTabLink";
           }
         } catch (err) {}
+      }
 
-        if (!linkType) {
-          // try parse as same tab link
-          try {
-            linkText = link.substr(0, link.indexOf(SAME_TAB_LINK_SPLIT)).trim();
-            linkUrl = link
-              .substr(
-                link.indexOf(SAME_TAB_LINK_SPLIT) + SAME_TAB_LINK_SPLIT.length
-              )
-              .trim();
-
-            if (linkUrl && linkText) {
-              linkType = "sameTabLink";
-            }
-          } catch (err) {}
+      // if found a link type...
+      if (linkType) {
+        if (
+          linkUrl.indexOf("http://") !== 0 &&
+          linkUrl.indexOf("https://") !== 0
+        ) {
+          linkUrl = `https://` + linkUrl;
         }
 
-        // if found a link type...
-        if (linkType) {
-          if (
-            linkUrl.indexOf("http://") !== 0 &&
-            linkUrl.indexOf("https://") !== 0
-          ) {
-            linkUrl = `https://` + linkUrl;
-          }
-
-          if (linkType === "sameTabLink") {
-            newHTMLLines.push(
-              `<a class="link sameTabLink" href="${linkUrl}" data-section="${currentHeaderName}">${linkText}</a>`
-            );
-          } else {
-            // new_tab_link
-            newHTMLLines.push(
-              `<a class="link newTabLink" href="${linkUrl}" target="_blank" data-section="${currentHeaderName}">${linkText}</a>`
-            );
-          }
+        if (linkType === "sameTabLink") {
+          newHTMLLines.push(
+            `<a class="link sameTabLink" href="${linkUrl}" data-section="${currentHeaderName}">${linkText}</a>`
+          );
+        } else {
+          // new_tab_link
+          newHTMLLines.push(
+            `<a class="link newTabLink" href="${linkUrl}" target="_blank" data-section="${currentHeaderName}">${linkText}</a>`
+          );
+        }
       }
     }
   });
@@ -412,17 +435,17 @@ window.onSubmitNavigationSearch = () => {
 
 window.onShowTab = (targetTab) => {
   const targetTabId = targetTab.dataset.tabId;
-  const tabs = [...targetTab.parentElement.querySelectorAll('tab')];
-  
-  for(const tab of tabs){
+  const tabs = [...targetTab.parentElement.querySelectorAll("tab")];
+
+  for (const tab of tabs) {
     const tabId = tab.dataset.tabId;
-    tab.classList.remove('selected');
-    document.querySelector(`#${tabId}`).style.display = 'none';
+    tab.classList.remove("selected");
+    document.querySelector(`#${tabId}`).style.display = "none";
   }
-  
-  document.querySelector(`#${targetTabId}`).style.display = 'block';
-  targetTab.classList.add('selected');
-}
+
+  document.querySelector(`#${targetTabId}`).style.display = "block";
+  targetTab.classList.add("selected");
+};
 
 // insert zoom scale of 1 for mobile
 document.head.insertAdjacentHTML(
@@ -446,10 +469,3 @@ document.addEventListener("keydown", (e) => {
     }
   }
 });
-
-
-// show the first tab
-[...document.querySelectorAll('tabs')].forEach(tabs => {
-  const firstTab = tabs.querySelector('tab');
-  window.onShowTab(firstTab);
-})
