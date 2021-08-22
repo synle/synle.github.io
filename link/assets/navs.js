@@ -191,7 +191,7 @@ window.onGetGeneratedBookmarkletLink = (input) => {
 };
 
 window.getNavBookmarkletFromSchema = (input) => {
-  let output = window.getLinkDom(input);
+  // let output = window.getLinkDom(input);
 
   let rawOutput = `
     <html>
@@ -199,10 +199,11 @@ window.getNavBookmarkletFromSchema = (input) => {
         <link rel="stylesheet" type="text/css" href="https://synle.github.io/link/assets/navs.css">
       </head>
       <body>
-        <div id='fav'>${output}</div>
+        <div id='fav'></div>
         <js_script src="https://synle.github.io/link/assets/navs.js"></js_script>
+        <js_script id='schema' type='schema'>${input}</js_script>
         <js_script>
-          window.onViewLinks(document.body.innerHTML);
+          window.onViewLinks(document.querySelector('#schema').innerText.trim());
           document.title = document.querySelector('.title').innerText.trim();
         </js_script>
       </body>
