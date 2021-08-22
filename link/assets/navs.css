@@ -157,6 +157,22 @@ button,
   background: #000;
 }
 
+#fav .tabs {
+  background: var(--colorBgSecondary);
+  display: flex;
+}
+
+#fav .tabs tab {
+  flex-grow: 1;
+  border-bottom: var(--borderSize4) solid var(--colorBgSecondary)
+}
+
+#fav .tabs tab.selected
+{
+  border-bottom: var(--borderSize4) solid var(--colorBgHighlight)
+}
+
+
 #search,
 #input,
 #output {
