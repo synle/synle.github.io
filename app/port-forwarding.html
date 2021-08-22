@@ -193,7 +193,8 @@
       }
 
       function onReset() {
-        window.history.pushState(null, null, ``);
+        window.history.pushState(null, null, `?`);
+        location.reload();
       }
 
       function onGetCommands(isFormSubmitted) {
