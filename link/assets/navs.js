@@ -280,11 +280,11 @@ window.getLinkDom = (linkDomHTML) => {
         blockBuffer = "";
 
         currentHeaderName = ""; // reset the header name
+        
+        blockId = '';
       } else {
         blockBuffer += link + "\n";
       }
-      
-      blockId = '';
       
       return;
     }
