@@ -109,6 +109,7 @@ button,
 #fav .title,
 #fav .header,
 #fav .block,
+#fav .tabs,
 #command .title {
   padding: var(--spaceSize2);
 }
