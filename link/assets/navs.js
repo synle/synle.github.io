@@ -45,7 +45,7 @@ window.onViewSchema = () => {
         return `${tab.innerText.trim()}${TAB_TITLE_SPLIT}${tab.dataset.tabId}`
       }).join(TAB_SPLIT);
       
-      output.push(`\n${BLOCK_SPLIT}${blockId}\n${description}\n${BLOCK_SPLIT}\n`);
+      output.push(`\n${TAB_SPLIT}${tabContent}\n`);
     } else if (elem.classList.contains("header")) {
       const header = elem;
       const description = header.innerHTML;
