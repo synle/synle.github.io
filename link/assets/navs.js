@@ -191,8 +191,6 @@ window.onGetGeneratedBookmarkletLink = (input) => {
 };
 
 window.getNavBookmarkletFromSchema = (input) => {
-  // let output = window.getLinkDom(input);
-
   let rawOutput = `
     <html>
       <head>
