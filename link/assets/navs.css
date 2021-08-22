@@ -109,7 +109,6 @@ a,
 button,
 #fav .title,
 #fav .header,
-#fav .tabs,
 #command .title {
   padding: var(--spaceSize2);
 }
@@ -165,6 +164,8 @@ button,
 #fav .tabs tab {
   flex-grow: 1;
   border-bottom: var(--borderSize1) solid var(--colorBgHighlightSecondary);
+  padding-top: var(--spaceSize2) ;
+  padding-bottom: var(--spaceSize2) ;
   user-select: none;
   cursor: pointer;
 }
