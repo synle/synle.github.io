@@ -78,6 +78,11 @@
         flex-grow: 1;
       }
 
+      .row .local_port,
+      .row .destination_port {
+        width: 150px;
+      }
+
       #output {
         font-family: "courier news";
         border: 2px solid black;
@@ -158,8 +163,8 @@
         <div class='row inputRow'>
           <input autofocus class='local_ip' placeholder='local_ip (localhost)' value='${localIp}' type='text' onBlur="onBlurFormat(this)"/>
           <input class='local_port' list="datalistPorts" required placeholder='local_port' type='number' onBlur="onBlurFormat(this)"/>
-          <input class='destination_ip' required placeholder='destination_ip' value='${destinationIp}' type='text' onBlur="onBlurFormat(this)"/>
-          <input class='destination_port' list="datalistPorts" required placeholder='destination_port' type='number' onBlur="onBlurFormat(this)"/>
+          <input class='destination_ip' required placeholder='dest_ip' value='${destinationIp}' type='text' onBlur="onBlurFormat(this)"/>
+          <input class='destination_port' list="datalistPorts" required placeholder='dest_port' type='number' onBlur="onBlurFormat(this)"/>
           <button type='button' onClick='onDeleteRow(this)'>X</button>
         </div>
       `
@@ -220,4 +225,3 @@
     </script>
   </body>
 </html>
-
