@@ -145,9 +145,11 @@
         return undefined;
       }
 
-      function addRow() {
-        let localIp = "localhost";
-        let destinationIp = "sy-mp";
+      function addRow(localIp, localPort, destinationIp, destinationPort) {
+        localIp = localIp || "localhost";
+        destinationIp = destinationIp || "sy-mp";
+        localPort = localPort || "";
+        destinationPort = destinationPort || "";
 
         const lastInputRow = getLastInputRow();
         if (lastInputRow) {
@@ -162,16 +164,16 @@
           `
         <div class='row inputRow'>
           <input autofocus class='local_ip' placeholder='local_ip (localhost)' value='${localIp}' type='text' onBlur="onBlurFormat(this)"/>
-          <input class='local_port' list="datalistPorts" required placeholder='local_port' type='number' onBlur="onBlurFormat(this)"/>
+          <input class='local_port' list="datalistPorts" required placeholder='local_port' value='${localPort}' type='number' onBlur="onBlurFormat(this)"/>
           <input class='destination_ip' required placeholder='dest_ip' value='${destinationIp}' type='text' onBlur="onBlurFormat(this)"/>
-          <input class='destination_port' list="datalistPorts" required placeholder='dest_port' type='number' onBlur="onBlurFormat(this)"/>
+          <input class='destination_port' list="datalistPorts" required placeholder='dest_port' value='${destinationPort}' type='number' onBlur="onBlurFormat(this)"/>
           <button type='button' onClick='onDeleteRow(this)'>X</button>
         </div>
       `
         );
 
         // focus on the last row
-        getLastInputRow().querySelector('input').focus()
+        getLastInputRow().querySelector("input").focus();
       }
 
       function onBlurFormat(target) {
@@ -203,6 +205,25 @@
         output += ` \\\n -f -N ${server}`;
         document.querySelector("#output").innerText = output;
         document.querySelector("#output").style.display = "flex";
+
+        // persist
+        const urlData = inputRows
+          .map((dom) => {
+            const local_ip = dom.querySelector(".local_ip").value;
+            const local_port = dom.querySelector(".local_port").value;
+            const destination_ip = dom
+              .querySelector(".destination_ip")
+              .value.trim();
+            const destination_port = dom
+              .querySelector(".destination_port")
+              .value.trim();
+
+            return `${local_port}:${local_ip}:${destination_ip}:${destination_port}`;
+          })
+          .join("|");
+        try {
+          window.history.replaceState(null, null, `?${urlData}`);
+        } catch (err) {}
       }
 
       function onDeleteRow(target) {
@@ -217,12 +238,26 @@
         //}
       }
 
-      document.querySelector("#datalistPorts").innerHTML = "80,443,8080,3000"
-        .split(",")
-        .sort()
-        .map((port) => `<option>${port}</option>`)
-        .join("\n");
-      addRow();
+      // init
+      function onInit() {
+        document.querySelector("#datalistPorts").innerHTML = "80,443,8080,3000"
+          .split(",")
+          .sort()
+          .map((port) => `<option>${port}</option>`)
+          .join("\n");
+
+        if (!location.search) {
+          addRow();
+        } else {
+          location.search
+            .split(/[?|]/)
+            .filter((r) => r.split(":").length === 4)
+            .map((r) => r.split(":"))
+            .forEach(([localIp, localPort, destinationIp, destinationPort]) =>
+              addRow(localIp, localPort, destinationIp, destinationPort)
+            );
+        }
+      }
     </script>
   </body>
 </html>
