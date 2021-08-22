@@ -129,6 +129,7 @@ button,
 #fav .title,
 #fav .header,
 #fav .block,
+#fav .tabs,
 #fav form {
   grid-column: 1/-1;
 }
