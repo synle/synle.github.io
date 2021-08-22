@@ -164,13 +164,13 @@ button,
 
 #fav .tabs tab {
   flex-grow: 1;
-  border-bottom: var(--borderSize1) solid var(--colorBgHighlightSecondary)
+  border-bottom: var(--borderSize1) solid var(--colorBgHighlightSecondary);
+  user-select: none;
 }
 
 #fav .tabs tab:hover, #fav .tabs tab.selected{
   border-bottom: var(--borderSize1) solid var(--colorBgHighlight)
 }
-
 
 #search,
 #input,
