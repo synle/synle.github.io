@@ -259,13 +259,14 @@ window.getLinkDom = (linkDomHTML) => {
   let blockBuffer = "";
   let isInABlock = false;
   let currentHeaderName = "";
+  let blockId = "";
 
   let rawLinkHTML = lines.forEach((link) => {
     if (isInABlock) {
       // is in a block
       if(link.indexOf(BLOCK_SPLIT) === 0){
         // end of a block
-        newHTMLLines.push(`<pre class="block">${blockBuffer.trim()}</pre>`);
+        newHTMLLines.push(`<pre class="block" id='${blockId}'>${blockBuffer.trim()}</pre>`);
         isInABlock = false;
         blockBuffer = "";
 
@@ -273,6 +274,8 @@ window.getLinkDom = (linkDomHTML) => {
       } else {
         blockBuffer += link + "\n";
       }
+      
+      blockId = '';
       
       return;
     }
@@ -290,6 +293,9 @@ window.getLinkDom = (linkDomHTML) => {
     } else if (link.indexOf(BLOCK_SPLIT) === 0) {
       // start a block
       isInABlock = true;
+      if(link.length > BLOCK_SPLIT.length){
+        blockId = link.substr(blockId.indexOf(BLOCK_SPLIT) + BLOCK_SPLIT.length + 1);
+      }
     } else {
         // anything else is a link
         let linkType;
