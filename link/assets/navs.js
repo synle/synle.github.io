@@ -36,12 +36,8 @@ window.onViewSchema = () => {
       }
     } else if (elem.classList.contains("block")) {
       const description = elem.innerText.trim();
-      const blockId = elem.id;
-      if(blockId){
-        output.push(`\n${BLOCK_SPLIT}\n${description}\n${BLOCK_SPLIT}\n`);
-      } else {
-        output.push(`\n${BLOCK_SPLIT}${blockId}\n${description}\n${BLOCK_SPLIT}\n`);
-      }
+      const blockId = elem.id || '';
+      output.push(`\n${BLOCK_SPLIT}${blockId}\n${description}\n${BLOCK_SPLIT}\n`);
     } else if (elem.classList.contains("header")) {
       const header = elem;
       const description = header.innerHTML;
