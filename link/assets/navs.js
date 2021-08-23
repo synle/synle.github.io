@@ -83,7 +83,7 @@ window.onViewSchema = () => {
         placeholder="Bookmarklet Output" 
         wrap="soft" 
         spellcheck="false"
-        onfocus="window.zoominInput(this); window.onCopyBlockToClipboard(this);"></textarea>
+        onfocus="window.zoominInput(this); window.onCopyBlockToClipboard(this);this.focus();"></textarea>
     </div>
   `;
 
