@@ -83,7 +83,7 @@ window.onViewSchema = () => {
         placeholder="Bookmarklet Output" 
         wrap="soft" 
         spellcheck="false"
-        onfocus="window.zoominInput(this); window.onCopyBlockToClipboard(this);"></textarea>
+        onfocus="window.zoominInput(this); window.onCopyBlockToClipboard(this, false);"></textarea>
     </div>
   `;
 
@@ -451,7 +451,7 @@ window.onSubmitNavigationSearch = () => {
 
 
 let _timeoutRemoveClipboardDiv;
-window.onCopyBlockToClipboard = (target) => {
+window.onCopyBlockToClipboard = (target, autoDismiss) => {
   const text = target.innerText.trim();
   onCopyToClipboard(text);
 
@@ -481,7 +481,9 @@ window.onCopyBlockToClipboard = (target) => {
     } catch(err){}
   }
 
-  _timeoutRemoveClipboardDiv = setTimeout(removeClipboardDiv, 1250);
+  if(autoDismiss !== false){
+    _timeoutRemoveClipboardDiv = setTimeout(removeClipboardDiv, 1250);
+  }
 };
 
 window.onCopyToClipboard = async (text) => {
