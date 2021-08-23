@@ -306,7 +306,7 @@ window.getLinkDom = (linkDomHTML) => {
       if (link.indexOf(BLOCK_SPLIT) === 0) {
         // end of a block
         newHTMLLines.push(
-          `<pre class="block" id='${blockId}'>${blockBuffer.trim()}</pre>`
+          `<pre class="block" id='${blockId}' ondblclick="window.onCopyBlockToClipboard(this)" tabindex='0'>${blockBuffer.trim()}</pre>`
         );
         isInABlock = false;
         blockBuffer = "";
@@ -444,6 +444,12 @@ window.onSubmitNavigationSearch = () => {
   }
   return false;
 };
+
+window.onCopyBlockToClipboard = (target) => {
+  const text = target.innerText.trim();  
+  onCopyToClipboard(text);
+  target.focus();
+}
 
 window.onCopyToClipboard = async (text) => {
   try{
