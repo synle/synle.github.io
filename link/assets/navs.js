@@ -456,6 +456,8 @@ window.onCopyBlockToClipboard = (target) => {
   onCopyToClipboard(text);
 
   // show the toaster for content is copied
+  clearTimeout(_timeoutRemoveClipboardDiv);
+  document.querySelector("#copiedToClipboard") && document.querySelector("#copiedToClipboard").remove();
   document.body.insertAdjacentHTML(
     "beforeend",
     `
