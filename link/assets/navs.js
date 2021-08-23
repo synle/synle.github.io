@@ -476,7 +476,7 @@ window.onCopyBlockToClipboard = (target) => {
     try{
       if(document.querySelector("#copiedToClipboard")){
         document.querySelector("#copiedToClipboard").style.opacity = '0.1';
-        setTimeout(() => document.querySelector("#copiedToClipboard").remove(), 500);
+        setTimeout(() => document.querySelector("#copiedToClipboard").remove(), 250);
       }
     } catch(err){}
   }
