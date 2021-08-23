@@ -100,7 +100,8 @@ input:hover,
 a:focus,
 button:focus,
 input:focus,
-textarea:focus {
+textarea:focus,
+.block:focus, {
   background: var(--colorBgSecondary) !important;
   box-shadow: var(--colorBoxShadowMain);
 }
