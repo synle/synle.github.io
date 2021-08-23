@@ -83,7 +83,7 @@ window.onViewSchema = () => {
         placeholder="Bookmarklet Output" 
         wrap="soft" 
         spellcheck="false"
-        onfocus="window.zoominInput(this); window.onCopyBlockToClipboard(this);this.focus();"></textarea>
+        onfocus="window.zoominInput(this); window.onCopyBlockToClipboard(this);"></textarea>
     </div>
   `;
 
@@ -481,7 +481,7 @@ window.onCopyBlockToClipboard = (target) => {
     } catch(err){}
   }
 
-  _timeoutRemoveClipboardDiv = setTimeout(removeClipboardDiv, 1500);
+  _timeoutRemoveClipboardDiv = setTimeout(removeClipboardDiv, 1250);
 };
 
 window.onCopyToClipboard = async (text) => {
