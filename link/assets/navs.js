@@ -445,6 +445,12 @@ window.onSubmitNavigationSearch = () => {
   return false;
 };
 
+window.onCopyToClipboard = async (text) => {
+  try{
+    await navigator.clipboard.writeText(text)
+  } catch(err){}
+}
+
 window.onShowTab = (targetTab) => {
   const targetTabId = targetTab.dataset.tabId;
   const tabs = [...targetTab.parentElement.querySelectorAll("tab")];
