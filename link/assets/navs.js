@@ -469,9 +469,11 @@ window.onCopyBlockToClipboard = (target) => {
     .addEventListener("blur", removeClipboardDiv);
 
   function removeClipboardDiv() {
-    document.querySelector("#copiedToClipboard") &&
-      document.querySelector("#copiedToClipboard").remove();
     clearTimeout(_timeoutRemoveClipboardDiv);
+    try{
+      document.querySelector("#copiedToClipboard") &&
+        document.querySelector("#copiedToClipboard").remove();
+    } catch(err){}
   }
 
   _timeoutRemoveClipboardDiv = setTimeout(removeClipboardDiv, 3500);
