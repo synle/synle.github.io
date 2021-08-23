@@ -466,10 +466,15 @@ window.onCopyBlockToClipboard = (target, autoDismiss) => {
   );
 
   document.querySelector("#copiedToClipboard").style.opacity = '1';
-  document.querySelector("#copiedToClipboard").focus();
-  document
-    .querySelector("#copiedToClipboard")
-    .addEventListener("blur", removeClipboardDiv);
+  
+  if(autoDismiss !== false){
+    document.querySelector("#copiedToClipboard").focus();
+    document
+      .querySelector("#copiedToClipboard")
+      .addEventListener("blur", removeClipboardDiv);
+  }
+  
+  _timeoutRemoveClipboardDiv = setTimeout(removeClipboardDiv, 1250);
 
   function removeClipboardDiv() {
     clearTimeout(_timeoutRemoveClipboardDiv);
@@ -479,10 +484,6 @@ window.onCopyBlockToClipboard = (target, autoDismiss) => {
         setTimeout(() => document.querySelector("#copiedToClipboard").remove(), 250);
       }
     } catch(err){}
-  }
-
-  if(autoDismiss !== false){
-    _timeoutRemoveClipboardDiv = setTimeout(removeClipboardDiv, 1250);
   }
 };
 
