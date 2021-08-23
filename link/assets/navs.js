@@ -306,7 +306,7 @@ window.getLinkDom = (linkDomHTML) => {
       if (link.indexOf(BLOCK_SPLIT) === 0) {
         // end of a block
         newHTMLLines.push(
-          `<pre class="block" id='${blockId}' ondblclick="window.onCopyBlockToClipboard(this)" tabindex='0'>${blockBuffer.trim()}</pre>`
+          `<pre class='block' id='${blockId}' ondblclick='window.onCopyBlockToClipboard(this)'>${blockBuffer.trim()}</pre>`
         );
         isInABlock = false;
         blockBuffer = "";
@@ -349,7 +349,7 @@ window.getLinkDom = (linkDomHTML) => {
         .forEach((t) => {
           const [tabName, tabId] = t.split(TAB_TITLE_SPLIT);
           if (tabName && tabId) {
-            tabContent += `<tab tab-index="0" data-tab-id='${tabId.trim()}' onclick='window.onShowTab(this)'>${tabName.trim()}</tab>`;
+            tabContent += `<tab tabindex='0' data-tab-id='${tabId.trim()}' onclick='window.onShowTab(this)'>${tabName.trim()}</tab>`;
           }
         });
 
@@ -448,7 +448,6 @@ window.onSubmitNavigationSearch = () => {
 window.onCopyBlockToClipboard = (target) => {
   const text = target.innerText.trim();  
   onCopyToClipboard(text);
-  target.focus();
 }
 
 window.onCopyToClipboard = async (text) => {
