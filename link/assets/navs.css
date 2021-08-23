@@ -101,7 +101,8 @@ a:focus,
 button:focus,
 input:focus,
 textarea:focus,
-.block:focus, {
+.block:focus,
+.tabs > tab:focus {
   background: var(--colorBgSecondary) !important;
   box-shadow: var(--colorBoxShadowMain);
 }
