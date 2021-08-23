@@ -215,10 +215,14 @@ window.getNavBookmarkletFromSchema = (input) => {
 
 window.searchBookmarklet = () => {
   // remove all non alphanumeric
-  let val = document.querySelector('#search').value.replace(/[\W_]+/gi," ").replace(/[ ][ ]+/, ' ').trim();
+  let val = document
+    .querySelector("#search")
+    .value.replace(/[\W_]+/gi, " ")
+    .replace(/[ ][ ]+/, " ")
+    .trim();
 
   // update the value
-  document.querySelector('#search').value = val;
+  document.querySelector("#search").value = val;
 
   if (val.length === 0) {
     for (const elem of document.querySelectorAll("#fav .header, #fav .link")) {
@@ -446,15 +450,15 @@ window.onSubmitNavigationSearch = () => {
 };
 
 window.onCopyBlockToClipboard = (target) => {
-  const text = target.innerText.trim();  
+  const text = target.innerText.trim();
   onCopyToClipboard(text);
-}
+};
 
 window.onCopyToClipboard = async (text) => {
-  try{
-    await navigator.clipboard.writeText(text)
-  } catch(err){}
-}
+  try {
+    await navigator.clipboard.writeText(text);
+  } catch (err) {}
+};
 
 window.onShowTab = (targetTab) => {
   const targetTabId = targetTab.dataset.tabId;
@@ -482,13 +486,32 @@ document.head.insertAdjacentHTML(
   `.trim()
 );
 
-// special handling for ctrl + f to focus on searchbox
-document.addEventListener("keydown", (e) => {
-  const searchBox = document.querySelector("#search");
-  if (searchBox) {
-    if (e.key === "f" && (e.ctrlKey || e.altKey || e.metaKey)) {
-      searchBox.focus();
-      e.preventDefault();
+document.addEventListener(
+  "keydown",
+  (e) => {
+    // handling enter and spacebar on focusable div
+    const { key } = e;
+    const target = e.target;
+
+    if (target.onclick) {
+      if (key === "Enter" || key === " ") {
+        target.onclick.apply(target);
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        return;
+      }
+    } else {
+      // special handling for ctrl + f to focus on searchbox
+      const searchBox = document.querySelector("#search");
+      if (searchBox) {
+        if (e.key === "f" && (e.ctrlKey || e.altKey || e.metaKey)) {
+          searchBox.focus();
+          e.preventDefault();
+        }
+      }
     }
-  }
-});
+  },
+  true
+);
