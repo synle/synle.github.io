@@ -452,6 +452,26 @@ window.onSubmitNavigationSearch = () => {
 window.onCopyBlockToClipboard = (target) => {
   const text = target.innerText.trim();
   onCopyToClipboard(text);
+
+  // show the toaster for content is copied
+  document.body.insertAdjacentHTML(
+    "beforeend",
+    `
+      <div id='copiedToClipboard' tabindex='0' style="    transform: translateX(-50%); position: fixed; background: blue; color: #fff; bottom: 50px; left: 50%; width: 180px; text-align: center; font-weight: bold; border: 2px solid #eee; padding: 5px 10px; z-index: 1;">Copied to clipboard</div>
+    `
+  );
+
+  document.querySelector("#copiedToClipboard").focus();
+  document
+    .querySelector("#copiedToClipboard")
+    .addEventListener("blur", removeClipboardDiv);
+
+  function removeClipboardDiv() {
+    document.querySelector("#copiedToClipboard") &&
+      document.querySelector("#copiedToClipboard").remove();
+  }
+
+  setTimeout(() => removeClipboardDiv, 3500);
 };
 
 window.onCopyToClipboard = async (text) => {
