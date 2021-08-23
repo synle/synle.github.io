@@ -449,6 +449,8 @@ window.onSubmitNavigationSearch = () => {
   return false;
 };
 
+
+let _timeoutRemoveClipboardDiv;
 window.onCopyBlockToClipboard = (target) => {
   const text = target.innerText.trim();
   onCopyToClipboard(text);
@@ -469,9 +471,10 @@ window.onCopyBlockToClipboard = (target) => {
   function removeClipboardDiv() {
     document.querySelector("#copiedToClipboard") &&
       document.querySelector("#copiedToClipboard").remove();
+    clearTimeout(_timeoutRemoveClipboardDiv);
   }
 
-  setTimeout(removeClipboardDiv, 3500);
+  _timeoutRemoveClipboardDiv = setTimeout(removeClipboardDiv, 3500);
 };
 
 window.onCopyToClipboard = async (text) => {
