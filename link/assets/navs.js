@@ -481,7 +481,7 @@ window.onCopyBlockToClipboard = (target) => {
     } catch(err){}
   }
 
-  _timeoutRemoveClipboardDiv = setTimeout(removeClipboardDiv, 3000);
+  _timeoutRemoveClipboardDiv = setTimeout(removeClipboardDiv, 1500);
 };
 
 window.onCopyToClipboard = async (text) => {
