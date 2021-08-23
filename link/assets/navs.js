@@ -457,7 +457,7 @@ window.onCopyBlockToClipboard = (target) => {
   document.body.insertAdjacentHTML(
     "beforeend",
     `
-      <div id='copiedToClipboard' tabindex='0' style="    transform: translateX(-50%); position: fixed; background: blue; color: #fff; bottom: 50px; left: 50%; width: 180px; text-align: center; font-weight: bold; border: 2px solid #eee; padding: 5px 10px; z-index: 1;">Copied to clipboard</div>
+      <div id='copiedToClipboard' tabindex='0' style="    transform: translateX(-50%); position: fixed; background: blue; color: #fff; bottom: 60px; left: 50%; width: 180px; text-align: center; font-weight: bold; border: 2px solid #eee; padding: 5px 10px; z-index: 1;">Copied to clipboard</div>
     `
   );
 
@@ -471,7 +471,7 @@ window.onCopyBlockToClipboard = (target) => {
       document.querySelector("#copiedToClipboard").remove();
   }
 
-  setTimeout(() => removeClipboardDiv, 3500);
+  setTimeout(removeClipboardDiv, 3500);
 };
 
 window.onCopyToClipboard = async (text) => {
