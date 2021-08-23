@@ -349,7 +349,7 @@ window.getLinkDom = (linkDomHTML) => {
         .forEach((t) => {
           const [tabName, tabId] = t.split(TAB_TITLE_SPLIT);
           if (tabName && tabId) {
-            tabContent += `<tab data-tab-id='${tabId.trim()}' onclick='window.onShowTab(this)'>${tabName.trim()}</tab>`;
+            tabContent += `<tab tab-index="0" data-tab-id='${tabId.trim()}' onclick='window.onShowTab(this)'>${tabName.trim()}</tab>`;
           }
         });
 
