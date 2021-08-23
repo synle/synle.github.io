@@ -77,7 +77,8 @@ window.onViewSchema = () => {
         spellcheck="false"
         oninput="hasPendingChanges = true;"
         onfocus="window.zoominInput(this)" 
-        onblur="window.onGetGeneratedBookmarkletLink(document.querySelector('#input').value)">${output}</textarea>
+        onblur="window.onGetGeneratedBookmarkletLink(document.querySelector('#input').value)"
+        ondblclick="window.onCopyBlockToClipboard(this, false);">${output}</textarea>
       <textarea 
         id='output' 
         placeholder="Bookmarklet Output" 
