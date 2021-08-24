@@ -18,7 +18,7 @@ window.onbeforeunload = function (e) {
   return undefined;
 };
 
-window.onViewSchema = () => {
+window.getSchemaFromDom = () => {
   var output = [];
   var elems = document.querySelectorAll("#fav > *");
   for (const elem of elems) {
@@ -71,6 +71,10 @@ window.onViewSchema = () => {
   }
 
   output = output.join("\n").trim();
+}
+
+window.onViewSchema = () => {
+  var output = window.getSchemaFromDom();
 
   const rawSchemaDataDom = `
     <div id='command'>
