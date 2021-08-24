@@ -608,8 +608,10 @@ document.addEventListener(
 // init the form if needed
 // when visiting the main form, this will parse the schema and populate it accordingly
 document.addEventListener("DOMContentLoaded",  () => {
-  if(location.search && location.search.length > 3 && isRenderedInMainForm){
+  if(isRenderedInMainForm){
+  if(location.search && location.search.length > 3){
     let urlData = decodeURIComponent(location.search.substr(1));
     window.onViewLinks(window.getLinkDom(urlData));
+  }
   }
 });
