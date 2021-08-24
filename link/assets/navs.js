@@ -210,6 +210,7 @@ window.onViewLinks = (linkDomHTML, hideSchemaForm) => {
 //       window.history.pushState(null, null, urlData);
 //     }
     sessionStorage['schemaData'] = window.getSchemaFromDom();
+    localStorage['schemaData'] = window.getSchemaFromDom();
     hasPendingChanges = false;
   }
 };
@@ -619,6 +620,8 @@ document.addEventListener("DOMContentLoaded", () => {
 //     }
     if(sessionStorage['schemaData']) {
       window.onViewLinks(window.getLinkDom(sessionStorage['schemaData']));
+    } else if(localStorage['schemaData']){
+      window.onViewLinks(window.getLinkDom(localStorage['schemaData']));
     }
   }
 });
