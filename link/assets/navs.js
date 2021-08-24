@@ -425,7 +425,7 @@ window.getLinkDom = (linkDomHTML) => {
         } else if(linkUrl.indexOf('data:') === 0){
           // data url link
           newHTMLLines.push(
-            `<a class='link dataLink' onClick='debugger; navigateToDataUrl(this.dataset.url)' url="${linkUrl}" data-section='${currentHeaderName}'>${linkText}</a>`
+            `<a class='link dataLink' onClick='debugger; navigateToDataUrl(this.dataset.url)' data-url="${linkUrl}" data-section='${currentHeaderName}'>${linkText}</a>`
           );
         } else if (linkType === 'sameTabLink') {
           // same tab link
