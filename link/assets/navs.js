@@ -472,7 +472,7 @@ window.showCopiedToClipboardPopup = (autoDismiss, clipboardPopupContent) => {
   document.body.insertAdjacentHTML(
     "beforeend",
     `
-      <div id='copiedToClipboard' tabindex='0' style="transition: all 0.25s ease-out; opacity: 0.5; transform: translateX(-50%); position: fixed; background: blue; color: #fff; bottom: 60px; left: 50%; width: 180px; text-align: center; font-weight: bold; border: 2px solid #eee; padding: 5px 10px; z-index: 1;">
+      <div id='copiedToClipboard' tabindex='0' style="transition: all 0.25s ease-out; opacity: 0.5; transform: translateX(-50%); position: fixed; background: blue; color: #fff; bottom: 60px; left: 50%; min-width: 180px; max-width: 75%; text-align: center; font-weight: bold; border: 2px solid #eee; padding: 5px 10px; z-index: 1;">
         Copied to clipboard ${clipboardPopupContent}
       </div>
     `
