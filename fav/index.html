@@ -135,8 +135,8 @@ code spaces|github.com/codespaces
         }
 
         const newPassword = getPassword();
-        window.onCopyToClipboard(newPassword);
-        prompt('New Password', newPassword);
+        onCopyToClipboard(newPassword);
+        showCopiedToClipboardPopup(false);
     }
   </script>
 
