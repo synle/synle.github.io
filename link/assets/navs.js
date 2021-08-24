@@ -33,12 +33,10 @@ window.onViewSchema = () => {
       
       if (elem.classList.contains("jsLink")) {
         // js link
-        debugger
-        const jsFunc = `javascript://${elem.attributes.onClick}`;
+        const jsFunc = `javascript://${elem.dataset.jsfunc}`;
         output.push(`${description} ${SAME_TAB_LINK_SPLIT} ${jsFunc}`);
       } else if (elem.classList.contains("newTabLink")) {
         // data link
-        debugger
         const dataUrl = `${elem.dataset.url}`;
         output.push(`${description} ${SAME_TAB_LINK_SPLIT} ${dataUrl}`);
       } else if (elem.classList.contains("dataLink")) {
@@ -420,7 +418,7 @@ window.getLinkDom = (linkDomHTML) => {
           // js func link
           const jsFunc = linkUrl.replace('javascript://', '');
           newHTMLLines.push(
-            `<a class='link jsLink' onClick='${jsFunc}' data-section='${currentHeaderName}'>${linkText}</a>`
+            `<a class='link jsLink' onClick='eval(this.dataset.jsfunc)' data-jsfunc="${jsFunc}" data-section='${currentHeaderName}'>${linkText}</a>`
           );
         } else if(linkUrl.indexOf('data:') === 0){
           // data url link
