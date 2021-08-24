@@ -205,10 +205,6 @@ window.onViewLinks = (linkDomHTML, hideSchemaForm) => {
 
   // persist the link if needed
   if (isRenderedInMainForm) {
-//     let urlData = "?" + encodeURIComponent(window.getSchemaFromDom());
-//     if (urlData !== location.search) {
-//       window.history.pushState(null, null, urlData);
-//     }
     sessionStorage['schemaData'] = window.getSchemaFromDom();
     localStorage['schemaData'] = window.getSchemaFromDom();
     hasPendingChanges = false;
@@ -614,10 +610,6 @@ document.addEventListener(
 // when visiting the main form, this will parse the schema and populate it accordingly
 document.addEventListener("DOMContentLoaded", () => {
   if (isRenderedInMainForm) {
-//     if (location.search && location.search.length > 3) {
-//       let urlData = decodeURIComponent(location.search.substr(1));
-//       window.onViewLinks(window.getLinkDom(urlData));
-//     }
     if(sessionStorage['schemaData']) {
       window.onViewLinks(window.getLinkDom(sessionStorage['schemaData']));
     } else if(localStorage['schemaData']){
