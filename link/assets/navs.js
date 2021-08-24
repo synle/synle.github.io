@@ -418,12 +418,12 @@ window.getLinkDom = (linkDomHTML) => {
           // js func link
           const jsFunc = linkUrl.replace('javascript://', '');
           newHTMLLines.push(
-            `<a class='link jsLink' onClick='eval(this.dataset.jsfunc)' data-jsfunc="${jsFunc}" data-section='${currentHeaderName}'>${linkText}</a>`
+            `<button class='link jsLink' onClick='eval(this.dataset.jsfunc)' data-jsfunc="${jsFunc}" data-section='${currentHeaderName}'>${linkText}</button>`
           );
         } else if(linkUrl.indexOf('data:') === 0){
           // data url link
           newHTMLLines.push(
-            `<a class='link dataLink' onClick='navigateToDataUrl(this.dataset.url)' data-url="${linkUrl}" data-section='${currentHeaderName}'>${linkText}</a>`
+            `<button class='link dataLink' onClick='navigateToDataUrl(this.dataset.url)' data-url="${linkUrl}" data-section='${currentHeaderName}'>${linkText}</button>`
           );
         } else if (linkType === 'sameTabLink') {
           // same tab link
