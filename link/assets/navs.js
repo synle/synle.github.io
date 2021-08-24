@@ -462,6 +462,10 @@ window.onCopyBlockToClipboard = (target, autoDismiss) => {
 window.showCopiedToClipboardPopup = (autoDismiss, clipboardPopupContent) => {
   clipboardPopupContent = clipboardPopupContent || '';
   
+  if(clipboardPopupContent){
+    clipboardPopupContent = ` "${clipboardPopupContent}"`
+  }
+  
   // show the toaster for content is copied
   clearTimeout(_timeoutRemoveClipboardDiv);
   document.querySelector("#copiedToClipboard") && document.querySelector("#copiedToClipboard").remove();
@@ -469,7 +473,7 @@ window.showCopiedToClipboardPopup = (autoDismiss, clipboardPopupContent) => {
     "beforeend",
     `
       <div id='copiedToClipboard' tabindex='0' style="transition: all 0.25s ease-out; opacity: 0.5; transform: translateX(-50%); position: fixed; background: blue; color: #fff; bottom: 60px; left: 50%; width: 180px; text-align: center; font-weight: bold; border: 2px solid #eee; padding: 5px 10px; z-index: 1;">
-        ${"Copied to clipboard" +  clipboardPopupContent ? '"' + clipboardPopupContent + '"' : ''}
+        Copied to clipboard ${clipboardPopupContent}
       </div>
     `
   );
