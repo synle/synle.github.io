@@ -6,7 +6,8 @@ const BLOCK_SPLIT = "```";
 const TAB_SPLIT = ">>>";
 const TAB_TITLE_SPLIT = "|";
 
-let isRenderedInMainForm = location.href.indexOf('synle.github.io/link/nav-generator.html') >= 0;
+let isRenderedInMainForm =
+  location.href.indexOf("synle.github.io/link/nav-generator.html") >= 0;
 let hasPendingChanges = false;
 let _timeoutRemoveClipboardDiv;
 
@@ -31,7 +32,6 @@ window.getSchemaFromDom = () => {
       const fullLink = link.href;
       const description = link.innerHTML;
 
-      
       if (elem.classList.contains("jsLink")) {
         // js link
         const jsFunc = `javascript://${elem.dataset.jsfunc}`;
@@ -72,9 +72,9 @@ window.getSchemaFromDom = () => {
   }
 
   output = output.join("\n").trim();
-  
+
   return output;
-}
+};
 
 window.onViewSchema = () => {
   var output = window.getSchemaFromDom();
@@ -202,11 +202,11 @@ window.onViewLinks = (linkDomHTML, hideSchemaForm) => {
     const firstTab = tabs.querySelector("tab");
     window.onShowTab(firstTab);
   });
-  
+
   // persist the link if needed
-  if(isRenderedInMainForm){
-    let urlData = '?' + encodeURIComponent(window.getSchemaFromDom());
-    if(urlData !== location.search){
+  if (isRenderedInMainForm) {
+    let urlData = "?" + encodeURIComponent(window.getSchemaFromDom());
+    if (urlData !== location.search) {
       window.history.pushState(null, null, `?${urlData}`);
     }
     hasPendingChanges = false;
@@ -423,25 +423,25 @@ window.getLinkDom = (linkDomHTML) => {
         if (
           linkUrl.indexOf("http://") !== 0 &&
           linkUrl.indexOf("https://") !== 0 &&
-          linkUrl.indexOf("javascript://") !== 0 && 
+          linkUrl.indexOf("javascript://") !== 0 &&
           linkUrl.indexOf("data:") !== 0
         ) {
           // prepend the link url https://
           linkUrl = `https://${linkUrl}`;
         }
-        
-        if(linkUrl.indexOf('javascript://') === 0){
+
+        if (linkUrl.indexOf("javascript://") === 0) {
           // js func link
-          const jsFunc = linkUrl.replace('javascript://', '');
+          const jsFunc = linkUrl.replace("javascript://", "");
           newHTMLLines.push(
             `<button class='link jsLink' onClick='eval(this.dataset.jsfunc)' data-jsfunc="${jsFunc}" data-section='${currentHeaderName}'>${linkText}</button>`
           );
-        } else if(linkUrl.indexOf('data:') === 0){
+        } else if (linkUrl.indexOf("data:") === 0) {
           // data url link
           newHTMLLines.push(
             `<button class='link dataLink' onClick='navigateToDataUrl(this.dataset.url)' data-url="${linkUrl}" data-section='${currentHeaderName}'>${linkText}</button>`
           );
-        } else if (linkType === 'sameTabLink') {
+        } else if (linkType === "sameTabLink") {
           // same tab link
           newHTMLLines.push(
             `<a class='link sameTabLink' href='${linkUrl}' data-section='${currentHeaderName}'>${linkText}</a>`
@@ -481,7 +481,7 @@ window.navigateToDataUrl = (base64URL) => {
       <iframe src="${base64URL}" frameborder="0" style="border:0; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%;" allowfullscreen></iframe>
     `.trim()
   );
-}
+};
 
 window.onSubmitNavigationSearch = () => {
   const links = document.querySelectorAll("a.link:not(.hidden)");
@@ -502,15 +502,16 @@ window.onCopyBlockToClipboard = (target, autoDismiss) => {
 };
 
 window.showCopiedToClipboardPopup = (autoDismiss, clipboardPopupContent) => {
-  clipboardPopupContent = clipboardPopupContent || '';
-  
-  if(clipboardPopupContent){
-    clipboardPopupContent = ` "${clipboardPopupContent}"`
+  clipboardPopupContent = clipboardPopupContent || "";
+
+  if (clipboardPopupContent) {
+    clipboardPopupContent = ` "${clipboardPopupContent}"`;
   }
-  
+
   // show the toaster for content is copied
   clearTimeout(_timeoutRemoveClipboardDiv);
-  document.querySelector("#copiedToClipboard") && document.querySelector("#copiedToClipboard").remove();
+  document.querySelector("#copiedToClipboard") &&
+    document.querySelector("#copiedToClipboard").remove();
   document.body.insertAdjacentHTML(
     "beforeend",
     `
@@ -520,27 +521,30 @@ window.showCopiedToClipboardPopup = (autoDismiss, clipboardPopupContent) => {
     `
   );
 
-  document.querySelector("#copiedToClipboard").style.opacity = '1';
-  
-  if(autoDismiss !== false){
+  document.querySelector("#copiedToClipboard").style.opacity = "1";
+
+  if (autoDismiss !== false) {
     document.querySelector("#copiedToClipboard").focus();
     document
       .querySelector("#copiedToClipboard")
       .addEventListener("blur", removeClipboardDiv);
   }
-  
+
   _timeoutRemoveClipboardDiv = setTimeout(removeClipboardDiv, 1250);
 
   function removeClipboardDiv() {
     clearTimeout(_timeoutRemoveClipboardDiv);
-    try{
-      if(document.querySelector("#copiedToClipboard")){
-        document.querySelector("#copiedToClipboard").style.opacity = '0.1';
-        setTimeout(() => document.querySelector("#copiedToClipboard").remove(), 250);
+    try {
+      if (document.querySelector("#copiedToClipboard")) {
+        document.querySelector("#copiedToClipboard").style.opacity = "0.1";
+        setTimeout(
+          () => document.querySelector("#copiedToClipboard").remove(),
+          250
+        );
       }
-    } catch(err){}
+    } catch (err) {}
   }
-}
+};
 
 window.onCopyToClipboard = async (text) => {
   try {
@@ -604,14 +608,13 @@ document.addEventListener(
   true
 );
 
-
 // init the form if needed
 // when visiting the main form, this will parse the schema and populate it accordingly
-document.addEventListener("DOMContentLoaded",  () => {
-  if(isRenderedInMainForm){
-  if(location.search && location.search.length > 3){
-    let urlData = decodeURIComponent(location.search.substr(1));
-    window.onViewLinks(window.getLinkDom(urlData));
-  }
+document.addEventListener("DOMContentLoaded", () => {
+  if (isRenderedInMainForm) {
+    if (location.search && location.search.length > 3) {
+      let urlData = decodeURIComponent(location.search.substr(1));
+      window.onViewLinks(window.getLinkDom(urlData));
+    }
   }
 });
