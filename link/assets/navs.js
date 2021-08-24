@@ -35,11 +35,11 @@ window.onViewSchema = () => {
         // js link
         const jsFunc = `javascript://${elem.dataset.jsfunc}`;
         output.push(`${description} ${SAME_TAB_LINK_SPLIT} ${jsFunc}`);
-      } else if (elem.classList.contains("newTabLink")) {
+      } else if (elem.classList.contains("dataLink")) {
         // data link
         const dataUrl = `${elem.dataset.url}`;
         output.push(`${description} ${SAME_TAB_LINK_SPLIT} ${dataUrl}`);
-      } else if (elem.classList.contains("dataLink")) {
+      } else if (elem.classList.contains("newTabLink")) {
         // new tab
         output.push(`${description} ${NEW_TAB_LINK_SPLIT} ${fullLink}`);
       } else {
