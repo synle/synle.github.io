@@ -204,7 +204,7 @@ window.onViewLinks = (linkDomHTML, hideSchemaForm) => {
   });
   
   // persist the link if needed
-  if(location.search && location.search.length > 3 && isRenderedInMainForm){
+  if(isRenderedInMainForm){
     let urlData = '?' + encodeURIComponent(window.getSchemaFromDom());
     if(urlData !== location.search){
       window.history.pushState(null, null, `?${urlData}`);
