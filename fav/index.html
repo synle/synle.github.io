@@ -98,6 +98,46 @@ code spaces|github.com/codespaces
       .map((r) => r.trim())
       .filter((r) => !!r || r.includes("//"));
   </script>
+  
+  
+  <!--  helpers  -->
+  <script>
+    function getStrongPassword(){
+        function _getRandomInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+
+        function _getLetters() {
+            const chars = [...new Set(`
+                ABCDEFGHJKMNPQRSTUVWXYZ
+                abcdefghjkmnpqrstuvwxyz
+                234567890-=
+                @#$%^&*()+
+                [];',./
+                {}|:"<>?"
+            `.split('\n').map(s => s.trim()).join('').split(''))]
+            return chars;
+        }
+
+        function getPassword(minLength = 20) {
+            let passwordLength = minLength;
+            let password = '';
+            const letters = _getLetters();
+            while (passwordLength > 0) {
+                passwordLength--;
+                try {
+                    password += letters[_getRandomInt(0, letters.length)];
+                } catch (err) {}
+            }
+            return password;
+        }
+
+        const newPassword = getPassword();
+        prompt('New Password', newPassword);
+    }
+  </script>
 
   <!--  script started  -->
   <script>
