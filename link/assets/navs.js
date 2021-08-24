@@ -29,7 +29,18 @@ window.onViewSchema = () => {
       const fullLink = link.href;
       const description = link.innerHTML;
 
-      if (elem.classList.contains("newTabLink")) {
+      
+      if (elem.classList.contains("jsLink")) {
+        // js link
+        debugger
+        const jsFunc = `javascript://${elem.attributes.onClick}`;
+        output.push(`${description} ${SAME_TAB_LINK_SPLIT} ${jsFunc}`);
+      } else if (elem.classList.contains("newTabLink")) {
+        // data link
+        debugger
+        const dataUrl = `${elem.dataset.url}`;
+        output.push(`${description} ${SAME_TAB_LINK_SPLIT} ${dataUrl}`);
+      } else if (elem.classList.contains("dataLink")) {
         // new tab
         output.push(`${description} ${NEW_TAB_LINK_SPLIT} ${fullLink}`);
       } else {
@@ -286,7 +297,6 @@ window.searchBookmarklet = () => {
     elem.classList.toggle("hidden", isHidden);
   }
 };
-
 window.getLinkDom = (linkDomHTML) => {
   const lines = linkDomHTML
     .trim()
@@ -405,15 +415,16 @@ window.getLinkDom = (linkDomHTML) => {
           linkUrl = `https://${linkUrl}`;
         }
         
-        if(linkUrl.indexOf('javascript://') !== 0){
+        if(linkUrl.indexOf('javascript://') === 0){
           // js func link
+          const jsFunc = linkUrl.replace('javascript://', '');
           newHTMLLines.push(
-            `<a class='link jsLink' onClick='${linkUrl}' data-section='${currentHeaderName}'>${linkText}</a>`
+            `<a class='link jsLink' onClick='${jsFunc}' data-section='${currentHeaderName}'>${linkText}</a>`
           );
-        } else if(linkUrl.indexOf('data:') !== 0){
+        } else if(linkUrl.indexOf('data:') === 0){
           // data url link
           newHTMLLines.push(
-            `<a class='link dataLink' onClick='navigateToDataUrl('${linkUrl}')' data-section='${currentHeaderName}'>${linkText}</a>`
+            `<a class='link dataLink' onClick='debugger; navigateToDataUrl(this.dataset.url)' url="${linkUrl}" data-section='${currentHeaderName}'>${linkText}</a>`
           );
         } else if (linkType === 'sameTabLink') {
           // same tab link
