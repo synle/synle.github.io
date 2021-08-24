@@ -183,7 +183,9 @@ code spaces|github.com/codespaces
           # Sy Home Hosts
           ${HOSTNAMES_MAPPINGS}
           # END Sy Home Hosts
-          \`\`\`          
+          \`\`\`
+          
+          Strong Password | javascript://getStrongPassword()
         `
           .split("\n")
           .map((r) => r.trim())
@@ -199,9 +201,6 @@ ${DEBUG_LINKS_SCHEMA}
 
       window.onViewLinks(window.getLinkDom(schema), false);
       document.title = document.querySelector(".title").innerText.trim();
-      
-      // insert extra dom
-      document.querySelector('#searchForm').insertAdjacentHTML('beforebegin', `<button onclick='getStrongPassword()'>Strong Password</button>`)
     })();
   </script>
 </html>
