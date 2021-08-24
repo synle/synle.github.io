@@ -7,6 +7,7 @@ const TAB_SPLIT = ">>>";
 const TAB_TITLE_SPLIT = "|";
 
 let hasPendingChanges = false;
+let _timeoutRemoveClipboardDiv;
 
 window.onbeforeunload = function (e) {
   if (hasPendingChanges) {
@@ -480,8 +481,6 @@ window.onSubmitNavigationSearch = () => {
   return false;
 };
 
-
-let _timeoutRemoveClipboardDiv;
 window.onCopyBlockToClipboard = (target, autoDismiss) => {
   const text = target.innerText.trim();
   onCopyToClipboard(text);
