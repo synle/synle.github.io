@@ -204,9 +204,8 @@ window.onViewLinks = (linkDomHTML, hideSchemaForm) => {
   
   // persist the link if needed
   if(location.search && location.search.length > 3 && location.href.indexOf('synle.github.io/link/nav-generator.html') >= 0){
-    let urlData = window.getSchemaFromDom();
-    // window.history.pushState(null, null, `?${urlData}`);
-    console.log(`?${urlData}`);
+    let urlData = encodeURIComponent(window.getSchemaFromDom());
+    window.history.pushState(null, null, `?${urlData}`);
   }
 };
 
@@ -600,3 +599,11 @@ document.addEventListener(
   },
   true
 );
+
+
+// init the form if needed
+// when visiting the main form, this will parse the schema and populate it accordingly
+if(location.search && location.search.length > 3 && location.href.indexOf('synle.github.io/link/nav-generator.html') >= 0){
+  let urlData = decodeURIComponent(location.search.substr(1));
+  window.onViewLinks(window.getLinkDom(urlData));
+}
