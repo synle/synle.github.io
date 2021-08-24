@@ -405,14 +405,25 @@ window.getLinkDom = (linkDomHTML) => {
           linkUrl = `https://${linkUrl}`;
         }
         
-        if (linkType === "sameTabLink") {
+        if(linkUrl.indexOf('javascript://') !== 0){
+          // js func link
           newHTMLLines.push(
-            `<a class="link sameTabLink" href="${linkUrl}" data-section="${currentHeaderName}">${linkText}</a>`
+            `<a class='link jsLink' onClick='${linkUrl}' data-section='${currentHeaderName}'>${linkText}</a>`
+          );
+        } else if(linkUrl.indexOf('data:') !== 0){
+          // data url link
+          newHTMLLines.push(
+            `<a class='link dataLink' onClick='navigateToDataUrl('${linkUrl}')' data-section='${currentHeaderName}'>${linkText}</a>`
+          );
+        } else if (linkType === 'sameTabLink') {
+          // same tab link
+          newHTMLLines.push(
+            `<a class='link sameTabLink' href='${linkUrl}' data-section='${currentHeaderName}'>${linkText}</a>`
           );
         } else {
           // new_tab_link
           newHTMLLines.push(
-            `<a class="link newTabLink" href="${linkUrl}" target="_blank" data-section="${currentHeaderName}">${linkText}</a>`
+            `<a class='link newTabLink' href='${linkUrl}' target='_blank' data-section='${currentHeaderName}'>${linkText}</a>`
           );
         }
       }
