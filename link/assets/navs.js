@@ -207,7 +207,7 @@ window.onViewLinks = (linkDomHTML, hideSchemaForm) => {
   if (isRenderedInMainForm) {
     let urlData = "?" + encodeURIComponent(window.getSchemaFromDom());
     if (urlData !== location.search) {
-      window.history.pushState(null, null, `?${urlData}`);
+      window.history.pushState(null, null, urlData);
     }
     hasPendingChanges = false;
   }
