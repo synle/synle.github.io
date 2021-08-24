@@ -195,6 +195,12 @@ window.onViewLinks = (linkDomHTML, hideSchemaForm) => {
     const firstTab = tabs.querySelector("tab");
     window.onShowTab(firstTab);
   });
+  
+  // persist the link if needed
+  if(location.search && location.search.length > 3 && location.href.indexOf('synle.github.io/link/nav-generator.html') >= 0){
+    // window.history.pushState(null, null, `?${urlData}`);
+    console.log(`?${urlData}`);
+  }
 };
 
 window.onGetGeneratedBookmarkletLink = (input) => {
