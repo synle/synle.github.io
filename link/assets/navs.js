@@ -71,6 +71,8 @@ window.getSchemaFromDom = () => {
   }
 
   output = output.join("\n").trim();
+  
+  return output;
 }
 
 window.onViewSchema = () => {
