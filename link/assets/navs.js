@@ -6,6 +6,7 @@ const BLOCK_SPLIT = "```";
 const TAB_SPLIT = ">>>";
 const TAB_TITLE_SPLIT = "|";
 
+let isRenderedInMainForm = location.href.indexOf('synle.github.io/link/nav-generator.html') >= 0;
 let hasPendingChanges = false;
 let _timeoutRemoveClipboardDiv;
 
@@ -203,9 +204,12 @@ window.onViewLinks = (linkDomHTML, hideSchemaForm) => {
   });
   
   // persist the link if needed
-  if(location.search && location.search.length > 3 && location.href.indexOf('synle.github.io/link/nav-generator.html') >= 0){
-    let urlData = encodeURIComponent(window.getSchemaFromDom());
-    window.history.pushState(null, null, `?${urlData}`);
+  if(location.search && location.search.length > 3 && isRenderedInMainForm){
+    let urlData = '?' + encodeURIComponent(window.getSchemaFromDom());
+    if(urlData !== location.search){
+      window.history.pushState(null, null, `?${urlData}`);
+    }
+    hasPendingChanges = false;
   }
 };
 
@@ -603,12 +607,9 @@ document.addEventListener(
 
 // init the form if needed
 // when visiting the main form, this will parse the schema and populate it accordingly
-setTimeout(
-  () => {
-    if(location.search && location.search.length > 3 && location.href.indexOf('synle.github.io/link/nav-generator.html') >= 0){
-      let urlData = decodeURIComponent(location.search.substr(1));
-      window.onViewLinks(window.getLinkDom(urlData));
-    }
-  },
-  100
-)
+document.addEventListener("DOMContentLoaded",  () => {
+  if(location.search && location.search.length > 3 && isRenderedInMainForm){
+    let urlData = decodeURIComponent(location.search.substr(1));
+    window.onViewLinks(window.getLinkDom(urlData));
+  }
+});
