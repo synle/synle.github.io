@@ -126,6 +126,7 @@ button,
 
 #fav > *, #command > * {
   animation: fadeInFromNone 0.5s ease-out;
+  text-align: left;
 }
 
 #fav .title,
