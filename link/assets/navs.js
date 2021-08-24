@@ -456,7 +456,10 @@ let _timeoutRemoveClipboardDiv;
 window.onCopyBlockToClipboard = (target, autoDismiss) => {
   const text = target.innerText.trim();
   onCopyToClipboard(text);
+  showCopiedToClipboardPopup(autoDismiss);
+};
 
+window.showCopiedToClipboardPopup = (autoDismiss) => {
   // show the toaster for content is copied
   clearTimeout(_timeoutRemoveClipboardDiv);
   document.querySelector("#copiedToClipboard") && document.querySelector("#copiedToClipboard").remove();
@@ -487,7 +490,7 @@ window.onCopyBlockToClipboard = (target, autoDismiss) => {
       }
     } catch(err){}
   }
-};
+}
 
 window.onCopyToClipboard = async (text) => {
   try {
