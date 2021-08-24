@@ -397,11 +397,14 @@ window.getLinkDom = (linkDomHTML) => {
       if (linkType) {
         if (
           linkUrl.indexOf("http://") !== 0 &&
-          linkUrl.indexOf("https://") !== 0
+          linkUrl.indexOf("https://") !== 0 &&
+          linkUrl.indexOf("javascript://") !== 0 && 
+          linkUrl.indexOf("data:") !== 0
         ) {
-          linkUrl = `https://` + linkUrl;
+          // prepend the link url https://
+          linkUrl = `https://${linkUrl}`;
         }
-
+        
         if (linkType === "sameTabLink") {
           newHTMLLines.push(
             `<a class="link sameTabLink" href="${linkUrl}" data-section="${currentHeaderName}">${linkText}</a>`
