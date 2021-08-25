@@ -36,6 +36,7 @@ String.prototype.fetchJSON = function (...params) {
   const TAB_TITLE_SPLIT = "|";
 
   let isRenderedInMainForm = location.href.indexOf("synle.github.io/link/nav-generator.html") >= 0;
+  let isRenderedInDataUrl = location.href.indexOf('data:') === 0;
   let hasPendingChanges = false;
   let _timeoutRemoveClipboardDiv;
 
@@ -484,11 +485,16 @@ String.prototype.fetchJSON = function (...params) {
 
   window.onCopyBlockToClipboard = (target, autoDismiss) => {
     const text = target.innerText.trim();
+    
     onCopyToClipboard(text);
     showCopiedToClipboardPopup(autoDismiss);
   };
 
   window.showCopiedToClipboardPopup = (autoDismiss, clipboardPopupContent) => {
+    if(isRenderedInDataUrl === true){
+      return;
+    }
+    
     clipboardPopupContent = clipboardPopupContent || "";
 
     if (clipboardPopupContent) {
@@ -528,6 +534,11 @@ String.prototype.fetchJSON = function (...params) {
   };
 
   window.onCopyToClipboard = async (text) => {
+    if(isRenderedInDataUrl === true){
+      prompt('Clipboard Data:', text);
+      return;
+    }
+    
     try {
       await navigator.clipboard.writeText(text);
     } catch (err) {}
