@@ -24,7 +24,7 @@ window.prompt = (promptText, promptInput) => {
     document.body.insertAdjacentHTML(
       "beforeend",
       `
-        <div id='promptModal' tabindex='0' style="transition: all 0.25s ease-out; opacity: 0.5; position: fixed; background: blue; color: #fff; top: 0px; left: 0px; right: 0px; bottom: 0px; text-align: center; font-weight: bold; border: 2px solid #eee; padding: 2rem 3rem; z-index: 1;">
+        <div id='promptModal' tabindex='0' style="transition: all 1s ease-out; opacity: 0.5; position: fixed; background: blue; color: #fff; top: 0px; left: 0px; right: 0px; bottom: 0px; text-align: center; font-weight: bold; border: 2px solid #eee; padding: 2rem 3rem; z-index: 1;">
           <div style="font-size: 20px; font-weight: bold; margin-bottom: 15px;">${promptText}</div>
           <div>
             <textarea style="width: 100%; height: 75%; padding: 10px;"></textarea>
@@ -36,18 +36,18 @@ window.prompt = (promptText, promptInput) => {
     document.querySelector("#promptModal").style.opacity = "1";
     document.querySelector("#promptModal textarea").value = promptInput;
     document.querySelector("#promptModal textarea").focus();
-    document
-      .querySelector("#promptModal textarea")
-      .setSelectionRange(0, promptInput.length);
-    document
-      .querySelector("#promptModal textarea")
-      .addEventListener("blur", removePrompt);
+    document.querySelector("#promptModal textarea").setSelectionRange(0, promptInput.length);
+    document.querySelector("#promptModal textarea").addEventListener("blur", removePrompt);
 
     function removePrompt() {
-      try {
-        document.querySelector("#promptModal").remove();
-      } catch (err) {}
-      resolve();
+      document.querySelector("#promptModal").style.opacity = "0.05";
+
+      setTimeout(() => {
+        try {
+          document.querySelector("#promptModal").remove();
+        } catch (err) {}
+        resolve();
+      }, 1000);
     }
   });
 };
@@ -62,8 +62,7 @@ window.prompt = (promptText, promptInput) => {
   const TAB_SPLIT = ">>>";
   const TAB_TITLE_SPLIT = "|";
 
-  let isRenderedInMainForm =
-    location.href.indexOf("synle.github.io/link/nav-generator.html") >= 0;
+  let isRenderedInMainForm = location.href.indexOf("synle.github.io/link/nav-generator.html") >= 0;
   let isRenderedInDataUrl = location.href.indexOf("data:") === 0;
   let hasPendingChanges = false;
   let _timeoutRemoveClipboardDiv;
@@ -72,8 +71,7 @@ window.prompt = (promptText, promptInput) => {
   window.onbeforeunload = function (e) {
     if (hasPendingChanges) {
       e.preventDefault();
-      return (e.returnValue =
-        "You have unsaved changes. Do you want to continue with exit?");
+      return (e.returnValue = "You have unsaved changes. Do you want to continue with exit?");
     }
     return undefined;
   };
@@ -108,15 +106,11 @@ window.prompt = (promptText, promptInput) => {
       } else if (elem.classList.contains("block")) {
         const description = elem.innerText.trim();
         const blockId = elem.id || "";
-        output.push(
-          `\n${BLOCK_SPLIT}${blockId}\n${description}\n${BLOCK_SPLIT}\n`
-        );
+        output.push(`\n${BLOCK_SPLIT}${blockId}\n${description}\n${BLOCK_SPLIT}\n`);
       } else if (elem.classList.contains("tabs")) {
         const tabContent = [...elem.querySelectorAll("tab")]
           .map((tab) => {
-            return `${tab.innerText.trim()}${TAB_TITLE_SPLIT}${
-              tab.dataset.tabId
-            }`;
+            return `${tab.innerText.trim()}${TAB_TITLE_SPLIT}${tab.dataset.tabId}`;
           })
           .join(TAB_SPLIT);
 
@@ -165,18 +159,13 @@ window.prompt = (promptText, promptInput) => {
     `;
 
     window.zoominInput = (target) => {
-      [...document.querySelectorAll("#input,#output")].forEach(
-        (r) => (r.style.height = "")
-      );
-      target.style.height =
-        Math.max(450, document.body.clientHeight - 375) + "px";
+      [...document.querySelectorAll("#input,#output")].forEach((r) => (r.style.height = ""));
+      target.style.height = Math.max(450, document.body.clientHeight - 375) + "px";
     };
 
     document.body.innerHTML = rawSchemaDataDom;
 
-    window.onGetGeneratedBookmarkletLink(
-      document.querySelector("#input").value
-    );
+    window.onGetGeneratedBookmarkletLink(document.querySelector("#input").value);
 
     // hook up the tab and shift tab to do modification
     document.querySelector("#input").addEventListener("keydown", (e) => {
@@ -195,15 +184,9 @@ window.prompt = (promptText, promptInput) => {
         var endPos = myField.selectionEnd;
 
         if (startPos === endPos) {
-          myField.value =
-            myField.value.substring(0, startPos) +
-            myValue +
-            myField.value.substring(endPos);
+          myField.value = myField.value.substring(0, startPos) + myValue + myField.value.substring(endPos);
 
-          myField.setSelectionRange(
-            startPos + myValue.length,
-            endPos + myValue.length
-          );
+          myField.setSelectionRange(startPos + myValue.length, endPos + myValue.length);
         }
       }
 
@@ -211,9 +194,7 @@ window.prompt = (promptText, promptInput) => {
         var startPos = myField.selectionStart;
         var endPos = myField.selectionEnd;
 
-        myField.value =
-          myField.value.substring(0, startPos - 2) +
-          myField.value.substring(endPos);
+        myField.value = myField.value.substring(0, startPos - 2) + myField.value.substring(endPos);
 
         myField.setSelectionRange(startPos - length, endPos - length);
       }
@@ -249,11 +230,7 @@ window.prompt = (promptText, promptInput) => {
     );
 
     // setting up the autocomplete
-    document.querySelector("#linkList").innerHTML = [
-      ...new Set(
-        [...document.querySelectorAll("a.link")].map((r) => r.innerText).sort()
-      ),
-    ]
+    document.querySelector("#linkList").innerHTML = [...new Set([...document.querySelectorAll("a.link")].map((r) => r.innerText).sort())]
       .map((r) => `<option>${r}</option>`)
       .join("\n");
 
@@ -272,8 +249,7 @@ window.prompt = (promptText, promptInput) => {
   };
 
   window.onGetGeneratedBookmarkletLink = (input) => {
-    document.querySelector("#output").value =
-      window.getNavBookmarkletFromSchema(input);
+    document.querySelector("#output").value = window.getNavBookmarkletFromSchema(input);
   };
 
   window.getNavBookmarkletFromSchema = (input) => {
@@ -311,18 +287,13 @@ window.prompt = (promptText, promptInput) => {
     document.querySelector("#search").value = val;
 
     if (val.length === 0) {
-      for (const elem of document.querySelectorAll(
-        "#fav .header, #fav .link"
-      )) {
+      for (const elem of document.querySelectorAll("#fav .header, #fav .link")) {
         elem.classList.toggle("hidden", false);
       }
       return;
     }
 
-    const matchRegex = new RegExp(
-      "[ ]*" + val.split("").join("[a-z0-9 -_]*"),
-      "i"
-    );
+    const matchRegex = new RegExp("[ ]*" + val.split("").join("[a-z0-9 -_]*"), "i");
 
     // show or hide
     for (const elem of document.querySelectorAll("#fav .link")) {
@@ -337,10 +308,7 @@ window.prompt = (promptText, promptInput) => {
         .replace(/[/.]/gi, "");
       if (anchor.innerText.match(matchRegex)) {
         isHidden = false;
-      } else if (
-        anchor.dataset.section &&
-        anchor.dataset.section.match(matchRegex)
-      ) {
+      } else if (anchor.dataset.section && anchor.dataset.section.match(matchRegex)) {
         isHidden = false;
       } else if (link.match(matchRegex)) {
         isHidden = false;
@@ -356,11 +324,7 @@ window.prompt = (promptText, promptInput) => {
       let target = header.nextElementSibling;
       let isVisible = false;
 
-      while (
-        target &&
-        (target.classList.contains("link") ||
-          target.classList.contains("block"))
-      ) {
+      while (target && (target.classList.contains("link") || target.classList.contains("block"))) {
         if (!target.classList.contains("hidden")) {
           isVisible = true;
           break;
@@ -427,9 +391,7 @@ window.prompt = (promptText, promptInput) => {
         // start a block
         isInABlock = true;
         if (link.length > BLOCK_SPLIT.length) {
-          blockId = link.substr(
-            blockId.indexOf(BLOCK_SPLIT) + BLOCK_SPLIT.length + 1
-          );
+          blockId = link.substr(blockId.indexOf(BLOCK_SPLIT) + BLOCK_SPLIT.length + 1);
         }
       } else if (link.indexOf(TAB_SPLIT) === 0) {
         // is a tab >>>tabName1|blockId1>>>tabName2|blockId3
@@ -454,11 +416,7 @@ window.prompt = (promptText, promptInput) => {
         try {
           // try parse as new tab link
           linkText = link.substr(0, link.indexOf(NEW_TAB_LINK_SPLIT)).trim();
-          linkUrl = link
-            .substr(
-              link.indexOf(NEW_TAB_LINK_SPLIT) + NEW_TAB_LINK_SPLIT.length
-            )
-            .trim();
+          linkUrl = link.substr(link.indexOf(NEW_TAB_LINK_SPLIT) + NEW_TAB_LINK_SPLIT.length).trim();
 
           if (linkUrl && linkText) {
             linkType = "newTabLink";
@@ -469,11 +427,7 @@ window.prompt = (promptText, promptInput) => {
           // try parse as same tab link
           try {
             linkText = link.substr(0, link.indexOf(SAME_TAB_LINK_SPLIT)).trim();
-            linkUrl = link
-              .substr(
-                link.indexOf(SAME_TAB_LINK_SPLIT) + SAME_TAB_LINK_SPLIT.length
-              )
-              .trim();
+            linkUrl = link.substr(link.indexOf(SAME_TAB_LINK_SPLIT) + SAME_TAB_LINK_SPLIT.length).trim();
 
             if (linkUrl && linkText) {
               linkType = "sameTabLink";
@@ -506,9 +460,7 @@ window.prompt = (promptText, promptInput) => {
             );
           } else if (linkType === "sameTabLink") {
             // same tab link
-            newHTMLLines.push(
-              `<a class='link sameTabLink' href='${linkUrl}' data-section='${currentHeaderName}'>${linkText}</a>`
-            );
+            newHTMLLines.push(`<a class='link sameTabLink' href='${linkUrl}' data-section='${currentHeaderName}'>${linkText}</a>`);
           } else {
             // new_tab_link
             newHTMLLines.push(
@@ -551,8 +503,6 @@ window.prompt = (promptText, promptInput) => {
     } else {
       // else prompt let user downloading the url
       await prompt("Data URL (copy to your clipboard):", base64URL);
-      var win = window.open();
-      win.focus();
     }
   };
 
@@ -626,7 +576,7 @@ window.prompt = (promptText, promptInput) => {
         }
       } else if (key === "Escape" && document.querySelector("#promptModal")) {
         try {
-          document.querySelector("#promptModal").remove();
+          document.querySelector("#promptModal").blur();
         } catch (err) {}
       } else {
         // special handling for ctrl + f to focus on searchbox
@@ -646,8 +596,7 @@ window.prompt = (promptText, promptInput) => {
   // when visiting the main form, this will parse the schema and populate it accordingly
   document.addEventListener("DOMContentLoaded", () => {
     if (isRenderedInMainForm) {
-      let schemaData =
-        sessionStorage["schemaData"] || localStorage["schemaData"];
+      let schemaData = sessionStorage["schemaData"] || localStorage["schemaData"];
 
       if (schemaData) {
         window.onViewLinks(window.getLinkDom(schemaData));
