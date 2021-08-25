@@ -104,7 +104,7 @@ textarea:focus,
 .block:focus,
 .tabs > tab:focus {
   background: var(--colorBgSecondary) !important;
-  box-shadow: var(--colorBoxShadowMain);
+/*   box-shadow: var(--colorBoxShadowMain); */
 }
 
 a,
