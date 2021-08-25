@@ -40,13 +40,12 @@ window.prompt = (promptText, promptInput) => {
 
     function removePrompt() {
       document.querySelector("#promptModal").style.opacity = "0.05";
-
-      setTimeout(() => {
-        try {
+      document.querySelector("#promptModal").addEventListener('transitionend', () => {
+        try{
           document.querySelector("#promptModal").remove();
-        } catch (err) {}
-        resolve();
-      }, 1000);
+        }
+        catch(err){}
+      });
     }
   });
 };
