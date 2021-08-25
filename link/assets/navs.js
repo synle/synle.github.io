@@ -12,6 +12,9 @@ String.prototype.trimWhiteSpaces = function (doFinalTrim) {
 };
 
 String.prototype.fetchText = function (...params) {
+  if(typeof this !== 'string'){
+    throw 'Invalid datatype';
+  }
   return fetch(
       this,
       ...params
@@ -19,6 +22,9 @@ String.prototype.fetchText = function (...params) {
 }
 
 String.prototype.fetchJSON = function (...params) {
+  if(typeof this !== 'string'){
+    throw 'Invalid datatype';
+  }
   return fetch(
       this,
       ...params
