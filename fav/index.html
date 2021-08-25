@@ -98,7 +98,7 @@
                 [];',./
                 {}|:"<>?"
             `.trimWhiteSpaces(true)
-              .replace('\n', '')
+              .replace(/[ \n]/g, '')
               .split("")
           ),
         ];
