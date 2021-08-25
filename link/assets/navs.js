@@ -566,7 +566,7 @@ window.prompt = (promptText, promptInput) => {
 
   window.onCopyToClipboard = async (text) => {
     if (isRenderedInDataUrl === true) {
-      prompt("Clipboard Data:", text);
+      await prompt("Clipboard Data:", text);
       return;
     }
 
