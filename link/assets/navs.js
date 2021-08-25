@@ -12,16 +12,10 @@ String.prototype.trimWhiteSpaces = function (doFinalTrim) {
 };
 
 String.prototype.fetchText = function (...params) {
-  if (typeof this !== "string") {
-    throw "Invalid datatype";
-  }
   return fetch(this, ...params).then((r) => r.text());
 };
 
 String.prototype.fetchJSON = function (...params) {
-  if (typeof this !== "string") {
-    throw "Invalid datatype";
-  }
   return fetch(this, ...params).then((r) => r.json());
 };
 
