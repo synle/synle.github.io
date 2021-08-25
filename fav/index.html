@@ -5,140 +5,132 @@
     <link rel="stylesheet" type="text/css" href="https://synle.github.io/link/assets/navs.css" />
   </head>
   <body>
-    <div id='fav'></div>
+    <div id="fav"></div>
   </body>
   <script src="https://synle.github.io/link/assets/navs.js"></script>
   <script>
-    const SITE_SCHEMA = `
-! Favorites
+    String.prototype.cleanupNavSchema = function (s) {
+      return (s || this)
+        .trim()
+        .split("\n")
+        .map((r) => r.trim())
+        .join("\n");
+    };
 
-# general news
-google news | news.google.com/topstories
-lifehacker | lifehacker.com
-engadget | engadget.com
-verge | theverge.com
-tech crunch | techcrunch.com
-hacker news | hn.svelte.dev/top/1
-echojs | echojs.com
-
-# stock
-//webull | webull.com/quote
-//seeking alpha | seekingalpha.com
-//motley fool | fool.com
-//cnbc stocklist | cnbc.com/watchlist/#!/watchlist/1958898
-google finance stocklist | google.com/finance/portfolio/watchlist
-yahoo finance | finance.yahoo.com
-market watch | marketwatch.com
-cnbc | cnbc.com
-//wallstreet bets | reddit.com/r/wallstreetbets
-//thetagang | reddit.com/r/thetagang
-nasdaq | nasdaq.com
-zacks | zacks.com
-
-# shopping and deals
-amazon | amazon.com
-costco | costco.com
-woot | woot.com
-slickdeals | slickdeals.net
-dealnews | dealnews.com
-reddit misc deals | reddit.com/r/deals
-reddit laptop deals | reddit.com/r/LaptopDeals/new
-
-# movies
-plex | app.plex.tv
-netflix | netflix.com
-disney +| disneyplus.com
-prime video | amazon.com/gp/video/storefront/ref=atv_nb_free_to_me?clientFilter=on
-
-# personal
-synle | synle.github.io
-github | github.com/synle?tab=repositories
-email | mail.google.com/mail
-calendar | calendar.google.com/calendar
-code spaces | github.com/codespaces
-
-# utils and misc
-ip location | whatismyipaddress.com
-bashrc | synle.github.io/app/setup-bash-profile.html
-port forwarding | https://synle.github.io/app/port-forwarding.html
-fix link | synle.github.io/link/index.html
-nav bookmark generator | synle.github.io/link/nav-generator.html
-prettier playground | prettier.io/playground
-home router config | http://192.168.1.1
-torrent | bit.ly/3pVvM2N
-Strong Password | javascript://getStrongPassword()
-`
-      .split("\n")
-      .map((r) => r.trim())
-      .join("\n");
-  </script>
-
-  <!--  code / debug schema links  -->
-  <script>
+    // code / debug schema links
     const DEBUG_LINKS_SCHEMA = `
-    # sources
-    html code|||github.com/synle/synle.github.io/blob/master/fav/index.html
-    nav js code|||github.com/synle/synle.github.io/blob/master/link/assets/navs.js
-    nav css code|||github.com/synle/synle.github.io/blob/master/link/assets/navs.css
-  `.trim();
+      # sources
+      html code|||github.com/synle/synle.github.io/blob/master/fav/index.html
+      nav js code|||github.com/synle/synle.github.io/blob/master/link/assets/navs.js
+      nav css code|||github.com/synle/synle.github.io/blob/master/link/assets/navs.css
+    `.cleanupNavSchema();
+
+    const SITE_SCHEMA = `
+      ! Favorites
+
+      # general news
+      google news | news.google.com/topstories
+      lifehacker | lifehacker.com
+      engadget | engadget.com
+      verge | theverge.com
+      tech crunch | techcrunch.com
+      hacker news | hn.svelte.dev/top/1
+      echojs | echojs.com
+
+      # stock
+      //webull | webull.com/quote
+      //seeking alpha | seekingalpha.com
+      //motley fool | fool.com
+      //cnbc stocklist | cnbc.com/watchlist/#!/watchlist/1958898
+      google finance stocklist | google.com/finance/portfolio/watchlist
+      yahoo finance | finance.yahoo.com
+      market watch | marketwatch.com
+      cnbc | cnbc.com
+      //wallstreet bets | reddit.com/r/wallstreetbets
+      //thetagang | reddit.com/r/thetagang
+      nasdaq | nasdaq.com
+      zacks | zacks.com
+
+      # shopping and deals
+      amazon | amazon.com
+      costco | costco.com
+      woot | woot.com
+      slickdeals | slickdeals.net
+      dealnews | dealnews.com
+      reddit misc deals | reddit.com/r/deals
+      reddit laptop deals | reddit.com/r/LaptopDeals/new
+
+      # movies
+      plex | app.plex.tv
+      netflix | netflix.com
+      disney +| disneyplus.com
+      prime video | amazon.com/gp/video/storefront/ref=atv_nb_free_to_me?clientFilter=on
+
+      # personal
+      synle | synle.github.io
+      github | github.com/synle?tab=repositories
+      email | mail.google.com/mail
+      calendar | calendar.google.com/calendar
+      code spaces | github.com/codespaces
+
+      # utils and misc
+      ip location | whatismyipaddress.com
+      bashrc | synle.github.io/app/setup-bash-profile.html
+      port forwarding | https://synle.github.io/app/port-forwarding.html
+      fix link | synle.github.io/link/index.html
+      nav bookmark generator | synle.github.io/link/nav-generator.html
+      prettier playground | prettier.io/playground
+      home router config | http://192.168.1.1
+      torrent | bit.ly/3pVvM2N
+      Strong Password | javascript://getStrongPassword()
+    `.cleanupNavSchema();
   </script>
 
-  <!--  stock schema  -->
-  <script>
-    // https://www.tradingview.com/widget/advanced-chart
-    const STOCKS_LIST = `
-    NASDAQ:MSFT
-    NASDAQ:NFLX
-    AMEX:ARKK
-    NASDAQ:MU
-    NYSE:NRZ
-    NYSE:DIDI
-    NYSE:BABA
-  `
-      .trim()
-      .split("\n")
-      .map((r) => r.trim())
-      .filter((r) => !!r || r.includes("//"));
-  </script>
-  
-  
   <!--  helpers  -->
   <script>
-    function getStrongPassword(){
-        function _getRandomInt(min, max) {
-            min = Math.ceil(min);
-            max = Math.floor(max);
-            return Math.floor(Math.random() * (max - min + 1)) + min;
-        }
+    function getStrongPassword() {
+      function _getRandomInt(min, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
 
-        function _getLetters() {
-            const chars = [...new Set(`
+      function _getLetters() {
+        const chars = [
+          ...new Set(
+            `
                 ABCDEFGHJKMNPQRSTUVWXYZ
                 abcdefghjkmnpqrstuvwxyz
                 234567890-=
                 @#$%^&*()+
                 [];',./
                 {}|:"<>?"
-            `.split('\n').map(s => s.trim()).join('').split(''))]
-            return chars;
-        }
+            `
+              .split("\n")
+              .map((s) => s.trim())
+              .join("")
+              .split("")
+          ),
+        ];
+        return chars;
+      }
 
-        function getPassword(minLength = 20) {
-            let passwordLength = minLength;
-            let password = '';
-            const letters = _getLetters();
-            while (passwordLength > 0) {
-                passwordLength--;
-                try {
-                    password += letters[_getRandomInt(0, letters.length)];
-                } catch (err) {}
-            }
-            return password;
+      function getPassword(minLength = 20) {
+        let passwordLength = minLength;
+        let password = "";
+        const letters = _getLetters();
+        while (passwordLength > 0) {
+          passwordLength--;
+          try {
+            password += letters[_getRandomInt(0, letters.length)];
+          } catch (err) {}
         }
+        return password;
+      }
 
-        const newPassword = getPassword();
-        onCopyToClipboard(newPassword);
-        showCopiedToClipboardPopup(false, newPassword);
+      const newPassword = getPassword();
+      onCopyToClipboard(newPassword);
+      showCopiedToClipboardPopup(false, newPassword);
     }
   </script>
 
@@ -147,24 +139,35 @@ Strong Password | javascript://getStrongPassword()
     (async () => {
       let HOST_MAPPING_BLOCK_SCHEMA = "";
       try {
-        const hostMappingApiResponse = fetch(`https://raw.githubusercontent.com/synle/bashrc/master/software/metadata/ip-address.config`)
-          .then((r) => r.text());
-        const HOSTNAMES_GROUPED_BY_ID = await hostMappingApiResponse
-          .then((r) => r.split('\n').filter(s => !!s.trim() && s.indexOf('=') !== 0)
-              .map((s) => {
-                const [hostIp, ...hostNames] = s.split(/[\:,]/gi).map(s => s.trim()).filter(s => s);
-                return `${hostIp}\n${hostNames.join("\n")}\n`
-              })
-              .join("\n")
-          );
-        const HOSTNAMES_MAPPINGS = await hostMappingApiResponse
-          .then((r) => r.split('\n').filter(s => !!s.trim() && s.indexOf('=') !== 0)
-              .map((s) => {
-                const [hostIp, ...hostNames] = s.split(/[\:,]/gi).map(s => s.trim()).filter(s => s);
-                return hostNames.map(hostName => `${hostIp} ${hostName}`).join('\n')
-              })
-              .join("\n")
-          );
+        const hostMappingApiResponse = fetch(
+          `https://raw.githubusercontent.com/synle/bashrc/master/software/metadata/ip-address.config`
+        ).then((r) => r.text());
+        const HOSTNAMES_GROUPED_BY_ID = await hostMappingApiResponse.then((r) =>
+          r
+            .split("\n")
+            .filter((s) => !!s.trim() && s.indexOf("=") !== 0)
+            .map((s) => {
+              const [hostIp, ...hostNames] = s
+                .split(/[\:,]/gi)
+                .map((s) => s.trim())
+                .filter((s) => s);
+              return `${hostIp}\n${hostNames.join("\n")}\n`;
+            })
+            .join("\n")
+        );
+        const HOSTNAMES_MAPPINGS = await hostMappingApiResponse.then((r) =>
+          r
+            .split("\n")
+            .filter((s) => !!s.trim() && s.indexOf("=") !== 0)
+            .map((s) => {
+              const [hostIp, ...hostNames] = s
+                .split(/[\:,]/gi)
+                .map((s) => s.trim())
+                .filter((s) => s);
+              return hostNames.map((hostName) => `${hostIp} ${hostName}`).join("\n");
+            })
+            .join("\n")
+        );
         HOST_MAPPING_BLOCK_SCHEMA = `
           # Host Mappings
           Host Mapping Ip Config|https://github.com/synle/bashrc/blob/master/software/metadata/ip-address.config
@@ -186,10 +189,7 @@ Strong Password | javascript://getStrongPassword()
           ${HOSTNAMES_MAPPINGS}
           # END Sy Home Hosts
           \`\`\`
-        `
-          .split("\n")
-          .map((r) => r.trim())
-          .join("\n");
+        `.cleanupNavSchema();
       } catch (err) {}
 
       // combine and make the schema
@@ -200,6 +200,8 @@ ${DEBUG_LINKS_SCHEMA}
         `.trim();
 
       window.onViewLinks(window.getLinkDom(schema), false);
+
+      // set the title
       document.title = document.querySelector(".title").innerText.trim();
     })();
   </script>
