@@ -514,11 +514,11 @@ window.prompt = (promptText, promptInput) => {
     return false;
   };
 
-  window.onCopyBlockToClipboard = (target, autoDismiss) => {
+  window.onCopyBlockToClipboard = async (target, autoDismiss) => {
     const text = target.innerText.trim() || target.value.trim();
 
-    onCopyToClipboard(text);
-    showCopiedToClipboardPopup(autoDismiss);
+    await onCopyToClipboard(text);
+    await showCopiedToClipboardPopup(autoDismiss);
   };
 
   window.showCopiedToClipboardPopup = (autoDismiss, clipboardPopupContent) => {
