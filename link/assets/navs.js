@@ -1,7 +1,6 @@
 // ducktype / helper for special methods
-String.prototype.cleanupNavSchema = function (s) {
+String.prototype.trimWhiteSpaces = function (s) {
   return (s || this)
-    .trim()
     .split("\n")
     .map((r) => r.trim())
     .join("\n");
