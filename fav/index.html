@@ -9,21 +9,13 @@
   </body>
   <script src="https://synle.github.io/link/assets/navs.js"></script>
   <script>
-    String.prototype.cleanupNavSchema = function (s) {
-      return (s || this)
-        .trim()
-        .split("\n")
-        .map((r) => r.trim())
-        .join("\n");
-    };
-
     // code / debug schema links
     const DEBUG_LINKS_SCHEMA = `
       # sources
       html code|||github.com/synle/synle.github.io/blob/master/fav/index.html
       nav js code|||github.com/synle/synle.github.io/blob/master/link/assets/navs.js
       nav css code|||github.com/synle/synle.github.io/blob/master/link/assets/navs.css
-    `.cleanupNavSchema();
+    `.trimWhiteSpaces();
 
     const SITE_SCHEMA = `
       ! Favorites
@@ -83,7 +75,7 @@
       home router config | http://192.168.1.1
       torrent | bit.ly/3pVvM2N
       Strong Password | javascript://getStrongPassword()
-    `.cleanupNavSchema();
+    `.trimWhiteSpaces();
   </script>
 
   <!--  helpers  -->
@@ -105,10 +97,8 @@
                 @#$%^&*()+
                 [];',./
                 {}|:"<>?"
-            `
-              .split("\n")
-              .map((s) => s.trim())
-              .join("")
+            `.trimWhiteSpaces(true)
+              .replace('\n', '')
               .split("")
           ),
         ];
