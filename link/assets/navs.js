@@ -35,6 +35,7 @@ window.prompt = (promptText, promptInput) => {
   document.querySelector("#promptModal").style.opacity = "1";
   document.querySelector("#promptModal textarea").value = promptInput;
   document.querySelector("#promptModal textarea").focus();
+  document.querySelector("#promptModal textarea").setSelectionRange(0, promptInput.length);
   document.querySelector("#promptModal textarea").addEventListener("blur", removePrompt);
 
   function removePrompt() {
