@@ -11,14 +11,14 @@ String.prototype.trimWhiteSpaces = function (doFinalTrim) {
   return res;
 };
 
-String.prototype.fetchText = (...params) => {
+String.prototype.fetchText = function (...params) {
   return fetch(
       this,
       ...params
   ).then((r) => r.text());
 }
 
-String.prototype.fetchJSON = (...params) => {
+String.prototype.fetchJSON = function (...params) {
   return fetch(
       this,
       ...params
