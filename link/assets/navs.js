@@ -36,14 +36,19 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
     );
 
     document.querySelector("#promptModal textarea").value = promptInput;
-    document.querySelector("#promptModal textarea").focus();
-    document.querySelector("#promptModal textarea").setSelectionRange(0, promptInput.length);
-    document.querySelector("#promptModal textarea").onblur = removePrompt;
+    document.querySelector("#promptModal").addEventListener('transitionend', setupPrompt);
 
     setTimeout(() => document.querySelector("#promptModal").style.opacity = "");
 
     if(autoDismiss){
       _timeoutRemovePromptDiv = setTimeout(removePrompt, 1250);
+    }
+    
+    function setupPrompt(){
+      document.querySelector("#promptModal textarea").focus();
+      document.querySelector("#promptModal textarea").setSelectionRange(0, promptInput.length);
+      document.querySelector("#promptModal textarea").onblur = removePrompt;
+      document.querySelector("#promptModal").removeEventListener('transitionend', setupPrompt);
     }
 
     function removePrompt() {
