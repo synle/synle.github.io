@@ -112,7 +112,7 @@
         while (passwordLength > 0) {
           passwordLength--;
           try {
-            password += letters[_getRandomInt(0, letters.length)];
+            password += letters[_getRandomInt(0, letters.length)] || '';
           } catch (err) {}
         }
         return password;
