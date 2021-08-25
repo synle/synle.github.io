@@ -518,61 +518,14 @@ window.prompt = (promptText, promptInput) => {
     const text = target.innerText.trim() || target.value.trim();
 
     await onCopyToClipboard(text);
-    await showCopiedToClipboardPopup(autoDismiss);
-  };
-
-  window.showCopiedToClipboardPopup = (autoDismiss, clipboardPopupContent) => {
-    if (isRenderedInDataUrl === true) {
-      return;
-    }
-
-    clipboardPopupContent = clipboardPopupContent || "";
-
-    if (clipboardPopupContent) {
-      clipboardPopupContent = ` "${clipboardPopupContent}"`;
-    }
-
-    // show the toaster for content is copied
-    clearTimeout(_timeoutRemoveClipboardDiv);
-    document.querySelector("#copiedToClipboard") && document.querySelector("#copiedToClipboard").remove();
-    document.body.insertAdjacentHTML(
-      "beforeend",
-      `
-        <div id='copiedToClipboard' tabindex='0' style="transition: all 0.25s ease-out; opacity: 0.5; transform: translateX(-50%); position: fixed; background: blue; color: #fff; bottom: 60px; left: 50%; min-width: 180px; max-width: 75%; text-align: center; font-weight: bold; border: 2px solid #eee; padding: 5px 10px; z-index: 1;">
-          Copied to clipboard ${clipboardPopupContent}
-        </div>
-      `
-    );
-
-    document.querySelector("#copiedToClipboard").style.opacity = "1";
-
-    if (autoDismiss !== false) {
-      document.querySelector("#copiedToClipboard").focus();
-      document.querySelector("#copiedToClipboard").addEventListener("blur", removeClipboardDiv);
-    }
-
-    _timeoutRemoveClipboardDiv = setTimeout(removeClipboardDiv, 1250);
-
-    function removeClipboardDiv() {
-      clearTimeout(_timeoutRemoveClipboardDiv);
-      try {
-        if (document.querySelector("#copiedToClipboard")) {
-          document.querySelector("#copiedToClipboard").style.opacity = "0.1";
-          setTimeout(() => document.querySelector("#copiedToClipboard").remove(), 250);
-        }
-      } catch (err) {}
-    }
   };
 
   window.onCopyToClipboard = async (text) => {
-    if (isRenderedInDataUrl === true) {
-      await prompt("Clipboard Data:", text);
-      return;
-    }
-
     try {
       await navigator.clipboard.writeText(text);
     } catch (err) {}
+
+    await prompt("Clipboard Data:", text);
   };
 
   window.onShowTab = (targetTab) => {
