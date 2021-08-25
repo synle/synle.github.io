@@ -20,29 +20,32 @@ String.prototype.fetchJSON = function (...params) {
 };
 
 window.prompt = (promptText, promptInput) => {
-  document.body.insertAdjacentHTML(
-    "beforeend",
-    `
-    <div id='promptModal' tabindex='0' style="transition: all 0.25s ease-out; opacity: 0.5; position: fixed; background: blue; color: #fff; top: 0px; left: 0px; right: 0px; bottom: 0px; text-align: center; font-weight: bold; border: 2px solid #eee; padding: 5px 10px; z-index: 1;">
-      <div style="font-weight: bold; margin-bottom: 15px;">${promptText}</div>
-      <div>
-        <textarea style="width: 100%; height: 600px"></textarea>
-      </div>
-    </div>
-  `
-  );
+  return new Promise((resolve) => {
+    document.body.insertAdjacentHTML(
+      "beforeend",
+      `
+        <div id='promptModal' tabindex='0' style="transition: all 0.25s ease-out; opacity: 0.5; position: fixed; background: blue; color: #fff; top: 0px; left: 0px; right: 0px; bottom: 0px; text-align: center; font-weight: bold; border: 2px solid #eee; padding: 5px 10px; z-index: 1;">
+          <div style="font-weight: bold; margin-bottom: 15px;">${promptText}</div>
+          <div>
+            <textarea style="width: 100%; height: 600px"></textarea>
+          </div>
+        </div>
+      `
+    );
 
-  document.querySelector("#promptModal").style.opacity = "1";
-  document.querySelector("#promptModal textarea").value = promptInput;
-  document.querySelector("#promptModal textarea").focus();
-  document.querySelector("#promptModal textarea").setSelectionRange(0, promptInput.length);
-  document.querySelector("#promptModal textarea").addEventListener("blur", removePrompt);
+    document.querySelector("#promptModal").style.opacity = "1";
+    document.querySelector("#promptModal textarea").value = promptInput;
+    document.querySelector("#promptModal textarea").focus();
+    document.querySelector("#promptModal textarea").setSelectionRange(0, promptInput.length);
+    document.querySelector("#promptModal textarea").addEventListener("blur", removePrompt);
 
-  function removePrompt() {
-    try {
-      document.querySelector("#promptModal").remove();
-    } catch (err) {}
-  }
+    function removePrompt() {
+      try {
+        document.querySelector("#promptModal").remove();
+      } catch (err) {}
+      resolve();
+    }
+  });
 };
 
 // main block starts here
