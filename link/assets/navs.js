@@ -24,15 +24,16 @@ window.prompt = (promptText, promptInput) => {
     "beforeend",
     `
     <div id='promptModal' tabindex='0' style="transition: all 0.25s ease-out; opacity: 0.5; position: fixed; background: blue; color: #fff; top: 0px; left: 0px; right: 0px; bottom: 0px; text-align: center; font-weight: bold; border: 2px solid #eee; padding: 5px 10px; z-index: 1;">
-      <div>${promptText}</div>
+      <div style="font-weight: bold; margin-bottom: 15px;">${promptText}</div>
       <div>
-        <textarea style="width: 100%; height: 600px">${promptInput}</textarea>
+        <textarea style="width: 100%; height: 600px"></textarea>
       </div>
     </div>
   `
   );
 
   document.querySelector("#promptModal").style.opacity = "1";
+  document.querySelector("#promptModal textarea").value = promptInput;
   document.querySelector("#promptModal textarea").focus();
   document.querySelector("#promptModal textarea").addEventListener("blur", removePrompt);
 
