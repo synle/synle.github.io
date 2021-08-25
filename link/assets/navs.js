@@ -617,6 +617,6 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
     document.title = document.querySelector(".title").innerText.trim();
     
     // set the page fav icon
-    let icon = '📑' && document.head.insertAdjacentHTML('beforeend', `<link rel="icon" href="data:image/svg+xml,${encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text x='0' y='14'>🦄</text></svg>`)}" />`);
+    let icon = '📑'; document.head.insertAdjacentHTML('beforeend', `<link rel="icon" href="data:image/svg+xml,${encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text x='0' y='14'>${icon}</text></svg>`)}" />`);
   });
 })();
