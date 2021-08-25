@@ -20,10 +20,11 @@ String.prototype.fetchJSON = function (...params) {
 };
 
 
-let _timeoutRemovePromptDiv; = 
+let _timeoutRemovePromptDiv;
+window.prompt = (promptText, promptInput, autoDismiss) => {
+  clearTimeout(_timeoutRemovePromptDiv);
+
   return new Promise((resolve) => {
-    clearTimeout(_timeoutRemovePromptDiv);
-    
     document.body.insertAdjacentHTML(
       "beforeend",
       `
@@ -47,6 +48,7 @@ let _timeoutRemovePromptDiv; =
 
     function removePrompt() {
       clearTimeout(_timeoutRemovePromptDiv);
+
       document.querySelector("#promptModal").style.opacity = "0.05";
       document.querySelector("#promptModal").addEventListener('transitionend', () => {
         try{
