@@ -21,16 +21,6 @@ String.prototype.fetchText = function (...params) {
   ).then((r) => r.text());
 }
 
-String.prototype.fetchJSON = function (...params) {
-  if(typeof this !== 'string'){
-    throw 'Invalid datatype';
-  }
-  return fetch(
-      this,
-      ...params
-  ).then((r) => r.json());
-}
-
 // main block starts here
 (() => {
   const SAME_TAB_LINK_SPLIT = "|";
