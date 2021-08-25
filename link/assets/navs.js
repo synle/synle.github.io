@@ -19,8 +19,11 @@ String.prototype.fetchJSON = function (...params) {
   return fetch(this, ...params).then((r) => r.json());
 };
 
-window.prompt = (promptText, promptInput, autoDismiss) => {
+
+let _timeoutRemovePromptDiv; = 
   return new Promise((resolve) => {
+    clearTimeout(_timeoutRemovePromptDiv);
+    
     document.body.insertAdjacentHTML(
       "beforeend",
       `
@@ -39,10 +42,11 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
     setTimeout(() => document.querySelector("#promptModal").style.opacity = "");
 
     if(autoDismiss){
-      setTimeout(removePrompt, 1500);
+      _timeoutRemovePromptDiv = setTimeout(removePrompt, 1250);
     }
 
     function removePrompt() {
+      clearTimeout(_timeoutRemovePromptDiv);
       document.querySelector("#promptModal").style.opacity = "0.05";
       document.querySelector("#promptModal").addEventListener('transitionend', () => {
         try{
@@ -67,7 +71,6 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
   let isRenderedInMainForm = location.href.indexOf("synle.github.io/link/nav-generator.html") >= 0;
   let isRenderedInDataUrl = location.href.indexOf("data:") === 0;
   let hasPendingChanges = false;
-  let _timeoutRemoveClipboardDiv;
 
   // main methods start here
   window.onbeforeunload = function (e) {
