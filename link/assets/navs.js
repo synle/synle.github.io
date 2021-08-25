@@ -454,10 +454,6 @@ String.prototype.fetchJSON = function (...params) {
   window.navigateToDataUrl = (base64URL, forceOpenWindow) => {
     let shouldOpenWindow = forceOpenWindow;
 
-    if(!shouldOpenWindow){
-        shouldOpenWindow = !isRenderedInDataUrl;
-    }
-
     if(shouldOpenWindow){
         // support open windows
         var win = window.open();
