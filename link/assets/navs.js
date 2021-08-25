@@ -24,11 +24,9 @@ window.prompt = (promptText, promptInput) => {
     document.body.insertAdjacentHTML(
       "beforeend",
       `
-        <div id='promptModal' tabindex='0' style="transition: all 0.5s ease-out; position: fixed; background: rgba(25, 25, 25, 0.4); color: #fff; top: 0px; left: 0px; right: 0px; bottom: 0px; text-align: center; font-weight: bold; border: 2px solid #eee; padding: 2rem 3rem; z-index: 1;">
-          <div style="font-size: 20px; font-weight: bold; margin-bottom: 15px;">${promptText}</div>
-          <div>
-            <textarea style="width: 100%; height: 75%; padding: 10px;"></textarea>
-          </div>
+        <div id='promptModal' tabindex='0' style="display: flex; flex-direction: column; align-items:center; justify-content: center; transition: all 0.5s ease-out; position: fixed; background: rgba(225, 225, 225, 0.4); color: #fff; top: 0px; left: 0px; right: 0px; bottom: 0px; text-align: center; font-weight: bold; border: 2px solid #eee; padding: 2rem 3rem; z-index: 1;">
+          <div style="width: 100%; font-size: 20px; font-weight: bold; padding: 10px 15px; background: #000;">${promptText}</div>
+          <textarea style="width: 100%; height: 75%; padding: 10px; font-size: 20px; font-family: courier news; border: none !important; outline: none !important;"></textarea>
         </div>
       `
     );
@@ -36,7 +34,7 @@ window.prompt = (promptText, promptInput) => {
     document.querySelector("#promptModal textarea").value = promptInput;
     document.querySelector("#promptModal textarea").focus();
     document.querySelector("#promptModal textarea").setSelectionRange(0, promptInput.length);
-    document.querySelector("#promptModal textarea").addEventListener("blur", removePrompt);
+    document.querySelector("#promptModal textarea").onblur = removePrompt;
 
     function removePrompt() {
       document.querySelector("#promptModal").style.opacity = "0.05";
@@ -574,7 +572,7 @@ window.prompt = (promptText, promptInput) => {
         }
       } else if (key === "Escape" && document.querySelector("#promptModal")) {
         try {
-          document.querySelector("#promptModal").remove();
+          document.querySelector("#promptModal textarea").onblur();
         } catch (err) {}
       } else {
         // special handling for ctrl + f to focus on searchbox
