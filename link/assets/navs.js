@@ -19,6 +19,30 @@ String.prototype.fetchJSON = function (...params) {
   return fetch(this, ...params).then((r) => r.json());
 };
 
+window.prompt = (promptText, promptInput) => {
+  document.body.insertAdjacentHTML(
+    "beforeend",
+    `
+    <div id='promptModal' tabindex='0' style="transition: all 0.25s ease-out; opacity: 0.5; position: fixed; background: blue; color: #fff; top: 0px; left: 0px; right: 0px; bottom: 0px; text-align: center; font-weight: bold; border: 2px solid #eee; padding: 5px 10px; z-index: 1;">
+      <div>${promptText}</div>
+      <div>
+        <textarea style="width: 100%; height: 600px">${promptInput}</textarea>
+      </div>
+    </div>
+  `
+  );
+
+  document.querySelector("#promptModal").style.opacity = "1";
+  document.querySelector("#promptModal textarea").focus();
+  document.querySelector("#promptModal textarea").addEventListener("blur", removePrompt);
+
+  function removePrompt() {
+    try {
+      document.querySelector("#promptModal").remove();
+    } catch (err) {}
+  }
+};
+
 // main block starts here
 (() => {
   const SAME_TAB_LINK_SPLIT = "|";
@@ -454,11 +478,11 @@ String.prototype.fetchJSON = function (...params) {
   window.navigateToDataUrl = (base64URL, forceOpenWindow) => {
     let shouldOpenWindow = forceOpenWindow;
 
-    if(shouldOpenWindow){
-        // support open windows
-        var win = window.open();
-        win.document.write(
-          `
+    if (shouldOpenWindow) {
+      // support open windows
+      var win = window.open();
+      win.document.write(
+        `
             <style>
               body{
                 margin: 0;
@@ -466,10 +490,10 @@ String.prototype.fetchJSON = function (...params) {
             </style>
             <iframe src="${base64URL}" frameborder="0" style="border:0; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%;" allowfullscreen></iframe>
           `.trim()
-        );
+      );
     } else {
-        // else prompt let user downloading the url
-        prompt('Data URL (copy to your clipboard):', base64URL);
+      // else prompt let user downloading the url
+      prompt("Data URL (copy to your clipboard):", base64URL);
     }
   };
 
@@ -588,11 +612,13 @@ String.prototype.fetchJSON = function (...params) {
 
           return;
         }
+      } else if (key === "Escape" && document.querySelector("#promptModal")) {
+        document.querySelector("#promptModal").remove();
       } else {
         // special handling for ctrl + f to focus on searchbox
         const searchBox = document.querySelector("#search");
         if (searchBox) {
-          if (e.key === "f" && (e.ctrlKey || e.altKey || e.metaKey)) {
+          if (key === "f" && (e.ctrlKey || e.altKey || e.metaKey)) {
             searchBox.focus();
             e.preventDefault();
           }
