@@ -38,7 +38,7 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
     document.querySelector("#promptModal textarea").value = promptInput;
     document.querySelector("#promptModal").addEventListener('transitionend', setupPrompt);
 
-    setTimeout(() => document.querySelector("#promptModal").style.opacity = "");
+    setTimeout(() => document.querySelector("#promptModal").style.opacity = "1");
     
     function setupPrompt(){
       document.querySelector("#promptModal textarea").focus();
