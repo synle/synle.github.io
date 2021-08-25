@@ -19,7 +19,7 @@ String.prototype.fetchJSON = function (...params) {
   return fetch(this, ...params).then((r) => r.json());
 };
 
-window.prompt = (promptText, promptInput) => {
+window.prompt = (promptText, promptInput, autoDismiss) => {
   return new Promise((resolve) => {
     document.body.insertAdjacentHTML(
       "beforeend",
@@ -37,6 +37,10 @@ window.prompt = (promptText, promptInput) => {
     document.querySelector("#promptModal textarea").onblur = removePrompt;
 
     setTimeout(() => document.querySelector("#promptModal").style.opacity = "");
+
+    if(autoDismiss){
+      setTimeout(removePrompt, 1500);
+    }
 
     function removePrompt() {
       document.querySelector("#promptModal").style.opacity = "0.05";
@@ -522,12 +526,12 @@ window.prompt = (promptText, promptInput) => {
     await onCopyToClipboard(text);
   };
 
-  window.onCopyToClipboard = async (text) => {
+  window.onCopyToClipboard = async (text, autoDismiss) => {
     try {
       await navigator.clipboard.writeText(text);
     } catch (err) {}
 
-    await prompt("Clipboard Data:", text);
+    await prompt("Clipboard Data:", text, autoDismiss);
   };
 
   window.onShowTab = (targetTab) => {
