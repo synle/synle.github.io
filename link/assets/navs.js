@@ -575,7 +575,7 @@ window.prompt = (promptText, promptInput) => {
         }
       } else if (key === "Escape" && document.querySelector("#promptModal")) {
         try {
-          document.querySelector("#promptModal").blur();
+          document.querySelector("#promptModal").remove();
         } catch (err) {}
       } else {
         // special handling for ctrl + f to focus on searchbox
