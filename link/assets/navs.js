@@ -511,7 +511,7 @@ window.prompt = (promptText, promptInput) => {
   };
 
   window.onCopyBlockToClipboard = (target, autoDismiss) => {
-    const text = target.innerText.trim();
+    const text = target.innerText.trim() || target.value.trim();
 
     onCopyToClipboard(text);
     showCopiedToClipboardPopup(autoDismiss);
