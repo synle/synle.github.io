@@ -38,11 +38,10 @@ window.prompt = (promptText, promptInput) => {
 
     function removePrompt() {
       document.querySelector("#promptModal").style.opacity = "0.05";
-      document.querySelector("#promptModal").addEventListener('transitionend', () => {
-        try{
+      document.querySelector("#promptModal").addEventListener("transitionend", () => {
+        try {
           document.querySelector("#promptModal").remove();
-        }
-        catch(err){}
+        } catch (err) {}
       });
     }
   });
