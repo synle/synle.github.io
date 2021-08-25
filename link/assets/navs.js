@@ -448,21 +448,33 @@ String.prototype.fetchJSON = function (...params) {
   window.onTestNav = () => {
     // open the new tab for testing
     const base64URL = document.querySelector("#output").value;
-    navigateToDataUrl(base64URL);
+    navigateToDataUrl(base64URL, true);
   };
 
-  window.navigateToDataUrl = (base64URL) => {
-    var win = window.open();
-    win.document.write(
-      `
-        <style>
-          body{
-            margin: 0;
-          }
-        </style>
-        <iframe src="${base64URL}" frameborder="0" style="border:0; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%;" allowfullscreen></iframe>
-      `.trim()
-    );
+  window.navigateToDataUrl = (base64URL, forceOpenWindow) => {
+    let shouldOpenWindow = forceOpenWindow;
+
+    if(!shouldOpenWindow){
+        shouldOpenWindow = !isRenderedInDataUrl;
+    }
+
+    if(shouldOpenWindow){
+        // support open windows
+        var win = window.open();
+        win.document.write(
+          `
+            <style>
+              body{
+                margin: 0;
+              }
+            </style>
+            <iframe src="${base64URL}" frameborder="0" style="border:0; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%;" allowfullscreen></iframe>
+          `.trim()
+        );
+    } else {
+        // else prompt let user downloading the url
+        prompt('Data URL (copy to your clipboard):', base64URL);
+    }
   };
 
   window.onSubmitNavigationSearch = () => {
