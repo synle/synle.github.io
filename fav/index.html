@@ -122,11 +122,8 @@
       const newPassword = getPassword();
       onCopyToClipboard(newPassword);
     }
-  </script>
-
-  <!--  script started  -->
-  <script>
-    (async () => {
+    
+    async function getHostMappingSchema(){
       let HOST_MAPPING_BLOCK_SCHEMA = "";
       try {
         const hostMappingApiResponse = `https://raw.githubusercontent.com/synle/bashrc/master/software/metadata/ip-address.config`.fetchText();
@@ -179,11 +176,18 @@
           \`\`\`
         `.trimWhiteSpaces();
       } catch (err) {}
+      
+      return HOST_MAPPING_BLOCK_SCHEMA;
+    }
+  </script>
 
+  <!--  script started  -->
+  <script>
+    (async () => {
       // combine and make the schema
       const schema = `
 ${SITE_SCHEMA}
-${HOST_MAPPING_BLOCK_SCHEMA}
+${await getHostMappingSchema()}
 ${DEBUG_LINKS_SCHEMA}
         `.trim();
 
