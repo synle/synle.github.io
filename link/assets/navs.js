@@ -1,9 +1,14 @@
 // ducktype / helper for special methods
-String.prototype.trimWhiteSpaces = function (s) {
-  return (s || this)
+String.prototype.trimWhiteSpaces = function (doFinalTrim) {
+  let res = (s || this)
     .split("\n")
     .map((r) => r.trim())
     .join("\n");
+  
+  if(doFinalTrim === true){
+    res = res.trim();
+  }
+  return res;
 };
 
 // main block starts here
