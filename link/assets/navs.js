@@ -24,7 +24,7 @@ window.prompt = (promptText, promptInput) => {
     document.body.insertAdjacentHTML(
       "beforeend",
       `
-        <div id='promptModal' tabindex='0' style="transition: all 1s ease-out; opacity: 0.5; position: fixed; background: blue; color: #fff; top: 0px; left: 0px; right: 0px; bottom: 0px; text-align: center; font-weight: bold; border: 2px solid #eee; padding: 2rem 3rem; z-index: 1;">
+        <div id='promptModal' tabindex='0' style="transition: all 0.5s ease-out; position: fixed; background: blue; color: #fff; top: 0px; left: 0px; right: 0px; bottom: 0px; text-align: center; font-weight: bold; border: 2px solid #eee; padding: 2rem 3rem; z-index: 1;">
           <div style="font-size: 20px; font-weight: bold; margin-bottom: 15px;">${promptText}</div>
           <div>
             <textarea style="width: 100%; height: 75%; padding: 10px;"></textarea>
@@ -33,7 +33,6 @@ window.prompt = (promptText, promptInput) => {
       `
     );
 
-    document.querySelector("#promptModal").style.opacity = "1";
     document.querySelector("#promptModal textarea").value = promptInput;
     document.querySelector("#promptModal textarea").focus();
     document.querySelector("#promptModal textarea").setSelectionRange(0, promptInput.length);
