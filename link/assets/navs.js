@@ -254,6 +254,22 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
       localStorage["schemaData"] = window.getSchemaFromDom();
       hasPendingChanges = false;
     }
+    
+    // set the page title
+    let pageTitle = "Navigation";
+    try {
+      pageTitle = document.querySelector(".title").innerText.trim();
+    } catch (err) {}
+    document.title = pageTitle;
+
+    // set the page fav icon
+    let pageFavIcon = "📑";
+    document.head.insertAdjacentHTML(
+      "beforeend",
+      `<link rel="icon" href="data:image/svg+xml,${encodeURIComponent(
+        `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text x='0' y='14'>${pageFavIcon}</text></svg>`
+      )}" />`
+    );
   };
 
   window.onGetGeneratedBookmarkletLink = (input) => {
@@ -610,21 +626,5 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
         window.onViewLinks(window.getLinkDom(schemaData));
       }
     }
-
-    // set the page title
-    let pageTitle = "Navigation";
-    try {
-      pageTitle = document.querySelector(".title").innerText.trim();
-    } catch (err) {}
-    document.title = pageTitle;
-
-    // set the page fav icon
-    let pageFavIcon = "📑";
-    document.head.insertAdjacentHTML(
-      "beforeend",
-      `<link rel="icon" href="data:image/svg+xml,${encodeURIComponent(
-        `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text x='0' y='14'>${pageFavIcon}</text></svg>`
-      )}" />`
-    );
   });
 })();
