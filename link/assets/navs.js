@@ -74,7 +74,7 @@ window.alert = (alertText, autoDismiss) => {
       'beforeend',
       `
         <div id='alertModal' tabindex='0' style="display: flex; flex-direction: column; align-items: center; justify-content: center; transition: all 0.4s ease-out; position: fixed; background: rgba(80, 80, 80, 0.6); color: #fff; top: 0px; left: 0px; right: 0px; bottom: 0px; text-align: center; font-weight: bold; border: 2px solid #eee; padding: 2rem 3rem; z-index: 1;">
-          <div id='alertBody' style="max-width: 800px; width: 100%; font-size: 20px; font-weight: bold; padding: 10px; background: #000;" tabindex='0'>${alertText}</div>
+          <div id='alertBody' style="max-width: 800px; width: 100%; font-size: 16px; font-weight: bold; padding: 10px; background: #000;" tabindex='0'>${alertText}</div>
         </div>
       `
     );
