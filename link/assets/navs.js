@@ -284,6 +284,7 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
       <html>
         <head>
           <link rel="stylesheet" type="text/css" href="https://synle.github.io/link/assets/navs.css">
+          <meta charset='utf-8'>
         </head>
         <body>
           <div id='fav'></div>
@@ -589,9 +590,10 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
   window.setPageFavIcon = (pageFavIcon) => {
     document.querySelector('#pageFavIcon') && document.querySelector('#pageFavIcon').remove();
 
-    const favIconEncoded = encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text x='0' y='14'>`)
-     + pageFavIcon
-     + encodeURIComponent(`</text></svg>`);
+    const favIconEncoded =
+      encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text x='0' y='14'>`) +
+      pageFavIcon +
+      encodeURIComponent(`</text></svg>`);
 
     document.head.insertAdjacentHTML(
       'beforeend',
@@ -611,6 +613,15 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
       <meta http-equiv="page-exit" content="revealtrans(duration=seconds,transition=num)" />
     `.trim()
     );
+
+    if (!document.querySelector('meta[charset]')) {
+      document.head.insertAdjacentHTML(
+        'beforeend',
+        `
+      <meta charset='utf-8'>
+    `.trim()
+      );
+    }
 
     document.addEventListener(
       'keydown',
