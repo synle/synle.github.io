@@ -19,9 +19,11 @@ String.prototype.fetchJSON = function (...params) {
   return fetch(this, ...params).then((r) => r.json());
 };
 
-window._timeoutRemovePromptDiv = "";
+window.cacheId = parseInt(Date.now());
+window.schemaCacheMap = {};
+window.timeoutRemovePromptDiv = "";
 window.prompt = (promptText, promptInput, autoDismiss) => {
-  clearTimeout(_timeoutRemovePromptDiv);
+  clearTimeout(timeoutRemovePromptDiv);
 
   return new Promise((resolve) => {
     document.body.insertAdjacentHTML(
@@ -43,12 +45,12 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
       document.querySelector("#promptModal textarea").onblur = removePrompt;
 
       if (autoDismiss) {
-        _timeoutRemovePromptDiv = setTimeout(removePrompt, 1250);
+        timeoutRemovePromptDiv = setTimeout(removePrompt, 1250);
       }
     }
 
     function removePrompt() {
-      clearTimeout(_timeoutRemovePromptDiv);
+      clearTimeout(timeoutRemovePromptDiv);
 
       document.querySelector("#promptModal").style.opacity = "0.05";
       document.querySelector("#promptModal").addEventListener("transitionend", () => {
@@ -99,11 +101,11 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
 
         if (elem.classList.contains("jsLink")) {
           // js link
-          const jsFunc = `javascript://${elem.dataset.jsfunc}`;
+          const jsFunc = `javascript://${window.schemaCacheMap[elem.dataset.targetId]}`;
           output.push(`${description} ${SAME_TAB_LINK_SPLIT} ${jsFunc}`);
         } else if (elem.classList.contains("dataLink")) {
           // data link
-          const dataUrl = `${elem.dataset.url}`;
+          const dataUrl = `${window.schemaCacheMap[elem.dataset.targetId]}`;
           output.push(`${description} ${SAME_TAB_LINK_SPLIT} ${dataUrl}`);
         } else if (elem.classList.contains("newTabLink")) {
           // new tab
@@ -375,6 +377,9 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
       lines.unshift(headerSchemaSampleCode);
     }
 
+    // reset the schema metadata map (used for data link and js func)
+    window.schemaCacheMap = {};
+
     const newHTMLLines = [];
 
     let blockBuffer = "";
@@ -473,16 +478,20 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
             linkUrl = `https://${linkUrl}`;
           }
 
+          const newCacheId = (++window.cacheId)
+
           if (linkUrl.indexOf("javascript://") === 0) {
             // js func link
             const jsFunc = linkUrl.replace("javascript://", "");
+            window.schemaCacheMap[newCacheId] = jsFunc;
             newHTMLLines.push(
-              `<button class='link jsLink' onClick='eval(this.dataset.jsfunc)' data-jsfunc="${jsFunc}" data-section='${currentHeaderName}'>${linkText}</button>`
+              `<button class='link jsLink' onClick='eval(window.schemaCacheMap["${newCacheId}"])' data-target-id="${newCacheId}" data-section='${currentHeaderName}'>${linkText}</button>`
             );
           } else if (linkUrl.indexOf("data:") === 0) {
             // data url link
+            window.schemaCacheMap[newCacheId] = linkUrl;
             newHTMLLines.push(
-              `<button class='link dataLink' onClick='navigateToDataUrl(this.dataset.url)' data-url="${linkUrl}" data-section='${currentHeaderName}'>${linkText}</button>`
+              `<button class='link dataLink' onClick='navigateToDataUrl(window.schemaCacheMap["${newCacheId}"])' data-target-id="${newCacheId}" data-section='${currentHeaderName}'>${linkText}</button>`
             );
           } else if (linkType === "sameTabLink") {
             // same tab link
