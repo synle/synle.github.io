@@ -42,8 +42,8 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
       document.querySelector('#promptModal #promptInput').value = promptInput;
       document.querySelector('#promptModal #promptInput').focus();
       document.querySelector('#promptModal #promptInput').setSelectionRange(0, promptInput.length);
-      document.querySelector('#promptModal #promptInput').rows = Math.floor(Math.min(promptInput.length / 100, 10))
-      document.querySelector('#promptModal #promptInput').onblur = removePrompt;
+      document.querySelector('#promptModal #promptInput').rows = Math.floor(Math.min(promptInput.length / 75, 10))
+      //document.querySelector('#promptModal #promptInput').onblur = removePrompt;
 
       if (autoDismiss) {
         timeoutRemovePromptDiv = setTimeout(removePrompt, 1300);
