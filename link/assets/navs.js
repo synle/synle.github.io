@@ -46,9 +46,9 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
         .trim()
         .split('\n')
         .reduce((totalCount, s) => {
-          totalCount += Math.min(Math.floor(s.length / 75), 1);
+          totalCount += Math.max(Math.floor(s.length / 75), 1);
           return totalCount;
-        }, 0);
+        }, 1);
       document.querySelector('#promptModal #promptInput').rows = Math.floor(Math.min(rowCount, 10));
       document.querySelector('#promptModal #promptInput').onblur = removePrompt;
 
