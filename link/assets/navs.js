@@ -20,7 +20,7 @@ String.prototype.fetchJSON = function (...params) {
 };
 
 window.cacheId = parseInt(Date.now());
-window.schemaCacheMap = window.schemaCacheMap || {};
+// window.schemaCacheMap = window.schemaCacheMap || {};
 window.timeoutRemovePromptDiv = '';
 window.prompt = (promptText, promptInput, autoDismiss) => {
   clearTimeout(timeoutRemovePromptDiv);
