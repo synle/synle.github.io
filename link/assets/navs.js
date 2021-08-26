@@ -56,6 +56,8 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
           document.querySelector("#promptModal").remove();
         } catch (err) {}
       });
+      
+      resolve();
     }
   });
 };
