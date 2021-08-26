@@ -588,11 +588,14 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
 
   window.setPageFavIcon = (pageFavIcon) => {
     document.querySelector('#pageFavIcon') && document.querySelector('#pageFavIcon').remove();
+
+    const favIconEncoded = encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text x='0' y='14'>`)
+     + pageFavIcon
+     + encodeURIComponent(`</text></svg>`);
+
     document.head.insertAdjacentHTML(
       'beforeend',
-      `<link id='pageFavIcon' data-fav-icon="${pageFavIcon}" rel="icon" href="data:image/svg+xml,${encodeURIComponent(
-        `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text x='0' y='14'>${pageFavIcon}</text></svg>`
-      )}" />`
+      `<link id='pageFavIcon' data-fav-icon="${pageFavIcon}" rel="icon" href="data:image/svg+xml,${favIconEncoded}" />`
     );
   };
 
