@@ -58,7 +58,7 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
           document.querySelector("#promptModal").remove();
         } catch (err) {}
       });
-      
+
       resolve();
     }
   });
@@ -258,7 +258,7 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
       localStorage["schemaData"] = window.getSchemaFromDom();
       hasPendingChanges = false;
     }
-    
+
     // set the page title
     let pageTitle = "Navigation";
     try {
@@ -267,13 +267,7 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
     document.title = pageTitle;
 
     // set the page fav icon
-    let pageFavIcon = "📑";
-    document.head.insertAdjacentHTML(
-      "beforeend",
-      `<link rel="icon" href="data:image/svg+xml,${encodeURIComponent(
-        `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text x='0' y='14'>${pageFavIcon}</text></svg>`
-      )}" />`
-    );
+    setPageFavIcon("📑");
   };
 
   window.onGetGeneratedBookmarkletLink = (input) => {
@@ -478,7 +472,7 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
             linkUrl = `https://${linkUrl}`;
           }
 
-          const newCacheId = (++window.cacheId)
+          const newCacheId = ++window.cacheId;
 
           if (linkUrl.indexOf("javascript://") === 0) {
             // js func link
@@ -581,61 +575,75 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
     targetTab.classList.add("selected");
   };
 
-  // insert zoom scale of 1 for mobile
-  document.head.insertAdjacentHTML(
-    "beforeend",
-    `
+  window.setPageFavIcon = (pageFavIcon) => {
+    document.querySelector("#pageFavIcon") && document.querySelector("#pageFavIcon").remove();
+    document.head.insertAdjacentHTML(
+      "beforeend",
+      `<link id='pageFavIcon' rel="icon" href="data:image/svg+xml,${encodeURIComponent(
+        `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text x='0' y='14'>${pageFavIcon}</text></svg>`
+      )}" />`
+    );
+  };
+
+  function _init() {
+    // insert zoom scale of 1 for mobile
+    document.head.insertAdjacentHTML(
+      "beforeend",
+      `
       <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
       <meta http-equiv="Cache-Control" content="no-cache" />
       <meta http-equiv="Pragma" content="no-cache" />
       <meta http-equiv="page-enter" content="revealtrans(duration=seconds,transition=num)" />
       <meta http-equiv="page-exit" content="revealtrans(duration=seconds,transition=num)" />
     `.trim()
-  );
+    );
 
-  document.addEventListener(
-    "keydown",
-    (e) => {
-      // handling enter and spacebar on focusable div
-      const { key } = e;
-      const target = e.target;
+    document.addEventListener(
+      "keydown",
+      (e) => {
+        // handling enter and spacebar on focusable div
+        const { key } = e;
+        const target = e.target;
 
-      if (target.onclick) {
-        if (key === "Enter" || key === " ") {
-          target.onclick.apply(target);
+        if (target.onclick) {
+          if (key === "Enter" || key === " ") {
+            target.onclick.apply(target);
 
-          e.preventDefault();
-          e.stopPropagation();
-
-          return;
-        }
-      } else if (key === "Escape" && document.querySelector("#promptModal")) {
-        try {
-          document.querySelector("#promptModal textarea").onblur();
-        } catch (err) {}
-      } else {
-        // special handling for ctrl + f to focus on searchbox
-        const searchBox = document.querySelector("#search");
-        if (searchBox) {
-          if (key === "f" && (e.ctrlKey || e.altKey || e.metaKey)) {
-            searchBox.focus();
             e.preventDefault();
+            e.stopPropagation();
+
+            return;
+          }
+        } else if (key === "Escape" && document.querySelector("#promptModal")) {
+          try {
+            document.querySelector("#promptModal textarea").onblur();
+          } catch (err) {}
+        } else {
+          // special handling for ctrl + f to focus on searchbox
+          const searchBox = document.querySelector("#search");
+          if (searchBox) {
+            if (key === "f" && (e.ctrlKey || e.altKey || e.metaKey)) {
+              searchBox.focus();
+              e.preventDefault();
+            }
           }
         }
-      }
-    },
-    true
-  );
+      },
+      true
+    );
 
-  // init the form if needed
-  // when visiting the main form, this will parse the schema and populate it accordingly
-  document.addEventListener("DOMContentLoaded", () => {
-    if (isRenderedInMainForm) {
-      let schemaData = sessionStorage["schemaData"] || localStorage["schemaData"];
+    // init the form if needed
+    // when visiting the main form, this will parse the schema and populate it accordingly
+    document.addEventListener("DOMContentLoaded", () => {
+      if (isRenderedInMainForm) {
+        let schemaData = sessionStorage["schemaData"] || localStorage["schemaData"];
 
-      if (schemaData) {
-        window.onViewLinks(window.getLinkDom(schemaData));
+        if (schemaData) {
+          window.onViewLinks(window.getLinkDom(schemaData));
+        }
       }
-    }
-  });
+    });
+  }
+
+  _init();
 })();
