@@ -616,9 +616,9 @@ window.alert = (alertText, autoDismiss) => {
   window.onCopyToClipboard = async (text, autoDismiss) => {
     try {
       await navigator.clipboard.writeText(text);
-      await alert('Copied content to clipboard', true);
+      await alert('Copied to clipboard!', true);
     } catch (err) {
-      await prompt('Clipboard Data:', text, autoDismiss);
+      await prompt('Clipboard', text, autoDismiss);
     }
   };
 
