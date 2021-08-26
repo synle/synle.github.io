@@ -94,7 +94,7 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
     for (const elem of elems) {
       if (elem.classList.contains('title')) {
         const description = elem.innerText.trim();
-        output.push(`\n${TITLE_SPLIT} ${description}`);
+        output.unshift(`\n${TITLE_SPLIT} ${description}`);
       } else if (elem.id === 'pageFavIcon') {
         output.push(`${FAV_ICON_SPLIT} ${elem.dataset.favIcon}`);
       } else if (elem.classList.contains('link')) {
