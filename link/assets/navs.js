@@ -20,7 +20,7 @@ String.prototype.fetchJSON = function (...params) {
 };
 
 window.cacheId = parseInt(Date.now());
-window.schemaCacheMap = {};
+window.schemaCacheMap = window.schemaCacheMap || {};
 window.timeoutRemovePromptDiv = '';
 window.prompt = (promptText, promptInput, autoDismiss) => {
   clearTimeout(timeoutRemovePromptDiv);
@@ -29,8 +29,8 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
     document.body.insertAdjacentHTML(
       'beforeend',
       `
-        <div id='promptModal' tabindex='0' style="display: flex; flex-direction: column; align-items:stretch; justify-content: center; transition: all 0.4s ease-out; position: fixed; background: rgba(80, 80, 80, 0.6); color: #fff; top: 0px; left: 0px; right: 0px; bottom: 0px; text-align: center; font-weight: bold; border: 2px solid #eee; padding: 2rem 3rem; z-index: 1;">
-          <div style="max-width: 800px; width: 100%; font-size: 20px; font-weight: bold; padding: 10px 15px; background: #000;">${promptText}</div>
+        <div id='promptModal' tabindex='0' style="display: flex; flex-direction: column; align-items: center; justify-content: center; transition: all 0.4s ease-out; position: fixed; background: rgba(80, 80, 80, 0.6); color: #fff; top: 0px; left: 0px; right: 0px; bottom: 0px; text-align: center; font-weight: bold; border: 2px solid #eee; padding: 2rem 3rem; z-index: 1;">
+          <div style="max-width: 800px; width: 100%; font-size: 20px; font-weight: bold; padding: 10px; background: #000;">${promptText}</div>
           <textarea style="max-width: 800px; width: 100%; height: 75%; max-height: 300px; padding: 10px; font-size: 20px; font-family: courier news; border: none !important; outline: none !important;"></textarea>
         </div>
       `
@@ -145,7 +145,7 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
     const rawSchemaDataDom = `
       <div id='command'>
         <div><h1 class='title'>Navigation Form</h1></div>
-        <div style="display: flex; align-items:center; justify-content: space-evenly;">
+        <div style="display: flex; align-items: stretch; justify-content: space-evenly; flex-wrap: wrap;">
           <button onclick="window.onViewLinks(window.getLinkDom(document.querySelector('#input').value))">View Links UI</button>
           <button onclick="window.onTestNav()">Test Nav</button>
           <a target="_blank" style="text-align: center;" href="https://synle.github.io/link/nav-generator.html">New Nav</a>
