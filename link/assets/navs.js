@@ -19,8 +19,7 @@ String.prototype.fetchJSON = function (...params) {
   return fetch(this, ...params).then((r) => r.json());
 };
 
-
-window._timeoutRemovePromptDiv = '';
+window._timeoutRemovePromptDiv = "";
 window.prompt = (promptText, promptInput, autoDismiss) => {
   clearTimeout(_timeoutRemovePromptDiv);
 
@@ -34,16 +33,16 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
         </div>
       `
     );
-    
+
     setupPrompt();
-    
-    function setupPrompt(){
+
+    function setupPrompt() {
       document.querySelector("#promptModal textarea").value = promptInput;
       document.querySelector("#promptModal textarea").focus();
       document.querySelector("#promptModal textarea").setSelectionRange(0, promptInput.length);
       document.querySelector("#promptModal textarea").onblur = removePrompt;
-      
-      if(autoDismiss){
+
+      if (autoDismiss) {
         _timeoutRemovePromptDiv = setTimeout(removePrompt, 1250);
       }
     }
@@ -52,11 +51,10 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
       clearTimeout(_timeoutRemovePromptDiv);
 
       document.querySelector("#promptModal").style.opacity = "0.05";
-      document.querySelector("#promptModal").addEventListener('transitionend', () => {
-        try{
+      document.querySelector("#promptModal").addEventListener("transitionend", () => {
+        try {
           document.querySelector("#promptModal").remove();
-        }
-        catch(err){}
+        } catch (err) {}
       });
     }
   });
@@ -614,13 +612,19 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
     }
 
     // set the page title
-    let pageTitle = 'Navigation';
-    try{
-       pageTitle = document.querySelector(".title").innerText.trim();
-    } catch(err){}
+    let pageTitle = "Navigation";
+    try {
+      pageTitle = document.querySelector(".title").innerText.trim();
+    } catch (err) {}
     document.title = pageTitle;
-    
+
     // set the page fav icon
-    let pageFavIcon = '📑'; document.head.insertAdjacentHTML('beforeend', `<link rel="icon" href="data:image/svg+xml,${encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text x='0' y='14'>${pageFavIcon}</text></svg>`)}" />`);
+    let pageFavIcon = "📑";
+    document.head.insertAdjacentHTML(
+      "beforeend",
+      `<link rel="icon" href="data:image/svg+xml,${encodeURIComponent(
+        `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text x='0' y='14'>${pageFavIcon}</text></svg>`
+      )}" />`
+    );
   });
 })();
