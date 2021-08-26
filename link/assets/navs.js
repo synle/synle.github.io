@@ -31,7 +31,7 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
       `
         <div id='promptModal' tabindex='0' style="display: flex; flex-direction: column; align-items: center; justify-content: center; transition: all 0.4s ease-out; position: fixed; background: rgba(80, 80, 80, 0.6); color: #fff; top: 0px; left: 0px; right: 0px; bottom: 0px; text-align: center; font-weight: bold; border: 2px solid #eee; padding: 2rem 3rem; z-index: 1;">
           <div style="max-width: 800px; width: 100%; font-size: 16px; font-weight: bold; padding: 10px; background: #000;">${promptText}</div>
-          <textarea id='promptInput' style='max-width: 800px; width: 100%; max-height: 600px; padding: 10px; font-size: 16px; font-family: monospace; border: none !important; outline: none !important;' rows='3'></textarea>
+          <textarea id='promptInput' style='max-width: 800px; width: 100%; max-height: 650px; padding: 10px; font-size: 16px; font-family: monospace; border: none !important; outline: none !important;' rows='3'></textarea>
         </div>
       `
     );
@@ -49,7 +49,7 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
           totalCount += Math.max(Math.floor(s.length / 75), 1);
           return totalCount;
         }, 1);
-      document.querySelector('#promptModal #promptInput').rows = Math.floor(Math.min(rowCount, 10));
+      document.querySelector('#promptModal #promptInput').rows = Math.min(rowCount, 11);
       document.querySelector('#promptModal #promptInput').onblur = removePrompt;
 
       if (autoDismiss) {
