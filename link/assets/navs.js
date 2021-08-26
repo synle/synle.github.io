@@ -31,7 +31,7 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
       `
         <div id='promptModal' tabindex='0' style="display: flex; flex-direction: column; align-items: center; justify-content: center; transition: all 0.4s ease-out; position: fixed; background: rgba(80, 80, 80, 0.6); color: #fff; top: 0px; left: 0px; right: 0px; bottom: 0px; text-align: center; font-weight: bold; border: 2px solid #eee; padding: 2rem 3rem; z-index: 1;">
           <div style="max-width: 800px; width: 100%; font-size: 20px; font-weight: bold; padding: 10px; background: #000;">${promptText}</div>
-          <textarea style="max-width: 800px; width: 100%; height: 75%; max-height: 300px; padding: 10px; font-size: 20px; font-family: courier news; border: none !important; outline: none !important;"></textarea>
+          <textarea id='promptInput' style='max-width: 800px; width: 100%; max-height: 350px; padding: 10px; font-size: 20px; font-family: courier news; border: none !important; outline: none !important;' rows='3'></textarea>
         </div>
       `
     );
@@ -39,13 +39,14 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
     setupPrompt();
 
     function setupPrompt() {
-      document.querySelector('#promptModal textarea').value = promptInput;
-      document.querySelector('#promptModal textarea').focus();
-      document.querySelector('#promptModal textarea').setSelectionRange(0, promptInput.length);
-      document.querySelector('#promptModal textarea').onblur = removePrompt;
+      document.querySelector('#promptModal #promptInput').value = promptInput;
+      document.querySelector('#promptModal #promptInput').focus();
+      document.querySelector('#promptModal #promptInput').setSelectionRange(0, promptInput.length);
+      document.querySelector('#promptModal #promptInput').rows = Math.floor(Math.min(promptInput.length / 100, 10))
+      document.querySelector('#promptModal #promptInput').onblur = removePrompt;
 
       if (autoDismiss) {
-        timeoutRemovePromptDiv = setTimeout(removePrompt, 1250);
+        timeoutRemovePromptDiv = setTimeout(removePrompt, 1300);
       }
     }
 
@@ -641,7 +642,7 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
           }
         } else if (key === 'Escape' && document.querySelector('#promptModal')) {
           try {
-            document.querySelector('#promptModal textarea').onblur();
+            document.querySelector('#promptModal #promptInput').onblur();
           } catch (err) {}
         } else {
           // special handling for ctrl + f to focus on searchbox
