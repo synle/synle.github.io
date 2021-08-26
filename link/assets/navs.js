@@ -73,6 +73,7 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
   const BLOCK_SPLIT = '```';
   const TAB_SPLIT = '>>>';
   const TAB_TITLE_SPLIT = '|';
+  const FAV_ICON_SPLIT = '@';
 
   let isRenderedInMainForm = location.href.indexOf('synle.github.io/link/nav-generator.html') >= 0;
   let isRenderedInDataUrl = location.href.indexOf('data:') === 0;
@@ -89,11 +90,13 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
 
   window.getSchemaFromDom = () => {
     var output = [];
-    var elems = document.querySelectorAll('#fav > *');
+    var elems = document.querySelectorAll('#fav > *, #pageFavIcon');
     for (const elem of elems) {
       if (elem.classList.contains('title')) {
         const description = elem.innerText.trim();
         output.push(`\n${TITLE_SPLIT} ${description}`);
+      } else if (elem.id === 'pageFavIcon') {
+        output.push(`${FAV_ICON_SPLIT} ${elem.dataset.favIcon}`);
       } else if (elem.classList.contains('link')) {
         const link = elem;
         const fullLink = link.href;
@@ -267,7 +270,9 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
     document.title = pageTitle;
 
     // set the page fav icon
-    setPageFavIcon('📑');
+    const newFavIcon = document.querySelector('favicon').innerText.trim();
+    document.querySelector('favicon').remove();
+    setPageFavIcon(newFavIcon);
   };
 
   window.onGetGeneratedBookmarkletLink = (input) => {
@@ -380,6 +385,7 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
     let isInABlock = false;
     let currentHeaderName = '';
     let blockId = '';
+    let pageFavIcon = '📑';
 
     let rawLinkHTML = lines.forEach((link) => {
       if (isInABlock) {
@@ -402,7 +408,9 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
         return;
       }
 
-      if (link.indexOf(TITLE_SPLIT) === 0) {
+      if (link.indexOf(FAV_ICON_SPLIT) === 0) {
+        pageFavIcon = link.replace(/^[@]+/, '').trim();
+      } else if (link.indexOf(TITLE_SPLIT) === 0) {
         // page title
         const headerText = link.replace(TITLE_SPLIT, '').trim();
         newHTMLLines.push(`<h1 class="title">${headerText}</h1>`);
@@ -500,6 +508,9 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
       }
     });
 
+    // insert the fav icon
+    newHTMLLines.push(`<favicon>${pageFavIcon}</favicon>`);
+
     rawLinkHTML = newHTMLLines.filter((r) => !!r).join('\n');
 
     rawLinkHTML = `<div id='fav'>${rawLinkHTML}</div>`;
@@ -579,7 +590,7 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
     document.querySelector('#pageFavIcon') && document.querySelector('#pageFavIcon').remove();
     document.head.insertAdjacentHTML(
       'beforeend',
-      `<link id='pageFavIcon' rel="icon" href="data:image/svg+xml,${encodeURIComponent(
+      `<link id='pageFavIcon' data-fav-icon="${pageFavIcon}" rel="icon" href="data:image/svg+xml,${encodeURIComponent(
         `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text x='0' y='14'>${pageFavIcon}</text></svg>`
       )}" />`
     );
