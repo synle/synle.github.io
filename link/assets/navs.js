@@ -42,8 +42,8 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
       document.querySelector('#promptModal #promptInput').value = promptInput;
       document.querySelector('#promptModal #promptInput').focus();
       document.querySelector('#promptModal #promptInput').setSelectionRange(0, promptInput.length);
-      document.querySelector('#promptModal #promptInput').rows = Math.floor(Math.min(promptInput.length / 75, 10))
-      //document.querySelector('#promptModal #promptInput').onblur = removePrompt;
+      document.querySelector('#promptModal #promptInput').rows = Math.floor(Math.min(promptInput.length / 75, 10));
+      document.querySelector('#promptModal #promptInput').onblur = removePrompt;
 
       if (autoDismiss) {
         timeoutRemovePromptDiv = setTimeout(removePrompt, 1300);
@@ -57,6 +57,46 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
       document.querySelector('#promptModal').addEventListener('transitionend', () => {
         try {
           document.querySelector('#promptModal').remove();
+        } catch (err) {}
+      });
+
+      resolve();
+    }
+  });
+};
+
+window.timeoutRemoveAlertDiv = '';
+window.alert = (alertText, autoDismiss) => {
+  clearTimeout(timeoutRemoveAlertDiv);
+
+  return new Promise((resolve) => {
+    document.body.insertAdjacentHTML(
+      'beforeend',
+      `
+        <div id='alertModal' tabindex='0' style="display: flex; flex-direction: column; align-items: center; justify-content: center; transition: all 0.4s ease-out; position: fixed; background: rgba(80, 80, 80, 0.6); color: #fff; top: 0px; left: 0px; right: 0px; bottom: 0px; text-align: center; font-weight: bold; border: 2px solid #eee; padding: 2rem 3rem; z-index: 1;">
+          <div id='alertBody' style="max-width: 800px; width: 100%; font-size: 20px; font-weight: bold; padding: 10px; background: #000;" tabindex='0'>${alertText}</div>
+        </div>
+      `
+    );
+
+    setupAlert();
+
+    function setupAlert() {
+      document.querySelector('#alertModal #alertBody').focus();
+      document.querySelector('#alertModal #alertBody').onblur = removeAlert;
+
+      if (autoDismiss) {
+        timeoutRemoveAlertDiv = setTimeout(removeAlert, 1300);
+      }
+    }
+
+    function removeAlert() {
+      clearTimeout(timeoutRemoveAlertDiv);
+
+      document.querySelector('#alertModal').style.opacity = '0.05';
+      document.querySelector('#alertModal').addEventListener('transitionend', () => {
+        try {
+          document.querySelector('#alertModal').remove();
         } catch (err) {}
       });
 
@@ -569,9 +609,10 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
   window.onCopyToClipboard = async (text, autoDismiss) => {
     try {
       await navigator.clipboard.writeText(text);
-    } catch (err) {}
-
-    await prompt('Clipboard Data:', text, autoDismiss);
+      await alert('Copied content to clipboard', true);
+    } catch (err) {
+      await prompt('Clipboard Data:', text, autoDismiss);
+    }
   };
 
   window.onShowTab = (targetTab) => {
@@ -643,6 +684,10 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
         } else if (key === 'Escape' && document.querySelector('#promptModal')) {
           try {
             document.querySelector('#promptModal #promptInput').onblur();
+          } catch (err) {}
+        } else if (key === 'Escape' && document.querySelector('#alertModal')) {
+          try {
+            document.querySelector('#alertModal #alertBody').onblur();
           } catch (err) {}
         } else {
           // special handling for ctrl + f to focus on searchbox
