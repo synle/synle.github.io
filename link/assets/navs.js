@@ -1,9 +1,9 @@
 // ducktype & helper for special methods
 String.prototype.trimWhiteSpaces = function (doFinalTrim) {
-  let res = (this || "")
-    .split("\n")
+  let res = (this || '')
+    .split('\n')
     .map((r) => r.trim())
-    .join("\n");
+    .join('\n');
 
   if (doFinalTrim === true) {
     res = res.trim();
@@ -21,13 +21,13 @@ String.prototype.fetchJSON = function (...params) {
 
 window.cacheId = parseInt(Date.now());
 window.schemaCacheMap = {};
-window.timeoutRemovePromptDiv = "";
+window.timeoutRemovePromptDiv = '';
 window.prompt = (promptText, promptInput, autoDismiss) => {
   clearTimeout(timeoutRemovePromptDiv);
 
   return new Promise((resolve) => {
     document.body.insertAdjacentHTML(
-      "beforeend",
+      'beforeend',
       `
         <div id='promptModal' tabindex='0' style="display: flex; flex-direction: column; align-items:stretch; justify-content: center; transition: all 0.4s ease-out; position: fixed; background: rgba(80, 80, 80, 0.6); color: #fff; top: 0px; left: 0px; right: 0px; bottom: 0px; text-align: center; font-weight: bold; border: 2px solid #eee; padding: 2rem 3rem; z-index: 1;">
           <div style="max-width: 800px; width: 100%; font-size: 20px; font-weight: bold; padding: 10px 15px; background: #000;">${promptText}</div>
@@ -39,10 +39,10 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
     setupPrompt();
 
     function setupPrompt() {
-      document.querySelector("#promptModal textarea").value = promptInput;
-      document.querySelector("#promptModal textarea").focus();
-      document.querySelector("#promptModal textarea").setSelectionRange(0, promptInput.length);
-      document.querySelector("#promptModal textarea").onblur = removePrompt;
+      document.querySelector('#promptModal textarea').value = promptInput;
+      document.querySelector('#promptModal textarea').focus();
+      document.querySelector('#promptModal textarea').setSelectionRange(0, promptInput.length);
+      document.querySelector('#promptModal textarea').onblur = removePrompt;
 
       if (autoDismiss) {
         timeoutRemovePromptDiv = setTimeout(removePrompt, 1250);
@@ -52,10 +52,10 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
     function removePrompt() {
       clearTimeout(timeoutRemovePromptDiv);
 
-      document.querySelector("#promptModal").style.opacity = "0.05";
-      document.querySelector("#promptModal").addEventListener("transitionend", () => {
+      document.querySelector('#promptModal').style.opacity = '0.05';
+      document.querySelector('#promptModal').addEventListener('transitionend', () => {
         try {
-          document.querySelector("#promptModal").remove();
+          document.querySelector('#promptModal').remove();
         } catch (err) {}
       });
 
@@ -66,67 +66,67 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
 
 // main block starts here
 (() => {
-  const SAME_TAB_LINK_SPLIT = "|";
-  const NEW_TAB_LINK_SPLIT = "|||";
-  const HEADER_SPLIT = "#";
-  const TITLE_SPLIT = "!";
-  const BLOCK_SPLIT = "```";
-  const TAB_SPLIT = ">>>";
-  const TAB_TITLE_SPLIT = "|";
+  const SAME_TAB_LINK_SPLIT = '|';
+  const NEW_TAB_LINK_SPLIT = '|||';
+  const HEADER_SPLIT = '#';
+  const TITLE_SPLIT = '!';
+  const BLOCK_SPLIT = '```';
+  const TAB_SPLIT = '>>>';
+  const TAB_TITLE_SPLIT = '|';
 
-  let isRenderedInMainForm = location.href.indexOf("synle.github.io/link/nav-generator.html") >= 0;
-  let isRenderedInDataUrl = location.href.indexOf("data:") === 0;
+  let isRenderedInMainForm = location.href.indexOf('synle.github.io/link/nav-generator.html') >= 0;
+  let isRenderedInDataUrl = location.href.indexOf('data:') === 0;
   let hasPendingChanges = false;
 
   // main methods start here
   window.onbeforeunload = function (e) {
     if (hasPendingChanges) {
       e.preventDefault();
-      return (e.returnValue = "You have unsaved changes. Do you want to continue with exit?");
+      return (e.returnValue = 'You have unsaved changes. Do you want to continue with exit?');
     }
     return undefined;
   };
 
   window.getSchemaFromDom = () => {
     var output = [];
-    var elems = document.querySelectorAll("#fav > *");
+    var elems = document.querySelectorAll('#fav > *');
     for (const elem of elems) {
-      if (elem.classList.contains("title")) {
+      if (elem.classList.contains('title')) {
         const description = elem.innerText.trim();
         output.push(`\n${TITLE_SPLIT} ${description}`);
-      } else if (elem.classList.contains("link")) {
+      } else if (elem.classList.contains('link')) {
         const link = elem;
         const fullLink = link.href;
         const description = link.innerHTML;
 
-        if (elem.classList.contains("jsLink")) {
+        if (elem.classList.contains('jsLink')) {
           // js link
           const jsFunc = `javascript://${window.schemaCacheMap[elem.dataset.targetId]}`;
           output.push(`${description} ${SAME_TAB_LINK_SPLIT} ${jsFunc}`);
-        } else if (elem.classList.contains("dataLink")) {
+        } else if (elem.classList.contains('dataLink')) {
           // data link
           const dataUrl = `${window.schemaCacheMap[elem.dataset.targetId]}`;
           output.push(`${description} ${SAME_TAB_LINK_SPLIT} ${dataUrl}`);
-        } else if (elem.classList.contains("newTabLink")) {
+        } else if (elem.classList.contains('newTabLink')) {
           // new tab
           output.push(`${description} ${NEW_TAB_LINK_SPLIT} ${fullLink}`);
         } else {
           // same tab
           output.push(`${description} ${SAME_TAB_LINK_SPLIT} ${fullLink}`);
         }
-      } else if (elem.classList.contains("block")) {
+      } else if (elem.classList.contains('block')) {
         const description = elem.innerText.trim();
-        const blockId = elem.id || "";
+        const blockId = elem.id || '';
         output.push(`\n${BLOCK_SPLIT}${blockId}\n${description}\n${BLOCK_SPLIT}\n`);
-      } else if (elem.classList.contains("tabs")) {
-        const tabContent = [...elem.querySelectorAll("tab")]
+      } else if (elem.classList.contains('tabs')) {
+        const tabContent = [...elem.querySelectorAll('tab')]
           .map((tab) => {
             return `${tab.innerText.trim()}${TAB_TITLE_SPLIT}${tab.dataset.tabId}`;
           })
           .join(TAB_SPLIT);
 
         output.push(`\n${TAB_SPLIT}${tabContent}\n`);
-      } else if (elem.classList.contains("header")) {
+      } else if (elem.classList.contains('header')) {
         const header = elem;
         const description = header.innerHTML;
 
@@ -134,7 +134,7 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
       }
     }
 
-    output = output.join("\n").trim();
+    output = output.join('\n').trim();
 
     return output;
   };
@@ -171,18 +171,18 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
     `;
 
     window.zoominInput = (target) => {
-      [...document.querySelectorAll("#input,#output")].forEach((r) => (r.style.height = ""));
-      target.style.height = Math.max(450, document.body.clientHeight - 375) + "px";
+      [...document.querySelectorAll('#input,#output')].forEach((r) => (r.style.height = ''));
+      target.style.height = Math.max(450, document.body.clientHeight - 375) + 'px';
     };
 
     document.body.innerHTML = rawSchemaDataDom;
 
-    window.onGetGeneratedBookmarkletLink(document.querySelector("#input").value);
+    window.onGetGeneratedBookmarkletLink(document.querySelector('#input').value);
 
     // hook up the tab and shift tab to do modification
-    document.querySelector("#input").addEventListener("keydown", (e) => {
-      const TAB_INDENT = "  ";
-      if (e.key === "Tab") {
+    document.querySelector('#input').addEventListener('keydown', (e) => {
+      const TAB_INDENT = '  ';
+      if (e.key === 'Tab') {
         e.preventDefault();
         if (e.shiftKey === true) {
           deleteAtCursor(e.target, TAB_INDENT.length);
@@ -223,8 +223,8 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
     }
 
     // insert the search form
-    document.querySelector("#fav").insertAdjacentHTML(
-      "beforeend",
+    document.querySelector('#fav').insertAdjacentHTML(
+      'beforeend',
       `
         <form id='searchForm' onsubmit="return window.onSubmitNavigationSearch();">
           <input id='search' 
@@ -242,36 +242,36 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
     );
 
     // setting up the autocomplete
-    document.querySelector("#linkList").innerHTML = [...new Set([...document.querySelectorAll("a.link")].map((r) => r.innerText).sort())]
+    document.querySelector('#linkList').innerHTML = [...new Set([...document.querySelectorAll('a.link')].map((r) => r.innerText).sort())]
       .map((r) => `<option>${r}</option>`)
-      .join("\n");
+      .join('\n');
 
     // show the first tab
-    [...document.querySelectorAll("tabs")].forEach((tabs) => {
-      const firstTab = tabs.querySelector("tab");
+    [...document.querySelectorAll('tabs')].forEach((tabs) => {
+      const firstTab = tabs.querySelector('tab');
       window.onShowTab(firstTab);
     });
 
     // persist the link if needed
     if (isRenderedInMainForm) {
-      sessionStorage["schemaData"] = window.getSchemaFromDom();
-      localStorage["schemaData"] = window.getSchemaFromDom();
+      sessionStorage['schemaData'] = window.getSchemaFromDom();
+      localStorage['schemaData'] = window.getSchemaFromDom();
       hasPendingChanges = false;
     }
 
     // set the page title
-    let pageTitle = "Navigation";
+    let pageTitle = 'Navigation';
     try {
-      pageTitle = document.querySelector(".title").innerText.trim();
+      pageTitle = document.querySelector('.title').innerText.trim();
     } catch (err) {}
     document.title = pageTitle;
 
     // set the page fav icon
-    setPageFavIcon("📑");
+    setPageFavIcon('📑');
   };
 
   window.onGetGeneratedBookmarkletLink = (input) => {
-    document.querySelector("#output").value = window.getNavBookmarkletFromSchema(input);
+    document.querySelector('#output').value = window.getNavBookmarkletFromSchema(input);
   };
 
   window.getNavBookmarkletFromSchema = (input) => {
@@ -292,42 +292,42 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
       </html>
     `
       .trim()
-      .replace(/js_script/g, "script");
+      .replace(/js_script/g, 'script');
 
-    return "data:text/html," + encodeURIComponent(rawOutput);
+    return 'data:text/html,' + encodeURIComponent(rawOutput);
   };
 
   window.searchBookmarklet = () => {
     // remove all non alphanumeric
     let val = document
-      .querySelector("#search")
-      .value.replace(/[\W_]+/gi, " ")
-      .replace(/[ ][ ]+/, " ")
+      .querySelector('#search')
+      .value.replace(/[\W_]+/gi, ' ')
+      .replace(/[ ][ ]+/, ' ')
       .trim();
 
     // update the value
-    document.querySelector("#search").value = val;
+    document.querySelector('#search').value = val;
 
     if (val.length === 0) {
-      for (const elem of document.querySelectorAll("#fav .header, #fav .link")) {
-        elem.classList.toggle("hidden", false);
+      for (const elem of document.querySelectorAll('#fav .header, #fav .link')) {
+        elem.classList.toggle('hidden', false);
       }
       return;
     }
 
-    const matchRegex = new RegExp("[ ]*" + val.split("").join("[a-z0-9 -_]*"), "i");
+    const matchRegex = new RegExp('[ ]*' + val.split('').join('[a-z0-9 -_]*'), 'i');
 
     // show or hide
-    for (const elem of document.querySelectorAll("#fav .link")) {
+    for (const elem of document.querySelectorAll('#fav .link')) {
       let isHidden = true;
 
       const anchor = elem;
       const link = elem.href
-        .replace(/http[s]/gi, "")
-        .replace(/www/gi, "")
-        .replace(/html/gi, "")
-        .replace(/index/gi, "")
-        .replace(/[/.]/gi, "");
+        .replace(/http[s]/gi, '')
+        .replace(/www/gi, '')
+        .replace(/html/gi, '')
+        .replace(/index/gi, '')
+        .replace(/[/.]/gi, '');
       if (anchor.innerText.match(matchRegex)) {
         isHidden = false;
       } else if (anchor.dataset.section && anchor.dataset.section.match(matchRegex)) {
@@ -336,18 +336,18 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
         isHidden = false;
       }
 
-      elem.classList.toggle("hidden", isHidden);
+      elem.classList.toggle('hidden', isHidden);
     }
 
-    for (const elem of document.querySelectorAll("#fav .header")) {
+    for (const elem of document.querySelectorAll('#fav .header')) {
       let isHidden = true;
 
       const header = elem;
       let target = header.nextElementSibling;
       let isVisible = false;
 
-      while (target && (target.classList.contains("link") || target.classList.contains("block"))) {
-        if (!target.classList.contains("hidden")) {
+      while (target && (target.classList.contains('link') || target.classList.contains('block'))) {
+        if (!target.classList.contains('hidden')) {
           isVisible = true;
           break;
         }
@@ -356,17 +356,17 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
 
       isHidden = !isVisible;
 
-      elem.classList.toggle("hidden", isHidden);
+      elem.classList.toggle('hidden', isHidden);
     }
   };
   window.getLinkDom = (linkDomHTML) => {
     const lines = linkDomHTML
       .trim()
-      .split("\n")
-      .filter((r) => r.indexOf("//") !== 0)
+      .split('\n')
+      .filter((r) => r.indexOf('//') !== 0)
       .map((r) => r.trimEnd());
 
-    if (lines[0][0] !== "!") {
+    if (lines[0][0] !== '!') {
       const headerSchemaSampleCode = `${TITLE_SPLIT} Unnamed Navigation - ${new Date().toLocaleString()}`;
       lines.unshift(headerSchemaSampleCode);
     }
@@ -376,10 +376,10 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
 
     const newHTMLLines = [];
 
-    let blockBuffer = "";
+    let blockBuffer = '';
     let isInABlock = false;
-    let currentHeaderName = "";
-    let blockId = "";
+    let currentHeaderName = '';
+    let blockId = '';
 
     let rawLinkHTML = lines.forEach((link) => {
       if (isInABlock) {
@@ -390,13 +390,13 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
             `<pre class='block' id='${blockId}' ondblclick='window.onCopyBlockToClipboard(this)'>${blockBuffer.trim()}</pre>`
           );
           isInABlock = false;
-          blockBuffer = "";
+          blockBuffer = '';
 
-          currentHeaderName = ""; // reset the header name
+          currentHeaderName = ''; // reset the header name
 
-          blockId = "";
+          blockId = '';
         } else {
-          blockBuffer += link + "\n";
+          blockBuffer += link + '\n';
         }
 
         return;
@@ -404,11 +404,11 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
 
       if (link.indexOf(TITLE_SPLIT) === 0) {
         // page title
-        const headerText = link.replace(TITLE_SPLIT, "").trim();
+        const headerText = link.replace(TITLE_SPLIT, '').trim();
         newHTMLLines.push(`<h1 class="title">${headerText}</h1>`);
       } else if (link.indexOf(HEADER_SPLIT) === 0) {
         // section header
-        const headerText = link.replace(HEADER_SPLIT, "").trim();
+        const headerText = link.replace(HEADER_SPLIT, '').trim();
         newHTMLLines.push(`<h2 class="header">${headerText}</h2>`);
 
         currentHeaderName = headerText;
@@ -420,7 +420,7 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
         }
       } else if (link.indexOf(TAB_SPLIT) === 0) {
         // is a tab >>>tabName1|blockId1>>>tabName2|blockId3
-        let tabContent = "";
+        let tabContent = '';
         link
           .split(TAB_SPLIT)
           .map((r) => r.trim())
@@ -444,7 +444,7 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
           linkUrl = link.substr(link.indexOf(NEW_TAB_LINK_SPLIT) + NEW_TAB_LINK_SPLIT.length).trim();
 
           if (linkUrl && linkText) {
-            linkType = "newTabLink";
+            linkType = 'newTabLink';
           }
         } catch (err) {}
 
@@ -455,7 +455,7 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
             linkUrl = link.substr(link.indexOf(SAME_TAB_LINK_SPLIT) + SAME_TAB_LINK_SPLIT.length).trim();
 
             if (linkUrl && linkText) {
-              linkType = "sameTabLink";
+              linkType = 'sameTabLink';
             }
           } catch (err) {}
         }
@@ -463,10 +463,10 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
         // if found a link type...
         if (linkType) {
           if (
-            linkUrl.indexOf("http://") !== 0 &&
-            linkUrl.indexOf("https://") !== 0 &&
-            linkUrl.indexOf("javascript://") !== 0 &&
-            linkUrl.indexOf("data:") !== 0
+            linkUrl.indexOf('http://') !== 0 &&
+            linkUrl.indexOf('https://') !== 0 &&
+            linkUrl.indexOf('javascript://') !== 0 &&
+            linkUrl.indexOf('data:') !== 0
           ) {
             // prepend the link url https://
             linkUrl = `https://${linkUrl}`;
@@ -474,20 +474,20 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
 
           const newCacheId = ++window.cacheId;
 
-          if (linkUrl.indexOf("javascript://") === 0) {
+          if (linkUrl.indexOf('javascript://') === 0) {
             // js func link
-            const jsFunc = linkUrl.replace("javascript://", "");
+            const jsFunc = linkUrl.replace('javascript://', '');
             window.schemaCacheMap[newCacheId] = jsFunc;
             newHTMLLines.push(
               `<button class='link jsLink' onClick='eval(window.schemaCacheMap["${newCacheId}"])' data-target-id="${newCacheId}" data-section='${currentHeaderName}'>${linkText}</button>`
             );
-          } else if (linkUrl.indexOf("data:") === 0) {
+          } else if (linkUrl.indexOf('data:') === 0) {
             // data url link
             window.schemaCacheMap[newCacheId] = linkUrl;
             newHTMLLines.push(
               `<button class='link dataLink' onClick='navigateToDataUrl(window.schemaCacheMap["${newCacheId}"])' data-target-id="${newCacheId}" data-section='${currentHeaderName}'>${linkText}</button>`
             );
-          } else if (linkType === "sameTabLink") {
+          } else if (linkType === 'sameTabLink') {
             // same tab link
             newHTMLLines.push(`<a class='link sameTabLink' href='${linkUrl}' data-section='${currentHeaderName}'>${linkText}</a>`);
           } else {
@@ -500,7 +500,7 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
       }
     });
 
-    rawLinkHTML = newHTMLLines.filter((r) => !!r).join("\n");
+    rawLinkHTML = newHTMLLines.filter((r) => !!r).join('\n');
 
     rawLinkHTML = `<div id='fav'>${rawLinkHTML}</div>`;
 
@@ -509,7 +509,7 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
 
   window.onTestNav = () => {
     // open the new tab for testing
-    const base64URL = document.querySelector("#output").value;
+    const base64URL = document.querySelector('#output').value;
     navigateToDataUrl(base64URL, true);
   };
 
@@ -531,12 +531,12 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
       );
     } else {
       // else prompt let user downloading the url
-      await prompt("Data URL (copy to your clipboard):", base64URL);
+      await prompt('Data URL (copy to your clipboard):', base64URL);
     }
   };
 
   window.onSubmitNavigationSearch = () => {
-    const links = document.querySelectorAll("a.link:not(.hidden)");
+    const links = document.querySelectorAll('a.link:not(.hidden)');
     if (links && links.length > 0) {
       links[0].focus();
 
@@ -558,27 +558,27 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
       await navigator.clipboard.writeText(text);
     } catch (err) {}
 
-    await prompt("Clipboard Data:", text, autoDismiss);
+    await prompt('Clipboard Data:', text, autoDismiss);
   };
 
   window.onShowTab = (targetTab) => {
     const targetTabId = targetTab.dataset.tabId;
-    const tabs = [...targetTab.parentElement.querySelectorAll("tab")];
+    const tabs = [...targetTab.parentElement.querySelectorAll('tab')];
 
     for (const tab of tabs) {
       const tabId = tab.dataset.tabId;
-      tab.classList.remove("selected");
-      document.querySelector(`#${tabId}`).style.display = "none";
+      tab.classList.remove('selected');
+      document.querySelector(`#${tabId}`).style.display = 'none';
     }
 
-    document.querySelector(`#${targetTabId}`).style.display = "block";
-    targetTab.classList.add("selected");
+    document.querySelector(`#${targetTabId}`).style.display = 'block';
+    targetTab.classList.add('selected');
   };
 
   window.setPageFavIcon = (pageFavIcon) => {
-    document.querySelector("#pageFavIcon") && document.querySelector("#pageFavIcon").remove();
+    document.querySelector('#pageFavIcon') && document.querySelector('#pageFavIcon').remove();
     document.head.insertAdjacentHTML(
-      "beforeend",
+      'beforeend',
       `<link id='pageFavIcon' rel="icon" href="data:image/svg+xml,${encodeURIComponent(
         `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text x='0' y='14'>${pageFavIcon}</text></svg>`
       )}" />`
@@ -588,7 +588,7 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
   function _init() {
     // insert zoom scale of 1 for mobile
     document.head.insertAdjacentHTML(
-      "beforeend",
+      'beforeend',
       `
       <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
       <meta http-equiv="Cache-Control" content="no-cache" />
@@ -599,14 +599,14 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
     );
 
     document.addEventListener(
-      "keydown",
+      'keydown',
       (e) => {
         // handling enter and spacebar on focusable div
-        const { key } = e;
+        const {key} = e;
         const target = e.target;
 
         if (target.onclick) {
-          if (key === "Enter" || key === " ") {
+          if (key === 'Enter' || key === ' ') {
             target.onclick.apply(target);
 
             e.preventDefault();
@@ -614,15 +614,15 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
 
             return;
           }
-        } else if (key === "Escape" && document.querySelector("#promptModal")) {
+        } else if (key === 'Escape' && document.querySelector('#promptModal')) {
           try {
-            document.querySelector("#promptModal textarea").onblur();
+            document.querySelector('#promptModal textarea').onblur();
           } catch (err) {}
         } else {
           // special handling for ctrl + f to focus on searchbox
-          const searchBox = document.querySelector("#search");
+          const searchBox = document.querySelector('#search');
           if (searchBox) {
-            if (key === "f" && (e.ctrlKey || e.altKey || e.metaKey)) {
+            if (key === 'f' && (e.ctrlKey || e.altKey || e.metaKey)) {
               searchBox.focus();
               e.preventDefault();
             }
@@ -634,9 +634,9 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
 
     // init the form if needed
     // when visiting the main form, this will parse the schema and populate it accordingly
-    document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener('DOMContentLoaded', () => {
       if (isRenderedInMainForm) {
-        let schemaData = sessionStorage["schemaData"] || localStorage["schemaData"];
+        let schemaData = sessionStorage['schemaData'] || localStorage['schemaData'];
 
         if (schemaData) {
           window.onViewLinks(window.getLinkDom(schemaData));
