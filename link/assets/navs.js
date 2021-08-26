@@ -42,7 +42,14 @@ window.prompt = (promptText, promptInput, autoDismiss) => {
       document.querySelector('#promptModal #promptInput').value = promptInput;
       document.querySelector('#promptModal #promptInput').focus();
       document.querySelector('#promptModal #promptInput').setSelectionRange(0, promptInput.length);
-      document.querySelector('#promptModal #promptInput').rows = Math.floor(Math.min(promptInput.length / 75, 10));
+      const rowCount = promptInput
+        .trim()
+        .split('\n')
+        .reduce((totalCount, s) => {
+          totalCount += Math.min(Math.floor(s.length / 75), 1);
+          return totalCount;
+        }, 0);
+      document.querySelector('#promptModal #promptInput').rows = Math.floor(Math.min(rowCount, 10));
       document.querySelector('#promptModal #promptInput').onblur = removePrompt;
 
       if (autoDismiss) {
