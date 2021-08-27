@@ -592,8 +592,8 @@ window.alert = (alertText, autoDismiss) => {
       const childWindow = window.open('https://synle.github.io/link/nav-generator.html?noLoadingFromCache');
       const messageOrigin = 'https://synle.github.io';
 
-      setTimeout(_doPostMessage, 100);
-
+      setTimeout(_doPostMessage, 500);
+      
       function _doPostMessage(){
         console.log('[test] post message to child', schema);
         childWindow.postMessage({type: 'onViewLinks', schema}, messageOrigin);
