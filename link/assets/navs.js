@@ -215,7 +215,7 @@ window.alert = (alertText, autoDismiss) => {
     const rawSchemaDataDom = `
       <div id='command'>
         <div><h1 class='title'>Navigation Form</h1></div>
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 2rem 1.5rem; margin-bottom: 1rem">
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 2rem 1.5rem; margin-block: 1rem">
           <a target="_blank" style="text-align: center;" href="https://synle.github.io/link/nav-generator.html?newNav">New</a>
           <a target="_blank" style="text-align: center;" href="https://github.com/synle/synle.github.io/blob/master/link/assets/navs.js">Nav JS Code</a>
           <a target="_blank" style="text-align: center;" href="https://github.com/synle/synle.github.io/blob/master/link/assets/navs.css">Nav CSS Code</a>
@@ -243,7 +243,7 @@ window.alert = (alertText, autoDismiss) => {
 
     window.zoominInput = (target) => {
       [...document.querySelectorAll('#input,#output')].forEach((r) => (r.style.height = ''));
-      target.style.height = Math.max(450, document.body.clientHeight - 375) + 'px';
+      target.style.height = Math.min(285, document.body.clientHeight - 375) + 'px';
     };
 
     document.body.innerHTML = rawSchemaDataDom;
