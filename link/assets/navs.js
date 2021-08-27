@@ -589,7 +589,7 @@ window.alert = (alertText, autoDismiss) => {
       const childWindow = window.open('https://synle.github.io/link/nav-generator.html?loadFromMessageEvent');
       const messageOrigin = 'https://synle.github.io';
 
-      setTimeout(_doPostMessage, 500);
+      setTimeout(_doPostMessage, 350);
 
       function _doPostMessage() {
         console.log('[test] post message to child', schema);
