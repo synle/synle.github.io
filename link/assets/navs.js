@@ -544,21 +544,23 @@ window.alert = (alertText, autoDismiss) => {
             const jsFunc = linkUrl.replace('javascript://', '');
             window.schemaCacheMap[newCacheId] = jsFunc;
             newHTMLLines.push(
-              `<button class='link jsLink' onClick='eval(window.schemaCacheMap["${newCacheId}"])' data-target-id="${newCacheId}" data-section='${currentHeaderName}'>${linkText}</button>`
+              `<button class='link jsLink' onClick='eval(window.schemaCacheMap[this.dataset.targetId])' data-target-id="${newCacheId}" data-section='${currentHeaderName}'>${linkText}</button>`
             );
           } else if (linkUrl.indexOf('data:') === 0) {
             // data url link
             window.schemaCacheMap[newCacheId] = linkUrl;
             newHTMLLines.push(
-              `<button class='link dataLink' onClick='navigateToDataUrl(window.schemaCacheMap["${newCacheId}"])' data-target-id="${newCacheId}" data-section='${currentHeaderName}'>${linkText}</button>`
+              `<button class='link dataLink' onClick='navigateToDataUrl(window.schemaCacheMap[this.dataset.targetId])' data-target-id="${newCacheId}" data-section='${currentHeaderName}'>${linkText}</button>`
             );
           } else if (linkType === 'sameTabLink') {
             // same tab link
-            newHTMLLines.push(`<a class='link sameTabLink' href='${linkUrl}' data-section='${currentHeaderName}'>${linkText}</a>`);
+            window.schemaCacheMap[newCacheId] = linkUrl;
+            newHTMLLines.push(`<a class='link sameTabLink' onClick='window.location.href = window.schemaCacheMap[this.dataset.targetId]' data-target-id="${newCacheId}" data-section='${currentHeaderName}'>${linkText}</a>`);
           } else {
             // new_tab_link
+            window.schemaCacheMap[newCacheId] = linkUrl;
             newHTMLLines.push(
-              `<a class='link newTabLink' href='${linkUrl}' target='_blank' data-section='${currentHeaderName}'>${linkText}</a>`
+              `<a class='link newTabLink' target="_blank" onClick='window.open(window.schemaCacheMap[this.dataset.targetId])' data-target-id="${newCacheId}" data-section='${currentHeaderName}'>${linkText}</a>`
             );
           }
         }
