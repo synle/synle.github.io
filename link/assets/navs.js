@@ -741,6 +741,7 @@ window.alert = (alertText, autoDismiss) => {
     // when visiting the main form, this will parse the schema and populate it accordingly
     document.addEventListener('DOMContentLoaded', () => {
       if (isRenderedInMainForm) {
+        document.body.innerHTML = `<div id='fav'></div>`;
         if (location.search && location.search.includes('noLoadingFromCache') === false) {
           let schemaData = sessionStorage['schemaData'] || localStorage['schemaData'] || DEFAULT_SCHEMA_TO_RENDER;
 
