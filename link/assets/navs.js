@@ -447,7 +447,7 @@ window.alert = (alertText, autoDismiss) => {
     let rawLinkHTML = lines.forEach((link) => {
       if (isInABlock) {
         // is in a block
-        if (link.indexOf(BLOCK_SPLIT) === 0) {
+        if (link.trim().indexOf(BLOCK_SPLIT) === 0) {
           // end of a block
           newHTMLLines.push(
             `<pre class='block' id='${blockId}' ondblclick='window.onCopyBlockToClipboard(this)'>${blockBuffer.trim()}</pre>`
@@ -465,25 +465,25 @@ window.alert = (alertText, autoDismiss) => {
         return;
       }
 
-      if (link.indexOf(FAV_ICON_SPLIT) === 0) {
+      if (link.trim().indexOf(FAV_ICON_SPLIT) === 0) {
         pageFavIcon = link.replace(/^[@]+/, '').trim();
-      } else if (link.indexOf(TITLE_SPLIT) === 0) {
+      } else if (link.trim().indexOf(TITLE_SPLIT) === 0) {
         // page title
         const headerText = link.replace(TITLE_SPLIT, '').trim();
         newHTMLLines.push(`<h1 class="title">${headerText}</h1>`);
-      } else if (link.indexOf(HEADER_SPLIT) === 0) {
+      } else if (link.trim().indexOf(HEADER_SPLIT) === 0) {
         // section header
         const headerText = link.replace(HEADER_SPLIT, '').trim();
         newHTMLLines.push(`<h2 class="header">${headerText}</h2>`);
 
         currentHeaderName = headerText;
-      } else if (link.indexOf(BLOCK_SPLIT) === 0) {
+      } else if (link.trim().indexOf(BLOCK_SPLIT) === 0) {
         // start a block
         isInABlock = true;
         if (link.length > BLOCK_SPLIT.length) {
           blockId = link.substr(blockId.indexOf(BLOCK_SPLIT) + BLOCK_SPLIT.length + 1);
         }
-      } else if (link.indexOf(TAB_SPLIT) === 0) {
+      } else if (link.trim().indexOf(TAB_SPLIT) === 0) {
         // is a tab >>>tabName1|blockId1>>>tabName2|blockId3
         let tabContent = '';
         link
