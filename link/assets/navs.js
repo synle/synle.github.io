@@ -247,8 +247,8 @@ window.alert = (alertText, autoDismiss) => {
     `;
 
     window.zoominInput = (target) => {
-      [...document.querySelectorAll('#input,#output')].forEach((r) => (r.style.height = ''));
-      target.style.height = Math.min(285, document.body.clientHeight - 375) + 'px';
+      [...document.querySelectorAll('#input,#output')].forEach((r) => (r.style.flexGrow = ''));
+      target.style.flexGrow = '1';
     };
 
     document.body.innerHTML = rawSchemaDataDom;
