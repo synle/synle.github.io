@@ -209,7 +209,7 @@ window.alert = (alertText, autoDismiss) => {
       <div id='command'>
         <div><h1 class='title'>Navigation Form</h1></div>
         <div style="display: flex; align-items: stretch; justify-content: space-evenly; flex-wrap: wrap;">
-          <button onclick="window.onViewLinks(window.getLinkDom(document.querySelector('#input').value))">View Links UI</button>
+          <button onclick="window.onViewLinks(window.getLinkDom(document.querySelector('#input').value))">Save and Apply</button>
           <button onclick="window.onTestNav()">Test Nav</button>
           <a target="_blank" style="text-align: center;" href="https://synle.github.io/link/nav-generator.html?newNav">New Nav</a>
           <a target="_blank" style="text-align: center;" href="https://github.com/synle/synle.github.io/blob/master/link/assets/navs.js">Nav JS Code</a>
@@ -323,6 +323,7 @@ window.alert = (alertText, autoDismiss) => {
     // persist the link if needed
     if (isRenderedInMainForm) {
       sessionStorage['schemaData'] = window.getSchemaFromDom();
+      sessionStorage['bufferSchema'] = '';
       hasPendingChanges = false;
     }
 
@@ -341,6 +342,11 @@ window.alert = (alertText, autoDismiss) => {
 
   window.onGetGeneratedBookmarkletLink = (input) => {
     document.querySelector('#output').value = window.getNavBookmarkletFromSchema(input);
+    
+    // save what's given into the buffer
+    if (isRenderedInMainForm) {
+      sessionStorage['bufferSchema'] = '';
+    }
   };
 
   window.getNavBookmarkletFromSchema = (input) => {
@@ -752,11 +758,13 @@ window.alert = (alertText, autoDismiss) => {
           // loadFromMessageEvent
           window.history.pushState('', '', '?');
         } else {
-          let schemaData = sessionStorage['schemaData'] || DEFAULT_SCHEMA_TO_RENDER;
+          let schemaData = sessionStorage['bufferSchema'] || sessionStorage['schemaData'] || DEFAULT_SCHEMA_TO_RENDER;
           if (schemaData) {
             if (location.search.includes('newNav')) {
+              // render as edit mode for newNav
               window.onViewSchema(schemaData);
             } else {
+              // render as view mode for anything else
               window.onViewLinks(window.getLinkDom(schemaData));
             }
           }
