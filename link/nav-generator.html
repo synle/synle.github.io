@@ -1,15 +1,23 @@
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="https://synle.github.io/link/assets/navs.css">
-    <script src="https://synle.github.io/link/assets/navs.js"></script>
   </head>
   <body></body>
   <script>
     window.addEventListener("message", (event) => {
       const {type, schema} = event.data;
       if(type === 'onViewLinks'){
-        window.onViewLinks(window.getLinkDom(schema));
+        let interval = setInterval(
+          () => {
+            try{
+              window.onViewLinks(window.getLinkDom(schema));
+            } catch(err){
+              clearInterval(interval);
+            }
+          }, 100
+        )
       }
     }, false);
   </script>
+  <script src="https://synle.github.io/link/assets/navs.js"></script>
 </html>
