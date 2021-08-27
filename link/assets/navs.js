@@ -593,7 +593,7 @@ window.alert = (alertText, autoDismiss) => {
       const messageOrigin = 'https://synle.github.io';
 
       setTimeout(_doPostMessage, 500);
-      
+
       function _doPostMessage(){
         console.log('[test] post message to child', schema);
         childWindow.postMessage({type: 'onViewLinks', schema}, messageOrigin);
@@ -742,10 +742,11 @@ window.alert = (alertText, autoDismiss) => {
     document.addEventListener('DOMContentLoaded', () => {
       if (isRenderedInMainForm) {
         document.body.innerHTML = `<div id='fav'></div>`;
-        if (location.search && location.search.includes('noLoadingFromCache') === false) {
+        if (location.search.includes('noLoadingFromCache') === false) {
           let schemaData = sessionStorage['schemaData'] || localStorage['schemaData'] || DEFAULT_SCHEMA_TO_RENDER;
 
           if (schemaData) {
+            window.history.replaceState('','','?'); // strip out the noloading from cache
             window.onViewLinks(window.getLinkDom(schemaData));
           }
         }
