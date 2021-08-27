@@ -589,7 +589,7 @@ window.alert = (alertText, autoDismiss) => {
       const parser = new DOMParser();
       const doc = parser.parseFromString(decodeURIComponent(base64URL.replace('data:text/html,', '')), 'text/html');
       const schema = doc.querySelector('#schema').innerText.trim();
-      const childWindow = window.open('https://synle.github.io/link/nav-generator.html?noLoadingFromCache');
+      const childWindow = window.open('https://synle.github.io/link/nav-generator.html');
       const messageOrigin = 'https://synle.github.io';
 
       setTimeout(_doPostMessage, 500);
