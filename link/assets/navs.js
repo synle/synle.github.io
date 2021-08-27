@@ -217,8 +217,8 @@ window.alert = (alertText, autoDismiss) => {
         <div><h1 class='title'>Navigation Form</h1></div>
         <div style="display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 2rem 1.5rem; margin-block: 1rem">
           <a target="_blank" style="text-align: center;" href="https://synle.github.io/link/nav-generator.html?newNav">New</a>
-          <a target="_blank" style="text-align: center;" href="https://github.com/synle/synle.github.io/blob/master/link/assets/navs.js">Nav JS Code</a>
-          <a target="_blank" style="text-align: center;" href="https://github.com/synle/synle.github.io/blob/master/link/assets/navs.css">Nav CSS Code</a>
+          <a target="_blank" style="text-align: center;" href="https://github.com/synle/synle.github.io/blob/master/link/assets/navs.js">JS Code</a>
+          <a target="_blank" style="text-align: center;" href="https://github.com/synle/synle.github.io/blob/master/link/assets/navs.css">CSS Code</a>
           <button type='button' onclick="window.onViewLinks(window.getLinkDom(document.querySelector('#input').value))">Apply</button>
           <button type='button' onclick="window.onTestNav()">Test</button>
           <button type='button' onclick="if(window.hasPendingChanges) { if(!confirm('Cancel?')) {return;} } window.onViewLinks(window.getLinkDom(window.inMemorySchemaBuffer)); window.hasPendingChanges = false; sessionStorage['bufferSchema'] = ''">Cancel</button>
