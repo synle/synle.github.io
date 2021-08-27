@@ -349,7 +349,6 @@ window.alert = (alertText, autoDismiss) => {
           <js_script id='schema' type='schema'>${input}</js_script>
           <js_script>
             window.onViewLinks(window.getLinkDom(document.querySelector('#schema').innerText.trim()));
-            document.title = document.querySelector('.title').innerText.trim();
           </js_script>
         </body>
       </html>
