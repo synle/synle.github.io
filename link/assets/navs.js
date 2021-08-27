@@ -589,7 +589,7 @@ window.alert = (alertText, autoDismiss) => {
       const parser = new DOMParser();
       const doc = parser.parseFromString(decodeURIComponent(base64URL.replace('data:text/html,', '')), 'text/html');
       const schema = doc.querySelector('#schema').innerText.trim();
-      const childWindow = window.open('https://synle.github.io/link/nav-generator.html');
+      const childWindow = window.open('https://synle.github.io/link/nav-generator.html?loadFromMessageEvent');
       const messageOrigin = 'https://synle.github.io';
 
       setTimeout(_doPostMessage, 500);
@@ -742,9 +742,15 @@ window.alert = (alertText, autoDismiss) => {
     document.addEventListener('DOMContentLoaded', () => {
       if (isRenderedInMainForm) {
         document.body.innerHTML = `<div id='fav'></div>`;
-        let schemaData = sessionStorage['schemaData'] || DEFAULT_SCHEMA_TO_RENDER; //         let schemaData = sessionStorage['schemaData'] || localStorage['schemaData'] || DEFAULT_SCHEMA_TO_RENDER;
-        if (schemaData) {
-          window.onViewLinks(window.getLinkDom(schemaData));
+
+        if(location.search.includes('loadFromMessageEvent')){
+          // loadFromMessageEvent
+          window.history.pushState('', '', '?');
+        } else {
+          let schemaData = sessionStorage['schemaData'] || DEFAULT_SCHEMA_TO_RENDER; //         let schemaData = sessionStorage['schemaData'] || localStorage['schemaData'] || DEFAULT_SCHEMA_TO_RENDER;
+          if (schemaData) {
+            window.onViewLinks(window.getLinkDom(schemaData));
+          }
         }
       }
     });
