@@ -11,10 +11,9 @@
           () => {
             try{
               window.onViewLinks(window.getLinkDom(schema));
-            } catch(err){
               clearInterval(interval);
-            }
-          }, 100
+            } catch(err){}
+          }, 125
         )
       }
     }, false);
