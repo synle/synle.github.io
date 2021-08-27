@@ -345,7 +345,6 @@ window.alert = (alertText, autoDismiss) => {
           <meta charset='utf-8'>
         </head>
         <body>
-          <div id='fav'></div>
           <js_script src="https://synle.github.io/link/assets/navs.js"></js_script>
           <js_script id='schema' type='schema'>${input}</js_script>
           <js_script>
@@ -593,7 +592,7 @@ window.alert = (alertText, autoDismiss) => {
 
       setTimeout(_doPostMessage, 500);
 
-      function _doPostMessage(){
+      function _doPostMessage() {
         console.log('[test] post message to child', schema);
         childWindow.postMessage({type: 'onViewLinks', schema}, messageOrigin);
       }
@@ -740,9 +739,7 @@ window.alert = (alertText, autoDismiss) => {
     // when visiting the main form, this will parse the schema and populate it accordingly
     document.addEventListener('DOMContentLoaded', () => {
       if (isRenderedInMainForm) {
-        document.body.innerHTML = `<div id='fav'></div>`;
-
-        if(location.search.includes('loadFromMessageEvent')){
+        if (location.search.includes('loadFromMessageEvent')) {
           // loadFromMessageEvent
           window.history.pushState('', '', '?');
         } else {
