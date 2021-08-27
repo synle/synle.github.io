@@ -126,6 +126,7 @@ window.alert = (alertText, autoDismiss) => {
   let isRenderedInMainForm = location.href.indexOf('synle.github.io/link/nav-generator.html') >= 0;
   let isRenderedInDataUrl = location.href.indexOf('data:') === 0;
   let hasPendingChanges = false;
+  let tempBuffer = '';
 
   const DEFAULT_SCHEMA_TO_RENDER = `
     ! Navigation ${new Date().toLocaleString()}
@@ -205,8 +206,11 @@ window.alert = (alertText, autoDismiss) => {
   };
 
   window.onViewSchema = (inputSchema) => {
-    var output = inputSchema || window.getSchemaFromDom();
+    let output = inputSchema || window.getSchemaFromDom();
 
+    // store temp buffer
+    tempBuffer = output;
+    
     const rawSchemaDataDom = `
       <div id='command'>
         <div><h1 class='title'>Navigation Form</h1></div>
