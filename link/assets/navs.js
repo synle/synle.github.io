@@ -580,10 +580,19 @@ window.alert = (alertText, autoDismiss) => {
       const schema = doc.querySelector('#schema').innerText.trim();
       const childWindow = window.open('https://synle.github.io/link/nav-generator.html?noLoadingFromCache');
       const messageOrigin = 'https://synle.github.io';
-      setTimeout(() => {
+
+      let postMessageAlready = false;
+      setTimeout(_doPostMessage, 500);
+      w.addEventListener('DOMContentLoaded', _doPostMessage)
+
+      function _doPostMessage(){
+        if(postMessageAlready !== false){
+          return;
+        }
+        postMessageAlready = true;
         console.log('[test] post message to child', schema);
         childWindow.postMessage({type: 'onViewLinks', schema}, messageOrigin);
-      }, 500);
+      }
     } catch (err) {
       // fall back
       let shouldOpenWindow = forceOpenWindow;
