@@ -197,7 +197,7 @@ button,
 }
 #input,
 #output {
-  height: 150px;
+  height: 80px;
 }
 #input{
   white-space: nowrap;
