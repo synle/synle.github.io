@@ -158,7 +158,6 @@ window.alert = (alertText, autoDismiss) => {
         output.push(`${FAV_ICON_SPLIT} ${elem.dataset.favIcon}`);
       } else if (elem.classList.contains('link')) {
         const link = elem;
-        const fullLink = link.href;
         const description = link.innerHTML;
 
         if (elem.classList.contains('jsLink')) {
@@ -171,9 +170,11 @@ window.alert = (alertText, autoDismiss) => {
           output.push(`${description} ${SAME_TAB_LINK_SPLIT} ${dataUrl}`);
         } else if (elem.classList.contains('newTabLink')) {
           // new tab
+          const fullLink = link.href || window.schemaCacheMap[elem.dataset.targetId];
           output.push(`${description} ${NEW_TAB_LINK_SPLIT} ${fullLink}`);
         } else {
           // same tab
+          const fullLink = link.href || window.schemaCacheMap[elem.dataset.targetId];
           output.push(`${description} ${SAME_TAB_LINK_SPLIT} ${fullLink}`);
         }
       } else if (elem.classList.contains('block')) {
@@ -312,6 +313,11 @@ window.alert = (alertText, autoDismiss) => {
     [...document.querySelectorAll('tabs')].forEach((tabs) => {
       const firstTab = tabs.querySelector('tab');
       window.onShowTab(firstTab);
+    });
+
+    // hook up the href for links
+    [...document.querySelectorAll('.sameTabLink,.newTabLink')].forEach((link) => {
+      link.href = window.schemaCacheMap[link.dataset.targetId];
     });
 
     // persist the link if needed
@@ -555,12 +561,14 @@ window.alert = (alertText, autoDismiss) => {
           } else if (linkType === 'sameTabLink') {
             // same tab link
             window.schemaCacheMap[newCacheId] = linkUrl;
-            newHTMLLines.push(`<a class='link sameTabLink' onClick='window.location.href = window.schemaCacheMap[this.dataset.targetId]' data-target-id="${newCacheId}" data-section='${currentHeaderName}'>${linkText}</a>`);
+            newHTMLLines.push(
+              `<a class='link sameTabLink' data-target-id="${newCacheId}" data-section='${currentHeaderName}'>${linkText}</a>`
+            );
           } else {
             // new_tab_link
             window.schemaCacheMap[newCacheId] = linkUrl;
             newHTMLLines.push(
-              `<a class='link newTabLink' target="_blank" onClick='window.open(window.schemaCacheMap[this.dataset.targetId])' data-target-id="${newCacheId}" data-section='${currentHeaderName}'>${linkText}</a>`
+              `<a class='link newTabLink' target="_blank" data-target-id="${newCacheId}" data-section='${currentHeaderName}'>${linkText}</a>`
             );
           }
         }
