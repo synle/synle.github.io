@@ -558,13 +558,13 @@ window.alert = (alertText, autoDismiss) => {
             const jsFunc = linkUrl.replace('javascript://', '');
             window.schemaCacheMap[newCacheId] = jsFunc;
             newHTMLLines.push(
-              `<button class='link jsLink' onClick='eval(window.schemaCacheMap[this.dataset.targetId])' data-target-id="${newCacheId}" data-section='${currentHeaderName}'>${linkText}</button>`
+              `<button class='link jsLink' type='button' onClick='eval(window.schemaCacheMap[this.dataset.targetId])' data-target-id="${newCacheId}" data-section='${currentHeaderName}'>${linkText}</button>`
             );
           } else if (linkUrl.indexOf('data:') === 0) {
             // data url link
             window.schemaCacheMap[newCacheId] = linkUrl;
             newHTMLLines.push(
-              `<button class='link dataLink' onClick='navigateToDataUrl(window.schemaCacheMap[this.dataset.targetId])' data-target-id="${newCacheId}" data-section='${currentHeaderName}'>${linkText}</button>`
+              `<button class='link dataLink' type='button' onClick='navigateToDataUrl(window.schemaCacheMap[this.dataset.targetId])' data-target-id="${newCacheId}" data-section='${currentHeaderName}'>${linkText}</button>`
             );
           } else if (linkType === 'sameTabLink') {
             // same tab link
@@ -751,6 +751,14 @@ window.alert = (alertText, autoDismiss) => {
       },
       true
     );
+    
+    // handling middle click as mouse click
+    document.body.addEventListener('mousedown', function(e) {
+      if (e.button == 1 && e.target.tagName === 'BUTTON' && e.target.onclick) {
+        // middle click
+        e.target.onclick.apply(e.target);
+      }
+    }, true)
 
     // init the form if needed
     // when visiting the main form, this will parse the schema and populate it accordingly
