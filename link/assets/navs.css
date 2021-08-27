@@ -155,6 +155,7 @@ button,
   position: sticky;
   z-index: 0;
   top: 0;
+  user-select: none;
 }
 
 #fav .block {
