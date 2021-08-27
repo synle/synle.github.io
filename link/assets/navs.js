@@ -742,13 +742,9 @@ window.alert = (alertText, autoDismiss) => {
     document.addEventListener('DOMContentLoaded', () => {
       if (isRenderedInMainForm) {
         document.body.innerHTML = `<div id='fav'></div>`;
-        if (location.search.includes('noLoadingFromCache') === false) {
-          let schemaData = sessionStorage['schemaData'] || localStorage['schemaData'] || DEFAULT_SCHEMA_TO_RENDER;
-
-          if (schemaData) {
-            window.history.replaceState('','','?'); // strip out the noloading from cache
-            window.onViewLinks(window.getLinkDom(schemaData));
-          }
+        let schemaData = sessionStorage['schemaData'] || localStorage['schemaData'] || DEFAULT_SCHEMA_TO_RENDER;
+        if (schemaData) {
+          window.onViewLinks(window.getLinkDom(schemaData));
         }
       }
     });
