@@ -129,8 +129,10 @@ window.alert = (alertText, autoDismiss) => {
 
   const DEFAULT_SCHEMA_TO_RENDER = `
     ! Navigation ${new Date().toLocaleString()}
+    
     # Main Section
     google finance|finance.google.com
+    
     # Notes
     \`\`\`
     TODO 1
