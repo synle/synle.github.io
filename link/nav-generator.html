@@ -25,4 +25,9 @@
       `.split('\n').map(r => r.trim()).join('\n').trim();
     })()
   </script>
+  <script>
+    window.addEventListener("message", (event) => {
+      console.log(`[test] Child Received message: ${event.data}`);
+    }, false);
+  </script>
 </html>
