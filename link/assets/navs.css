@@ -209,6 +209,8 @@ button,
 #command {
   display: grid;
   grid-gap: var(--gridGapHeight) var(--gridGapWidth);
+  max-width: var(--maxBodyWidth);
+  margin: auto;
 }
 
 .hidden {
