@@ -127,6 +127,17 @@ window.alert = (alertText, autoDismiss) => {
   let isRenderedInDataUrl = location.href.indexOf('data:') === 0;
   let hasPendingChanges = false;
 
+  const DEFAULT_SCHEMA_TO_RENDER = `
+    ! Navigation ${new Date().toLocaleString()}
+    # Main Section
+    google finance|finance.google.com
+    # Notes
+    \`\`\`
+    TODO 1
+    TODO 2
+    \`\`\`
+  `;
+
   // main methods start here
   window.onbeforeunload = function (e) {
     if (hasPendingChanges) {
@@ -731,7 +742,7 @@ window.alert = (alertText, autoDismiss) => {
     document.addEventListener('DOMContentLoaded', () => {
       if (isRenderedInMainForm) {
         if (location.search && location.search.includes('noLoadingFromCache') === false) {
-          let schemaData = sessionStorage['schemaData'] || localStorage['schemaData'];
+          let schemaData = sessionStorage['schemaData'] || localStorage['schemaData'] || DEFAULT_SCHEMA_TO_RENDER;
 
           if (schemaData) {
             window.onViewLinks(window.getLinkDom(schemaData));
