@@ -574,24 +574,37 @@ window.alert = (alertText, autoDismiss) => {
   };
 
   window.navigateToDataUrl = async (base64URL, forceOpenWindow) => {
-    let shouldOpenWindow = forceOpenWindow;
+    try {
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(decodeURIComponent(base64URL.replace('data:text/html,', '')), 'text/html');
+      const schema = doc.querySelector('#schema').innerText.trim();
+      const childWindow = window.open('https://synle.github.io/link/nav-generator.html?noLoadingFromCache');
+      const messageOrigin = 'https://synle.github.io';
+      setTimeout(() => {
+        console.log('[test] post message to child', schema);
+        childWindow.postMessage({type: 'onViewLinks', schema}, messageOrigin);
+      }, 500);
+    } catch (err) {
+      // fall back
+      let shouldOpenWindow = forceOpenWindow;
 
-    if (shouldOpenWindow) {
-      // support open windows
-      var win = window.open();
-      win.document.write(
-        `
-            <style>
-              body{
-                margin: 0;
-              }
-            </style>
-            <iframe src="${base64URL}" frameborder="0" style="border:0; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%;" allowfullscreen></iframe>
-          `.trim()
-      );
-    } else {
-      // else prompt let user downloading the url
-      await prompt('Data URL (copy to your clipboard):', base64URL);
+      if (shouldOpenWindow) {
+        // support open windows
+        var win = window.open();
+        win.document.write(
+          `
+              <style>
+                body{
+                  margin: 0;
+                }
+              </style>
+              <iframe src="${base64URL}" frameborder="0" style="border:0; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%;" allowfullscreen></iframe>
+            `.trim()
+        );
+      } else {
+        // else prompt let user downloading the url
+        await prompt('Data URL (copy to your clipboard):', base64URL);
+      }
     }
   };
 
@@ -714,10 +727,12 @@ window.alert = (alertText, autoDismiss) => {
     // when visiting the main form, this will parse the schema and populate it accordingly
     document.addEventListener('DOMContentLoaded', () => {
       if (isRenderedInMainForm) {
-        let schemaData = sessionStorage['schemaData'] || localStorage['schemaData'];
+        if (location.search && location.search.includes('noLoadingFromCache') === false) {
+          let schemaData = sessionStorage['schemaData'] || localStorage['schemaData'];
 
-        if (schemaData) {
-          window.onViewLinks(window.getLinkDom(schemaData));
+          if (schemaData) {
+            window.onViewLinks(window.getLinkDom(schemaData));
+          }
         }
       }
     });
