@@ -345,7 +345,7 @@ window.alert = (alertText, autoDismiss) => {
     
     // save what's given into the buffer
     if (isRenderedInMainForm) {
-      sessionStorage['bufferSchema'] = '';
+      sessionStorage['bufferSchema'] = input;
     }
   };
 
