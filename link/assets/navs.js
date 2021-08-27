@@ -219,7 +219,7 @@ window.alert = (alertText, autoDismiss) => {
           <button type='button' onclick="window.onViewLinks(window.getLinkDom(document.querySelector('#input').value))">Apply</button>
           <button type='button' onclick="if(window.hasPendingChanges) { if(!confirm('Cancel?')) {return;} } window.onViewLinks(window.getLinkDom(window.inMemorySchemaBuffer)); window.hasPendingChanges = false; sessionStorage['bufferSchema'] = ''">Cancel</button>
           <div class="dropdown">
-            <a style="width: 100%; display: block;padding: var(--spaceSize2); text-align: center;">More Actions</a>
+            <a style="width: 100%; display: block;padding: var(--spaceSize2); text-align: center;">Actions</a>
             <div class="dropdown-content">
               <a target="_blank" style="text-align: center;" href="https://synle.github.io/link/nav-generator.html?newNav">New</a>
               <a target="_blank" style="text-align: center;" href="https://github.com/synle/synle.github.io/blob/master/link/assets/navs.js">JS Code</a>
