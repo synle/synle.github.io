@@ -202,8 +202,8 @@ window.alert = (alertText, autoDismiss) => {
     return output;
   };
 
-  window.onViewSchema = () => {
-    var output = window.getSchemaFromDom();
+  window.onViewSchema = (inputSchema) => {
+    var output = inputSchema || window.getSchemaFromDom();
 
     const rawSchemaDataDom = `
       <div id='command'>
@@ -211,7 +211,7 @@ window.alert = (alertText, autoDismiss) => {
         <div style="display: flex; align-items: stretch; justify-content: space-evenly; flex-wrap: wrap;">
           <button onclick="window.onViewLinks(window.getLinkDom(document.querySelector('#input').value))">View Links UI</button>
           <button onclick="window.onTestNav()">Test Nav</button>
-          <a target="_blank" style="text-align: center;" href="https://synle.github.io/link/nav-generator.html">New Nav</a>
+          <a target="_blank" style="text-align: center;" href="https://synle.github.io/link/nav-generator.html?newNav">New Nav</a>
           <a target="_blank" style="text-align: center;" href="https://github.com/synle/synle.github.io/blob/master/link/assets/navs.js">Nav JS Code</a>
           <a target="_blank" style="text-align: center;" href="https://github.com/synle/synle.github.io/blob/master/link/assets/navs.css">Nav CSS Code</a>
         </div>
@@ -754,7 +754,11 @@ window.alert = (alertText, autoDismiss) => {
         } else {
           let schemaData = sessionStorage['schemaData'] || DEFAULT_SCHEMA_TO_RENDER;
           if (schemaData) {
-            window.onViewLinks(window.getLinkDom(schemaData));
+            if (location.search.includes('newNav')) {
+              window.onViewSchema(schemaData);
+            } else {
+              window.onViewLinks(window.getLinkDom(schemaData));
+            }
           }
         }
       }
