@@ -30,7 +30,7 @@
       // console.log(`[test] Child Received message: ${event.data}`);
       const {type, schema} = event.data;
       if(type === 'onViewLinks'){
-        window.onViewLinks(window.getLinkDom(schema), false);
+        window.onViewLinks(window.getLinkDom(schema));
       }
     }, false);
   </script>
