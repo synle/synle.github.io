@@ -27,7 +27,11 @@
   </script>
   <script>
     window.addEventListener("message", (event) => {
-      console.log(`[test] Child Received message: ${event.data}`);
+      // console.log(`[test] Child Received message: ${event.data}`);
+      const {type, schema} = event;
+      if(type === 'onViewLinks'){
+        window.onViewLinks(window.getLinkDom(schema), false);
+      }
     }, false);
   </script>
 </html>
