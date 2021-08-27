@@ -211,7 +211,7 @@ window.alert = (alertText, autoDismiss) => {
       <div id='command'>
         <div><h1 class='title'>Navigation Form</h1></div>
         <div style="display: flex; align-items: stretch; justify-content: space-evenly; flex-wrap: wrap;">
-          <button onclick="window.onViewLinks(window.getLinkDom(document.querySelector('#input').value))">Save and Apply</button>
+          <button onclick="window.onViewLinks(window.getLinkDom(document.querySelector('#input').value))">Apply</button>
           <button onclick="window.onTestNav()">Test Nav</button>
           <a target="_blank" style="text-align: center;" href="https://synle.github.io/link/nav-generator.html?newNav">New Nav</a>
           <a target="_blank" style="text-align: center;" href="https://github.com/synle/synle.github.io/blob/master/link/assets/navs.js">Nav JS Code</a>
@@ -283,7 +283,7 @@ window.alert = (alertText, autoDismiss) => {
 
     if (hideSchemaForm !== false) {
       document.body.innerHTML += `<div style="display: flex; margin-top: 1rem; align-items:center; justify-content: center;">
-        <button onClick='window.onViewSchema()'>View Schema</button>
+        <button onClick='window.onViewSchema()'>Edit</button>
       </div>`;
     }
 
