@@ -730,11 +730,7 @@ window.alert = (alertText, autoDismiss) => {
     // when visiting the main form, this will parse the schema and populate it accordingly
     document.addEventListener('DOMContentLoaded', () => {
       if (isRenderedInMainForm) {
-        if (location.search && location.search.includes('noLoadingFromCache') === true) {
-          // here we are waiting for postmessage to render
-          document.body.innerHTML = `<div id='fav'></div>`;
-        } else {
-          // parse and set up the link from local storage
+        if (location.search && location.search.includes('noLoadingFromCache') === false) {
           let schemaData = sessionStorage['schemaData'] || localStorage['schemaData'];
 
           if (schemaData) {
