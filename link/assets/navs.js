@@ -742,7 +742,7 @@ window.alert = (alertText, autoDismiss) => {
     document.addEventListener('DOMContentLoaded', () => {
       if (isRenderedInMainForm) {
         document.body.innerHTML = `<div id='fav'></div>`;
-        let schemaData = sessionStorage['schemaData'] || localStorage['schemaData'] || DEFAULT_SCHEMA_TO_RENDER;
+        let schemaData = sessionStorage['schemaData'] || DEFAULT_SCHEMA_TO_RENDER; //         let schemaData = sessionStorage['schemaData'] || localStorage['schemaData'] || DEFAULT_SCHEMA_TO_RENDER;
         if (schemaData) {
           window.onViewLinks(window.getLinkDom(schemaData));
         }
