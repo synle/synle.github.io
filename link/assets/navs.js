@@ -136,7 +136,7 @@ window.alert = (alertText, autoDismiss) => {
     TODO 1
     TODO 2
     \`\`\`
-  `;
+  `.trimWhiteSpaces();
 
   // main methods start here
   window.onbeforeunload = function (e) {
@@ -317,7 +317,6 @@ window.alert = (alertText, autoDismiss) => {
     // persist the link if needed
     if (isRenderedInMainForm) {
       sessionStorage['schemaData'] = window.getSchemaFromDom();
-      localStorage['schemaData'] = window.getSchemaFromDom();
       hasPendingChanges = false;
     }
 
@@ -747,7 +746,7 @@ window.alert = (alertText, autoDismiss) => {
           // loadFromMessageEvent
           window.history.pushState('', '', '?');
         } else {
-          let schemaData = sessionStorage['schemaData'] || DEFAULT_SCHEMA_TO_RENDER; //         let schemaData = sessionStorage['schemaData'] || localStorage['schemaData'] || DEFAULT_SCHEMA_TO_RENDER;
+          let schemaData = sessionStorage['schemaData'] || DEFAULT_SCHEMA_TO_RENDER;
           if (schemaData) {
             window.onViewLinks(window.getLinkDom(schemaData));
           }
