@@ -227,9 +227,12 @@ button,
   display: none;
   position: absolute;
   background-color: #f9f9f9;
-  min-width: 160px;
-  padding: 12px 16px;
+  width: 100%;
   z-index: 1;
+}
+
+.dropdown-content button, .dropdown-content a{
+  text-align: center;
 }
 
 .dropdown:hover .dropdown-content {
