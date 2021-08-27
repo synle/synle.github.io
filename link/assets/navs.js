@@ -125,8 +125,9 @@ window.alert = (alertText, autoDismiss) => {
 
   let isRenderedInMainForm = location.href.indexOf('synle.github.io/link/nav-generator.html') >= 0;
   let isRenderedInDataUrl = location.href.indexOf('data:') === 0;
-  let hasPendingChanges = false;
-  let tempBuffer = '';
+  
+  window.hasPendingChanges = false;
+  window.inMemorySchemaBuffer = '';
 
   const DEFAULT_SCHEMA_TO_RENDER = `
     ! Navigation ${new Date().toLocaleString()}
@@ -143,7 +144,7 @@ window.alert = (alertText, autoDismiss) => {
 
   // main methods start here
   window.onbeforeunload = function (e) {
-    if (hasPendingChanges) {
+    if (window.hasPendingChanges) {
       e.preventDefault();
       return (e.returnValue = 'You have unsaved changes. Do you want to continue with exit?');
     }
@@ -209,14 +210,15 @@ window.alert = (alertText, autoDismiss) => {
     let output = inputSchema || window.getSchemaFromDom();
 
     // store temp buffer
-    tempBuffer = output;
+    window.inMemorySchemaBuffer = output;
     
     const rawSchemaDataDom = `
       <div id='command'>
         <div><h1 class='title'>Navigation Form</h1></div>
         <div style="display: flex; align-items: stretch; justify-content: space-evenly; flex-wrap: wrap;">
-          <button onclick="window.onViewLinks(window.getLinkDom(document.querySelector('#input').value))">Apply</button>
-          <button onclick="window.onTestNav()">Test Nav</button>
+          <button type='button' onclick="window.onViewLinks(window.getLinkDom(document.querySelector('#input').value))">Apply</button>
+          <button type='button' onclick="if(window.hasPendingChanges) { if(!confirm('Cancel?')) {return;} } window.onViewLinks(window.getLinkDom(window.inMemorySchemaBuffer)); sessionStorage['bufferSchema'] = ''">Cancel</button>
+          <button type='button' onclick="window.onTestNav()">Test Nav</button>
           <a target="_blank" style="text-align: center;" href="https://synle.github.io/link/nav-generator.html?newNav">New Nav</a>
           <a target="_blank" style="text-align: center;" href="https://github.com/synle/synle.github.io/blob/master/link/assets/navs.js">Nav JS Code</a>
           <a target="_blank" style="text-align: center;" href="https://github.com/synle/synle.github.io/blob/master/link/assets/navs.css">Nav CSS Code</a>
@@ -225,7 +227,7 @@ window.alert = (alertText, autoDismiss) => {
           placeholder="Bookmarklet Input Schema" 
           wrap="soft"
           spellcheck="false"
-          oninput="hasPendingChanges = true;"
+          oninput="window.hasPendingChanges = true;"
           onfocus="window.zoominInput(this)" 
           onblur="window.onGetGeneratedBookmarkletLink(document.querySelector('#input').value)"
           ondblclick="window.onCopyBlockToClipboard(this, false);">${output}</textarea>
@@ -330,7 +332,7 @@ window.alert = (alertText, autoDismiss) => {
     if (isRenderedInMainForm) {
       sessionStorage['schemaData'] = window.getSchemaFromDom();
       sessionStorage['bufferSchema'] = '';
-      hasPendingChanges = false;
+      window.hasPendingChanges = false;
     }
 
     // set the page title
