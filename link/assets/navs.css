@@ -192,7 +192,7 @@ button,
   border: var(--borderSize1) solid var(--colorBorderMain);
   padding: var(--spaceSize1) var(--spaceSize2);
   width: 100%;
-  transition: all 0.2 ease-out;
+  transition: all 0.2s ease-out;
   font-family: monospace;
 }
 #input,
