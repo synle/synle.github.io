@@ -234,7 +234,7 @@ window.alert = (alertText, autoDismiss) => {
           spellcheck="false"
           oninput="window.hasPendingChanges = true;"
           onfocus="window.zoominInput(this)" 
-          onblur="window.onGetGeneratedBookmarkletLink(document.querySelector('#input').value)"
+          onblur="window.zoominInput(); window.onGetGeneratedBookmarkletLink(document.querySelector('#input').value)"
           ondblclick="window.onCopyBlockToClipboard(this, false);">${output}</textarea>
         <textarea 
           id='output' 
@@ -242,13 +242,16 @@ window.alert = (alertText, autoDismiss) => {
           wrap="soft" 
           spellcheck="false"
           onfocus="window.zoominInput(this);"
+          onblur="window.zoominInput();"
           ondblclick="window.onCopyBlockToClipboard(this, false);"></textarea>
       </div>
     `;
 
     window.zoominInput = (target) => {
       [...document.querySelectorAll('#input,#output')].forEach((r) => (r.style.flexGrow = ''));
-      target.style.flexGrow = '1';
+      if(target) {
+        target.style.flexGrow = '1';
+      }
     };
 
     document.body.innerHTML = rawSchemaDataDom;
