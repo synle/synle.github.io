@@ -60,6 +60,9 @@ body:after {
   border: none !important;
   background-color: var(--colorBgMain) !important;
 }
+html, body{
+  height:  100%;
+}
 form,
 pre,
 h1,
@@ -215,6 +218,16 @@ button,
   min-height: 100%;
   height: 100%;
 }
+#command .commandHeader{
+  display: grid;
+   grid-template-columns: repeat(3,1fr);
+   grid-gap: 2rem 1.5rem;
+   margin-block: 1rem;
+}
+
+#command .commandHeader a, #command .commandHeader button{
+  text-align:  center;
+}
 
 .hidden {
   display: none;
@@ -240,6 +253,14 @@ button,
 .dropdown:hover .dropdown-content {
   display: block;
 }
+
+.dropdown .dropdown-trigger{
+  width: 100%;
+   display: block;
+   padding: var(--spaceSize2);
+   text-align: center;
+}
+
 
 @media only screen and (max-width: 825px) {
   html {
