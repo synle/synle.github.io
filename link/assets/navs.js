@@ -719,15 +719,6 @@ window.alert = (alertText, autoDismiss) => {
     `.trim()
     );
 
-    if (!document.querySelector('meta[charset]')) {
-      document.head.insertAdjacentHTML(
-        'beforeend',
-        `
-      <meta charset='utf-8'>
-    `.trim()
-      );
-    }
-
     document.addEventListener(
       'keydown',
       (e) => {
