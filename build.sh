@@ -5,4 +5,5 @@ echo '> build the main app'
 npx lessc ./index.less ./index.css
 
 echo '> build react app'
-npx tsc --allowJs --jsx react link/assets/navs.jsx
+./node_modules/.bin/parcel build link/assets/navs.jsx
+mv dist/navs.js* ./link/assets/
