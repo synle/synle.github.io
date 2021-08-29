@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import ReactDOM from 'react-dom';
+import React, { useState, useEffect, useRef } from 'https://cdn.skypack.dev/react';
+import ReactDOM from 'https://cdn.skypack.dev/react-dom';
 
 (async () => {
   // code start here
