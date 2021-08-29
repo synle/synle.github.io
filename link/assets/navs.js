@@ -131,10 +131,10 @@ window.alert = (alertText, autoDismiss) => {
 
   const DEFAULT_SCHEMA_TO_RENDER = `
     ! Navigation ${new Date().toLocaleString()}
-    
+
     # Main Section
     google finance|finance.google.com
-    
+
     # Notes
     \`\`\`
     TODO 1
@@ -239,18 +239,18 @@ window.alert = (alertText, autoDismiss) => {
             </div>
           </div>
         </div>
-        <textarea id='input' 
-          placeholder="Bookmarklet Input Schema" 
+        <textarea id='input'
+          placeholder="Bookmarklet Input Schema"
           wrap="soft"
           spellcheck="false"
           oninput="window.hasPendingChanges = true;"
-          onfocus="window.zoominInput(this)" 
+          onfocus="window.zoominInput(this)"
           onblur="window.zoominInput(); window.onGetGeneratedBookmarkletLink(document.querySelector('#input').value)"
           ondblclick="window.onCopyBlockToClipboard(this, false);">${output}</textarea>
-        <textarea 
-          id='output' 
-          placeholder="Bookmarklet Output" 
-          wrap="soft" 
+        <textarea
+          id='output'
+          placeholder="Bookmarklet Output"
+          wrap="soft"
           spellcheck="false"
           onfocus="window.zoominInput(this);"
           onblur="window.zoominInput();"
@@ -317,11 +317,11 @@ window.alert = (alertText, autoDismiss) => {
       'beforeend',
       `
         <form id='searchForm' onsubmit="return window.onSubmitNavigationSearch();">
-          <input id='search' 
-            list="linkList" 
+          <input id='search'
+            list="linkList"
             onInput="window.searchBookmarklet()"
             placeholder="&#x1F50E;&#xFE0E; Search bookmark"
-            style="display: block" 
+            style="display: block"
             autocomplete="off"
             spellcheck="false"
             autofocus
@@ -410,8 +410,8 @@ window.alert = (alertText, autoDismiss) => {
     }
 
     // remove all non alphanumeric
-    let matchRegex;
     const exactMatchRegex = new RegExp(searchText, 'i');
+    let matchRegex = exactMatchRegex;
     if (searchText[0] === '/') {
       // fuzzy match
       const cleanedSearchText = searchText
@@ -420,9 +420,6 @@ window.alert = (alertText, autoDismiss) => {
         .trim();
 
       matchRegex = new RegExp(cleanedSearchText.split('').join('[a-z0-9 -_]*'), 'i');
-    } else {
-      // exact match
-      matchRegex = exactMatchRegex;
     }
 
     // show or hide
@@ -919,10 +916,10 @@ window.alert = (alertText, autoDismiss) => {
 
   const DEFAULT_SCHEMA_TO_RENDER = `
     ! Navigation ${new Date().toLocaleString()}
-    
+
     # Main Section
     google finance|finance.google.com
-    
+
     # Notes
     \`\`\`
     TODO 1
@@ -1016,18 +1013,18 @@ window.alert = (alertText, autoDismiss) => {
             </div>
           </div>
         </div>
-        <textarea id='input' 
-          placeholder="Bookmarklet Input Schema" 
+        <textarea id='input'
+          placeholder="Bookmarklet Input Schema"
           wrap="soft"
           spellcheck="false"
           oninput="window.hasPendingChanges = true;"
-          onfocus="window.zoominInput(this)" 
+          onfocus="window.zoominInput(this)"
           onblur="window.zoominInput(); window.onGetGeneratedBookmarkletLink(document.querySelector('#input').value)"
           ondblclick="window.onCopyBlockToClipboard(this, false);">${output}</textarea>
-        <textarea 
-          id='output' 
-          placeholder="Bookmarklet Output" 
-          wrap="soft" 
+        <textarea
+          id='output'
+          placeholder="Bookmarklet Output"
+          wrap="soft"
           spellcheck="false"
           onfocus="window.zoominInput(this);"
           onblur="window.zoominInput();"
@@ -1094,11 +1091,11 @@ window.alert = (alertText, autoDismiss) => {
       'beforeend',
       `
         <form id='searchForm' onsubmit="return window.onSubmitNavigationSearch();">
-          <input id='search' 
-            list="linkList" 
+          <input id='search'
+            list="linkList"
             onInput="window.searchBookmarklet()"
             placeholder="&#x1F50E;&#xFE0E; Search bookmark"
-            style="display: block" 
+            style="display: block"
             autocomplete="off"
             spellcheck="false"
             autofocus
