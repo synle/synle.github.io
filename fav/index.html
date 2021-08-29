@@ -181,12 +181,9 @@
     }
   </script>
   
-  <!--  call the navs lib to generate the view  -->
-  <script type="text/babel" data-presets="react" data-type="module" src="https://synle.github.io/link/assets/navs.js"></script>
-  
-  <!--  script started  -->
+  <!--  override the script to fetch the schema script  -->
   <script>
-    (async () => {
+    window.fetchSchemaScript = async () => {
       // combine and make the schema
       const schema = `
 ${SITE_SCHEMA}
@@ -194,14 +191,10 @@ ${await getHostMappingSchema()}
 ${DEBUG_LINKS_SCHEMA}
         `.trim();
 
-      // create the schema script tag
-      setTimeout(
-        () => window.postMessage({
-            type: "onViewLinks",
-            schema: schema
-        }), 
-        300
-      )
-    })();
+      return schema;
+    };
   </script>
+  
+  <!--  call the navs lib to generate the view  -->
+  <script type="text/babel" data-presets="react" data-type="module" src="https://synle.github.io/link/assets/navs.js"></script>
 </html>
