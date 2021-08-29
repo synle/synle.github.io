@@ -188,7 +188,7 @@ String.prototype.fetchJSON = function (...params) {
       const parser = new DOMParser();
       const doc = parser.parseFromString(decodeURIComponent(base64URL.replace('data:text/html,', '')), 'text/html');
       const schema = doc.querySelector('#schema').innerText.trim();
-      const childWindow = window.open('https://synle.github.io/link/nav-generator.html?loadFromMessageEvent');
+      const childWindow = window.open('https://synle.github.io/link/nav-generator.html');
       const messageOrigin = 'https://synle.github.io';
 
       setTimeout(_doPostMessage, 350);
@@ -198,26 +198,8 @@ String.prototype.fetchJSON = function (...params) {
         childWindow.postMessage({type: 'onViewLinks', schema}, messageOrigin);
       }
     } catch (err) {
-      // fall back
-      let shouldOpenWindow = forceOpenWindow;
-
-      if (shouldOpenWindow) {
-        // support open windows
-        var win = window.open();
-        win.document.write(
-          `
-                <style>
-                  body{
-                    margin: 0;
-                  }
-                </style>
-                <iframe src="${base64URL}" frameborder="0" style="border:0; top:0px; left:0px; bottom:0px; right:0px; width:100%; height:100%;" allowfullscreen></iframe>
-              `.trim()
-        );
-      } else {
-        // else prompt let user downloading the url
-        await prompt('Data URL (copy to your clipboard):', base64URL);
-      }
+      // show it in the prompt
+      await prompt('Data URL (copy to your clipboard):', base64URL);
     }
   };
 
@@ -737,32 +719,27 @@ String.prototype.fetchJSON = function (...params) {
     // effects
     useEffect(() => {
       if (isRenderedInMainForm) {
-        if (location.search.includes('loadFromMessageEvent')) {
-          // loadFromMessageEvent - hook up the post message channel for passing in
+        if (location.search.includes('newNav')) {
+          // render as edit mode for newNav
           window.history.pushState('', '', '?');
-
-          const _onHandlePostMessageEvent = (event) => {
-            const {type} = event.data;
-            const newSchema = event.data.schema;
-            if (type === 'onViewLinks') {
-              try {
-                helper.persistBufferSchema(newSchema);
-                setSchema(newSchema); // render with new data
-                window.removeEventListener('message', _onHandlePostMessageEvent);
-              } catch (err) {}
-            }
-          };
-          window.addEventListener('message', _onHandlePostMessageEvent);
-        } else {
-          if (location.search.includes('newNav')) {
-            // render as edit mode for newNav
-            window.history.pushState('', '', '?');
-            helper.persistBufferSchema(DEFAULT_SCHEMA_TO_RENDER);
-            setSchema(DEFAULT_SCHEMA_TO_RENDER);
-            setViewMode('edit');
-          }
+          helper.persistBufferSchema(DEFAULT_SCHEMA_TO_RENDER);
+          setSchema(DEFAULT_SCHEMA_TO_RENDER);
+          setViewMode('edit');
         }
       }
+
+      const _onHandlePostMessageEvent = (event) => {
+        const {type} = event.data;
+        const newSchema = event.data.schema;
+        if (type === 'onViewLinks') {
+          try {
+            helper.persistBufferSchema(newSchema);
+            setSchema(newSchema); // render with new data
+            window.removeEventListener('message', _onHandlePostMessageEvent);
+          } catch (err) {}
+        }
+      };
+      window.addEventListener('message', _onHandlePostMessageEvent);
     }, []);
 
     // events
