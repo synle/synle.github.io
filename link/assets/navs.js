@@ -598,12 +598,18 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
       const target = e.target;
 
       if (target.onclick) {
-        // if (key === 'Enter' || key === ' ') {
-        //   target.onclick.apply(target);
-        //   e.preventDefault();
-        //   e.stopPropagation();
-        //   return;
-        // }
+        if (key === 'Enter' || key === ' ') {
+          try{
+            target.onclick.apply();
+          } catch(err){
+            try{
+              target.click();
+            } catch(err){}
+          }
+          e.preventDefault();
+          e.stopPropagation();
+          return;
+        }
       } else if (key === 'Escape' && document.querySelector('#promptModal')) {
         try {
           document.querySelector('#promptModal #promptInput').onblur();
