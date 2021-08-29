@@ -140,6 +140,17 @@ window.alert = (alertText, autoDismiss) => {
     TODO 1
     TODO 2
     \`\`\`
+
+    # Tabs
+    >>>tabName1|blockId1>>>tabName2|blockId2
+
+    \`\`\`blockId1
+    sample blockId1
+    \`\`\`
+
+    \`\`\`blockId2
+    sample blockId2
+    \`\`\`
   `.trimWhiteSpaces();
 
   // main methods start here
