@@ -1,28 +1,6 @@
 import React, {useState, useEffect, useRef} from 'https://cdn.skypack.dev/react';
 import ReactDOM from 'https://cdn.skypack.dev/react-dom';
 
-// global level helpers
-// ducktype & helper for special methods
-String.prototype.trimWhiteSpaces = function (doFinalTrim) {
-  let res = (this || '')
-    .split('\n')
-    .map((r) => r.trim())
-    .join('\n');
-
-  if (doFinalTrim === true) {
-    res = res.trim();
-  }
-  return res;
-};
-
-String.prototype.fetchText = function (...params) {
-  return fetch(this, ...params).then((r) => r.text());
-};
-
-String.prototype.fetchJSON = function (...params) {
-  return fetch(this, ...params).then((r) => r.json());
-};
-
 (() => {
   let timeoutRemoveAlertDiv;
   let timeoutRemovePromptDiv;
@@ -171,6 +149,7 @@ String.prototype.fetchJSON = function (...params) {
             <meta charset='utf-8' />
           </head>
           <body>
+            <js_script src="https://synle.github.io/link/assets/helpers.js"></js_script>
             <js_script id='schema' type='schema'>${input}</js_script>
             <js_script src="https://unpkg.com/@babel/standalone/babel.min.js"></js_script>
             <js_script type="text/babel" data-presets="react" data-type="module" src="https://synle.github.io/link/assets/navs.jsx"></js_script>
