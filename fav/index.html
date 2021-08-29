@@ -7,7 +7,6 @@
   <body></body>
   <script src="https://synle.github.io/link/assets/helpers.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  <script type="text/babel" data-presets="react" data-type="module" src="https://synle.github.io/link/assets/navs.js"></script>
   <script>
     // code / debug schema links
     const DEBUG_LINKS_SCHEMA = `
@@ -191,11 +190,12 @@ ${await getHostMappingSchema()}
 ${DEBUG_LINKS_SCHEMA}
         `.trim();
 
-      // post message to update
-      window.postMessage({
-        type: 'onViewLinks',
-        schema: schema,
-      });
+      // create the schema script tag
+      const schemaScript = document.createElement('script');
+      schemaScript.innerText = schema;
+      document.body.appendChild(schemaScript);
     })();
   </script>
+  
+  <script type="text/babel" data-presets="react" data-type="module" src="https://synle.github.io/link/assets/navs.js"></script>
 </html>
