@@ -166,19 +166,3 @@ helper.getPersistedBufferSchema = () => {
     });
   };
 })();
-
-// special handling to override the fetch
-(() => {
-  const _onHandlePostMessageEvent = (event) => {
-    const { type } = event.data;
-    const newSchema = event.data.schema;
-    if (type === 'onViewLinks') {
-      try {
-        helper.persistBufferSchema(newSchema);
-        window.fetchSchemaScript = async () => newSchema;
-        window.removeEventListener('message', _onHandlePostMessageEvent);
-      } catch (err) {}
-    }
-  };
-  window.addEventListener('message', _onHandlePostMessageEvent);
-})();

@@ -62,6 +62,7 @@
       netflix | netflix.com
       disney +| disneyplus.com
       prime video | amazon.com/gp/video
+      youtube | youtube.com
 
       # personal
       synle | synle.github.io
@@ -193,16 +194,14 @@
 
   <!--  override the script to fetch the schema script  -->
   <script>
-    (async () => {
+    window.fetchSchemaScript = async () => {
       // combine and make the schema
-      const schema = `
+      return `
 ${SITE_SCHEMA}
 ${await getHostMappingSchema()}
 ${DEBUG_LINKS_SCHEMA}
-        `.trim();
-
-      window.postMessage({ type: 'onViewLinks', schema });
-    })();
+        `;
+    };
   </script>
 
   <!--  call the navs lib to generate the view  -->

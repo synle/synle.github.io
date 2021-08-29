@@ -599,12 +599,12 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
 
       if (target.onclick) {
         if (key === 'Enter' || key === ' ') {
-          try{
+          try {
             target.onclick.apply();
-          } catch(err){
-            try{
+          } catch (err) {
+            try {
               target.click();
-            } catch(err){}
+            } catch (err) {}
           }
           e.preventDefault();
           e.stopPropagation();
@@ -639,9 +639,21 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
   if (location.search.includes('loadNav')) {
     // will wait for postmessage to populate this
     window.history.pushState('', '', '?');
-    try {
-      inputSchema = await window.fetchSchemaScript();
-    } catch (err) {}
+
+    await new Promise((resolve) => {
+      const _onHandlePostMessageEvent = (event) => {
+        const { type } = event.data;
+        const newSchema = event.data.schema;
+        if (type === 'onViewLinks') {
+          try {
+            helper.persistBufferSchema(newSchema);
+            inputSchema = newSchema;
+            resolve();
+          } catch (err) {}
+        }
+      };
+      window.addEventListener('message', _onHandlePostMessageEvent);
+    });
   } else if (location.search.includes('newNav')) {
     // render as edit mode for newNav
     window.history.pushState('', '', '?');
