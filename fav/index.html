@@ -129,7 +129,7 @@
       let HOST_MAPPING_BLOCK_SCHEMA = '';
       try {
         const hostMappingApiResponse =
-          `https://raw.githubusercontent.com/synle/bashrc/master/software/metadata/ip-address.config`.fetchText();
+          fetch(`https://raw.githubusercontent.com/synle/bashrc/master/software/metadata/ip-address.config`).then(r => r.text())
         const HOSTNAMES_GROUPED_BY_ID = await hostMappingApiResponse.then((r) =>
           r
             .split('\n')

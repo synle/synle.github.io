@@ -12,14 +12,6 @@ String.prototype.trimWhiteSpaces = function (doFinalTrim) {
   return res;
 };
 
-String.prototype.fetchText = function (...params) {
-  return fetch(this, ...params).then((r) => r.text());
-};
-
-String.prototype.fetchJSON = function (...params) {
-  return fetch(this, ...params).then((r) => r.json());
-};
-
 // helpers
 const helper = {};
 helper.getNavBookmarkletFromSchema = (input) => {
@@ -99,4 +91,102 @@ helper.getPersistedBufferSchema = () => {
     }
   };
   window.addEventListener('message', _onHandlePostMessageEvent);
+})();
+
+
+// prompts and alert overrides
+(async () => {
+  let timeoutRemoveAlertDiv;
+  let timeoutRemovePromptDiv;
+
+  window.prompt = (promptText, promptInput, autoDismiss) => {
+    clearTimeout(timeoutRemovePromptDiv);
+
+    return new Promise((resolve) => {
+      document.body.insertAdjacentHTML(
+        'beforeend',
+        `
+        <div id='promptModal' tabindex='0' style="display: flex; flex-direction: column; align-items: center; justify-content: center; transition: all 0.4s ease-out; position: fixed; background: rgba(80, 80, 80, 0.6); color: #fff; top: 0px; left: 0px; right: 0px; bottom: 0px; text-align: center; font-weight: bold; border: 2px solid #eee; padding: 2rem 3rem; z-index: 1;">
+          <div style="max-width: 800px; width: 100%; font-size: 16px; font-weight: bold; padding: 10px; background: #000;">${promptText}</div>
+          <textarea id='promptInput' style='max-width: 800px; width: 100%; max-height: 650px; padding: 10px; font-size: 16px; font-family: monospace; border: none !important; outline: none !important;' rows='3'></textarea>
+        </div>
+      `,
+      );
+
+      setupPrompt();
+
+      function setupPrompt() {
+        document.querySelector('#promptModal #promptInput').value = promptInput;
+        document.querySelector('#promptModal #promptInput').focus();
+        document
+          .querySelector('#promptModal #promptInput')
+          .setSelectionRange(0, promptInput.length);
+        const rowCount = promptInput
+          .trim()
+          .split('\n')
+          .reduce((totalCount, s) => {
+            totalCount += Math.max(Math.floor(s.length / 75), 1);
+            return totalCount;
+          }, 1);
+        document.querySelector('#promptModal #promptInput').rows = Math.min(rowCount, 15);
+        document.querySelector('#promptModal #promptInput').onblur = removePrompt;
+
+        if (autoDismiss) {
+          timeoutRemovePromptDiv = setTimeout(removePrompt, 1300);
+        }
+      }
+
+      function removePrompt() {
+        clearTimeout(timeoutRemovePromptDiv);
+
+        document.querySelector('#promptModal').style.opacity = '0.05';
+        document.querySelector('#promptModal').addEventListener('transitionend', () => {
+          try {
+            document.querySelector('#promptModal').remove();
+          } catch (err) {}
+        });
+
+        resolve();
+      }
+    });
+  };
+
+  window.alert = (alertText, manualDismiss) => {
+    clearTimeout(timeoutRemoveAlertDiv);
+
+    return new Promise((resolve) => {
+      document.body.insertAdjacentHTML(
+        'beforeend',
+        `
+        <div id='alertModal' tabindex='0' style="display: flex; flex-direction: column; align-items: center; justify-content: center; transition: all 0.4s ease-out; position: fixed; background: rgba(80, 80, 80, 0.6); color: #fff; top: 0px; left: 0px; right: 0px; bottom: 0px; text-align: center; font-weight: bold; border: 2px solid #eee; padding: 2rem 3rem; z-index: 1;">
+          <div id='alertBody' style="max-width: 800px; width: 100%; font-size: 16px; font-weight: bold; padding: 10px; background: #000;" tabindex='0'>${alertText}</div>
+        </div>
+      `,
+      );
+
+      setupAlert();
+
+      function setupAlert() {
+        if (manualDismiss !== false) {
+          timeoutRemoveAlertDiv = setTimeout(removeAlert, 1300);
+        } else {
+          document.querySelector('#alertModal #alertBody').focus();
+          document.querySelector('#alertModal #alertBody').onblur = removeAlert;
+        }
+      }
+
+      function removeAlert() {
+        clearTimeout(timeoutRemoveAlertDiv);
+
+        document.querySelector('#alertModal').style.opacity = '0.05';
+        document.querySelector('#alertModal').addEventListener('transitionend', () => {
+          try {
+            document.querySelector('#alertModal').remove();
+          } catch (err) {}
+        });
+
+        resolve();
+      }
+    });
+  };
 })();
