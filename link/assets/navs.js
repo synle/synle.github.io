@@ -693,7 +693,7 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
   // main app starts here
   function App(props) {
     const [view, setViewMode] = useState('read'); // read, edit, create
-    const [schema, setSchema] = useState(props.schemaFromScript || helper.getPersistedBufferSchema());
+    const [schema, setSchema] = useState(props.schemaFromScript || helper.getPersistedBufferSchema() || '');
 
     // effects
     useEffect(() => {
