@@ -401,13 +401,14 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
 
         if (searchText.length === 0) {
           for (const elem of doc.querySelectorAll('.link')) {
-            elem.classList.toggle('hidden', false);
+            elem.classList.remove('hidden');
           }
           return;
         }
 
         // remove all non alphanumeric
-        let matchRegex;
+        let exactMatchregex = new RegExp(searchText.replace(/"/g, ''), 'i');
+        let matchRegex = exactMatchregex;
         if (searchText[0] === '/') {
           // fuzzy match
           const cleanedSearchText = searchText
@@ -416,16 +417,12 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
             .trim();
 
           matchRegex = new RegExp('[ ]*' + cleanedSearchText.split('').join('[a-z0-9 -_]*'), 'i');
-        } else {
-          // exact match
-          matchRegex = new RegExp(searchText.replace(/"/g, ''), 'i');
         }
 
         // show or hide
         for (const elem of doc.querySelectorAll('.link')) {
           let isHidden = true;
 
-          const anchor = elem;
           const link = (elem.href || '')
             .replace(/http[s]/gi, '')
             .replace(/www/gi, '')
@@ -433,11 +430,13 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
             .replace(/index/gi, '')
             .replace(/[/.]/gi, '');
 
-          if (anchor.innerText.match(matchRegex)) {
+          const text = elem.innerText || '';
+
+          if (text.match(matchRegex)) {
             isHidden = false;
-          } else if (anchor.dataset.section && anchor.dataset.section.match(matchRegex)) {
+          } else if (elem.dataset.section && elem.dataset.section.match(exactMatchregex)) {
             isHidden = false;
-          } else if (link.match(matchRegex)) {
+          } else if (link.match(exactMatchregex)) {
             isHidden = false;
           }
 
