@@ -1,5 +1,16 @@
 {
-  "compilerOptions": {
-    "jsx": "react"
-  }
+    "compilerOptions": {
+        "target": "es6",
+        "module": "es6",
+        "allowJs": true,
+        "sourceMap": true,
+        "removeComments": false,
+        "noImplicitAny": false,
+        "jsx": "react",
+        "lib": [
+            "esnext",
+            "dom"
+        ]
+    },
+    "include": ["link/assets/navs.jsx"]
 }
