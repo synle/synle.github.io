@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useRef} from 'https://cdn.skypack.dev/react';
 import ReactDOM from 'https://cdn.skypack.dev/react-dom';
 
-(() => {
+(async () => {
   let timeoutRemoveAlertDiv;
   let timeoutRemovePromptDiv;
 
@@ -752,9 +752,16 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
 
   // find and parse the schema from script
   let schemaFromScript = '';
-  try {
-    schemaFromScript = document.querySelector('#schema').innerText.trim();
-  } catch (err) {}
+  
+  if(window.fetchSchemaScript){
+    try {
+      schemaFromScript = await window.fetchSchemaScript();
+    } catch (err) {}
+  } else {
+    try {
+      schemaFromScript = document.querySelector('#schema').innerText.trim();
+    } catch (err) {}
+  }
 
   ReactDOM.render(<App schemaFromScript={schemaFromScript} />, document.body);
 })();
