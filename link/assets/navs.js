@@ -95,7 +95,7 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
   };
 })();
 
-(() => {
+(async () => {
   // code start here
   const SAME_TAB_LINK_SPLIT = '|';
   const NEW_TAB_LINK_SPLIT = '|||';
