@@ -243,6 +243,7 @@ String.prototype.fetchJSON = function (...params) {
     }
   };
 
+  // react components
   function SearchBox(props) {
     const {onSearch} = props;
 
@@ -779,6 +780,7 @@ String.prototype.fetchJSON = function (...params) {
     }
   }
 
+  // initialization
   // hooking up extra meta data
   document.head.insertAdjacentHTML(
     'beforeend',
