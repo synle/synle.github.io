@@ -10,8 +10,7 @@ helper.getNavBookmarkletFromSchema = (input) => {
         <body>
           <js_script id='schema' type='schema'>${input}</js_script>
           <js_script src="https://synle.github.io/link/assets/helpers.js"></js_script>
-          <js_script src="https://unpkg.com/@babel/standalone/babel.min.js"></js_script>
-          <js_script type="text/babel" data-presets="react" data-type="module" src="https://synle.github.io/link/assets/navs.js"></js_script>
+          <js_script src="https://synle.github.io/link/assets/navs.js"></js_script>
         </body>
       </html>
     `
@@ -64,20 +63,20 @@ helper.getPersistedBufferSchema = () => {
 };
 
 // // special handling to override the fetch
-// (() => {
-//   const _onHandlePostMessageEvent = (event) => {
-//     const { type } = event.data;
-//     const newSchema = event.data.schema;
-//     if (type === 'onViewLinks') {
-//       try {
-//         helper.persistBufferSchema(newSchema);
-//         window.fetchSchemaScript = async () => newSchema;
-//         window.removeEventListener('message', _onHandlePostMessageEvent);
-//       } catch (err) {}
-//     }
-//   };
-//   window.addEventListener('message', _onHandlePostMessageEvent);
-// })();
+(() => {
+  const _onHandlePostMessageEvent = (event) => {
+    const { type } = event.data;
+    const newSchema = event.data.schema;
+    if (type === 'onViewLinks') {
+      try {
+        helper.persistBufferSchema(newSchema);
+        window.fetchSchemaScript = async () => newSchema;
+        window.removeEventListener('message', _onHandlePostMessageEvent);
+      } catch (err) {}
+    }
+  };
+  window.addEventListener('message', _onHandlePostMessageEvent);
+})();
 
 // prompts and alert overrides
 (async () => {
