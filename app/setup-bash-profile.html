@@ -38,14 +38,14 @@
       select {
         font-size: 1rem;
       }
-      input[type="text"],
+      input[type='text'],
       textarea {
         display: block;
         width: 100%;
       }
       a,
       button,
-      input[type="submit"] {
+      input[type='submit'] {
         min-width: 100px;
         border: 2px solid #ccc;
         background: #000;
@@ -58,18 +58,23 @@
       }
       a:hover,
       button:hover,
-      input[type="submit"]:hover,
+      input[type='submit']:hover,
       a:focus,
       button:focus,
-      input[type="submit"]:focus {
+      input[type='submit']:focus {
         box-shadow: 0 0 0 3px #0c2d6b;
         background: #161b22;
       }
-      button, label {
+      button,
+      label {
         text-decoration: none;
         font-weight: 600;
       }
-      button, input, select, textarea, a{
+      button,
+      input,
+      select,
+      textarea,
+      a {
         padding: 0.5rem 0.75rem;
       }
       #container {
@@ -108,7 +113,9 @@
         <!--     script to run     -->
         <div id="scriptToRunContainer" class="c2-child">
           <label>Scripts To Run:</label>
-          <button id="btnAddScript" onclick="addScriptTextbox()" type="button" style="width: 150px">Add Script</button>
+          <button id="btnAddScript" onclick="addScriptTextbox()" type="button" style="width: 150px">
+            Add Script
+          </button>
           <datalist id="scriptToRunOptions"></datalist>
           <label>Runner:</label>
           <select id="runnerToUse" onchange="updateScript()">
@@ -125,7 +132,11 @@
         <!--     os to run     -->
         <div id="osToRunContainer" class="c2-child">
           <label>OS Type:</label>
-          <select id="osToRun" onchange="updateScript()" oninput="localStorage.osToRun = document.querySelector('#osToRun').value">
+          <select
+            id="osToRun"
+            onchange="updateScript()"
+            oninput="localStorage.osToRun = document.querySelector('#osToRun').value"
+          >
             <option value="windows" selected>Windows with WSL</option>
             <option value="ming_64">Windows with Ming_64</option>
             <option value="mac">Mac OSX</option>
@@ -135,11 +146,20 @@
           </select>
         </div>
 
-        <textarea id="output" placeholder="Output" readonly="true" onfocus="selectCommands()"></textarea>
+        <textarea
+          id="output"
+          placeholder="Output"
+          readonly="true"
+          onfocus="selectCommands()"
+        ></textarea>
       </form>
 
       <div id="bot" class="c3">
-        <a href="https://github.com/synle/synle.github.io/blob/master/app/setup-bash-profile.html" target="_blank">HTML Code</a>
+        <a
+          href="https://github.com/synle/synle.github.io/blob/master/app/setup-bash-profile.html"
+          target="_blank"
+          >HTML Code</a
+        >
         <a href="https://github.com/synle/bashrc/find/master" target="_blank">Bashrc Code</a>
       </div>
     </div>
@@ -148,31 +168,31 @@
       let idx = Date.now();
       const configs = [
         {
-          text: "Setup Dependencies",
+          text: 'Setup Dependencies',
           script: `<OS_FLAGS> . /dev/stdin <<< "$(curl -s https://raw.githubusercontent.com/synle/bashrc/master/setup-dependencies.sh)"`,
           shouldShowOsSelectionInput: true,
         },
         {
-          text: "Setup Full Profile",
+          text: 'Setup Full Profile',
           script: `<OS_FLAGS> . /dev/stdin <<< "$(curl -s https://raw.githubusercontent.com/synle/bashrc/master/setup-full.sh?$(date +%s))"`,
           checked: true,
           shouldShowOsSelectionInput: true,
         },
         {
-          text: "Setup Lightweight Profile",
+          text: 'Setup Lightweight Profile',
           script: `. /dev/stdin <<< "$(curl -s https://raw.githubusercontent.com/synle/bashrc/master/setup-lightweight.sh?$(date +%s))"`,
         },
         {
-          text: "Setup etc Hosts",
+          text: 'Setup etc Hosts',
           script: `curl -s https://raw.githubusercontent.com/synle/bashrc/master/setup-hosts.sh | sudo -E bash`,
         },
         {
-          text: "Test Full Run live",
+          text: 'Test Full Run live',
           script: `curl -s https://raw.githubusercontent.com/synle/bashrc/master/test-full-run-live.sh | bash`,
           shouldShowOsSelectionInput: true,
         },
         {
-          text: "Test Single Script",
+          text: 'Test Single Script',
           script: `<OS_FLAGS>\\\nexport TEST_SCRIPT_FILES="""\n<SELECT_SCRIPTS>\n""" <DEBUG_WRITE_TO_HOME> && \\\n\\\n curl -s https://raw.githubusercontent.com/synle/bashrc/master/<SELECTED_RUNNER_SCRIPT> | bash`,
           shouldShowScriptNameInput: true,
           shouldShowOsSelectionInput: true,
@@ -190,33 +210,33 @@
       async function init() {
         // available scripts
         let scriptToRunOptions = await fetch(
-          `https://raw.githubusercontent.com/synle/bashrc/master/software/metadata/script-list.config`
+          `https://raw.githubusercontent.com/synle/bashrc/master/software/metadata/script-list.config`,
         ).then((res) => res.text());
         scriptToRunOptions = scriptToRunOptions
-          .split("\n")
-          .map((s) => s.replace("./", "").trim())
-          .filter((s) => !!s && (s.includes(".js") || s.includes(".sh")))
+          .split('\n')
+          .map((s) => s.replace('./', '').trim())
+          .filter((s) => !!s && (s.includes('.js') || s.includes('.sh')))
           .sort()
           .map((scriptName) => `<option>${scriptName}</option>`)
-          .join("\n");
-        document.querySelector("#scriptToRunOptions").innerHTML = scriptToRunOptions;
+          .join('\n');
+        document.querySelector('#scriptToRunOptions').innerHTML = scriptToRunOptions;
 
         // back it up
-        window.SCRIPT_TO_RUN_OPTIONS = document.querySelector("#scriptToRunOptions").innerHTML;
+        window.SCRIPT_TO_RUN_OPTIONS = document.querySelector('#scriptToRunOptions').innerHTML;
 
         for (const config of configs) {
-          const domCommand = document.createElement("div");
+          const domCommand = document.createElement('div');
           domCommand.innerHTML = `
-          <input onchange='updateScript()' type='radio' name='choice-setup' id='${config.idx}' value='${config.idx}' ${
-            config.checked ? "checked" : ""
-          } />
+          <input onchange='updateScript()' type='radio' name='choice-setup' id='${
+            config.idx
+          }' value='${config.idx}' ${config.checked ? 'checked' : ''} />
           <label for='${config.idx}'>${config.text}</label>
         `;
-          document.querySelector("#commands").appendChild(domCommand);
+          document.querySelector('#commands').appendChild(domCommand);
         }
 
         // select the previous
-        document.querySelector("#osToRun").value = localStorage.osToRun || "windows";
+        document.querySelector('#osToRun').value = localStorage.osToRun || 'windows';
 
         // add the first script textbox
         addScriptTextbox();
@@ -234,30 +254,40 @@
         newCommands.push(
           selectedScript.script
             .replace(
-              "<SELECT_SCRIPTS>",
-              [...document.querySelectorAll(".scriptToUse")]
+              '<SELECT_SCRIPTS>',
+              [...document.querySelectorAll('.scriptToUse')]
                 .map((s) => s.value.trim())
                 .filter((s) => !!s.trim())
-                .join("\n")
+                .join('\n'),
             )
-            .replace("<DEBUG_WRITE_TO_HOME>", document.querySelector("#debugWriteToFile").value.trim())
-            .replace("<SELECTED_RUNNER_SCRIPT>", document.querySelector("#runnerToUse").value.trim())
-            .replace("<OS_FLAGS>", _getOsFlags(document.querySelector("#osToRun").value.trim()))
+            .replace(
+              '<DEBUG_WRITE_TO_HOME>',
+              document.querySelector('#debugWriteToFile').value.trim(),
+            )
+            .replace(
+              '<SELECTED_RUNNER_SCRIPT>',
+              document.querySelector('#runnerToUse').value.trim(),
+            )
+            .replace('<OS_FLAGS>', _getOsFlags(document.querySelector('#osToRun').value.trim())),
         );
 
-        document.querySelector("#scriptToRunContainer").style.display = selectedScript.shouldShowScriptNameInput ? "" : "none";
-        document.querySelector("#osToRunContainer").style.display = selectedScript.shouldShowOsSelectionInput ? "" : "none";
-        document.querySelector("#output").value = newCommands.join("\n");
+        document.querySelector('#scriptToRunContainer').style.display =
+          selectedScript.shouldShowScriptNameInput ? '' : 'none';
+        document.querySelector('#osToRunContainer').style.display =
+          selectedScript.shouldShowOsSelectionInput ? '' : 'none';
+        document.querySelector('#output').value = newCommands.join('\n');
       }
 
       function addScriptTextbox() {
-        const notEmptyScriptTextboxes = [...document.querySelectorAll(".scriptToUse")].filter((s) => !s.value.trim());
+        const notEmptyScriptTextboxes = [...document.querySelectorAll('.scriptToUse')].filter(
+          (s) => !s.value.trim(),
+        );
         if (notEmptyScriptTextboxes.length > 0) {
           notEmptyScriptTextboxes[0].focus();
         }
 
-        document.querySelector("#btnAddScript").insertAdjacentHTML(
-          "beforeBegin",
+        document.querySelector('#btnAddScript').insertAdjacentHTML(
+          'beforeBegin',
           `
           <input
             class="scriptToUse"
@@ -269,19 +299,21 @@
             autofocus
             required
             />
-        `
+        `,
         );
 
         // focus on the last one
-        [...document.querySelectorAll(".scriptToUse")].slice(-1)[0].focus();
+        [...document.querySelectorAll('.scriptToUse')].slice(-1)[0].focus();
       }
 
       function updateAutoComplete() {
-        const selectedScriptSet = new Set([...document.querySelectorAll(".scriptToUse")].map((s) => s.value.trim()));
+        const selectedScriptSet = new Set(
+          [...document.querySelectorAll('.scriptToUse')].map((s) => s.value.trim()),
+        );
 
-        document.querySelector("#scriptToRunOptions").innerHTML = window.SCRIPT_TO_RUN_OPTIONS;
+        document.querySelector('#scriptToRunOptions').innerHTML = window.SCRIPT_TO_RUN_OPTIONS;
 
-        [...document.querySelectorAll("#scriptToRunOptions option")].forEach((scriptElem) => {
+        [...document.querySelectorAll('#scriptToRunOptions option')].forEach((scriptElem) => {
           if (selectedScriptSet.has(scriptElem.innerText.trim())) {
             scriptElem.remove();
           }
@@ -289,20 +321,20 @@
       }
 
       function cleanupUnusedScriptTextBox(elem) {
-        if (!elem.value.trim() && [...document.querySelectorAll(".scriptToUse")].length > 1) {
+        if (!elem.value.trim() && [...document.querySelectorAll('.scriptToUse')].length > 1) {
           elem.remove();
         }
       }
 
       function _getOsFlags(osFlag) {
         const osFlags = {
-          is_os_darwin_mac: osFlag === "mac" ? "1" : "0",
-          is_os_window: osFlag === "windows" ? "1" : "0",
-          is_os_wsl: osFlag === "windows" ? "1" : "0",
-          is_os_ubuntu: ["windows", "chrome_os", "ubuntu"].indexOf(osFlag) >= 0 ? "1" : "0",
-          is_os_chromeos: osFlag === "chrome_os" ? "1" : "0",
-          is_os_mingw64: osFlag === "ming_64" ? "1" : "0",
-          is_os_android_termux: osFlag === "android_termux" ? "1" : "0",
+          is_os_darwin_mac: osFlag === 'mac' ? '1' : '0',
+          is_os_window: osFlag === 'windows' ? '1' : '0',
+          is_os_wsl: osFlag === 'windows' ? '1' : '0',
+          is_os_ubuntu: ['windows', 'chrome_os', 'ubuntu'].indexOf(osFlag) >= 0 ? '1' : '0',
+          is_os_chromeos: osFlag === 'chrome_os' ? '1' : '0',
+          is_os_mingw64: osFlag === 'ming_64' ? '1' : '0',
+          is_os_android_termux: osFlag === 'android_termux' ? '1' : '0',
         };
 
         const osKeys = Object.keys(osFlags);
@@ -310,25 +342,29 @@
         return (
           [
             "sudo echo '> Initializing Environment'",
-            "NODE_VERSION_TO_USE=12.22.1",
-            "nvm install $NODE_VERSION_TO_USE",
-            "nvm use $NODE_VERSION_TO_USE",
-            `echo """\n${osKeys.map((key) => `export ${key}='${osFlags[key]}'`).join("\n")}\n""" > ~/.bash_syle_os && source ~/.bash_syle_os`,
-          ].join(" && \\\n") + " && "
+            'NODE_VERSION_TO_USE=12.22.1',
+            'nvm install $NODE_VERSION_TO_USE',
+            'nvm use $NODE_VERSION_TO_USE',
+            `echo """\n${osKeys
+              .map((key) => `export ${key}='${osFlags[key]}'`)
+              .join('\n')}\n""" > ~/.bash_syle_os && source ~/.bash_syle_os`,
+          ].join(' && \\\n') + ' && '
         ).trim();
       }
 
       function selectCommands() {
-        document.querySelector("#output").focus();
-        document.querySelector("#output").select();
-        document.execCommand("copy");
+        document.querySelector('#output').focus();
+        document.querySelector('#output').select();
+        document.execCommand('copy');
       }
 
       init();
 
       // getting and setting the page title
       try {
-        document.querySelector("h1").innerText = document.location.href.match(/[a-z-A-Z0-9]+\/[a-z-A-Z0-9]+.html/)[0].trim();
+        document.querySelector('h1').innerText = document.location.href
+          .match(/[a-z-A-Z0-9]+\/[a-z-A-Z0-9]+.html/)[0]
+          .trim();
       } catch (err) {}
     </script>
   </body>

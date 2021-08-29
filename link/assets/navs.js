@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'https://cdn.skypack.dev/react';
+import React, { useState, useEffect, useRef } from 'https://cdn.skypack.dev/react';
 import ReactDOM from 'https://cdn.skypack.dev/react-dom';
 
 (async () => {
@@ -16,7 +16,7 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
           <div style="max-width: 800px; width: 100%; font-size: 16px; font-weight: bold; padding: 10px; background: #000;">${promptText}</div>
           <textarea id='promptInput' style='max-width: 800px; width: 100%; max-height: 650px; padding: 10px; font-size: 16px; font-family: monospace; border: none !important; outline: none !important;' rows='3'></textarea>
         </div>
-      `
+      `,
       );
 
       setupPrompt();
@@ -24,7 +24,9 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
       function setupPrompt() {
         document.querySelector('#promptModal #promptInput').value = promptInput;
         document.querySelector('#promptModal #promptInput').focus();
-        document.querySelector('#promptModal #promptInput').setSelectionRange(0, promptInput.length);
+        document
+          .querySelector('#promptModal #promptInput')
+          .setSelectionRange(0, promptInput.length);
         const rowCount = promptInput
           .trim()
           .split('\n')
@@ -65,7 +67,7 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
         <div id='alertModal' tabindex='0' style="display: flex; flex-direction: column; align-items: center; justify-content: center; transition: all 0.4s ease-out; position: fixed; background: rgba(80, 80, 80, 0.6); color: #fff; top: 0px; left: 0px; right: 0px; bottom: 0px; text-align: center; font-weight: bold; border: 2px solid #eee; padding: 2rem 3rem; z-index: 1;">
           <div id='alertBody' style="max-width: 800px; width: 100%; font-size: 16px; font-weight: bold; padding: 10px; background: #000;" tabindex='0'>${alertText}</div>
         </div>
-      `
+      `,
       );
 
       setupAlert();
@@ -141,7 +143,7 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
 
   // react components
   function SearchBox(props) {
-    const {onSearch} = props;
+    const { onSearch } = props;
 
     return (
       <input
@@ -158,12 +160,12 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
   }
 
   function SearchDisplay(props) {
-    const {matchRegex, children} = props;
+    const { matchRegex, children } = props;
     return children;
   }
 
   function NavReadContainer(props) {
-    const {schema, onSetViewMode, onSetSchema} = props;
+    const { schema, onSetViewMode, onSetSchema } = props;
     const [doms, setDoms] = useState('');
     const [searchText, setSearchText] = useState('');
     const [autocompleteSearches, setAutocompleteSearches] = useState([]);
@@ -232,9 +234,12 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
           if (link.trim().indexOf(BLOCK_SPLIT) === 0) {
             // end of a block
             newDoms.push(
-              <pre className="block" id={blockId} onDoubleClick={(e) => helper.onCopyToClipboard(e.target.innerText.trim(), true)}>
+              <pre
+                className="block"
+                id={blockId}
+                onDoubleClick={(e) => helper.onCopyToClipboard(e.target.innerText.trim(), true)}>
                 {blockBuffer.trim()}
-              </pre>
+              </pre>,
             );
             isInABlock = false;
             blockBuffer = '';
@@ -282,7 +287,7 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
                 tabContent.push(
                   <tab tabIndex="0" data-tab-id={tabId.trim()}>
                     {tabName.trim()}
-                  </tab>
+                  </tab>,
                 );
               }
             });
@@ -296,7 +301,9 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
           try {
             // try parse as new tab link
             linkText = link.substr(0, link.indexOf(NEW_TAB_LINK_SPLIT)).trim();
-            linkUrl = link.substr(link.indexOf(NEW_TAB_LINK_SPLIT) + NEW_TAB_LINK_SPLIT.length).trim();
+            linkUrl = link
+              .substr(link.indexOf(NEW_TAB_LINK_SPLIT) + NEW_TAB_LINK_SPLIT.length)
+              .trim();
 
             if (linkUrl && linkText) {
               linkType = 'newTabLink';
@@ -307,7 +314,9 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
             // try parse as same tab link
             try {
               linkText = link.substr(0, link.indexOf(SAME_TAB_LINK_SPLIT)).trim();
-              linkUrl = link.substr(link.indexOf(SAME_TAB_LINK_SPLIT) + SAME_TAB_LINK_SPLIT.length).trim();
+              linkUrl = link
+                .substr(link.indexOf(SAME_TAB_LINK_SPLIT) + SAME_TAB_LINK_SPLIT.length)
+                .trim();
 
               if (linkUrl && linkText) {
                 linkType = 'sameTabLink';
@@ -334,9 +343,13 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
               const jsFunc = linkUrl.replace('javascript://', '');
               schemaCacheMap[newCacheId] = jsFunc;
               newDoms.push(
-                <button className="link jsLink" type="button" onMouseDown={() => eval(schemaCacheMap[newCacheId])} data-section={currentHeaderName}>
+                <button
+                  className="link jsLink"
+                  type="button"
+                  onMouseDown={() => eval(schemaCacheMap[newCacheId])}
+                  data-section={currentHeaderName}>
                   {linkText}
-                </button>
+                </button>,
               );
             } else if (linkUrl.indexOf('data:') === 0) {
               // data url link
@@ -346,26 +359,32 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
                   className="link dataLink"
                   type="button"
                   onMouseDown={() => helper.navigateToDataUrl(schemaCacheMap[newCacheId])}
-                  data-section={currentHeaderName}
-                >
+                  data-section={currentHeaderName}>
                   {linkText}
-                </button>
+                </button>,
               );
             } else if (linkType === 'sameTabLink') {
               // same tab link
               schemaCacheMap[newCacheId] = linkUrl;
               newDoms.push(
-                <a className="link sameTabLink" href={schemaCacheMap[newCacheId]} data-section={currentHeaderName}>
+                <a
+                  className="link sameTabLink"
+                  href={schemaCacheMap[newCacheId]}
+                  data-section={currentHeaderName}>
                   {linkText}
-                </a>
+                </a>,
               );
             } else {
               // new_tab_link
               schemaCacheMap[newCacheId] = linkUrl;
               newDoms.push(
-                <a className="link newTabLink" target="_blank" href={schemaCacheMap[newCacheId]} data-section={currentHeaderName}>
+                <a
+                  className="link newTabLink"
+                  target="_blank"
+                  href={schemaCacheMap[newCacheId]}
+                  data-section={currentHeaderName}>
                   {linkText}
-                </a>
+                </a>,
               );
             }
 
@@ -377,12 +396,14 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
       // insert the fav icon
       document.querySelector('#pageFavIcon') && document.querySelector('#pageFavIcon').remove();
       const favIconEncoded =
-        encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text x='0' y='14'>`) +
+        encodeURIComponent(
+          `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text x='0' y='14'>`,
+        ) +
         pageFavIcon +
         encodeURIComponent(`</text></svg>`);
       document.head.insertAdjacentHTML(
         'beforeend',
-        `<link id='pageFavIcon' data-fav-icon="${pageFavIcon}" rel="icon" href="data:image/svg+xml,${favIconEncoded}" />`
+        `<link id='pageFavIcon' data-fav-icon="${pageFavIcon}" rel="icon" href="data:image/svg+xml,${favIconEncoded}" />`,
       );
 
       // set the page title
@@ -502,7 +523,7 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
   }
 
   function NavEditContainer(props) {
-    const {schema, onSetViewMode, onSetSchema} = props;
+    const { schema, onSetViewMode, onSetSchema } = props;
     const [bufferSchema, setBufferSchema] = useState(schema.trim());
     const [hasPendingChanges, setHasPendingChanges] = useState(false);
     const [bookmark, setBookmark] = useState('');
@@ -537,7 +558,9 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
     };
 
     const onZoomInput = (target) => {
-      [...document.querySelectorAll('#input,#output')].forEach((elem) => (elem.style.flexGrow = ''));
+      [...document.querySelectorAll('#input,#output')].forEach(
+        (elem) => (elem.style.flexGrow = ''),
+      );
       target.style.flexGrow = '1';
     };
 
@@ -584,10 +607,14 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
               <a target="_blank" href="https://synle.github.io/link/nav-generator.html?newNav">
                 New
               </a>
-              <a target="_blank" href="https://github.com/synle/synle.github.io/blob/master/link/assets/navs.js">
+              <a
+                target="_blank"
+                href="https://github.com/synle/synle.github.io/blob/master/link/assets/navs.js">
                 JS Code
               </a>
-              <a target="_blank" href="https://github.com/synle/synle.github.io/blob/master/link/assets/navs.css">
+              <a
+                target="_blank"
+                href="https://github.com/synle/synle.github.io/blob/master/link/assets/navs.css">
                 CSS Code
               </a>
               <button type="button" onClick={() => onTest()}>
@@ -604,29 +631,29 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
           value={bufferSchema}
           onFocus={(e) => onZoomInput(e.target)}
           onInput={(e) => onSetBufferSchema(e.target.value)}
-          onDoubleClick={() => helper.onCopyToClipboard(bufferSchema, true)}
-        ></textarea>
+          onDoubleClick={() => helper.onCopyToClipboard(bufferSchema, true)}></textarea>
         <textarea
           id="output"
           wrap="soft"
           spellcheck="false"
           value={bookmark}
           onFocus={(e) => onZoomInput(e.target)}
-          onDoubleClick={() => helper.onCopyToClipboard(bookmark, true)}
-        ></textarea>
+          onDoubleClick={() => helper.onCopyToClipboard(bookmark, true)}></textarea>
       </div>
     );
   }
 
   function NavCreateContainer(props) {
-    const {schema, onSetViewMode, onSetSchema} = props;
+    const { schema, onSetViewMode, onSetSchema } = props;
     return <>create {schema}</>;
   }
 
   // main app starts here
   function App(props) {
     const [view, setViewMode] = useState('read'); // read, edit, create
-    const [schema, setSchema] = useState(props.schemaFromScript || helper.getPersistedBufferSchema());
+    const [schema, setSchema] = useState(
+      props.schemaFromScript || helper.getPersistedBufferSchema(),
+    );
 
     // effects
     useEffect(() => {
@@ -641,7 +668,7 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
       }
 
       const _onHandlePostMessageEvent = (event) => {
-        const {type} = event.data;
+        const { type } = event.data;
         const newSchema = event.data.schema;
         if (type === 'onViewLinks') {
           try {
@@ -659,7 +686,7 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
     const onSetSchema = (newSchema) => setSchema(newSchema);
 
     // render the proper views
-    const allProps = {schema, onSetSchema, onSetViewMode};
+    const allProps = { schema, onSetSchema, onSetViewMode };
     switch (view) {
       case 'read':
         return <NavReadContainer {...allProps} />;
@@ -680,13 +707,13 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
       <meta http-equiv="Pragma" content="no-cache" />
       <meta http-equiv="page-enter" content="revealtrans(duration=seconds,transition=num)" />
       <meta http-equiv="page-exit" content="revealtrans(duration=seconds,transition=num)" />
-    `.trim()
+    `.trim(),
   );
 
   // find and parse the schema from script
   let schemaFromScript = '';
-  
-  if(window.fetchSchemaScript){
+
+  if (window.fetchSchemaScript) {
     try {
       schemaFromScript = await window.fetchSchemaScript();
     } catch (err) {}

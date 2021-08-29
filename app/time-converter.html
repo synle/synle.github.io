@@ -1,190 +1,190 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>Time Conversion</title>
-</head>
-<body>
-  <style>
-    *{
-      font-size:20px;
-      font-family: arial;
-    }
-    body{
-      margin: 30px;
-    }
-    input,button{
-      padding: 10px;
-      margin-bottom:10px;
-      border: 1px solid #aaa;
-      border-radius: 5px;
-    }
-    input{
-      width: 100%;
-    }
-    button{
-
-    }
-  </style>
-  <script src="//code.jquery.com/jquery-3.1.0.js"></script>
-  <script src="//cdn.jsdelivr.net/momentjs/2.14.1/moment-with-locales.min.js"></script>
-  <script src="//cdn.jsdelivr.net/momentjs/2.14.1/locales.min.js"></script>
-  <script src="//momentjs.com/downloads/moment-timezone-with-data.js"></script>
-  
-  <div id="form">
-    <div style="margin-bottom: 20px;">
-      <strong>From</strong><br />
-      <input id="tz" placeholder="tz" list="tzs" /><br />
-      <input id="t1" placeholder="t1" />
-    </div>
-    
-    <div style="text-align: center; margin-bottom: 20px;">
-      <button id="btn_t1_t2" style="color:red">T1 => T2</button>
-      <button id="btn_t2_t1" style="color:blue">T1 <= T2</button>
-    </div>
-    
-    <div style="margin-bottom: 15px;">
-      <strong>To (UTC)</strong><br />
-      <input id="t2" placeholder="t2" />
-      <datalist id="tzs"></datalist>
-    </div>
-      
-    <i id="now" style="color: #aaa"></i>
-  </div>
-    
-  <script>
-    const format = 'YYYY-MM-DD HH:mm:ss';
-
-    $('#t1').val(moment().format(format))
-
-    $('#btn_t1_t2').click(() => {
-      const t1 = $('#t1').val();
-      const t2 = $('#t2').val();
-      const tz = 'UTC';
-
-      // convert t1 to utc
-      var d = moment(t1).tz(tz);
-      $('#t2').val(d.format(format))
-    })
-
-
-    $('#btn_t2_t1').click(() => {
-      const t1 = $('#t1').val();
-      const t2 = $('#t2').val();
-      const tz = $('#tz').val();
-
-      // convert t2(utc) to local
-      var d = moment.utc(t2).tz(tz);
-      $('#t1').val(d.format(format))
-    })
-    
-    $('#now').click(() => {
-      $('#now').html(`${moment().format(format)}`)
-    }).click()
-
-
-    const tzs = [
-      "UTC",
-      "Africa/Abidjan",
-      "Africa/Algiers",
-      "Africa/Cairo",
-      "Africa/Casablanca",
-      "Africa/Johannesburg",
-      "Africa/Lagos",
-      "Africa/Maputo",
-      "Africa/Nairobi",
-      "Africa/Tripoli",
-      "America/Adak",
-      "America/Anchorage",
-      "America/Campo_Grande",
-      "America/Chicago",
-      "America/Chihuahua",
-      "America/Denver",
-      "America/Fortaleza",
-      "America/Halifax",
-      "America/Havana",
-      "America/La_Paz",
-      "America/Lima",
-      "America/Los_Angeles",
-      "America/Managua",
-      "America/Mexico_City",
-      "America/New_York",
-      "America/Noronha",
-      "America/Panama",
-      "America/Phoenix",
-      "America/Rio_Branco",
-      "America/Santiago",
-      "America/Santo_Domingo",
-      "America/Sao_Paulo",
-      "America/St_Johns",
-      "Antarctica/Palmer",
-      "Asia/Baghdad",
-      "Asia/Bangkok",
-      "Asia/Dhaka",
-      "Asia/Dili",
-      "Asia/Dubai",
-      "Asia/Gaza",
-      "Asia/Hong_Kong",
-      "Asia/Jakarta",
-      "Asia/Jerusalem",
-      "Asia/Kamchatka",
-      "Asia/Kathmandu",
-      "Asia/Kolkata",
-      "Asia/Makassar",
-      "Asia/Manila",
-      "Asia/Rangoon",
-      "Asia/Seoul",
-      "Asia/Shanghai",
-      "Asia/Tashkent",
-      "Asia/Tehran",
-      "Asia/Tokyo",
-      "Asia/Ulaanbaatar",
-      "Asia/Vladivostok",
-      "Asia/Yakutsk",
-      "Atlantic/Azores",
-      "Atlantic/Cape_Verde",
-      "Australia/Adelaide",
-      "Australia/Brisbane",
-      "Australia/Darwin",
-      "Australia/Lord_Howe",
-      "Australia/Perth",
-      "Australia/Sydney",
-      "Etc/UCT",
-      "Etc/UTC",
-      "Europe/Astrakhan",
-      "Europe/Athens",
-      "Europe/Chisinau",
-      "Europe/Dublin",
-      "Europe/Istanbul",
-      "Europe/Lisbon",
-      "Europe/London",
-      "Europe/Moscow",
-      "Europe/Paris",
-      "Europe/Volgograd",
-      "Pacific/Auckland",
-      "Pacific/Chatham",
-      "Pacific/Easter",
-      "Pacific/Fakaofo",
-      "Pacific/Galapagos",
-      "Pacific/Gambier",
-      "Pacific/Guadalcanal",
-      "Pacific/Guam",
-      "Pacific/Honolulu",
-      "Pacific/Kiritimati",
-      "Pacific/Niue",
-      "Pacific/Pago_Pago",
-      "Pacific/Pitcairn",
-      "Pacific/Port_Moresby",
-      "Pacific/Tahiti",
-    ].map(
-      tzEntry => {
-        return `<option>${tzEntry}</option>`;
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Time Conversion</title>
+  </head>
+  <body>
+    <style>
+      * {
+        font-size: 20px;
+        font-family: arial;
       }
-    ).join('\n')
+      body {
+        margin: 30px;
+      }
+      input,
+      button {
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #aaa;
+        border-radius: 5px;
+      }
+      input {
+        width: 100%;
+      }
+      button {
+      }
+    </style>
+    <script src="//code.jquery.com/jquery-3.1.0.js"></script>
+    <script src="//cdn.jsdelivr.net/momentjs/2.14.1/moment-with-locales.min.js"></script>
+    <script src="//cdn.jsdelivr.net/momentjs/2.14.1/locales.min.js"></script>
+    <script src="//momentjs.com/downloads/moment-timezone-with-data.js"></script>
 
-    $('#tzs').append(tzs)
-    $('#tz').val(moment.tz.guess())
-  </script>
-</body>
+    <div id="form">
+      <div style="margin-bottom: 20px">
+        <strong>From</strong><br />
+        <input id="tz" placeholder="tz" list="tzs" /><br />
+        <input id="t1" placeholder="t1" />
+      </div>
+
+      <div style="text-align: center; margin-bottom: 20px">
+        <button id="btn_t1_t2" style="color: red">T1 => T2</button>
+        <button id="btn_t2_t1" style="color: blue">T1 <= T2</button>
+      </div>
+
+      <div style="margin-bottom: 15px">
+        <strong>To (UTC)</strong><br />
+        <input id="t2" placeholder="t2" />
+        <datalist id="tzs"></datalist>
+      </div>
+
+      <i id="now" style="color: #aaa"></i>
+    </div>
+
+    <script>
+      const format = 'YYYY-MM-DD HH:mm:ss';
+
+      $('#t1').val(moment().format(format));
+
+      $('#btn_t1_t2').click(() => {
+        const t1 = $('#t1').val();
+        const t2 = $('#t2').val();
+        const tz = 'UTC';
+
+        // convert t1 to utc
+        var d = moment(t1).tz(tz);
+        $('#t2').val(d.format(format));
+      });
+
+      $('#btn_t2_t1').click(() => {
+        const t1 = $('#t1').val();
+        const t2 = $('#t2').val();
+        const tz = $('#tz').val();
+
+        // convert t2(utc) to local
+        var d = moment.utc(t2).tz(tz);
+        $('#t1').val(d.format(format));
+      });
+
+      $('#now')
+        .click(() => {
+          $('#now').html(`${moment().format(format)}`);
+        })
+        .click();
+
+      const tzs = [
+        'UTC',
+        'Africa/Abidjan',
+        'Africa/Algiers',
+        'Africa/Cairo',
+        'Africa/Casablanca',
+        'Africa/Johannesburg',
+        'Africa/Lagos',
+        'Africa/Maputo',
+        'Africa/Nairobi',
+        'Africa/Tripoli',
+        'America/Adak',
+        'America/Anchorage',
+        'America/Campo_Grande',
+        'America/Chicago',
+        'America/Chihuahua',
+        'America/Denver',
+        'America/Fortaleza',
+        'America/Halifax',
+        'America/Havana',
+        'America/La_Paz',
+        'America/Lima',
+        'America/Los_Angeles',
+        'America/Managua',
+        'America/Mexico_City',
+        'America/New_York',
+        'America/Noronha',
+        'America/Panama',
+        'America/Phoenix',
+        'America/Rio_Branco',
+        'America/Santiago',
+        'America/Santo_Domingo',
+        'America/Sao_Paulo',
+        'America/St_Johns',
+        'Antarctica/Palmer',
+        'Asia/Baghdad',
+        'Asia/Bangkok',
+        'Asia/Dhaka',
+        'Asia/Dili',
+        'Asia/Dubai',
+        'Asia/Gaza',
+        'Asia/Hong_Kong',
+        'Asia/Jakarta',
+        'Asia/Jerusalem',
+        'Asia/Kamchatka',
+        'Asia/Kathmandu',
+        'Asia/Kolkata',
+        'Asia/Makassar',
+        'Asia/Manila',
+        'Asia/Rangoon',
+        'Asia/Seoul',
+        'Asia/Shanghai',
+        'Asia/Tashkent',
+        'Asia/Tehran',
+        'Asia/Tokyo',
+        'Asia/Ulaanbaatar',
+        'Asia/Vladivostok',
+        'Asia/Yakutsk',
+        'Atlantic/Azores',
+        'Atlantic/Cape_Verde',
+        'Australia/Adelaide',
+        'Australia/Brisbane',
+        'Australia/Darwin',
+        'Australia/Lord_Howe',
+        'Australia/Perth',
+        'Australia/Sydney',
+        'Etc/UCT',
+        'Etc/UTC',
+        'Europe/Astrakhan',
+        'Europe/Athens',
+        'Europe/Chisinau',
+        'Europe/Dublin',
+        'Europe/Istanbul',
+        'Europe/Lisbon',
+        'Europe/London',
+        'Europe/Moscow',
+        'Europe/Paris',
+        'Europe/Volgograd',
+        'Pacific/Auckland',
+        'Pacific/Chatham',
+        'Pacific/Easter',
+        'Pacific/Fakaofo',
+        'Pacific/Galapagos',
+        'Pacific/Gambier',
+        'Pacific/Guadalcanal',
+        'Pacific/Guam',
+        'Pacific/Honolulu',
+        'Pacific/Kiritimati',
+        'Pacific/Niue',
+        'Pacific/Pago_Pago',
+        'Pacific/Pitcairn',
+        'Pacific/Port_Moresby',
+        'Pacific/Tahiti',
+      ]
+        .map((tzEntry) => {
+          return `<option>${tzEntry}</option>`;
+        })
+        .join('\n');
+
+      $('#tzs').append(tzs);
+      $('#tz').val(moment.tz.guess());
+    </script>
+  </body>
 </html>

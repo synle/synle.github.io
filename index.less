@@ -1,5 +1,5 @@
 @fontFamily0: Helvetica, Tahoma, Geneva, sans-serif;
-@fontFamily1: "Times New Roman", Times, serif;
+@fontFamily1: 'Times New Roman', Times, serif;
 @fontFamily2: Impact, Charcoal, sans-serif;
 
 @fontWeight2: 900;
@@ -57,7 +57,8 @@
   --color-blacklight: #333;
 }
 @media (prefers-color-scheme: dark) {
-  :root:extend(.prefers-dark-color-scheme){}
+  :root:extend(.prefers-dark-color-scheme) {
+  }
 }
 
 @space0: var(--space-0);
@@ -347,7 +348,7 @@ ul {
   list-style: none;
 
   &::before {
-    content: "\b7";
+    content: '\b7';
     margin-right: 2px;
     font-weight: bold;
     vertical-align: middle;
@@ -355,7 +356,7 @@ ul {
 }
 
 .at:after {
-  content: "@";
+  content: '@';
   color: @colorForeground;
 }
 
@@ -482,7 +483,7 @@ html {
 
   body {
     max-width: @width-page;
-    width: calc(~"100% - 40px");
+    width: calc(~'100% - 40px');
     margin: @space-auto;
   }
 
@@ -574,7 +575,7 @@ html {
   }
 
   body {
-    width: calc(~"100% - 30px");
+    width: calc(~'100% - 30px');
   }
 
   .job-header {
@@ -679,8 +680,7 @@ html {
   background: #c1c1c1;
 }
 
-
-#daynight-toggle{
+#daynight-toggle {
   cursor: pointer;
   position: fixed;
   top: 5px;

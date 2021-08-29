@@ -1,89 +1,102 @@
 <!DOCTYPE html>
 <html>
-  <head><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
   <body>
-    <form id='form-cal'>
-      <div class='field mb'><h1>New Calendar</h1></div>
-      <div class='field mb'>
-        <label for='txt-text'>Text</label>
-        <input id='txt-text' name='txt-text' type='text' required></input>
+    <form id="form-cal">
+      <div class="field mb"><h1>New Calendar</h1></div>
+      <div class="field mb">
+        <label for="txt-text">Text</label>
+        <input id="txt-text" name="txt-text" type="text" required />
       </div>
 
-      <div class='field mb'>
-        <label for='txt-details'>Details</label>
-        <textarea id='txt-details' name='txt-details' type='text' style="min-height: 350px"></textarea>
+      <div class="field mb">
+        <label for="txt-details">Details</label>
+        <textarea
+          id="txt-details"
+          name="txt-details"
+          type="text"
+          style="min-height: 350px"
+        ></textarea>
       </div>
 
-      <fieldset class='mb'>
-        <div class='field'>
-          <label for='txt-date'>Date</label>
-          <input id='txt-date' name='txt-date' type='date' required></input>
+      <fieldset class="mb">
+        <div class="field">
+          <label for="txt-date">Date</label>
+          <input id="txt-date" name="txt-date" type="date" required />
         </div>
 
-        <div class='field'>
-          <label for='txt-from'>From</label>
-          <input id='txt-from' name='txt-from' type='time' required></input>
+        <div class="field">
+          <label for="txt-from">From</label>
+          <input id="txt-from" name="txt-from" type="time" required />
         </div>
 
-        <div class='field'>
-          <label for='txt-to'>To</label>
-          <input id='txt-to' name='txt-to' type='time' required></input>
+        <div class="field">
+          <label for="txt-to">To</label>
+          <input id="txt-to" name="txt-to" type="time" required />
         </div>
       </fieldset>
 
-      <div class='field mb'>
-        <label for='txt-location'>Location</label>
-        <input id='txt-location' name='txt-location' type='text'></input>
+      <div class="field mb">
+        <label for="txt-location">Location</label>
+        <input id="txt-location" name="txt-location" type="text" />
       </div>
 
-      <div class='field mb'>
-        <button type='submit'>Generate</button>
+      <div class="field mb">
+        <button type="submit">Generate</button>
       </div>
 
-      <div class='field mb'>
-        <a id='link' target='_blank'></a>
+      <div class="field mb">
+        <a id="link" target="_blank"></a>
       </div>
     </form>
 
     <style>
-      body{
-        font-family:Arial, Helvetica, sans-serif;
+      body {
+        font-family: Arial, Helvetica, sans-serif;
         font-size: 20px;
         width: 70%;
         max-width: 800px;
         margin: auto;
       }
 
-      input, button, textarea{
+      input,
+      button,
+      textarea {
         font-size: 1rem;
         box-sizing: border-box;
       }
 
-      .mb{
+      .mb {
         margin-bottom: 1rem;
       }
 
-      .field, fieldset{
+      .field,
+      fieldset {
         width: 100%;
         padding: 0;
         margin-left: auto;
         margin-right: auto;
       }
 
-      .field label, .field a{
+      .field label,
+      .field a {
         width: 100%;
-        display:block;
+        display: block;
         margin-bottom: 0.25rem;
       }
 
-      .field input, .field button, .field textarea {
+      .field input,
+      .field button,
+      .field textarea {
         width: 100%;
         border: 2px solid #aaa;
-        display:block;
+        display: block;
         padding: 10px;
       }
 
-      fieldset{
+      fieldset {
         display: flex;
         flex-direction: row;
         width: 100%;
@@ -91,63 +104,63 @@
       }
     </style>
 
-    <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js'></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 
     <script>
-      (
-        function(){
-          document.getElementById("txt-text").value = `Event for ${new Date().toLocaleString()}`
-          document.getElementById("txt-date").valueAsDate = new Date()
-          document.getElementById("txt-from").value = moment().format('HH:mm');
-          document.getElementById("txt-to").value = moment().add(1, 'hours').format('HH:mm');
+      (function () {
+        document.getElementById('txt-text').value = `Event for ${new Date().toLocaleString()}`;
+        document.getElementById('txt-date').valueAsDate = new Date();
+        document.getElementById('txt-from').value = moment().format('HH:mm');
+        document.getElementById('txt-to').value = moment().add(1, 'hours').format('HH:mm');
 
+        try {
+          const urlSearchParams = new URLSearchParams(window.location.search);
+          const params = Object.fromEntries(urlSearchParams.entries());
+          document.querySelector('#txt-text').value = params.subject;
+          document.querySelector('#txt-details').value = params.body;
+        } catch (err) {}
 
-          try{
-            const urlSearchParams = new URLSearchParams(window.location.search);
-            const params = Object.fromEntries(urlSearchParams.entries());
-            document.querySelector('#txt-text').value = params.subject;
-            document.querySelector('#txt-details').value = params.body;
-          } catch(err){
+        document.querySelector('#form-cal').addEventListener('submit', (e) => {
+          e.preventDefault();
 
-          }
+          const date = document.querySelector('#txt-date').value;
+          const from = document.querySelector('#txt-from').value;
+          const to = document.querySelector('#txt-to').value;
+          const text = document.querySelector('#txt-text').value;
+          const details = document.querySelector('#txt-details').value;
+          const location = document.querySelector('#txt-location').value;
 
-          document.querySelector('#form-cal').addEventListener('submit', (e) => {
-            e.preventDefault();
+          const DATE_TIME_FORMAT_FROM = 'YYYY-MM-DD kk:mm';
+          const DATE_TIME_FORMAT_TO = 'YYYYMMDDTkkmm00Z'; // 20210305T163000Z
+          const dateFrom = moment
+            .utc(`${date} ${from}`, DATE_TIME_FORMAT_FROM)
+            .format(DATE_TIME_FORMAT_TO);
+          const dateTo = moment
+            .utc(`${date} ${to}`, DATE_TIME_FORMAT_FROM)
+            .format(DATE_TIME_FORMAT_TO);
 
-            const date = document.querySelector('#txt-date').value;
-            const from = document.querySelector('#txt-from').value;
-            const to = document.querySelector('#txt-to').value;
-            const text = document.querySelector('#txt-text').value;
-            const details = document.querySelector('#txt-details').value;
-            const location = document.querySelector('#txt-location').value;
+          const link = generateLink({
+            dateFrom,
+            dateTo,
+            text,
+            details,
+            location,
+          });
 
-            const DATE_TIME_FORMAT_FROM = 'YYYY-MM-DD kk:mm';
-            const DATE_TIME_FORMAT_TO = 'YYYYMMDDTkkmm00Z';// 20210305T163000Z
-            const dateFrom = moment.utc(`${date} ${from}`, DATE_TIME_FORMAT_FROM).format(DATE_TIME_FORMAT_TO);
-            const dateTo = moment.utc(`${date} ${to}`, DATE_TIME_FORMAT_FROM).format(DATE_TIME_FORMAT_TO);
+          document.querySelector('#link').innerText = text;
+          document.querySelector('#link').href = link;
 
-            const link = generateLink({
-              dateFrom,
-              dateTo,
-              text,
-              details,
-              location,
-            });
+          window.open(link);
+        });
 
-            document.querySelector('#link').innerText = text;
-            document.querySelector('#link').href = link;
-
-            window.open(link)
-          })
-
-          function generateLink(data){
-            // https://stackoverflow.com/questions/22757908/what-parameters-are-required-to-create-an-add-to-google-calendar-link
-            const {text, details, location, dateFrom, dateTo} = data;
-            return `https://calendar.google.com/calendar/u/0/r/eventedit?dates=${dateFrom}/${dateTo}&trp=true&text=${encodeURIComponent(text)}&location=${encodeURIComponent(location)}&details=${encodeURIComponent(details)}`
-          }
+        function generateLink(data) {
+          // https://stackoverflow.com/questions/22757908/what-parameters-are-required /k
+          const { text, details, location, dateFrom, dateTo } = data;
+          return `https://calendar.google.com/calendar/u/0/r/eventedit?dates=${dateFrom}/${dateTo}&trp=true&text=${encodeURIComponent(
+            text,
+          )}&location=${encodeURIComponent(location)}&details=${encodeURIComponent(details)}`;
         }
-      )();
+      })();
     </script>
   </body>
-
 </html>

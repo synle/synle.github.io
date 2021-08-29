@@ -20,7 +20,6 @@ String.prototype.fetchJSON = function (...params) {
   return fetch(this, ...params).then((r) => r.json());
 };
 
-
 // helpers
 const helper = {};
 helper.getNavBookmarkletFromSchema = (input) => {
@@ -47,13 +46,16 @@ helper.getNavBookmarkletFromSchema = (input) => {
 helper.navigateToDataUrl = async (base64URL, forceOpenWindow) => {
   try {
     const parser = new DOMParser();
-    const doc = parser.parseFromString(decodeURIComponent(base64URL.replace('data:text/html,', '')), 'text/html');
+    const doc = parser.parseFromString(
+      decodeURIComponent(base64URL.replace('data:text/html,', '')),
+      'text/html',
+    );
     const schema = doc.querySelector('#schema').innerText.trim();
     const childWindow = window.open('https://synle.github.io/link/nav-generator.html');
     const messageOrigin = 'https://synle.github.io';
 
     // post message to redirect the data url accordingly
-    childWindow.postMessage({type: 'onViewLinks', schema}, messageOrigin);
+    childWindow.postMessage({ type: 'onViewLinks', schema }, messageOrigin);
   } catch (err) {
     // show it in the prompt
     await prompt('Data URL (copy to your clipboard):', base64URL);
@@ -83,19 +85,18 @@ helper.getPersistedBufferSchema = () => {
   }
 };
 
-
 // special handling to override the fetch
 (() => {
   const _onHandlePostMessageEvent = (event) => {
     const { type } = event.data;
     const newSchema = event.data.schema;
-    if (type === "onViewLinks") {
+    if (type === 'onViewLinks') {
       try {
         helper.persistBufferSchema(newSchema);
         window.fetchSchemaScript = async () => newSchema;
-        window.removeEventListener("message", _onHandlePostMessageEvent);
+        window.removeEventListener('message', _onHandlePostMessageEvent);
       } catch (err) {}
     }
   };
-  window.addEventListener("message", _onHandlePostMessageEvent);
-})()
+  window.addEventListener('message', _onHandlePostMessageEvent);
+})();

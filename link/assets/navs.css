@@ -16,21 +16,22 @@ html {
 
   --gridGapHeight: 1rem;
   --gridGapWidth: 1.25rem;
-  --gridColumnLayout: calc(275px - var(--gridGapWidth)) calc(275px - var(--gridGapWidth)) calc(275px - var(--gridGapWidth));
-  
+  --gridColumnLayout: calc(275px - var(--gridGapWidth)) calc(275px - var(--gridGapWidth))
+    calc(275px - var(--gridGapWidth));
+
   --colorBgMain: #0d1117;
   --colorBgSecondary: #161b22;
   --colorBgHighlight: #f1e05a;
   --colorBgHighlightSecondary: #c9d1d9;
-  
+
   --colorTextMain: #c9d1d9;
   --colorTextLink: #58a6ff;
 
   --colorBorderMain: #30363d;
   --colorBorderSecondary: #30363d;
-  
+
   --colorBoxShadowMain: 0 0 0 3px #0c2d6b;
-  
+
   --fontWeightBold: 600;
   --fontWeightSemiBold: 500;
   --maxBodyWidth: 900px;
@@ -50,7 +51,8 @@ body {
   padding: var(--spaceSize2) var(--spaceSize3);
   min-width: calc(100% - 30px);
   max-width: var(--maxBodyWidth);
-  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif,
+    Apple Color Emoji, Segoe UI Emoji;
   overflow-y: auto !important;
 }
 html,
@@ -60,8 +62,9 @@ body:after {
   border: none !important;
   background-color: var(--colorBgMain) !important;
 }
-html, body{
-  height:  100%;
+html,
+body {
+  height: 100%;
 }
 form,
 pre,
@@ -108,7 +111,7 @@ textarea:focus,
 .block:focus,
 .tabs > tab:focus {
   background: var(--colorBgSecondary) !important;
-/*   box-shadow: var(--colorBoxShadowMain); */
+  /*   box-shadow: var(--colorBoxShadowMain); */
 }
 
 a,
@@ -128,7 +131,8 @@ button,
   justify-content: center;
 }
 
-#fav > *, #command > * {
+#fav > *,
+#command > * {
   animation: fadeInFromNone 0.5s ease-out;
   text-align: left;
 }
@@ -173,15 +177,16 @@ button,
 #fav .tabs tab {
   flex-grow: 1;
   border-bottom: var(--borderSize2) solid var(--colorBorderSecondary);
-  padding: var(--spaceSize2) var(--spaceSize3) ;
+  padding: var(--spaceSize2) var(--spaceSize3);
   user-select: none;
   cursor: pointer;
   text-transform: uppercase;
   font-size: var(--fontSize2);
 }
 
-#fav .tabs tab:hover, #fav .tabs tab.selected{
-  border-bottom: var(--borderSize2) solid var(--colorBgHighlight)
+#fav .tabs tab:hover,
+#fav .tabs tab.selected {
+  border-bottom: var(--borderSize2) solid var(--colorBgHighlight);
 }
 
 #fav .tabs tab.selected {
@@ -202,7 +207,7 @@ button,
 #output {
   height: 80px;
 }
-#input{
+#input {
   white-space: nowrap;
 }
 #searchForm {
@@ -218,15 +223,16 @@ button,
   min-height: 100%;
   height: 100%;
 }
-#command .commandHeader{
+#command .commandHeader {
   display: grid;
-   grid-template-columns: repeat(3,1fr);
-   grid-gap: 2rem 1.5rem;
-   margin-block: 1rem;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 2rem 1.5rem;
+  margin-block: 1rem;
 }
 
-#command .commandHeader a, #command .commandHeader button{
-  text-align:  center;
+#command .commandHeader a,
+#command .commandHeader button {
+  text-align: center;
 }
 
 .hidden {
@@ -245,7 +251,8 @@ button,
   z-index: 1;
 }
 
-.dropdown-content button, .dropdown-content a{
+.dropdown-content button,
+.dropdown-content a {
   text-align: center;
   width: 100%;
 }
@@ -254,14 +261,14 @@ button,
   display: block;
 }
 
-.dropdown .dropdown-trigger{
+.dropdown .dropdown-trigger {
   width: 100%;
-   display: block;
-   padding: var(--spaceSize2);
-   text-align: center;
+  display: block;
+  padding: var(--spaceSize2);
+  text-align: center;
 }
 
-.footer{
+.footer {
   display: flex;
   margin-top: 1rem;
   align-items: center;
@@ -281,7 +288,7 @@ button,
     --fontSize1: 16px;
     --fontSize2: 16px;
     --fontSize3: 16px;
-    
+
     --gridGapHeight: 0.2rem;
     --gridGapWidth: 0.25rem;
     --gridColumnLayout: calc(100% - var(--gridGapWidth));

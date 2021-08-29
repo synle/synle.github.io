@@ -29,15 +29,15 @@
       select {
         font-size: 1rem;
       }
-      input[type="text"],
+      input[type='text'],
       textarea {
         display: block;
         width: 100%;
       }
       a,
       button,
-      input[type="button"],
-      input[type="submit"] {
+      input[type='button'],
+      input[type='submit'] {
         min-width: 100px;
         border: 2px solid #ccc;
         cursor: pointer;
@@ -48,16 +48,16 @@
         font-weight: 600;
         transition: all 0.25s ease-out;
       }
-      [type="submit"] {
+      [type='submit'] {
         background: #000;
         color: #fff;
       }
       a:hover,
       button:hover,
-      input[type="submit"]:hover,
+      input[type='submit']:hover,
       a:focus,
       button:focus,
-      input[type="submit"]:focus {
+      input[type='submit']:focus {
         box-shadow: 0 0 0 3px #0c2d6b;
       }
       button,
@@ -88,7 +88,7 @@
       }
 
       #output {
-        font-family: "courier news";
+        font-family: 'courier news';
         border: 2px solid black;
         background: blue;
         color: white;
@@ -126,8 +126,7 @@
       <div class="row">
         <button type="submit">Submit</button>
         <button type="button" onClick="onReset()">Reset</button>
-        <a
-          href="https://github.com/synle/synle.github.io/blob/master/app/port-forwarding.html"
+        <a href="https://github.com/synle/synle.github.io/blob/master/app/port-forwarding.html"
           >Source Code</a
         >
       </div>
@@ -137,7 +136,7 @@
     <script>
       // getting and setting the page title
       try {
-        document.querySelector("h1").innerText = document.location.href
+        document.querySelector('h1').innerText = document.location.href
           .match(/[a-z-A-Z0-9]+\/[a-z-A-Z0-9]+.html/)[0]
           .trim();
       } catch (err) {}
@@ -147,11 +146,11 @@
       // https://linuxize.com/post/how-to-setup-ssh-tunneling/#:~:text=Windows%20users%20can%20create%20SSH%20tunnels%20using%20the%20PuTTY%20SSH%20client.&text=Launch%20Putty%20and%20enter%20the,Dynamic%20for%20dynamic%20port%20forwarding.
 
       function getInputRows() {
-        return [...document.querySelectorAll(".inputRow")];
+        return [...document.querySelectorAll('.inputRow')];
       }
 
       function getLastInputRow() {
-        const inputRows = [...document.querySelectorAll(".inputRow")];
+        const inputRows = [...document.querySelectorAll('.inputRow')];
         if (inputRows && inputRows.length > 0) {
           let lastInputRow = inputRows[inputRows.length - 1];
           return lastInputRow;
@@ -160,10 +159,10 @@
       }
 
       function addRow(localIp, localPort, destinationIp, destinationPort) {
-        localIp = (localIp || "localhost").trim();
-        destinationIp = (destinationIp || "sy-mp").trim();
-        localPort = (localPort || "").trim();
-        destinationPort = (destinationPort || "").trim();
+        localIp = (localIp || 'localhost').trim();
+        destinationIp = (destinationIp || 'sy-mp').trim();
+        localPort = (localPort || '').trim();
+        destinationPort = (destinationPort || '').trim();
 
         // reuse from last row
         if (localIp && localPort && destinationIp && destinationPort) {
@@ -171,15 +170,13 @@
         } else {
           const lastInputRow = getLastInputRow();
           if (lastInputRow) {
-            localIp = lastInputRow.querySelector(".local_ip").value.trim();
-            destinationIp = lastInputRow
-              .querySelector(".destination_ip")
-              .value.trim();
+            localIp = lastInputRow.querySelector('.local_ip').value.trim();
+            destinationIp = lastInputRow.querySelector('.destination_ip').value.trim();
           }
         }
 
-        document.querySelector("#datalistPorts").insertAdjacentHTML(
-          "beforebegin",
+        document.querySelector('#datalistPorts').insertAdjacentHTML(
+          'beforebegin',
           `
         <div class='row inputRow'>
           <input autofocus class='local_ip' list='datalistLocalIp' placeholder='local_ip (localhost)' value='${localIp}' type='text' onBlur="onBlurFormat(this)"/>
@@ -188,11 +185,11 @@
           <input class='destination_port' list='datalistPorts' required2 placeholder='dest_port' value='${destinationPort}' type='number' onBlur="onBlurFormat(this)"/>
           <button type='button' onClick='onDeleteRow(this)'>X</button>
         </div>
-      `
+      `,
         );
 
         // focus on the last row
-        getLastInputRow().querySelector("input").focus();
+        getLastInputRow().querySelector('input').focus();
       }
 
       function onBlurFormat(target) {
@@ -213,14 +210,10 @@
         const inputRows = getInputRows();
         const tunnelMappings = inputRows
           .map((dom) => {
-            const local_ip = dom.querySelector(".local_ip").value;
-            const local_port = dom.querySelector(".local_port").value;
-            const destination_ip = dom
-              .querySelector(".destination_ip")
-              .value.trim();
-            const destination_port = dom
-              .querySelector(".destination_port")
-              .value.trim();
+            const local_ip = dom.querySelector('.local_ip').value;
+            const local_port = dom.querySelector('.local_port').value;
+            const destination_ip = dom.querySelector('.destination_ip').value.trim();
+            const destination_port = dom.querySelector('.destination_port').value.trim();
 
             if (local_ip <= 1024 || destination_ip <= 1024) {
               needSudo = true;
@@ -228,30 +221,26 @@
 
             return `${local_port}:${local_ip}:${destination_ip}:${destination_port}`;
           })
-          .join(" \\\n");
+          .join(' \\\n');
 
         output += ` \\\n${tunnelMappings}`;
 
-        const server = document.querySelector("#server").value;
+        const server = document.querySelector('#server').value;
         output += ` \\\n -f -N ${server}`;
-        document.querySelector("#output").innerText = output;
-        document.querySelector("#output").style.display = "flex";
+        document.querySelector('#output').innerText = output;
+        document.querySelector('#output').style.display = 'flex';
 
         // persist
         const urlData = inputRows
           .map((dom) => {
-            const local_ip = dom.querySelector(".local_ip").value;
-            const local_port = dom.querySelector(".local_port").value;
-            const destination_ip = dom
-              .querySelector(".destination_ip")
-              .value.trim();
-            const destination_port = dom
-              .querySelector(".destination_port")
-              .value.trim();
+            const local_ip = dom.querySelector('.local_ip').value;
+            const local_port = dom.querySelector('.local_port').value;
+            const destination_ip = dom.querySelector('.destination_ip').value.trim();
+            const destination_port = dom.querySelector('.destination_port').value.trim();
 
             return `${local_port}:${local_ip}:${destination_ip}:${destination_port}`;
           })
-          .join("|");
+          .join('|');
         try {
           const newUrl = `?${urlData}`;
           if (newUrl !== location.search) {
@@ -282,15 +271,15 @@
       function onInit() {
         const setLocalIps = new Set();
         const setDestinationIps = new Set();
-        const setPorts = new Set("80,443,8080,3000".split(","));
+        const setPorts = new Set('80,443,8080,3000'.split(','));
 
         if (!location.search) {
           addRow();
         } else {
           location.search
             .split(/[?|]/)
-            .filter((r) => r.split(":").length === 4)
-            .map((r) => r.split(":"))
+            .filter((r) => r.split(':').length === 4)
+            .map((r) => r.split(':'))
             .forEach(([localPort, localIp, destinationIp, destinationPort]) => {
               setPorts.add(localPort);
               setPorts.add(destinationPort);
@@ -300,22 +289,13 @@
             });
         }
 
-        addDataListOption(
-          document.querySelector("#datalistLocalIp"),
-          setLocalIps
-        );
-        addDataListOption(
-          document.querySelector("#datalistDestIp"),
-          setDestinationIps
-        );
-        addDataListOption(document.querySelector("#datalistPorts"), setPorts);
+        addDataListOption(document.querySelector('#datalistLocalIp'), setLocalIps);
+        addDataListOption(document.querySelector('#datalistDestIp'), setDestinationIps);
+        addDataListOption(document.querySelector('#datalistPorts'), setPorts);
 
         function addDataListOption(listDom, options) {
           for (const optionVal of options) {
-            listDom.insertAdjacentHTML(
-              "beforeend",
-              `<option>${optionVal}</option>`
-            );
+            listDom.insertAdjacentHTML('beforeend', `<option>${optionVal}</option>`);
           }
         }
       }
