@@ -270,13 +270,13 @@ ul {
   list-style: none;
 }
 .row::before {
-  content: "\b7";
+  content: '\b7';
   margin-right: 2px;
   font-weight: bold;
   vertical-align: middle;
 }
 .at:after {
-  content: "@";
+  content: '@';
   color: var(--color-foreground);
 }
 html {
