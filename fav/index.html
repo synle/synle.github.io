@@ -193,6 +193,7 @@ ${DEBUG_LINKS_SCHEMA}
 
       // create the schema script tag
       const schemaScript = document.createElement('script');
+      schemaScript.id = 'schema';
       schemaScript.type = 'schema';
       schemaScript.innerText = schema;
       document.body.appendChild(schemaScript);
