@@ -4,19 +4,19 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "typescript": "^4.4.2"
+    "http-server": "^0.12.3"
   },
   "devDependencies": {
-    "less": "^2.7.1"
+    "less": "^2.7.1",
+    "prettier": "2.0.2"
   },
   "scripts": {
-    "build": "sh build.sh",
-    "format": "sh format.sh",
+    "build": "npm run build:css; npm run package",
+    "build:css": "lessc ./index.less ./index.css",
+    "format": "npx prettier --write index.html index.less **/**/*.js **/**/*.css **/**/*.html",
     "package": "echo \"no package task yet\"",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx http-server --cors ."
+    "start": "npx http-server ."
   },
   "keywords": [
     "Sy",
