@@ -557,36 +557,8 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
 
   // main app starts here
   function App(props) {
-    const [view, setViewMode] = useState('read'); // read, edit, create
-    const [schema, setSchema] = useState(
-      props.schemaFromScript || helper.getPersistedBufferSchema(),
-    );
-
-    // effects
-    useEffect(() => {
-      if (isRenderedInMainForm) {
-        if (location.search.includes('newNav')) {
-          // render as edit mode for newNav
-          window.history.pushState('', '', '?');
-          helper.persistBufferSchema(DEFAULT_SCHEMA_TO_RENDER);
-          setSchema(DEFAULT_SCHEMA_TO_RENDER);
-          setViewMode('edit');
-        }
-      }
-
-      const _onHandlePostMessageEvent = (event) => {
-        const { type } = event.data;
-        const newSchema = event.data.schema;
-        if (type === 'onViewLinks') {
-          try {
-            helper.persistBufferSchema(newSchema);
-            setSchema(newSchema); // render with new data
-            window.removeEventListener('message', _onHandlePostMessageEvent);
-          } catch (err) {}
-        }
-      };
-      window.addEventListener('message', _onHandlePostMessageEvent);
-    }, []);
+    const [viewMode, setViewMode] = useState(props.viewMode); // read, edit, create
+    const [schema, setSchema] = useState(props.schema);
 
     // events
     const onSetViewMode = (newView) => setViewMode(newView);
@@ -594,7 +566,7 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
 
     // render the proper views
     const allProps = { schema, onSetSchema, onSetViewMode };
-    switch (view) {
+    switch (viewMode) {
       case 'read':
         return <NavReadContainer {...allProps} />;
       case 'edit':
@@ -655,17 +627,32 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
   );
 
   // find and parse the schema from script
-  let schemaFromScript = '';
+  let inputSchema = helper.getPersistedBufferSchema() || '';
+  let viewMode = 'read';
 
-  if (window.fetchSchemaScript) {
+  if (location.search.includes('loadNav')) {
+    // will wait for postmessage to populate this
+    window.history.pushState('', '', '?');
     try {
-      schemaFromScript = await window.fetchSchemaScript();
+      inputSchema = await window.fetchSchemaScript();
+    } catch (err) {}
+  } else if (location.search.includes('newNav')) {
+    // render as edit mode for newNav
+    window.history.pushState('', '', '?');
+    helper.persistBufferSchema(DEFAULT_SCHEMA_TO_RENDER);
+    inputSchema = DEFAULT_SCHEMA_TO_RENDER;
+    viewMode = 'edit';
+  } else if (window.fetchSchemaScript) {
+    // fetch the schema from the override
+    try {
+      inputSchema = await window.fetchSchemaScript();
     } catch (err) {}
   } else {
+    // use the schema script instead here...
     try {
-      schemaFromScript = document.querySelector('#schema').innerText.trim();
+      inputSchema = document.querySelector('#schema').innerText.trim();
     } catch (err) {}
   }
 
-  ReactDOM.render(<App schemaFromScript={schemaFromScript} />, document.body);
+  ReactDOM.render(<App schema={inputSchema} viewMode={viewMode} />, document.body);
 })();

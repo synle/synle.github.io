@@ -6,13 +6,15 @@ helper.getNavBookmarkletFromSchema = (input) => {
         <head>
           <link rel="stylesheet" type="text/css" href="https://synle.github.io/link/assets/navs.css" />
           <meta charset='utf-8' />
+          <title>Loading...</title>
         </head>
         <body>
-          <js_script id='schema' type='schema'>${input}</js_script>
-          <js_script src="https://synle.github.io/link/assets/helpers.js"></js_script>
-          <js_script src="https://unpkg.com/@babel/standalone/babel.min.js"></js_script>
-          <js_script type="text/babel" data-presets="react" data-type="module" src="https://synle.github.io/link/assets/navs.js"></js_script>
+          <div style="text-align: center; margin: 2rem; font-size: 2rem">Loading...</div>
         </body>
+        <js_script id='schema' type='schema'>${input}</js_script>
+        <js_script src="https://synle.github.io/link/assets/helpers.js"></js_script>
+        <js_script src="https://unpkg.com/@babel/standalone/babel.min.js"></js_script>
+        <js_script type="text/babel" data-presets="react" data-type="module" src="https://synle.github.io/link/assets/navs.js"></js_script>
       </html>
     `
     .trim()
@@ -29,11 +31,16 @@ helper.navigateToDataUrl = async (base64URL, forceOpenWindow) => {
       'text/html',
     );
     const schema = doc.querySelector('#schema').innerText.trim();
-    const childWindow = window.open('https://synle.github.io/link/nav-generator.html');
-    const messageOrigin = 'https://synle.github.io';
+    const childWindow = window.open('https://synle.github.io/link/nav-generator.html?loadNav');
+    const messageOrigin = '*';
 
     // post message to redirect the data url accordingly
-    childWindow.postMessage({ type: 'onViewLinks', schema }, messageOrigin);
+    const intervalTryPostingMessage = setInterval(_doPostMessage, 100);
+    setTimeout(() => clearInterval(intervalTryPostingMessage), 5000);
+
+    function _doPostMessage() {
+      childWindow.postMessage({ type: 'onViewLinks', schema }, messageOrigin);
+    }
   } catch (err) {
     // show it in the prompt
     await prompt('Data URL (copy to your clipboard):', base64URL);
@@ -62,22 +69,6 @@ helper.getPersistedBufferSchema = () => {
     return '';
   }
 };
-
-// special handling to override the fetch
-(() => {
-  const _onHandlePostMessageEvent = (event) => {
-    const { type } = event.data;
-    const newSchema = event.data.schema;
-    if (type === 'onViewLinks') {
-      try {
-        helper.persistBufferSchema(newSchema);
-        window.fetchSchemaScript = async () => newSchema;
-        window.removeEventListener('message', _onHandlePostMessageEvent);
-      } catch (err) {}
-    }
-  };
-  window.addEventListener('message', _onHandlePostMessageEvent);
-})();
 
 // prompts and alert overrides
 (async () => {
@@ -174,4 +165,20 @@ helper.getPersistedBufferSchema = () => {
       }
     });
   };
+})();
+
+// special handling to override the fetch
+(() => {
+  const _onHandlePostMessageEvent = (event) => {
+    const { type } = event.data;
+    const newSchema = event.data.schema;
+    if (type === 'onViewLinks') {
+      try {
+        helper.persistBufferSchema(newSchema);
+        window.fetchSchemaScript = async () => newSchema;
+        window.removeEventListener('message', _onHandlePostMessageEvent);
+      } catch (err) {}
+    }
+  };
+  window.addEventListener('message', _onHandlePostMessageEvent);
 })();
