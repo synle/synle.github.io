@@ -710,6 +710,43 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
     `.trim(),
   );
 
+  // app level events
+  document.addEventListener(
+    'keydown',
+    (e) => {
+      // handling enter and spacebar on focusable div
+      const { key } = e;
+      const target = e.target;
+
+      if (target.onclick) {
+        // if (key === 'Enter' || key === ' ') {
+        //   target.onclick.apply(target);
+        //   e.preventDefault();
+        //   e.stopPropagation();
+        //   return;
+        // }
+      } else if (key === 'Escape' && document.querySelector('#promptModal')) {
+        try {
+          document.querySelector('#promptModal #promptInput').onblur();
+        } catch (err) {}
+      } else if (key === 'Escape' && document.querySelector('#alertModal')) {
+        try {
+          document.querySelector('#alertModal #alertBody').onblur();
+        } catch (err) {}
+      } else if (document.querySelector('#search')) {
+        // special handling for ctrl + f to focus on searchbox
+        const searchBox = document.querySelector('#search');
+        if (searchBox) {
+          if (key === 'f' && (e.ctrlKey || e.altKey || e.metaKey)) {
+            searchBox.focus();
+            e.preventDefault();
+          }
+        }
+      }
+    },
+    true,
+  );
+
   // find and parse the schema from script
   let schemaFromScript = '';
 
