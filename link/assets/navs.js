@@ -43,7 +43,10 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
     \`\`\`blockId2
     sample blockId2
     \`\`\`
-  `.trimWhiteSpaces();
+  `
+    .split('\n')
+    .map((s) => s.trim())
+    .join('\n');
 
   // react components
   function SearchBox(props) {

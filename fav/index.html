@@ -16,7 +16,10 @@
       html code|||github.com/synle/synle.github.io/blob/master/fav/index.html
       nav js code|||github.com/synle/synle.github.io/blob/master/link/assets/navs.js
       nav css code|||github.com/synle/synle.github.io/blob/master/link/assets/navs.css
-    `.trimWhiteSpaces();
+    `
+      .split('\n')
+      .map((s) => s.trim())
+      .join('\n');
 
     const SITE_SCHEMA = `
       ! Sy's Favorites
@@ -77,7 +80,10 @@
       home router config | 192.168.1.1
       torrent | bit.ly/3pVvM2N
       Strong Password | javascript://getStrongPassword()
-    `.trimWhiteSpaces();
+    `
+      .split('\n')
+      .map((s) => s.trim())
+      .join('\n');
   </script>
 
   <!--  helpers  -->
@@ -99,10 +105,7 @@
                 @#$%^&*()+
                 [];',./
                 {}|:"<>?"
-            `
-              .trimWhiteSpaces(true)
-              .replace(/[ \n]/g, '')
-              .split(''),
+            `.replace(/[ \n\t]/g, ''),
           ),
         ];
         return chars;
@@ -128,8 +131,9 @@
     async function getHostMappingSchema() {
       let HOST_MAPPING_BLOCK_SCHEMA = '';
       try {
-        const hostMappingApiResponse =
-          fetch(`https://raw.githubusercontent.com/synle/bashrc/master/software/metadata/ip-address.config`).then(r => r.text())
+        const hostMappingApiResponse = fetch(
+          `https://raw.githubusercontent.com/synle/bashrc/master/software/metadata/ip-address.config`,
+        ).then((r) => r.text());
         const HOSTNAMES_GROUPED_BY_ID = await hostMappingApiResponse.then((r) =>
           r
             .split('\n')
@@ -177,7 +181,10 @@
           ${HOSTNAMES_MAPPINGS}
           # END Sy Home Hosts
           \`\`\`
-        `.trimWhiteSpaces();
+        `
+          .split('\n')
+          .map((s) => s.trim())
+          .join('\n');
       } catch (err) {}
 
       return HOST_MAPPING_BLOCK_SCHEMA;
