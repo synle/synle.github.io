@@ -149,10 +149,10 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
             <meta charset='utf-8' />
           </head>
           <body>
-            <js_script src="https://synle.github.io/link/assets/helpers.js"></js_script>
             <js_script id='schema' type='schema'>${input}</js_script>
+            <js_script src="https://synle.github.io/link/assets/helpers.js"></js_script>
             <js_script src="https://unpkg.com/@babel/standalone/babel.min.js"></js_script>
-            <js_script type="text/babel" data-presets="react" data-type="module" src="https://synle.github.io/link/assets/navs.jsx"></js_script>
+            <js_script type="text/babel" data-presets="react" data-type="module" src="https://synle.github.io/link/assets/navs.js"></js_script>
           </body>
         </html>
       `
@@ -693,7 +693,7 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
   // main app starts here
   function App(props) {
     const [view, setViewMode] = useState('read'); // read, edit, create
-    const [schema, setSchema] = useState(props.schemaFromScript || helper.getPersistedBufferSchema() || '');
+    const [schema, setSchema] = useState(props.schemaFromScript || helper.getPersistedBufferSchema());
 
     // effects
     useEffect(() => {
