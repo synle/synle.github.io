@@ -621,6 +621,8 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
   let inputSchema = helper.getPersistedBufferSchema() || '';
   let viewMode = 'read';
 
+  document.innerHTML = `<div style="text-align: center; margin: 20px; font-size: 20px;">Loading...</div>`;
+
   if (location.search.includes('loadNav')) {
     // will wait for postmessage to populate this
     window.history.pushState('', '', '?');

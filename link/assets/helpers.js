@@ -2,21 +2,19 @@
 const helper = {};
 helper.getNavBookmarkletFromSchema = (input) => {
   let rawOutput = `
-      <html>
-        <head>
-          <link rel="stylesheet/less" type="text/css" href="https://synle.github.io/link/assets/navs.less" />
-          <meta charset='utf-8' />
-          <title>Loading...</title>
-        </head>
-        <body>
-          <div style="text-align: center; margin: 20px; font-size: 20px;">Loading...</div>
-        </body>
-        <js_script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/4.1.1/less.min.js" referrerpolicy="no-referrer"></js_script>
-        <js_script id='schema' type='schema'>${input}</js_script>
-        <js_script src="https://synle.github.io/link/assets/helpers.js"></js_script>
-        <js_script src="https://unpkg.com/@babel/standalone/babel.min.js"></js_script>
-        <js_script type="text/babel" data-presets="react" data-type="module" src="https://synle.github.io/link/assets/navs.js"></js_script>
-      </html>
+<html>
+  <head>
+    <link rel='stylesheet/less' href='https://synle.github.io/link/assets/navs.less' />
+    <meta charset='utf-8' />
+    <title>Loading...</title>
+  </head>
+  <body></body>
+  <js_script id='schema' type='schema'>${input}</js_script>
+  <js_script src='https://cdnjs.cloudflare.com/ajax/libs/less.js/4.1.1/less.min.js'></js_script>
+  <js_script src='https://unpkg.com/@babel/standalone/babel.min.js'></js_script>
+  <js_script src='https://synle.github.io/link/assets/helpers.js'></js_script>
+  <js_script src='https://synle.github.io/link/assets/navs.js' type='text/babel' data-presets='react' data-type='module'></js_script>
+</html>
     `
     .trim()
     .replace(/js_script/g, 'script');
