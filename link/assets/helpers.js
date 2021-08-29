@@ -48,7 +48,7 @@ helper.onCopyToClipboard = async (text, autoDismiss) => {
     await navigator.clipboard.writeText(text);
     await alert('Copied to clipboard!', true);
   } catch (err) {
-    await prompt('Clipboard', text, autoDismiss);
+    await prompt('Clipboard', text, false);
   }
 };
 

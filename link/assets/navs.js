@@ -207,10 +207,12 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
 
           try {
             // try parse as new tab link
-            linkText = link.substr(0, link.indexOf(NEW_TAB_LINK_SPLIT)).trim();
-            linkUrl = link.substr(link.indexOf(NEW_TAB_LINK_SPLIT) + NEW_TAB_LINK_SPLIT.length).trim();
-
-            if (linkUrl && linkText) {
+            if (
+              link.indexOf(NEW_TAB_LINK_SPLIT) !== -1 &&
+              link.indexOf(NEW_TAB_LINK_SPLIT) <= link.indexOf(SAME_TAB_LINK_SPLIT)
+            ) {
+              linkText = link.substr(0, link.indexOf(NEW_TAB_LINK_SPLIT)).trim();
+              linkUrl = link.substr(link.indexOf(NEW_TAB_LINK_SPLIT) + NEW_TAB_LINK_SPLIT.length).trim();
               linkType = 'newTabLink';
             }
           } catch (err) {}
@@ -218,10 +220,9 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
           if (!linkType) {
             // try parse as same tab link
             try {
-              linkText = link.substr(0, link.indexOf(SAME_TAB_LINK_SPLIT)).trim();
-              linkUrl = link.substr(link.indexOf(SAME_TAB_LINK_SPLIT) + SAME_TAB_LINK_SPLIT.length).trim();
-
-              if (linkUrl && linkText) {
+              if (link.length > 0 && SAME_TAB_LINK_SPLIT.includes(SAME_TAB_LINK_SPLIT)) {
+                linkText = link.substr(0, link.indexOf(SAME_TAB_LINK_SPLIT)).trim();
+                linkUrl = link.substr(link.indexOf(SAME_TAB_LINK_SPLIT) + SAME_TAB_LINK_SPLIT.length).trim();
                 linkType = 'sameTabLink';
               }
             } catch (err) {}
@@ -375,7 +376,7 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
           const tabChildren = [...tabs.querySelectorAll('tab')];
           for (const tab of tabChildren) {
             // hooking up the onclick
-            tab.onclick = () => {
+            tab.onmousedown = () => {
               for (const targetTab of tabChildren) {
                 const targetTabId = targetTab.dataset.tabId;
                 if (tab === targetTab) {
@@ -390,7 +391,7 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
           }
 
           // trigger the first tab selection
-          tabChildren[0].onclick();
+          tabChildren[0].onmousedown();
         }
       }
     }, [doms, refContainer.current]);
