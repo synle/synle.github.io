@@ -411,7 +411,7 @@ window.alert = (alertText, autoDismiss) => {
 
     // remove all non alphanumeric
     let matchRegex;
-    const exactMatchRegex = new RegExp(searchText.replace(/"/g, ''), 'i');
+    const exactMatchRegex = new RegExp(searchText, 'i');
     if (searchText[0] === '/') {
       // fuzzy match
       const cleanedSearchText = searchText
@@ -419,7 +419,7 @@ window.alert = (alertText, autoDismiss) => {
         .replace(/[ ][ ]+/, ' ')
         .trim();
 
-      matchRegex = new RegExp('[ ]*' + cleanedSearchText.split('').join('[a-z0-9 -_]*'), 'i');
+      matchRegex = new RegExp(cleanedSearchText.split('').join('[a-z0-9 -_]*'), 'i');
     } else {
       // exact match
       matchRegex = exactMatchRegex;
