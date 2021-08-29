@@ -5,25 +5,9 @@
     <link rel="stylesheet" type="text/css" href="https://synle.github.io/link/assets/navs.css" />
   </head>
   <body>
-    <script>
-      // special handling to override the fetch
-      (() => {
-        const _onHandlePostMessageEvent = (event) => {
-          const { type } = event.data;
-          const newSchema = event.data.schema;
-          if (type === "onViewLinks") {
-            try {
-              helper.persistBufferSchema(newSchema);
-              window.fetchSchemaScript = async () => newSchema;
-              window.removeEventListener("message", _onHandlePostMessageEvent);
-            } catch (err) {}
-          }
-        };
-        window.addEventListener("message", _onHandlePostMessageEvent);
-      })()
-    </script>
-    <script src="https://synle.github.io/link/assets/helpers.js"></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    <script type="text/babel" data-presets="react" data-type="module" src="https://synle.github.io/link/assets/navs.js"></script>
+    <div style="text-align: center; margin: 2rem; font-size: 2rem;">Loading...</div>
   </body>
+  <script src="https://synle.github.io/link/assets/helpers.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel" data-presets="react" data-type="module" src="https://synle.github.io/link/assets/navs.js"></script>
 </html>

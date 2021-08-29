@@ -52,12 +52,8 @@ helper.navigateToDataUrl = async (base64URL, forceOpenWindow) => {
     const childWindow = window.open('https://synle.github.io/link/nav-generator.html');
     const messageOrigin = 'https://synle.github.io';
 
-    setTimeout(_doPostMessage, 100);
-
-    function _doPostMessage() {
-      console.log('[test] post message to child', schema);
-      childWindow.postMessage({type: 'onViewLinks', schema}, messageOrigin);
-    }
+    // post message to redirect the data url accordingly
+    childWindow.postMessage({type: 'onViewLinks', schema}, messageOrigin);
   } catch (err) {
     // show it in the prompt
     await prompt('Data URL (copy to your clipboard):', base64URL);
@@ -86,3 +82,20 @@ helper.getPersistedBufferSchema = () => {
     return '';
   }
 };
+
+
+// special handling to override the fetch
+(() => {
+  const _onHandlePostMessageEvent = (event) => {
+    const { type } = event.data;
+    const newSchema = event.data.schema;
+    if (type === "onViewLinks") {
+      try {
+        helper.persistBufferSchema(newSchema);
+        window.fetchSchemaScript = async () => newSchema;
+        window.removeEventListener("message", _onHandlePostMessageEvent);
+      } catch (err) {}
+    }
+  };
+  window.addEventListener("message", _onHandlePostMessageEvent);
+})()

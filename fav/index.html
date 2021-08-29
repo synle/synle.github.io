@@ -4,7 +4,9 @@
     <title>Loading...</title>
     <link rel="stylesheet" type="text/css" href="https://synle.github.io/link/assets/navs.css" />
   </head>
-  <body></body>
+  <body>
+    <div style="text-align: center; margin: 2rem; font-size: 2rem;">Loading...</div>
+  </body>
   <script src="https://synle.github.io/link/assets/helpers.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script>
@@ -183,7 +185,7 @@
   
   <!--  override the script to fetch the schema script  -->
   <script>
-    window.fetchSchemaScript = async () => {
+    (async () => {
       // combine and make the schema
       const schema = `
 ${SITE_SCHEMA}
@@ -191,8 +193,8 @@ ${await getHostMappingSchema()}
 ${DEBUG_LINKS_SCHEMA}
         `.trim();
 
-      return schema;
-    };
+      window.postMessage({type: 'onViewLinks', schema});
+    })()
   </script>
   
   <!--  call the navs lib to generate the view  -->
