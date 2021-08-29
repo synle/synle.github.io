@@ -4,13 +4,14 @@ helper.getNavBookmarkletFromSchema = (input) => {
   let rawOutput = `
       <html>
         <head>
-          <link rel="stylesheet" type="text/css" href="https://synle.github.io/link/assets/navs.css" />
+          <link rel="stylesheet/less" type="text/css" href="https://synle.github.io/link/assets/navs.less" />
           <meta charset='utf-8' />
           <title>Loading...</title>
         </head>
         <body>
           <div style="text-align: center; margin: 20px; font-size: 20px;">Loading...</div>
         </body>
+        <js_script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/4.1.1/less.min.js" referrerpolicy="no-referrer"></js_script>
         <js_script id='schema' type='schema'>${input}</js_script>
         <js_script src="https://synle.github.io/link/assets/helpers.js"></js_script>
         <js_script src="https://unpkg.com/@babel/standalone/babel.min.js"></js_script>
