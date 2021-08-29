@@ -9,7 +9,7 @@ helper.getNavBookmarkletFromSchema = (input) => {
           <title>Loading...</title>
         </head>
         <body>
-          <div style="text-align: center; margin: 2rem; font-size: 2rem">Loading...</div>
+          <div style="text-align: center; margin: 20px; font-size: 20px;">Loading...</div>
         </body>
         <js_script id='schema' type='schema'>${input}</js_script>
         <js_script src="https://synle.github.io/link/assets/helpers.js"></js_script>
@@ -26,10 +26,7 @@ helper.getNavBookmarkletFromSchema = (input) => {
 helper.navigateToDataUrl = async (base64URL, forceOpenWindow) => {
   try {
     const parser = new DOMParser();
-    const doc = parser.parseFromString(
-      decodeURIComponent(base64URL.replace('data:text/html,', '')),
-      'text/html',
-    );
+    const doc = parser.parseFromString(decodeURIComponent(base64URL.replace('data:text/html,', '')), 'text/html');
     const schema = doc.querySelector('#schema').innerText.trim();
     const childWindow = window.open('https://synle.github.io/link/nav-generator.html?loadNav');
     const messageOrigin = '*';
@@ -94,9 +91,7 @@ helper.getPersistedBufferSchema = () => {
       function setupPrompt() {
         document.querySelector('#promptModal #promptInput').value = promptInput;
         document.querySelector('#promptModal #promptInput').focus();
-        document
-          .querySelector('#promptModal #promptInput')
-          .setSelectionRange(0, promptInput.length);
+        document.querySelector('#promptModal #promptInput').setSelectionRange(0, promptInput.length);
         const rowCount = promptInput
           .trim()
           .split('\n')

@@ -208,9 +208,7 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
           try {
             // try parse as new tab link
             linkText = link.substr(0, link.indexOf(NEW_TAB_LINK_SPLIT)).trim();
-            linkUrl = link
-              .substr(link.indexOf(NEW_TAB_LINK_SPLIT) + NEW_TAB_LINK_SPLIT.length)
-              .trim();
+            linkUrl = link.substr(link.indexOf(NEW_TAB_LINK_SPLIT) + NEW_TAB_LINK_SPLIT.length).trim();
 
             if (linkUrl && linkText) {
               linkType = 'newTabLink';
@@ -221,9 +219,7 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
             // try parse as same tab link
             try {
               linkText = link.substr(0, link.indexOf(SAME_TAB_LINK_SPLIT)).trim();
-              linkUrl = link
-                .substr(link.indexOf(SAME_TAB_LINK_SPLIT) + SAME_TAB_LINK_SPLIT.length)
-                .trim();
+              linkUrl = link.substr(link.indexOf(SAME_TAB_LINK_SPLIT) + SAME_TAB_LINK_SPLIT.length).trim();
 
               if (linkUrl && linkText) {
                 linkType = 'sameTabLink';
@@ -274,10 +270,7 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
               // same tab link
               schemaCacheMap[newCacheId] = linkUrl;
               newDoms.push(
-                <a
-                  className="link sameTabLink"
-                  href={schemaCacheMap[newCacheId]}
-                  data-section={currentHeaderName}>
+                <a className="link sameTabLink" href={schemaCacheMap[newCacheId]} data-section={currentHeaderName}>
                   {linkText}
                 </a>,
               );
@@ -303,9 +296,7 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
       // insert the fav icon
       document.querySelector('#pageFavIcon') && document.querySelector('#pageFavIcon').remove();
       const favIconEncoded =
-        encodeURIComponent(
-          `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text x='0' y='14'>`,
-        ) +
+        encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text x='0' y='14'>`) +
         pageFavIcon +
         encodeURIComponent(`</text></svg>`);
       document.head.insertAdjacentHTML(
@@ -421,9 +412,9 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
               <option key={search}>{search}</option>
             ))}
           </datalist>
-        </div>
-        <div className="footer">
-          <button onClick={() => onEdit()}>Edit</button>
+          <div className="favFooter">
+            <button onClick={() => onEdit()}>Edit</button>
+          </div>
         </div>
       </>
     );
@@ -465,9 +456,7 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
     };
 
     const onZoomInput = (target) => {
-      [...document.querySelectorAll('#input,#output')].forEach(
-        (elem) => (elem.style.flexGrow = ''),
-      );
+      [...document.querySelectorAll('#input,#output')].forEach((elem) => (elem.style.flexGrow = ''));
       target.style.flexGrow = '1';
     };
 
@@ -514,14 +503,10 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
               <a target="_blank" href="https://synle.github.io/link/nav-generator.html?newNav">
                 New
               </a>
-              <a
-                target="_blank"
-                href="https://github.com/synle/synle.github.io/blob/master/link/assets/navs.js">
+              <a target="_blank" href="https://github.com/synle/synle.github.io/blob/master/link/assets/navs.js">
                 JS Code
               </a>
-              <a
-                target="_blank"
-                href="https://github.com/synle/synle.github.io/blob/master/link/assets/navs.css">
+              <a target="_blank" href="https://github.com/synle/synle.github.io/blob/master/link/assets/navs.css">
                 CSS Code
               </a>
               <button type="button" onClick={() => onTest()}>
