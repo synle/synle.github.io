@@ -404,7 +404,7 @@ window.alert = (alertText, autoDismiss) => {
 
     if (searchText.length === 0) {
       for (const elem of document.querySelectorAll('.link')) {
-        elem.classList.toggle('hidden', false);
+        elem.classList.remove('hidden');
       }
       return;
     }
@@ -436,7 +436,9 @@ window.alert = (alertText, autoDismiss) => {
         .replace(/html/gi, '')
         .replace(/index/gi, '')
         .replace(/[/.]/gi, '');
-      if (anchor.innerText.match(matchRegex)) {
+      const text = elem.innerText || '';
+
+      if (text.match(matchRegex)) {
         isHidden = false;
       } else if (anchor.dataset.section && anchor.dataset.section.match(exactMatchRegex)) {
         isHidden = false;
