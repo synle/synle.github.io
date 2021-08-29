@@ -180,7 +180,10 @@
       return HOST_MAPPING_BLOCK_SCHEMA;
     }
   </script>
-
+  
+  <!--  call the navs lib to generate the view  -->
+  <script type="text/babel" data-presets="react" data-type="module" src="https://synle.github.io/link/assets/navs.js"></script>
+  
   <!--  script started  -->
   <script>
     (async () => {
@@ -192,14 +195,13 @@ ${DEBUG_LINKS_SCHEMA}
         `.trim();
 
       // create the schema script tag
-      const schemaScript = document.createElement('pre');
-      schemaScript.style.display = 'none';
-      schemaScript.id = 'schema';
-      schemaScript.innerText = schema;
-      document.body.appendChild(schemaScript);
+      setTimeout(
+        () => window.postMessage({
+            type: "onViewLinks",
+            schema: schema
+        }), 
+        300
+      )
     })();
   </script>
-  
-  <!--  call the navs lib to generate the view  -->
-  <script type="text/babel" data-presets="react" data-type="module" src="https://synle.github.io/link/assets/navs.js"></script>
 </html>
