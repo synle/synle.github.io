@@ -24,7 +24,6 @@ String.prototype.fetchJSON = function (...params) {
   return fetch(this, ...params).then((r) => r.json());
 };
 
-window.cacheId = parseInt(Date.now());
 window.timeoutRemovePromptDiv = '';
 window.prompt = (promptText, promptInput, autoDismiss) => {
   clearTimeout(timeoutRemovePromptDiv);
@@ -130,6 +129,8 @@ window.alert = (alertText, manualDismiss) => {
   let isRenderedInDataUrl = location.href.indexOf('data:') === 0;
   let isRenderedInMainForm = !isRenderedInDataUrl;
 
+  let cacheId = parseInt(Date.now());
+
   const DEFAULT_SCHEMA_TO_RENDER = `
     ! Navigation ${new Date().toLocaleString()}
 
@@ -225,6 +226,20 @@ window.alert = (alertText, manualDismiss) => {
       await prompt('Clipboard', text, autoDismiss);
     }
   };
+
+  helper.persistBufferSchema= (value) =>{
+    try{
+      sessionStorage['schemaData'] = value;
+    } catch(err){}
+  }
+
+  helper.getPersistedBufferSchema= () =>{
+    try{
+      return sessionStorage['schemaData'] || '';
+    } catch(err){
+      return '';
+    }
+  }
 
   function SearchBox(props) {
     const {onSearch} = props;
@@ -413,7 +428,7 @@ window.alert = (alertText, manualDismiss) => {
               linkUrl = `https://${linkUrl}`;
             }
 
-            const newCacheId = ++window.cacheId;
+            const newCacheId = ++cacheId;
 
             if (linkUrl.indexOf('javascript://') === 0) {
               // js func link
@@ -717,19 +732,6 @@ window.alert = (alertText, manualDismiss) => {
 
     // effects
     useEffect(() => {
-      // insert zoom scale of 1 for mobile
-      document.head.insertAdjacentHTML(
-        'beforeend',
-        `
-          <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-          <meta http-equiv="Cache-Control" content="no-cache" />
-          <meta http-equiv="Pragma" content="no-cache" />
-          <meta http-equiv="page-enter" content="revealtrans(duration=seconds,transition=num)" />
-          <meta http-equiv="page-exit" content="revealtrans(duration=seconds,transition=num)" />
-          <meta charset='utf-8'>
-        `.trim()
-      );
-
       if (isRenderedInMainForm) {
         if (location.search.includes('loadFromMessageEvent')) {
           // loadFromMessageEvent - hook up the post message channel for passing in
@@ -775,20 +777,20 @@ window.alert = (alertText, manualDismiss) => {
     }
   }
 
-  helper.persistBufferSchema= (value) =>{
-    try{
-      sessionStorage['schemaData'] = value;
-    } catch(err){}
-  }
+  // hooking up extra meta data
+  document.head.insertAdjacentHTML(
+    'beforeend',
+    `
+      <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+      <meta http-equiv="Cache-Control" content="no-cache" />
+      <meta http-equiv="Pragma" content="no-cache" />
+      <meta http-equiv="page-enter" content="revealtrans(duration=seconds,transition=num)" />
+      <meta http-equiv="page-exit" content="revealtrans(duration=seconds,transition=num)" />
+      <meta charset='utf-8' />
+    `.trim()
+  );
 
-  helper.getPersistedBufferSchema= () =>{
-    try{
-      return sessionStorage['schemaData'] || '';
-    } catch(err){
-      return '';
-    }
-  }
-
+  // find and parse the schema from script
   let schemaFromScript = '';
   try {
     schemaFromScript = document.querySelector('#schema').innerText.trim();
