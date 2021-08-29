@@ -182,7 +182,7 @@
   </script>
 
   <!--  script started  -->
-  <script type="text/babel" data-presets="react" data-type="module">
+  <script>
     (async () => {
       // combine and make the schema
       const schema = `
@@ -193,6 +193,7 @@ ${DEBUG_LINKS_SCHEMA}
 
       // create the schema script tag
       const schemaScript = document.createElement('script');
+      schemaScript.type = 'schema';
       schemaScript.innerText = schema;
       document.body.appendChild(schemaScript);
     })();
