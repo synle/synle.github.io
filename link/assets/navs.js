@@ -137,15 +137,32 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
       let pageFavIcon = '📑';
       let pageTitle;
 
+      let blockIdMap = {};
+
+      const _upsertBlockId = (blockId) => {
+        if (!blockId) {
+          return `block_${++cacheId}_generated`;
+        }
+
+        if (!blockIdMap[blockId]) {
+          blockIdMap[blockId] = `block_${++cacheId}_${blockId}`;
+        }
+
+        return blockIdMap[blockId];
+      };
+
       let rawLinkHTML = lines.forEach((link) => {
+        const newCacheId = ++cacheId;
+
         // other processing for non block
         if (isInABlock) {
           if (blockType === 'code' && link.trim() === CODE_BLOCK_SPLIT) {
             // end of a pre block
             newDoms.push(
               <pre
+                key={newCacheId}
                 className="block codeBlock"
-                id={blockId}
+                id={_upsertBlockId(blockId)}
                 onDoubleClick={(e) => helper.onCopyToClipboard(e.target.innerText.trim(), true)}>
                 {blockBuffer.trim()}
               </pre>,
@@ -158,7 +175,11 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
           } else if (blockType === 'html' && link.trim() === HTML_BLOCK_SPLIT) {
             // end of a pre block
             newDoms.push(
-              <div className="block htmlBlock" id={blockId} dangerouslySetInnerHTML={{ __html: blockBuffer }}></div>,
+              <div
+                key={newCacheId}
+                className="block htmlBlock"
+                id={_upsertBlockId(blockId)}
+                dangerouslySetInnerHTML={{ __html: blockBuffer }}></div>,
             );
             isInABlock = false;
             blockBuffer = '';
@@ -178,11 +199,19 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
           // page title
           const headerText = link.replace(TITLE_SPLIT, '').trim();
           pageTitle = headerText;
-          newDoms.push(<h1 className="title">{headerText}</h1>);
+          newDoms.push(
+            <h1 key={newCacheId} className="title">
+              {headerText}
+            </h1>,
+          );
         } else if (link.trim().indexOf(HEADER_SPLIT) === 0) {
           // section header
           const headerText = link.replace(HEADER_SPLIT, '').trim();
-          newDoms.push(<h2 className="header">{headerText}</h2>);
+          newDoms.push(
+            <h2 key={newCacheId} className="header">
+              {headerText}
+            </h2>,
+          );
 
           currentHeaderName = headerText;
         } else if (link.trim().indexOf(CODE_BLOCK_SPLIT) === 0) {
@@ -191,6 +220,7 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
           blockType = 'code';
           if (link.length > CODE_BLOCK_SPLIT.length) {
             blockId = link.substr(blockId.indexOf(CODE_BLOCK_SPLIT) + CODE_BLOCK_SPLIT.length + 1);
+            _upsertBlockId(blockId);
           }
         } else if (link.trim().indexOf(HTML_BLOCK_SPLIT) === 0) {
           // start a block
@@ -198,6 +228,7 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
           blockType = 'html';
           if (link.length > HTML_BLOCK_SPLIT.length) {
             blockId = link.substr(blockId.indexOf(HTML_BLOCK_SPLIT) + HTML_BLOCK_SPLIT.length + 1);
+            _upsertBlockId(blockId);
           }
         } else if (link.trim().indexOf(TAB_SPLIT) === 0) {
           // is a tab >>>tabName1|blockId1>>>tabName2|blockId2
@@ -211,14 +242,18 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
               const [tabName, tabId] = t.split(TAB_TITLE_SPLIT);
               if (tabName && tabId) {
                 tabContent.push(
-                  <tab tabIndex="0" data-tab-id={tabId.trim()}>
+                  <tab tabIndex="0" data-tab-id={_upsertBlockId(tabId)}>
                     {tabName.trim()}
                   </tab>,
                 );
               }
             });
 
-          newDoms.push(<tabs className="tabs">{tabContent}</tabs>);
+          newDoms.push(
+            <tabs key={newCacheId} className="tabs">
+              {tabContent}
+            </tabs>,
+          );
         } else if (link.trim().length > 0) {
           // anything else is a link
           let linkType;
@@ -259,14 +294,13 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
               linkUrl = `https://${linkUrl}`;
             }
 
-            const newCacheId = ++cacheId;
-
             if (linkUrl.indexOf('javascript://') === 0) {
               // js func link
               const jsFunc = linkUrl.replace('javascript://', '');
               schemaCacheMap[newCacheId] = jsFunc;
               newDoms.push(
                 <button
+                  key={newCacheId}
                   className="link jsLink"
                   type="button"
                   onMouseDown={() => eval(schemaCacheMap[newCacheId])}
@@ -279,6 +313,7 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
               schemaCacheMap[newCacheId] = linkUrl;
               newDoms.push(
                 <button
+                  key={newCacheId}
                   className="link dataLink"
                   type="button"
                   onMouseDown={() => helper.navigateToDataUrl(schemaCacheMap[newCacheId])}
@@ -290,7 +325,11 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
               // same tab link
               schemaCacheMap[newCacheId] = linkUrl;
               newDoms.push(
-                <a className="link sameTabLink" href={schemaCacheMap[newCacheId]} data-section={currentHeaderName}>
+                <a
+                  key={newCacheId}
+                  className="link sameTabLink"
+                  href={schemaCacheMap[newCacheId]}
+                  data-section={currentHeaderName}>
                   {linkText}
                 </a>,
               );
@@ -299,6 +338,7 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
               schemaCacheMap[newCacheId] = linkUrl;
               newDoms.push(
                 <a
+                  key={newCacheId}
                   className="link newTabLink"
                   target="_blank"
                   href={schemaCacheMap[newCacheId]}
