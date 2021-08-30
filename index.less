@@ -1,24 +1,7 @@
-@fontFamily0: Helvetica, Tahoma, Geneva, sans-serif;
-@fontFamily1: "Times New Roman", Times, serif;
-@fontFamily2: Impact, Charcoal, sans-serif;
-
-@fontWeight2: 900;
-@space-auto: auto;
-
-@width-max: 100%;
-
-//stuffs that make up the app
-@width-page: 1100px;
-
 // vars for color - Bright Mode
 :root {
-  --main-bg-color: #f5f5f5;
-  // https://github.com/dracula/dracula-theme
   --color-background: white;
-  --color-current: silver;
-  --color-selection: #44475a;
   --color-foreground: black;
-  --color-comment: black;
   --color-cyan: #0c8ac2;
   --color-green: green;
   --color-orange: #0c8ac2;
@@ -27,24 +10,27 @@
   --color-red: red;
   --color-yellow: #0c8ac2;
   --color-white: #fff;
+  --color-whiteLight: #ccc;
   --color-black: #000;
   --color-blacklight: #333;
+
+  --space-auto: auto;
   --space-0: 0;
   --space-1: 3px;
   --space-2: 10px;
   --space-3: 14px;
   --space-4: 20px;
+
+  --page-width: 1100px;
+
+  --font-family-1: Helvetica, Tahoma, Geneva, sans-serif;
 }
 
 // vars for color - Dark Mode
 .prefers-dark-color-scheme {
-  --main-bg-color: coral;
   // https://github.com/dracula/dracula-theme
   --color-background: #282a36;
-  --color-current: #44475a;
-  --color-selection: #44475a;
   --color-foreground: #f8f8f2;
-  --color-comment: #6272a4;
   --color-cyan: #8be9fd;
   --color-green: #50fa7b;
   --color-orange: #ffb86c;
@@ -56,233 +42,201 @@
   --color-black: #000;
   --color-blacklight: #333;
 }
+
 @media (prefers-color-scheme: dark) {
-  :root:extend(.prefers-dark-color-scheme){}
+  // system dark mode will extend dark color scheme
+  :root:extend(.prefers-dark-color-scheme) {
+  }
 }
-
-@space0: var(--space-0);
-@space1: var(--space-1);
-@space2: var(--space-2);
-@space3: var(--space-3);
-@space4: var(--space-4);
-
-@colorBackground: var(--color-background);
-@colorCurrent: var(--color-current);
-@colorSelection: var(--color-selection);
-@colorForeground: var(--color-foreground);
-@colorComment: var(--color-comment);
-@colorCyan: var(--color-cyan);
-@colorGreen: var(--color-green);
-@colorOrange: var(--color-orange);
-@colorPink: var(--color-pink);
-@colorPurple: var(--color-purple);
-@colorRed: var(--color-red);
-@colorYellow: var(--color-yellow);
-@colorWhite: var(--color-white);
-@colorBlack: var(--color-black);
-@colorBlackLight: var(--color-blacklight);
-
-// color used by the app
-@color0: @colorForeground; // main color
-@color1: @colorCyan;
-@color2: @colorCyan;
-@color3: @colorBackground; // background color
-@color4: @colorRed; // list dot, and highlight
-@color5: @colorCyan; // link
-@color6: #ccc; // minor separator
-
-// Use these for more colorful schemes
-// @color2: @colorYellow;
-// @color5: @colorOrange; // link
 
 //utils
 .mtauto,
 .mauto,
 .mvauto {
-  margin-top: auto;
+  margin-top: var(--space-auto);
 }
 .mbauto,
 .mauto,
 .mvauto {
-  margin-bottom: auto;
+  margin-bottom: var(--space-auto);
 }
 .mlauto,
 .mauto,
 .msauto {
-  margin-left: auto;
+  margin-left: var(--space-auto);
 }
 .mrauto,
 .mauto,
 .msauto {
-  margin-right: auto;
+  margin-right: var(--space-auto);
 }
 
 .mt1,
 .m1,
 .mv1 {
-  margin-top: @space1;
+  margin-top: var(--space-1);
 }
 .mb1,
 .m1,
 .mv1 {
-  margin-bottom: @space1;
+  margin-bottom: var(--space-1);
 }
 .ml1,
 .m1,
 .ms1 {
-  margin-left: @space1;
+  margin-left: var(--space-1);
 }
 .mr1,
 .m1,
 .ms1 {
-  margin-right: @space1;
+  margin-right: var(--space-1);
 }
 
 .mt2,
 .m2,
 .mv2 {
-  margin-top: @space2;
+  margin-top: var(--space-2);
 }
 .mb2,
 .m2,
 .mv2 {
-  margin-bottom: @space2;
+  margin-bottom: var(--space-2);
 }
 .ml2,
 .m2,
 .ms2 {
-  margin-left: @space2;
+  margin-left: var(--space-2);
 }
 .mr2,
 .m2,
 .ms2 {
-  margin-right: @space2;
+  margin-right: var(--space-2);
 }
 
 .mt3,
 .m3,
 .mv3 {
-  margin-top: @space3;
+  margin-top: var(--space-3);
 }
 .mb3,
 .m3,
 .mv3 {
-  margin-bottom: @space3;
+  margin-bottom: var(--space-3);
 }
 .ml3,
 .m3,
 .ms3 {
-  margin-left: @space3;
+  margin-left: var(--space-3);
 }
 .mr3,
 .m3,
 .ms3 {
-  margin-right: @space3;
+  margin-right: var(--space-3);
 }
 
 .mt4,
 .m4,
 .mv4 {
-  margin-top: @space4;
+  margin-top: var(--space-4);
 }
 .mb4,
 .m4,
 .mv4 {
-  margin-bottom: @space4;
+  margin-bottom: var(--space-4);
 }
 .ml4,
 .m4,
 .ms4 {
-  margin-left: @space4;
+  margin-left: var(--space-4);
 }
 .mr4,
 .m4,
 .ms4 {
-  margin-right: @space4;
+  margin-right: var(--space-4);
 }
 
 .pt1,
 .p1,
 .pv1 {
-  padding-top: @space1;
+  padding-top: var(--space-1);
 }
 .pb1,
 .p1,
 .pv1 {
-  padding-bottom: @space1;
+  padding-bottom: var(--space-1);
 }
 .pl1,
 .p1,
 .ps1 {
-  padding-left: @space1;
+  padding-left: var(--space-1);
 }
 .pr1,
 .p1,
 .ps1 {
-  padding-right: @space1;
+  padding-right: var(--space-1);
 }
 
 .pt2,
 .p2,
 .pv2 {
-  padding-top: @space2;
+  padding-top: var(--space-2);
 }
 .pb2,
 .p2,
 .pv2 {
-  padding-bottom: @space2;
+  padding-bottom: var(--space-2);
 }
 .pl2,
 .p2,
 .ps2 {
-  padding-left: @space2;
+  padding-left: var(--space-2);
 }
 .pr2,
 .p2,
 .ps2 {
-  padding-right: @space2;
+  padding-right: var(--space-2);
 }
 
 .pt3,
 .p3,
 .pv3 {
-  padding-top: @space3;
+  padding-top: var(--space-3);
 }
 .pb3,
 .p3,
 .pv3 {
-  padding-bottom: @space3;
+  padding-bottom: var(--space-3);
 }
 .pl3,
 .p3,
 .ps3 {
-  padding-left: @space3;
+  padding-left: var(--space-3);
 }
 .pr3,
 .p3,
 .ps3 {
-  padding-right: @space3;
+  padding-right: var(--space-3);
 }
 
 .pt4,
 .p4,
 .pv4 {
-  padding-top: @space4;
+  padding-top: var(--space-4);
 }
 .pb4,
 .p4,
 .pv4 {
-  padding-bottom: @space4;
+  padding-bottom: var(--space-4);
 }
 .pl4,
 .p4,
 .ps4 {
-  padding-left: @space4;
+  padding-left: var(--space-4);
 }
 .pr4,
 .p4,
 .ps4 {
-  padding-right: @space4;
+  padding-right: var(--space-4);
 }
 
 * {
@@ -316,15 +270,6 @@ a {
   opacity: 0.7;
 }
 
-.clearfix {
-  clear: both;
-  overflow: hidden;
-}
-
-.fr {
-  float: right;
-}
-
 h1,
 h2,
 h3,
@@ -336,34 +281,48 @@ p {
 }
 
 ul {
-  margin-top: inherit;
-  margin-bottom: inherit;
-  padding-left: inherit;
-  padding-right: inherit;
+  margin-block: inherit;
+  padding-inline: inherit;
 }
 
 .row {
-  margin-bottom: @space2;
+  margin-bottom: var(--space-2);
   list-style: none;
 
   &::before {
-    content: "\b7";
+    content: '\b7';
     margin-right: 2px;
     font-weight: bold;
     vertical-align: middle;
   }
 }
 
+.thin-line {
+  height: 2px;
+  border-top: 2px solid #c1c1c1;
+  background: #c1c1c1;
+}
+
 .at:after {
-  content: "@";
-  color: @colorForeground;
+  content: '@';
+  color: var(--color-foreground);
+}
+
+#daynight-toggle {
+  cursor: pointer;
+  position: fixed;
+  top: 5px;
+  right: 10px;
+  z-index: 5;
+  user-select: none;
+  font-size: 20px;
 }
 
 // start
 html {
   font-size: 16px;
-  color: @color0;
-  font-family: @fontFamily0;
+  color: var(--color-foreground);
+  font-family: var(--font-family-1);
 }
 
 .h1 {
@@ -379,7 +338,7 @@ html {
 }
 
 * {
-  background-color: @color3;
+  background-color: var(--color-background);
   line-height: 1.5;
 }
 
@@ -401,22 +360,10 @@ html {
 
 // app colors
 .c0 {
-  color: @color0;
+  color: var(--color-foreground);
 }
 .c1 {
-  color: @color1;
-}
-.c2 {
-  color: @color2;
-}
-.c3 {
-  color: @color3;
-}
-.c4 {
-  color: @color4;
-}
-.c5 {
-  color: @color5;
+  color: var(--color-cyan);
 }
 
 // display helpers
@@ -459,9 +406,9 @@ html {
 // custom stuffs
 .hr {
   height: 2px;
-  background: @color6;
-  margin-top: @space3;
-  margin-bottom: @space3;
+  background: var(--color-whiteLight);
+  margin-top: var(--space-3);
+  margin-bottom: var(--space-3);
   margin-left: auto;
   margin-right: auto;
   max-width: 200px;
@@ -481,16 +428,16 @@ html {
   }
 
   body {
-    max-width: @width-page;
-    width: calc(~"100% - 40px");
-    margin: @space-auto;
+    max-width: var(--page-width);
+    width: calc(~'100% - 40px');
+    margin: var(--space-auto);
   }
 
   a {
-    color: @color5;
+    color: var(--color-cyan);
 
     &:hover {
-      color: @color4;
+      color: var(--color-red);
     }
   }
 
@@ -520,14 +467,14 @@ html {
 }
 
 // desktop
-@media screen and (min-width: @width-page) {
+@media screen and (min-width: var(--page-width)) {
   body {
     padding-top: 15px;
     padding-bottom: 15px;
   }
   header * {
-    padding-bottom: @space3;
-    padding-top: @space3;
+    padding-bottom: var(--space-3);
+    padding-top: var(--space-3);
   }
   .section-header {
     margin-bottom: 10px !important;
@@ -535,8 +482,6 @@ html {
   .job-header {
     margin-top: 15px;
     margin-bottom: 10px;
-  }
-  .job-header {
     margin-left: 0;
   }
   ul {
@@ -549,37 +494,41 @@ html {
   * {
     line-height: 1.5;
   }
+
   header {
-    padding-top: @space2;
-    padding-bottom: @space1;
+    padding-top: var(--space-2);
+    padding-bottom: var(--space-1);
+
+    * {
+      padding-block: var(--space-1);
+    }
   }
-  header * {
-    padding-bottom: @space1;
-    padding-top: @space1;
-  }
+
   .section-header {
     margin-bottom: 10px !important;
   }
+
   .job-header {
     display: block;
     margin-top: 15px;
     margin-bottom: 5px;
+    * {
+      display: inline;
+    }
   }
-  .job-header * {
-    display: inline;
-  }
+
   .separator {
-    margin-left: @space2 !important;
-    margin-right: @space2 !important;
+    margin-inline: var(--space-2) !important;
   }
 
   body {
-    width: calc(~"100% - 30px");
+    width: calc(~'100% - 30px');
   }
 
   .job-header {
     margin-left: 0;
   }
+
   ul {
     margin-left: 0;
   }
@@ -596,12 +545,11 @@ html {
   }
 
   @page {
-    margin: @space0;
+    margin: var(--space-0);
   }
 
   header * {
-    padding-bottom: @space2;
-    padding-top: @space2;
+    padding-block: var(--space-2);
   }
 
   * {
@@ -611,20 +559,21 @@ html {
   .job-header {
     margin-left: 10px;
   }
+
   ul {
     margin-left: 20px;
   }
 
   body {
-    background-color: @colorWhite;
-    color: @colorBlackLight;
-    width: @width-max;
-    padding: @space2 @space4;
+    background-color: var(--color-white);
+    color: var(--color-blacklight);
+    width: 100%;
+    padding: var(--space-2) var(--space-4);
     margin: 0;
   }
 
   .bold {
-    color: @colorBlack;
+    color: var(--color-black);
   }
 
   body,
@@ -645,47 +594,33 @@ html {
   .c3,
   .c4,
   .c5 {
-    color: @colorBlackLight;
+    color: var(--color-blacklight);
   }
 
   .visible-screen,
   .visible-screen-flex {
     display: none;
   }
+
   .visible-print {
     display: block;
   }
+
   .visible-print-flex {
     display: flex;
   }
 
   .row,
   .job-header {
-    margin-bottom: @space1;
+    margin-bottom: var(--space-1);
   }
 
   a {
-    color: @colorBlack !important;
+    color: var(--color-black) !important;
     font-weight: bold;
   }
+
   .section-header {
     opacity: 0.7;
   }
-}
-
-.thin-line {
-  height: 2px;
-  border-top: 2px solid #c1c1c1;
-  background: #c1c1c1;
-}
-
-
-#daynight-toggle{
-  cursor: pointer;
-  position: fixed;
-  top: 5px;
-  right: 10px;
-  z-index: 5;
-  user-select: none;
-  font-size: 20px;
 }

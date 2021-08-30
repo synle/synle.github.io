@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="https://synle.github.io/link/assets/navs.css" />
+  </head>
+  <body></body>
+  <script src="https://synle.github.io/link/assets/navs.js"></script>
+  <script>
+    (() => {
+      let handleMessageEvent = (event) => {
+        const { type, schema } = event.data;
+        if (type === 'onViewLinks') {
+          try {
+            window.onViewLinks(window.getLinkDom(schema));
+            window.removeEventListener('message', handleMessageEvent);
+          } catch (err) {}
+        }
+      };
+
+      window.addEventListener('message', handleMessageEvent);
+    })();
+  </script>
+</html>
