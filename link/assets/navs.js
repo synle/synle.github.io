@@ -131,6 +131,7 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
 
       let blockBuffer = '';
       let isInABlock = false;
+      let blockType = ''; // code or html
       let currentHeaderName = '';
       let blockId = '';
       let pageFavIcon = '📑';
@@ -139,12 +140,11 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
       let rawLinkHTML = lines.forEach((link) => {
         if (isInABlock) {
           // is in a block
-          if (link.trim().indexOf(CODE_BLOCK_SPLIT) === 0) {
-            if (link.trim().indexOf(CODE_BLOCK_SPLIT) === 0) {
+          if (blockType === 'code' && link.trim().indexOf(CODE_BLOCK_SPLIT) === 0) {
             // end of a pre block
             newDoms.push(
               <pre
-                className="block"
+                className="block codeBlock"
                 id={blockId}
                 onDoubleClick={(e) => helper.onCopyToClipboard(e.target.innerText.trim(), true)}>
                 {blockBuffer.trim()}
@@ -152,15 +152,26 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
             );
             isInABlock = false;
             blockBuffer = '';
-
+            blockType = '';
             currentHeaderName = ''; // reset the header name
-
+            blockId = '';
+          } else if (blockType === 'html' && link.trim().indexOf(HTML_BLOCK_SPLIT) === 0) {
+            // end of a pre block
+            newDoms.push(
+              <div
+                className="block htmlBlock"
+                id={blockId}>
+                {blockBuffer.trim()}
+              </div>,
+            );
+            isInABlock = false;
+            blockBuffer = '';
+            blockType = '';
+            currentHeaderName = ''; // reset the header name
             blockId = '';
           } else {
             blockBuffer += link + '\n';
           }
-
-          return;
         }
 
         if (link.trim().indexOf(FAV_ICON_SPLIT) === 0) {
@@ -177,13 +188,22 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
 
           currentHeaderName = headerText;
         } else if (link.trim().indexOf(CODE_BLOCK_SPLIT) === 0) {
-          } else if (link.trim().indexOf(CODE_BLOCK_SPLIT) === 0) {
           // start a block
           isInABlock = true;
+          blockType = 'code';
           if (link.length > CODE_BLOCK_SPLIT.length) {
             if (link.length > CODE_BLOCK_SPLIT.length) {
             blockId = link.substr(blockId.indexOf(CODE_BLOCK_SPLIT) + CODE_BLOCK_SPLIT.length + 1);
             blockId = link.substr(blockId.indexOf(CODE_BLOCK_SPLIT) + CODE_BLOCK_SPLIT.length + 1);
+          }
+        } else if (link.trim().indexOf(HTML_BLOCK_SPLIT) === 0) {
+          // start a block
+          isInABlock = true;
+          blockType = 'html';
+          if (link.length > HTML_BLOCK_SPLIT.length) {
+            if (link.length > HTML_BLOCK_SPLIT.length) {
+            blockId = link.substr(blockId.indexOf(HTML_BLOCK_SPLIT) + HTML_BLOCK_SPLIT.length + 1);
+            blockId = link.substr(blockId.indexOf(HTML_BLOCK_SPLIT) + HTML_BLOCK_SPLIT.length + 1);
           }
         } else if (link.trim().indexOf(TAB_SPLIT) === 0) {
           // is a tab >>>tabName1|blockId1>>>tabName2|blockId2
