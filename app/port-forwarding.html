@@ -8,11 +8,11 @@
         box-sizing: border-box;
         margin: 0;
         padding: 0;
-      }
-      html {
         font-family: monospace !important;
         font-size: 18px;
-        padding: 10px 20px;
+      }
+      body{
+        margin:  1rem 2rem;
       }
       h1 {
         margin-bottom: 1rem;
@@ -32,13 +32,11 @@
       input[type='text'],
       textarea {
         display: block;
-        width: 100%;
       }
       a,
       button,
       input[type='button'],
       input[type='submit'] {
-        min-width: 100px;
         border: 2px solid #ccc;
         cursor: pointer;
         background: #fff;
@@ -76,15 +74,21 @@
       .row {
         display: flex;
         margin-bottom: 0.5rem;
+        flex-wrap: wrap;
       }
 
       .row > * {
         flex-grow: 1;
       }
 
+      .row > .del{
+        flex-grow: 0;
+      }
+
       .row .local_port,
       .row .destination_port {
-        width: 150px;
+        max-width: 170px;
+        flex-grow: 0;
       }
 
       #output {
@@ -94,6 +98,17 @@
         color: white;
         padding: 5px;
         display: none;
+      }
+
+      @media only screen and (max-width: 500px) {
+        .row > * {
+          flex-grow: 1 !important;
+          max-width:  100% !important;
+        }
+
+        .row {
+          margin-bottom:  3rem;
+        }
       }
     </style>
   </head>
@@ -174,7 +189,7 @@
           <input class='local_port' list='datalistPorts' required2 placeholder='local_port' value='${localPort}' type='number' onBlur="onBlurFormat(this)"/>
           <input class='destination_ip' list='datalistDestIp' required2 placeholder='dest_ip' value='${destinationIp}' type='text' onBlur="onBlurFormat(this)"/>
           <input class='destination_port' list='datalistPorts' required2 placeholder='dest_port' value='${destinationPort}' type='number' onBlur="onBlurFormat(this)"/>
-          <button type='button' onClick='onDeleteRow(this)'>X</button>
+          <button class='del' type='button' onClick='onDeleteRow(this)'>X</button>
         </div>
       `,
         );
@@ -289,6 +304,17 @@
             listDom.insertAdjacentHTML('beforeend', `<option>${optionVal}</option>`);
           }
         }
+
+        document.head.insertAdjacentHTML(
+          'beforeend',
+          `
+            <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+            <meta http-equiv="Cache-Control" content="no-cache" />
+            <meta http-equiv="Pragma" content="no-cache" />
+            <meta http-equiv="page-enter" content="revealtrans(duration=seconds,transition=num)" />
+            <meta http-equiv="page-exit" content="revealtrans(duration=seconds,transition=num)" />
+          `.trim(),
+        );
       }
 
       onInit();
