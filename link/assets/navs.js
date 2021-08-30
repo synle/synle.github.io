@@ -140,7 +140,7 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
       let rawLinkHTML = lines.forEach((link) => {
         if (isInABlock) {
           // is in a block
-          if (blockType === 'code' && link.trim().indexOf(CODE_BLOCK_SPLIT) === 0) {
+          if (blockType === 'code' && link.trim() === CODE_BLOCK_SPLIT) {
             // end of a pre block
             newDoms.push(
               <pre
@@ -155,7 +155,7 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
             blockType = '';
             currentHeaderName = ''; // reset the header name
             blockId = '';
-          } else if (blockType === 'html' && link.trim().indexOf(HTML_BLOCK_SPLIT) === 0) {
+          } else if (blockType === 'html' && link.trim() === HTML_BLOCK_SPLIT) {
             // end of a pre block
             newDoms.push(
               <div
