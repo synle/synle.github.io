@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Stock Calculators</title>
+</head>
+<style>
+  textarea, input{
+    width: 100%;
+    display: block;
+    margin-bottom: 10px;
+  }
+  textarea{
+    height: 300px;
+  }
+</style>
+<body>
+  <div>
+    <strong>Stock Price</strong>
+    <input type='text' value='213' id='price' />
+  </div>
+  <div>
+    <strong>Stock Vest Schedule</strong>
+    <textarea type='text' id='vest'></textarea>
+  </div>
+  <div>
+    <strong>Output</strong><br />
+    <textarea type='text' id='output'></textarea>
+  </div>
+  <script>
+  var stockPrice;
+  var rawData;
+  document.querySelector('#price').addEventListener('input', doCalculation)
+  document.querySelector('#vest').addEventListener('input', doCalculation)
+
+  function doCalculation() {
+    stockPrice = parseInt(document.querySelector('#price').value.trim());
+    rawData = document.querySelector('#vest').value.trim();
+    if (isNaN(stockPrice) && !rawData) {
+      return;
+    }
+    doWork(rawData)
+  }
+
+  function doWork(rawData) {
+    let d = [];
+    rawData.split('\n').forEach(row => {
+      const cols = row.split(/[ \t]/g).filter(c => !!c)
+      if (cols.length === 2) {
+        d.push([cols[0], parseInt(cols[1])])
+      }
+    })
+    const d2 = d.sort((a1, a2) => {
+      const date1 = moment(a1[0], 'M/D/Y').unix();
+      const date2 = moment(a2[0], 'M/D/Y').unix();
+      return date1 - date2;
+    }).filter(a1 => moment(a1[0], 'M/D/Y').unix() >= moment().unix()).reduce((res, a1) => {
+      const date1 = a1[0];
+      const amt = a1[1];
+      res[date1] = res[date1] || {
+        count: 0,
+        amt: 0
+      }
+      res[date1].count = res[date1].count + amt;
+      res[date1].amt = '$' + (res[date1].count * stockPrice).toLocaleString();
+      return res;
+    }, {})
+    window.result1 = d2;
+    window.result2 = Object.keys(d2).map(date => (`${date} ${d2[date].amt} ${d2[date].count}`)).join('\n')
+//    console.log('copy(window.result1)')
+//    console.log('copy(window.result2)')
+    document.querySelector('#output').value = window.result2
+  }
+  let scriptAdded = {};
+
+  function addScript(src, callback) {
+    if (scriptAdded[src]) {
+      return callback();
+    }
+    scriptAdded[src] = true;
+    var s = document.createElement('script');
+    s.setAttribute('src', src);
+    s.onload = callback;
+    document.body.appendChild(s);
+  }
+  addScript('https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js', doWork)
+  </script>
+</body>
+</html>
