@@ -1,0 +1,691 @@
+@fontFamily0: Helvetica, Tahoma, Geneva, sans-serif;
+@fontFamily1: "Times New Roman", Times, serif;
+@fontFamily2: Impact, Charcoal, sans-serif;
+
+@fontWeight2: 900;
+@space-auto: auto;
+
+@width-max: 100%;
+
+//stuffs that make up the app
+@width-page: 1100px;
+
+// vars for color - Bright Mode
+:root {
+  --main-bg-color: #f5f5f5;
+  // https://github.com/dracula/dracula-theme
+  --color-background: white;
+  --color-current: silver;
+  --color-selection: #44475a;
+  --color-foreground: black;
+  --color-comment: black;
+  --color-cyan: #0c8ac2;
+  --color-green: green;
+  --color-orange: #0c8ac2;
+  --color-pink: pink;
+  --color-purple: purple;
+  --color-red: red;
+  --color-yellow: #0c8ac2;
+  --color-white: #fff;
+  --color-black: #000;
+  --color-blacklight: #333;
+  --space-0: 0;
+  --space-1: 3px;
+  --space-2: 10px;
+  --space-3: 14px;
+  --space-4: 20px;
+}
+
+// vars for color - Dark Mode
+.prefers-dark-color-scheme {
+  --main-bg-color: coral;
+  // https://github.com/dracula/dracula-theme
+  --color-background: #282a36;
+  --color-current: #44475a;
+  --color-selection: #44475a;
+  --color-foreground: #f8f8f2;
+  --color-comment: #6272a4;
+  --color-cyan: #8be9fd;
+  --color-green: #50fa7b;
+  --color-orange: #ffb86c;
+  --color-pink: #ff79c6;
+  --color-purple: #bd93f9;
+  --color-red: #ff5555;
+  --color-yellow: #f1fa8c;
+  --color-white: #fff;
+  --color-black: #000;
+  --color-blacklight: #333;
+}
+@media (prefers-color-scheme: dark) {
+  :root:extend(.prefers-dark-color-scheme){}
+}
+
+@space0: var(--space-0);
+@space1: var(--space-1);
+@space2: var(--space-2);
+@space3: var(--space-3);
+@space4: var(--space-4);
+
+@colorBackground: var(--color-background);
+@colorCurrent: var(--color-current);
+@colorSelection: var(--color-selection);
+@colorForeground: var(--color-foreground);
+@colorComment: var(--color-comment);
+@colorCyan: var(--color-cyan);
+@colorGreen: var(--color-green);
+@colorOrange: var(--color-orange);
+@colorPink: var(--color-pink);
+@colorPurple: var(--color-purple);
+@colorRed: var(--color-red);
+@colorYellow: var(--color-yellow);
+@colorWhite: var(--color-white);
+@colorBlack: var(--color-black);
+@colorBlackLight: var(--color-blacklight);
+
+// color used by the app
+@color0: @colorForeground; // main color
+@color1: @colorCyan;
+@color2: @colorCyan;
+@color3: @colorBackground; // background color
+@color4: @colorRed; // list dot, and highlight
+@color5: @colorCyan; // link
+@color6: #ccc; // minor separator
+
+// Use these for more colorful schemes
+// @color2: @colorYellow;
+// @color5: @colorOrange; // link
+
+//utils
+.mtauto,
+.mauto,
+.mvauto {
+  margin-top: auto;
+}
+.mbauto,
+.mauto,
+.mvauto {
+  margin-bottom: auto;
+}
+.mlauto,
+.mauto,
+.msauto {
+  margin-left: auto;
+}
+.mrauto,
+.mauto,
+.msauto {
+  margin-right: auto;
+}
+
+.mt1,
+.m1,
+.mv1 {
+  margin-top: @space1;
+}
+.mb1,
+.m1,
+.mv1 {
+  margin-bottom: @space1;
+}
+.ml1,
+.m1,
+.ms1 {
+  margin-left: @space1;
+}
+.mr1,
+.m1,
+.ms1 {
+  margin-right: @space1;
+}
+
+.mt2,
+.m2,
+.mv2 {
+  margin-top: @space2;
+}
+.mb2,
+.m2,
+.mv2 {
+  margin-bottom: @space2;
+}
+.ml2,
+.m2,
+.ms2 {
+  margin-left: @space2;
+}
+.mr2,
+.m2,
+.ms2 {
+  margin-right: @space2;
+}
+
+.mt3,
+.m3,
+.mv3 {
+  margin-top: @space3;
+}
+.mb3,
+.m3,
+.mv3 {
+  margin-bottom: @space3;
+}
+.ml3,
+.m3,
+.ms3 {
+  margin-left: @space3;
+}
+.mr3,
+.m3,
+.ms3 {
+  margin-right: @space3;
+}
+
+.mt4,
+.m4,
+.mv4 {
+  margin-top: @space4;
+}
+.mb4,
+.m4,
+.mv4 {
+  margin-bottom: @space4;
+}
+.ml4,
+.m4,
+.ms4 {
+  margin-left: @space4;
+}
+.mr4,
+.m4,
+.ms4 {
+  margin-right: @space4;
+}
+
+.pt1,
+.p1,
+.pv1 {
+  padding-top: @space1;
+}
+.pb1,
+.p1,
+.pv1 {
+  padding-bottom: @space1;
+}
+.pl1,
+.p1,
+.ps1 {
+  padding-left: @space1;
+}
+.pr1,
+.p1,
+.ps1 {
+  padding-right: @space1;
+}
+
+.pt2,
+.p2,
+.pv2 {
+  padding-top: @space2;
+}
+.pb2,
+.p2,
+.pv2 {
+  padding-bottom: @space2;
+}
+.pl2,
+.p2,
+.ps2 {
+  padding-left: @space2;
+}
+.pr2,
+.p2,
+.ps2 {
+  padding-right: @space2;
+}
+
+.pt3,
+.p3,
+.pv3 {
+  padding-top: @space3;
+}
+.pb3,
+.p3,
+.pv3 {
+  padding-bottom: @space3;
+}
+.pl3,
+.p3,
+.ps3 {
+  padding-left: @space3;
+}
+.pr3,
+.p3,
+.ps3 {
+  padding-right: @space3;
+}
+
+.pt4,
+.p4,
+.pv4 {
+  padding-top: @space4;
+}
+.pb4,
+.p4,
+.pv4 {
+  padding-bottom: @space4;
+}
+.pl4,
+.p4,
+.ps4 {
+  padding-left: @space4;
+}
+.pr4,
+.p4,
+.ps4 {
+  padding-right: @space4;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+.tac {
+  text-align: center;
+}
+
+.tar {
+  text-align: right;
+}
+
+.bold1 {
+  font-weight: 300;
+}
+.bold2 {
+  font-weight: bold;
+}
+
+.cap {
+  text-transform: uppercase;
+}
+
+.muted {
+  opacity: 0.7;
+}
+
+.clearfix {
+  clear: both;
+  overflow: hidden;
+}
+
+.fr {
+  float: right;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+ul {
+  margin-top: inherit;
+  margin-bottom: inherit;
+  padding-left: inherit;
+  padding-right: inherit;
+}
+
+.row {
+  margin-bottom: @space2;
+  list-style: none;
+
+  &::before {
+    content: "\b7";
+    margin-right: 2px;
+    font-weight: bold;
+    vertical-align: middle;
+  }
+}
+
+.at:after {
+  content: "@";
+  color: @colorForeground;
+}
+
+// start
+html {
+  font-size: 16px;
+  color: @color0;
+  font-family: @fontFamily0;
+}
+
+.h1 {
+  font-size: 1.5rem;
+}
+
+.h2 {
+  font-size: 1.25rem;
+}
+
+.h3 {
+  font-size: 1.1rem;
+}
+
+* {
+  background-color: @color3;
+  line-height: 1.5;
+}
+
+.z1 {
+  z-index: 1;
+}
+.z2 {
+  z-index: 2;
+}
+.z3 {
+  z-index: 3;
+}
+.z4 {
+  z-index: 4;
+}
+.z5 {
+  z-index: 5;
+}
+
+// app colors
+.c0 {
+  color: @color0;
+}
+.c1 {
+  color: @color1;
+}
+.c2 {
+  color: @color2;
+}
+.c3 {
+  color: @color3;
+}
+.c4 {
+  color: @color4;
+}
+.c5 {
+  color: @color5;
+}
+
+// display helpers
+.block {
+  display: block;
+}
+.flex {
+  display: flex;
+}
+.w100pct {
+  width: 100%;
+}
+
+// flex helpers
+.shrink0 {
+  flex-shrink: 0;
+}
+.grow1 {
+  flex-grow: 1;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.justify-content-center {
+  justify-content: center;
+}
+.justify-content-space-between {
+  justify-content: space-between;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.align-items-center {
+  align-items: center;
+}
+.hidden {
+  display: none;
+}
+
+// custom stuffs
+.hr {
+  height: 2px;
+  background: @color6;
+  margin-top: @space3;
+  margin-bottom: @space3;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 200px;
+}
+
+//screen only stuffs
+@media screen {
+  :root {
+    --space-0: 0;
+    --space-1: 5px;
+    --space-2: 12px;
+    --space-3: 16px;
+    --space-4: 20px;
+  }
+
+  * {
+  }
+
+  body {
+    max-width: @width-page;
+    width: calc(~"100% - 40px");
+    margin: @space-auto;
+  }
+
+  a {
+    color: @color5;
+
+    &:hover {
+      color: @color4;
+    }
+  }
+
+  .row::before {
+    color: #666;
+  }
+
+  .visible-screen {
+    display: block;
+  }
+  .visible-screen-flex {
+    display: flex;
+  }
+  .visible-print {
+    display: none;
+  }
+  .visible-print-flex {
+    display: none;
+  }
+
+  .section-header {
+    position: sticky;
+    top: 0;
+    padding-top: 5px;
+    padding-bottom: 10px;
+  }
+}
+
+// desktop
+@media screen and (min-width: @width-page) {
+  body {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+  header * {
+    padding-bottom: @space3;
+    padding-top: @space3;
+  }
+  .section-header {
+    margin-bottom: 10px !important;
+  }
+  .job-header {
+    margin-top: 15px;
+    margin-bottom: 10px;
+  }
+  .job-header {
+    margin-left: 0;
+  }
+  ul {
+    margin-left: 20px;
+  }
+}
+
+// mobile
+@media screen and (max-width: 500px) {
+  * {
+    line-height: 1.5;
+  }
+  header {
+    padding-top: @space2;
+    padding-bottom: @space1;
+  }
+  header * {
+    padding-bottom: @space1;
+    padding-top: @space1;
+  }
+  .section-header {
+    margin-bottom: 10px !important;
+  }
+  .job-header {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+  }
+  .job-header * {
+    display: inline;
+  }
+  .separator {
+    margin-left: @space2 !important;
+    margin-right: @space2 !important;
+  }
+
+  body {
+    width: calc(~"100% - 30px");
+  }
+
+  .job-header {
+    margin-left: 0;
+  }
+  ul {
+    margin-left: 0;
+  }
+}
+
+// printer
+@media print {
+  :root {
+    --space-0: 0;
+    --space-1: 3px;
+    --space-2: 6px;
+    --space-3: 9px;
+    --space-4: 12px;
+  }
+
+  @page {
+    margin: @space0;
+  }
+
+  header * {
+    padding-bottom: @space2;
+    padding-top: @space2;
+  }
+
+  * {
+    line-height: normal;
+  }
+
+  .job-header {
+    margin-left: 10px;
+  }
+  ul {
+    margin-left: 20px;
+  }
+
+  body {
+    background-color: @colorWhite;
+    color: @colorBlackLight;
+    width: @width-max;
+    padding: @space2 @space4;
+    margin: 0;
+  }
+
+  .bold {
+    color: @colorBlack;
+  }
+
+  body,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p,
+  * {
+    font-size: 12px !important;
+  }
+
+  .c0,
+  .c1,
+  .c2,
+  .c3,
+  .c4,
+  .c5 {
+    color: @colorBlackLight;
+  }
+
+  .visible-screen,
+  .visible-screen-flex {
+    display: none;
+  }
+  .visible-print {
+    display: block;
+  }
+  .visible-print-flex {
+    display: flex;
+  }
+
+  .row,
+  .job-header {
+    margin-bottom: @space1;
+  }
+
+  a {
+    color: @colorBlack !important;
+    font-weight: bold;
+  }
+  .section-header {
+    opacity: 0.7;
+  }
+}
+
+.thin-line {
+  height: 2px;
+  border-top: 2px solid #c1c1c1;
+  background: #c1c1c1;
+}
+
+
+#daynight-toggle{
+  cursor: pointer;
+  position: fixed;
+  top: 5px;
+  right: 10px;
+  z-index: 5;
+  user-select: none;
+  font-size: 20px;
+}
