@@ -7,7 +7,8 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
   const NEW_TAB_LINK_SPLIT = '|||';
   const HEADER_SPLIT = '#';
   const TITLE_SPLIT = '!';
-  const BLOCK_SPLIT = '```';
+  const CODE_BLOCK_SPLIT = '```';
+  const HTML_BLOCK_SPLIT = '---';
   const TAB_SPLIT = '>>>';
   const TAB_TITLE_SPLIT = '|';
   const FAV_ICON_SPLIT = '@';
@@ -138,8 +139,9 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
       let rawLinkHTML = lines.forEach((link) => {
         if (isInABlock) {
           // is in a block
-          if (link.trim().indexOf(BLOCK_SPLIT) === 0) {
-            // end of a block
+          if (link.trim().indexOf(CODE_BLOCK_SPLIT) === 0) {
+            if (link.trim().indexOf(CODE_BLOCK_SPLIT) === 0) {
+            // end of a pre block
             newDoms.push(
               <pre
                 className="block"
@@ -174,11 +176,14 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
           newDoms.push(<h2 className="header">{headerText}</h2>);
 
           currentHeaderName = headerText;
-        } else if (link.trim().indexOf(BLOCK_SPLIT) === 0) {
+        } else if (link.trim().indexOf(CODE_BLOCK_SPLIT) === 0) {
+          } else if (link.trim().indexOf(CODE_BLOCK_SPLIT) === 0) {
           // start a block
           isInABlock = true;
-          if (link.length > BLOCK_SPLIT.length) {
-            blockId = link.substr(blockId.indexOf(BLOCK_SPLIT) + BLOCK_SPLIT.length + 1);
+          if (link.length > CODE_BLOCK_SPLIT.length) {
+            if (link.length > CODE_BLOCK_SPLIT.length) {
+            blockId = link.substr(blockId.indexOf(CODE_BLOCK_SPLIT) + CODE_BLOCK_SPLIT.length + 1);
+            blockId = link.substr(blockId.indexOf(CODE_BLOCK_SPLIT) + CODE_BLOCK_SPLIT.length + 1);
           }
         } else if (link.trim().indexOf(TAB_SPLIT) === 0) {
           // is a tab >>>tabName1|blockId1>>>tabName2|blockId2
