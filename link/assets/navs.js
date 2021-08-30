@@ -41,9 +41,9 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
     sample blockId1
     \`\`\`
 
-    \`\`\`blockId2
-    sample blockId2
-    \`\`\`
+    ---blockId2
+    <u><b>sample html</b></u> blockId2
+    ---
   `
     .split('\n')
     .map((s) => s.trim())
@@ -138,8 +138,8 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
       let pageTitle;
 
       let rawLinkHTML = lines.forEach((link) => {
+        // other processing for non block
         if (isInABlock) {
-          // is in a block
           if (blockType === 'code' && link.trim() === CODE_BLOCK_SPLIT) {
             // end of a pre block
             newDoms.push(
@@ -158,11 +158,7 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
           } else if (blockType === 'html' && link.trim() === HTML_BLOCK_SPLIT) {
             // end of a pre block
             newDoms.push(
-              <div
-                className="block htmlBlock"
-                id={blockId}>
-                {blockBuffer.trim()}
-              </div>,
+              <div className="block htmlBlock" id={blockId} dangerouslySetInnerHTML={{ __html: blockBuffer }}></div>,
             );
             isInABlock = false;
             blockBuffer = '';
@@ -172,8 +168,10 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
           } else {
             blockBuffer += link + '\n';
           }
+          return;
         }
 
+        // other processing for non block
         if (link.trim().indexOf(FAV_ICON_SPLIT) === 0) {
           pageFavIcon = link.replace(/^[@]+/, '').trim();
         } else if (link.trim().indexOf(TITLE_SPLIT) === 0) {
@@ -192,8 +190,6 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
           isInABlock = true;
           blockType = 'code';
           if (link.length > CODE_BLOCK_SPLIT.length) {
-            if (link.length > CODE_BLOCK_SPLIT.length) {
-            blockId = link.substr(blockId.indexOf(CODE_BLOCK_SPLIT) + CODE_BLOCK_SPLIT.length + 1);
             blockId = link.substr(blockId.indexOf(CODE_BLOCK_SPLIT) + CODE_BLOCK_SPLIT.length + 1);
           }
         } else if (link.trim().indexOf(HTML_BLOCK_SPLIT) === 0) {
@@ -201,8 +197,6 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
           isInABlock = true;
           blockType = 'html';
           if (link.length > HTML_BLOCK_SPLIT.length) {
-            if (link.length > HTML_BLOCK_SPLIT.length) {
-            blockId = link.substr(blockId.indexOf(HTML_BLOCK_SPLIT) + HTML_BLOCK_SPLIT.length + 1);
             blockId = link.substr(blockId.indexOf(HTML_BLOCK_SPLIT) + HTML_BLOCK_SPLIT.length + 1);
           }
         } else if (link.trim().indexOf(TAB_SPLIT) === 0) {
@@ -225,7 +219,7 @@ import ReactDOM from 'https://cdn.skypack.dev/react-dom';
             });
 
           newDoms.push(<tabs className="tabs">{tabContent}</tabs>);
-        } else {
+        } else if (link.trim().length > 0) {
           // anything else is a link
           let linkType;
           let linkText, linkUrl;

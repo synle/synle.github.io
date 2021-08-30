@@ -151,12 +151,19 @@ textarea {
   }
 
   .block {
-    background: #000;
     padding: var(--spaceSize2);
-    overflow: hidden;
+    background: #000;
 
-    &:focus {
-      background: var(--colorBgSecondary) !important;
+    &.codeBlock {
+      &:focus {
+        background: var(--colorBgSecondary) !important;
+      }
+    }
+
+    &.htmlBlock {
+      &:focus {
+        background: var(--colorBgSecondary) !important;
+      }
     }
   }
 
