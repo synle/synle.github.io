@@ -1,4 +1,17 @@
-// vars for color - Bright Mode
+:root {
+  --space-auto: auto;
+  --space-0: 0;
+  --space-1: 3px;
+  --space-2: 10px;
+  --space-3: 14px;
+  --space-4: 20px;
+
+  --page-width: 1100px;
+
+  --font-family-1: Helvetica, Tahoma, Geneva, sans-serif;
+}
+
+// light theme by default
 :root {
   --color-background: white;
   --color-foreground: black;
@@ -13,22 +26,10 @@
   --color-whiteLight: #ccc;
   --color-black: #000;
   --color-blacklight: #333;
-
-  --space-auto: auto;
-  --space-0: 0;
-  --space-1: 3px;
-  --space-2: 10px;
-  --space-3: 14px;
-  --space-4: 20px;
-
-  --page-width: 1100px;
-
-  --font-family-1: Helvetica, Tahoma, Geneva, sans-serif;
 }
 
-// vars for color - Dark Mode
+// vars for color - Dark Mode (https://github.com/dracula/dracula-theme)
 .prefers-dark-color-scheme {
-  // https://github.com/dracula/dracula-theme
   --color-background: #282a36;
   --color-foreground: #f8f8f2;
   --color-cyan: #8be9fd;
@@ -276,8 +277,23 @@ h3,
 h4,
 h5,
 h6,
+form,
+pre,
 p {
   margin: 0;
+  padding: 0;
+}
+
+.h1, h1 {
+  font-size: 1.5rem;
+}
+
+.h2, h2 {
+  font-size: 1.25rem;
+}
+
+.h3, h3 {
+  font-size: 1.1rem;
 }
 
 ul {
@@ -323,18 +339,6 @@ html {
   font-size: 16px;
   color: var(--color-foreground);
   font-family: var(--font-family-1);
-}
-
-.h1 {
-  font-size: 1.5rem;
-}
-
-.h2 {
-  font-size: 1.25rem;
-}
-
-.h3 {
-  font-size: 1.1rem;
 }
 
 * {
