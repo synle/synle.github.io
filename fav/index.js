@@ -46,7 +46,7 @@ document.addEventListener('AppFullyLoaded', async (e) => {
 
   const SITE_SCHEMA = `
   ! Sy's Favorites
-  @ 🙍
+  @ 🧑
 
   # stock
   //webull | webull.com/quote
