@@ -11,42 +11,40 @@
   --font-family-1: Helvetica, Tahoma, Geneva, sans-serif;
 }
 
-// light theme by default
-:root {
+.light-theme {
   --color-background: white;
   --color-foreground: black;
   --color-cyan: #0c8ac2;
-  --color-green: green;
-  --color-orange: #0c8ac2;
-  --color-pink: pink;
-  --color-purple: purple;
   --color-red: red;
-  --color-yellow: #0c8ac2;
   --color-white: #fff;
   --color-whiteLight: #ccc;
   --color-black: #000;
   --color-blacklight: #333;
 }
 
-// vars for color - Dark Mode (https://github.com/dracula/dracula-theme)
-.prefers-dark-color-scheme {
+.dark-theme {
   --color-background: #282a36;
   --color-foreground: #f8f8f2;
   --color-cyan: #8be9fd;
-  --color-green: #50fa7b;
-  --color-orange: #ffb86c;
-  --color-pink: #ff79c6;
-  --color-purple: #bd93f9;
   --color-red: #ff5555;
-  --color-yellow: #f1fa8c;
   --color-white: #fff;
   --color-black: #000;
   --color-blacklight: #333;
 }
 
+:root {
+  .dark-theme();
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    .light-theme();
+  }
+}
+
 @media (prefers-color-scheme: dark) {
-  // system dark mode will extend dark color scheme
-  :root:extend(.prefers-dark-color-scheme) {
+  :root {
+    .dark-theme();
   }
 }
 
@@ -284,15 +282,18 @@ p {
   padding: 0;
 }
 
-.h1, h1 {
+.h1,
+h1 {
   font-size: 1.5rem;
 }
 
-.h2, h2 {
+.h2,
+h2 {
   font-size: 1.25rem;
 }
 
-.h3, h3 {
+.h3,
+h3 {
   font-size: 1.1rem;
 }
 
@@ -369,6 +370,9 @@ html {
 .c1 {
   color: var(--color-cyan);
 }
+.c2 {
+  color: var(--color-red);
+}
 
 // display helpers
 .block {
@@ -438,10 +442,10 @@ html {
   }
 
   a {
-    color: var(--color-cyan);
+    .c1();
 
     &:hover {
-      color: var(--color-red);
+      .c2();
     }
   }
 
@@ -594,10 +598,7 @@ html {
 
   .c0,
   .c1,
-  .c2,
-  .c3,
-  .c4,
-  .c5 {
+  .c2 {
     color: var(--color-blacklight);
   }
 
