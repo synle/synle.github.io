@@ -2,264 +2,261 @@
 <html lang="en">
   <head>
     <title>syle-resume</title>
-    <link rel="stylesheet/less" href="/index.less" />
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="format-detection" content="telephone=no" />
+
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2016%2016'%3E%3Ctext%20x%3D'0'%20y%3D'16'%3E🧑%3C%2Ftext%3E%3C%2Fsvg%3E"
+    />
+
+    <!-- v1: debug -->
+    <!-- <link rel="stylesheet/less" href="/index.less" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/4.1.1/less.min.js"></script> -->
+
+    <!-- v2: prod -->
+    <link rel="stylesheet" href="/index.css" />
   </head>
   <body>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/4.1.1/less.min.js"></script>
-
     <!-- Contact Info -->
-    <header class="page-header h1 flex flex-wrap justify-content-center">
-      <span class="c1 bold2 cap">Sy Le</span>
-      <span class="ms3">*</span>
+    <header class="page-header visible-print-flex">
+      <span class="bold3 cap">Sy Le</span>
       <span class="cap">SF Bay Area, CA</span>
-      <span class="ms3">*</span>
-      <a href="tel:1-408-216-3428" class="cap">408-216-3428</a>
-      <span class="ms3">*</span>
-      <a href="mailto:lenguyensy@gmail.com" class="cap">le.nguyen.sy@gmail.com</a>
-      <span class="visible-print ms3">*</span>
-      <a href="//synle.github.io" class="visible-print cap">synle.github.io</a>
-      <span class="visible-print ms3">*</span>
-      <a href="//linkedin.com/in/syle1021/" class="visible-print cap">linkedin.com/in/syle1021</a>
+      <a href="tel:1-408-216-3428" class="info-phone cap">408-216-3428</a>
+      <a href="mailto:lenguyensy@gmail.com" class="info-email cap">le.nguyen.sy@gmail.com</a>
+      <a href="//synle.github.io" class="info-github visible-print cap">synle.github.io</a>
+      <a href="//linkedin.com/in/syle1021/" class="info-linkedin visible-print cap">linkedin.com/in/syle1021</a>
+    </header>
+
+    <header class="page-header visible-desktop visible-mobile mb4">
+      <div class="bold3 cap">Sy Le</div>
+      <div class="cap">SF Bay Area, CA</div>
+      <div><a href="tel:1-408-216-3428" class="info-phone cap">408-216-3428</a></div>
+      <div><a href="mailto:lenguyensy@gmail.com" class="info-email cap">le.nguyen.sy@gmail.com</a></div>
     </header>
 
     <!--   social links   -->
-    <section class="flex flex-wrap justify-content-center pv2 h3 visible-screen-flex">
-      <a href="//www.linkedin.com/in/syle1021" class="cap" title="Linkedin Profile">
-        <span><i class="fa fa-linkedin mr1" aria-hidden="true"></i>Linkedin</span>
-      </a>
-      <a href="//github.com/synle" class="cap ms3" title="Github Profile">
-        <span><i class="fa fa-github mr1" aria-hidden="true"></i>GitHub</span>
-      </a>
-      <a href="./syle-resume.pdf" download="" class="cap" title="Download Resume">
-        <span><i class="fa fa-file mr1" aria-hidden="true"></i>Resume</span>
-      </a>
+    <section class="social-links visible-screen-flex">
+      <a href="//linkedin.com/in/syle1021" class="info-linkedin cap" title="Linkedin Profile"> Linkedin </a>
+      <a href="//github.com/synle" class="info-github cap ms4" title="Github Profile"> github.com/synle </a>
+      <a href="/syle-resume.pdf" download="" class="cap" title="Download Resume"> Resume </a>
     </section>
 
     <!-- Educations -->
-    <div>
-      <div class="section-header z3 h2 cap c1 tac mt4 mb1 flex align-items-center">
-        <div class="bold2">Education</div>
-        <div class="thin-line grow1 ml3"></div>
+    <div class="section-header z3">
+      <div class="bold3">Education</div>
+    </div>
+    <div class="education-container section-content">
+      <div class="education-header z2">
+        <div class="education-title">Master of Science <span class="in"></span> Software Engineering</div>
+        <div class="separator">|</div>
+        <div class="education-location">San Jose State University</div>
+        <div class="separator">|</div>
+        <div class="education-time-description">Graduated 2019</div>
       </div>
-      <ul class="education-container section-content c0">
-        <li class="row">
-          <span class="bold2">Master of Science</span> in <span class="bold2">Software Engineering</span> at
-          <span class="bold2">San Jose State University</span>, specialized in Cloud & Mobile Computing, graduated 2019.
-        </li>
-        <li class="row">
-          <span class="bold2">Bachelor of Science</span> in <span class="bold2">Computer Science</span> at
-          <span class="bold2">San Jose State University</span>, specialized in Computer Graphics, graduated 2011 Cum
-          Laude.
-        </li>
+      <ul class="education-description c0">
+        <li class="row">Graduated with Specialization in Cloud & Mobile Computing.</li>
+      </ul>
+    </div>
+    <div class="education-container section-content">
+      <div class="education-header z2">
+        <div class="education-title">Bachelor of Science <span class="in"></span> Computer Science</div>
+        <div class="separator">|</div>
+        <div class="education-location">San Jose State University</div>
+        <div class="separator">|</div>
+        <div class="education-time-description">Graduated 2011</div>
+      </div>
+      <ul class="education-description c0">
+        <li class="row">Graduated Cum Laude with Specialization in Computer Graphics.</li>
       </ul>
     </div>
 
     <!-- Experience -->
-    <div>
-      <div class="section-header z2 h2 cap c1 tac mt4 mb1 flex align-items-center">
-        <div class="bold2">Experience</div>
-        <div class="thin-line grow1 ml3"></div>
-      </div>
-      <div class="job-container section-content">
-        <div class="job-header h3 flex cap muted bold1 flex-wrap">
-          <div class="job-title">Staff Software Engineer <span class="at"></span> Linkedin</div>
-          <div class="separator ms4">|</div>
-          <div class="job-location">Sunnyvale, CA</div>
-          <div class="separator ms4">|</div>
-          <div class="job-time-description">03/2020 - Present</div>
-        </div>
-        <ul class="job-description c0">
-          <li class="row">
-            Providing guidance for core Front End initatives, UI framework, and Azure DevOps CI & CD pipeline for
-            Linkedin EPE.
-          </li>
-          <li class="row">
-            Working on Support Portal that manages customers' chats and offline cases on Dynamics365 CRM using C#, .NET
-            Core, React and Fluent UI.
-          </li>
-          <li class="row">
-            Architected modern codebase Sendbloom with Typescript, React, Redux, Node.js, Express, Redis and MySQL
-          </li>
-        </ul>
-        <div class="job-header h3 flex cap muted bold1 flex-wrap">
-          <div class="job-title">Senior Software Engineer <span class="at"></span> Linkedin</div>
-          <div class="separator ms4">|</div>
-          <div class="job-location">Sunnyvale, CA</div>
-          <div class="separator ms4">|</div>
-          <div class="job-time-description">05/2017 - 02/2020</div>
-        </div>
-        <ul class="job-description c0">
-          <li class="row">
-            Software Engineer for Linkedin Enterprise Learning and Enterprise Productivity Engineering using JavaScript,
-            Ember, React, Node.js, Java, Spring Boot, Python, Flask, MySQL, Redis and Azure.
-          </li>
-          <li class="row">
-            Full Stack Engineer Team Lead, worked on Nucleus, an end-to-end purchase flow automation with
-            React-and-Redux Front End, and Spring Boot Back End hosted on Azure having integrations with ServiceNow and
-            JIRA.
-          </li>
-          <li class="row">
-            Corporated
-            <a href="//www.linkedin.com/learning/">Linkedin Learning</a> with Slideshare DocViewer to allow end-to-end
-            custom document content creation and viewing.
-          </li>
-          <li class="row">
-            Developed and Presented Room Booking Assistant(RoomBA), a bot written with Node.js and Azure Message Service
-            Bus to intelligently book meeting rooms using attendees' locations at Linkedin GOPs Expo 2017.
-          </li>
-        </ul>
-        <div class="job-header h3 flex cap muted bold1 flex-wrap">
-          <div class="job-title">Senior Member of Technical Staff <span class="at"></span> Salesforce</div>
-          <div class="separator ms4">|</div>
-          <div class="job-location">San Francisco, CA</div>
-          <div class="separator ms4">|</div>
-          <div class="job-time-description">04/2015 - 05/2017</div>
-        </div>
-        <ul class="job-description c0">
-          <li class="row">
-            Software Engineer for SalesforceIQ, and Aura using JavaScript, Angular, React, Salesforce Aura / Lightning,
-            Node.js, Express, and Java.
-          </li>
-          <li class="row">
-            Major contributor for SalesforceIQ Inbox, led and provided mentorship for junior members in the team of
-            <a href="//www.salesforceiq.com/products/inbox/desktop-apps">SalesforceIQ Inbox Desktop</a>.
-          </li>
-          <li class="row">
-            Built Lightning integration that brings Inbox productivity features with
-            <a href="//store.office.com/en-us/app.aspx?assetid=WA104379334&ui=en-US&rs=en-US&ad=US&appredirect=false"
-              >Salesforce Lightning for Gmail and Outlook</a
-            >.
-          </li>
-          <li class="row">
-            Won SalesforceIQ Hackday Fall 2016 Most Creative with predictive email compose suggestion project.
-          </li>
-          <li class="row">Won SalesforceIQ Hackday Spring 2017 Most heroic award with mass email project.</li>
-          <li class="row">
-            Prototyped Inbox Desktop Email client with React and Electron that lets you read your emails and interact
-            with Salesforce Records.
-          </li>
-          <li class="row">
-            Prototyped Desktop Dialer with Twilio which sales reps to communicate with customers right on the browser.
-          </li>
-        </ul>
-        <div class="job-header h3 flex cap muted bold1 flex-wrap">
-          <div class="job-title">Tech Yahoo, Software Dev Engineer <span class="at"></span> Yahoo</div>
-          <div class="separator ms4">|</div>
-          <div class="job-location">Sunnyvale, CA</div>
-          <div class="separator ms4">|</div>
-          <div class="job-time-description">07/2014 - 04/2015</div>
-        </div>
-        <ul class="job-description c0">
-          <li class="row">
-            Front End Engineer for Yahoo Monitoring team, doing redesign of Yamas 2.0 Dashboard with JavaScript,
-            Angular, Node.js and Express.
-          </li>
-          <li class="row">
-            Within a short time, completed the redesign of Yamas which received internal Yahoo TechPulse 2014 conference
-            award.
-          </li>
-          <li class="row">
-            Set up CI and CD pipeline for Express Back End applications with Jenkins CI and Chef CD to streamline
-            building and deployment.
-          </li>
-        </ul>
-        <div class="job-header h3 flex cap muted bold1 flex-wrap">
-          <div class="job-title">Software Engineer <span class="at"></span> eBay Inc</div>
-          <div class="separator ms4">|</div>
-          <div class="job-location">San Jose, CA</div>
-          <div class="separator ms4">|</div>
-          <div class="job-time-description">08/2013 - 07/2014</div>
-        </div>
-        <ul class="job-description c0">
-          <li class="row">
-            Software Engineer for Transaction Flow and Registration team, working with JavaScript, Java and Spring MVC
-            Framework.
-          </li>
-          <li class="row">
-            Implemented the responsive Guest Checkout Registration which allows users to register for new eBay account
-            after checking out as guest.
-          </li>
-          <li class="row">
-            Rearchitected Selenium UI automation to extend coverage to iPad and iPhone using Selenium iWebDriver.
-          </li>
-        </ul>
-        <div class="job-header h3 flex cap muted bold1 flex-wrap">
-          <div class="job-title">Software Engineer <span class="at"></span> eTrigue Inc</div>
-          <div class="separator ms4">|</div>
-          <div class="job-location">San Jose, CA</div>
-          <div class="separator ms4">|</div>
-          <div class="job-time-description">10/2011 - 08/2013</div>
-        </div>
-        <ul class="job-description c0">
-          <li class="row">
-            Full Stack Engineer for
-            <a href="//www.etrigue.com/">eTrigue Demand Center</a> using JavaScript, PHP, Node.js, C#, MySQL, Cassandra
-            and RabbitMQ.
-          </li>
-          <li class="row">
-            Owned and built core components of the eTrigue Demand Center including Prospect List, Campaign Builder, ETL
-            Jobs for Sales Velocity/ROI reporting and extracting prospects' information from vendors such as Cisco Webex
-            and Citrix GoToWebinar.
-          </li>
-        </ul>
-        <div class="job-header h3 flex cap muted bold1 flex-wrap">
-          <div class="job-title">Software Engineer <span class="at"></span> MTSS</div>
-          <div class="separator ms4">|</div>
-          <div class="job-location">San Jose, CA</div>
-          <div class="separator ms4">|</div>
-          <div class="job-time-description">08/2010 - 10/2011</div>
-        </div>
-        <ul class="job-description c0">
-          <li class="row">
-            Full Stack Engineer building from scratch
-            <span class="bold2">Clinic Tree</span>, a clinic portal with patient record charting, appointments
-            management and dynamic content management system using JavaScript and C# and .Net.
-          </li>
-        </ul>
-      </div>
+    <div class="section-header z2">
+      <div class="bold3">Experience</div>
     </div>
-
-    <!-- Side Project -->
-    <div>
-      <div class="section-header z4 h2 cap c1 tac mt4 mb1 flex align-items-center">
-        <div class="bold2">Side Projects</div>
-        <div class="thin-line grow1 ml3"></div>
+    <div class="job-container section-content">
+      <div class="job-header z3">
+        <div class="job-title">Staff Software Engineer <span class="at"></span> Linkedin</div>
+        <div class="separator">|</div>
+        <div class="job-location">Sunnyvale, CA</div>
+        <div class="separator">|</div>
+        <div class="job-time-description">03/2020 - Present</div>
       </div>
-      <ul class="education-container section-content c0">
+      <ul class="job-description">
         <li class="row">
-          <a href="//github.com/synle/restapi-typescript-decorators">Rest API Decorators </a>
-          - a Typescript library that make writing API Client for Nodejs and Frontend simpler inspired by
-          <a href="//square.github.io/retrofit/">Square Retrofit library</a>
+          Providing guidance for core Front End initatives, UI framework, and Azure DevOps CI & CD pipeline for Linkedin
+          EPE.
         </li>
         <li class="row">
-          <a href="//github.com/synle/sequelize-typescript-decorators">Sequelize ORM Decorators </a>
-          - a Typescript library that simplifies
-          <a href="//sequelize.org/">Sequelize</a>
-          (NodeJS ORM library) schema definitions.
+          Working on <a href="//www.linkedin.com/help/linkedin">Linkedin Support Portal</a> that manages customers'
+          chats and offline cases on Dynamics365 CRM using C#, .NET Core, React and Fluent UI.
         </li>
         <li class="row">
-          Developed
-          <a
-            href="//aura-fiddle.herokuapp.com/fiddle/fiddle.app?nameSpace=fiddlePlayground&amp;componentName=helloWorld"
-            >Salesforce Aura Fiddle</a
-          >
-          which lets users quickly learn, share and prototype their Salesforce Aura and Lightning components.
+          Architected modern codebase Sendbloom with Typescript, React, Redux, Node.js, Express, Redis and MySQL
+        </li>
+      </ul>
+      <div class="job-header z3">
+        <div class="job-title">Senior Software Engineer <span class="at"></span> Linkedin</div>
+        <div class="separator">|</div>
+        <div class="job-location">Sunnyvale, CA</div>
+        <div class="separator">|</div>
+        <div class="job-time-description">05/2017 - 02/2020</div>
+      </div>
+      <ul class="job-description">
+        <li class="row">
+          Software Engineer for Linkedin Enterprise Learning and Enterprise Productivity Engineering using JavaScript,
+          Ember, React, Node.js, Java, Spring Boot, Python, Flask, MySQL, Redis and Azure.
         </li>
         <li class="row">
-          Contributed to
-          <a href="//github.com/sqlectron/sqlectron-gui">SQLECTRON</a> - an Electron native desktop GUI app that allows
-          you to manage your RMBDs and SQL queries.
+          Full Stack Engineer Team Lead, worked on Nucleus, an end-to-end purchase flow automation with React-and-Redux
+          Front End, and Spring Boot Back End hosted on Azure having integrations with ServiceNow and JIRA.
+        </li>
+        <li class="row">
+          Corporated
+          <a href="//www.linkedin.com/learning/">Linkedin Learning</a> with Slideshare DocViewer to allow end-to-end
+          custom document content creation and viewing.
+        </li>
+        <li class="row">
+          Developed and Presented Room Booking Assistant (RoomBA), a bot written with Node.js and Azure Message Service
+          Bus to intelligently book meeting rooms using attendees' locations at Linkedin GOPs Expo 2017.
+        </li>
+      </ul>
+      <div class="job-header z3">
+        <div class="job-title">Senior Member of Technical Staff <span class="at"></span> Salesforce</div>
+        <div class="separator">|</div>
+        <div class="job-location">San Francisco, CA</div>
+        <div class="separator">|</div>
+        <div class="job-time-description">04/2015 - 05/2017</div>
+      </div>
+      <ul class="job-description">
+        <li class="row">
+          Software Engineer for SalesforceIQ, and Aura using JavaScript, Angular, React, Salesforce Aura / Lightning,
+          Node.js, Express, and Java.
+        </li>
+        <li class="row">
+          Major contributor for SalesforceIQ Inbox, led and provided mentorship for junior members in the team of
+          <a href="//www.salesforceiq.com/products/inbox/desktop-apps">SalesforceIQ Inbox Desktop</a>.
+        </li>
+        <li class="row">
+          Built Lightning integration that brings Inbox productivity features with
+          <a href="//store.office.com/en-us/app.aspx?assetid=WA104379334&ui=en-US&rs=en-US&ad=US&appredirect=false"
+            >Salesforce Lightning for Gmail and Outlook</a
+          >.
+        </li>
+        <li class="row">
+          Prototyped Inbox Desktop Email client with React and Electron that lets you read your emails and interact with
+          Salesforce Records.
+        </li>
+        <li class="row">
+          Prototyped Desktop Dialer with Twilio which sales reps to communicate with customers right on the browser.
+        </li>
+      </ul>
+      <div class="job-header z3">
+        <div class="job-title">Tech Yahoo, Software Dev Engineer <span class="at"></span> Yahoo</div>
+        <div class="separator">|</div>
+        <div class="job-location">Sunnyvale, CA</div>
+        <div class="separator">|</div>
+        <div class="job-time-description">07/2014 - 04/2015</div>
+      </div>
+      <ul class="job-description">
+        <li class="row">
+          Front End Engineer for Yahoo Monitoring team, doing redesign of Yamas 2.0 Dashboard with JavaScript, Angular,
+          Node.js and Express.
+        </li>
+        <li class="row">
+          Within a short time, completed the redesign of Yamas which received internal Yahoo TechPulse 2014 conference
+          award.
+        </li>
+      </ul>
+      <div class="job-header z3">
+        <div class="job-title">Software Engineer <span class="at"></span> eBay Inc</div>
+        <div class="separator">|</div>
+        <div class="job-location">San Jose, CA</div>
+        <div class="separator">|</div>
+        <div class="job-time-description">08/2013 - 07/2014</div>
+      </div>
+      <ul class="job-description">
+        <li class="row">
+          Software Engineer for Transaction Flow and Registration team, working with JavaScript, Java and Spring MVC
+          Framework.
+        </li>
+        <li class="row">
+          Implemented the responsive Guest Checkout Registration which allows users to register for new eBay account
+          after checking out as guest.
+        </li>
+        <li class="row">
+          Rearchitected Selenium UI automation to extend coverage to iPad and iPhone using Selenium iWebDriver.
+        </li>
+      </ul>
+      <div class="job-header z3">
+        <div class="job-title">Software Engineer <span class="at"></span> eTrigue Inc</div>
+        <div class="separator">|</div>
+        <div class="job-location">San Jose, CA</div>
+        <div class="separator">|</div>
+        <div class="job-time-description">10/2011 - 08/2013</div>
+      </div>
+      <ul class="job-description">
+        <li class="row">
+          Full Stack Engineer for
+          <a href="//www.etrigue.com/">eTrigue Demand Center</a> using JavaScript, PHP, Node.js, C#, MySQL, Cassandra
+          and RabbitMQ.
+        </li>
+        <li class="row">
+          Owned and built core components of the eTrigue Demand Center including Prospect List, Campaign Builder, ETL
+          Jobs for Sales Velocity/ROI reporting and extracting prospects' information from vendors such as Cisco Webex
+          and Citrix GoToWebinar.
+        </li>
+      </ul>
+      <div class="job-header z3">
+        <div class="job-title">Software Engineer <span class="at"></span> MTSS</div>
+        <div class="separator">|</div>
+        <div class="job-location">San Jose, CA</div>
+        <div class="separator">|</div>
+        <div class="job-time-description">08/2010 - 10/2011</div>
+      </div>
+      <ul class="job-description">
+        <li class="row">
+          Full Stack Engineer building from scratch Clinic Tree, a clinic portal with patient record charting,
+          appointments management and dynamic content management system using JavaScript and C# and .Net.
         </li>
       </ul>
     </div>
+
+    <!-- Side Project -->
+    <div class="section-header z4">
+      <div class="bold3">Side Projects</div>
+    </div>
+    <ul class="education-container section-content c0">
+      <li class="row">
+        <a href="//github.com/synle/restapi-typescript-decorators">Rest API Decorators </a>
+        - a Typescript library that make writing API Client for Nodejs and Frontend simpler inspired by
+        <a href="//square.github.io/retrofit/">Square Retrofit library</a>
+      </li>
+      <li class="row">
+        <a href="//github.com/synle/sequelize-typescript-decorators">Sequelize ORM Decorators </a>
+        - a Typescript library that simplifies
+        <a href="//sequelize.org/">Sequelize</a>
+        (NodeJS ORM library) schema definitions.
+      </li>
+      <li class="row">
+        Developed
+        <a href="//aura-fiddle.herokuapp.com/fiddle/fiddle.app?nameSpace=fiddlePlayground&amp;componentName=helloWorld"
+          >Salesforce Aura Fiddle</a
+        >
+        which lets users quickly learn, share and prototype their Salesforce Aura and Lightning components.
+      </li>
+      <li class="row">
+        Contributed to
+        <a href="//github.com/sqlectron/sqlectron-gui">SQLECTRON</a> - an Electron native desktop GUI app that allows
+        you to manage your RMBDs and SQL queries.
+      </li>
+    </ul>
+
     <!-- Skills -->
     <div>
-      <div class="section-header z5 h2 cap c1 tac mt4 mb1 flex align-items-center">
-        <div class="bold2">Skills</div>
-        <div class="thin-line grow1 ml3"></div>
+      <div class="section-header z5">
+        <div class="bold3">Skills</div>
       </div>
       <ul class="skill-container section-content c0">
         <li class="row">
@@ -279,18 +276,23 @@
         </li>
       </ul>
     </div>
-    <span id="daynight-toggle" class="visible-screen"></span>
   </body>
+
+  <!-- minor scripts -->
   <script>
-    // hooking up service worker
-
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function () {
-        navigator.serviceWorker.register('/sw.js');
-      });
-    }
-
     (function () {
+      // hooking up service worker
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+          navigator.serviceWorker.register('/sw.js');
+        });
+      }
+
+      // disable telephone detection for duration
+      for (const elem of document.querySelectorAll('.education-time-description,.job-time-description')) {
+        elem.innerHTML += '&zwj;';
+      }
+
       // set up anchor rel attr
       try {
         const allAnchorTags = document.querySelectorAll('a');
@@ -319,15 +321,7 @@
       try {
         isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
       } catch (e) {}
-      function _updateDarkMode() {
-        document.querySelector('#daynight-toggle').innerHTML = isDarkMode ? '🌙' : '☀️';
-        document.querySelector('html').classList.toggle('light-theme', !isDarkMode);
-      }
-      _updateDarkMode();
-      document.querySelector('#daynight-toggle').addEventListener('click', () => {
-        isDarkMode = !isDarkMode;
-        _updateDarkMode();
-      });
+      document.querySelector('html').classList.toggle('light-theme', !isDarkMode);
     })();
   </script>
 </html>
