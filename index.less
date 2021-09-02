@@ -9,33 +9,13 @@
   --pageWidth: 1100px;
 
   --fontFamilyMain: Helvetica, Tahoma, Geneva, sans-serif;
-}
 
-.light-theme {
-  --colorBackground: white;
-  --colorForeground: black;
-  --colorCyan: #0c8ac2;
-  --colorRed: red;
-  --colorWhite: #fff;
-  --colorWhiteLight: #ccc;
-  --colorBlack: #000;
-  --colorBlacklight: #333;
-}
-
-.dark-theme {
-  --colorBackground: #282a36;
-  --colorForeground: #f8f8f2;
-  --colorCyan: #8be9fd;
-  --colorRed: #ff5555;
   --colorWhite: #fff;
   --colorBlack: #000;
   --colorBlacklight: #333;
 }
 
-:root {
-  .dark-theme();
-}
-
+// BEGIN color theme
 @media (prefers-color-scheme: light) {
   :root {
     .light-theme();
@@ -47,6 +27,26 @@
     .dark-theme();
   }
 }
+
+:root {
+  .dark-theme();
+}
+
+.light-theme {
+  --colorBgMain: white;
+  --colorTextMain: black;
+  --colorTextLink: #0c8ac2;
+  --colorBorderMain: #ccc;
+}
+
+.dark-theme {
+  --colorBgMain: #0d1117;
+  --colorTextMain: #c9d1d9;
+  --colorTextLink: #58a6ff;
+  --colorBorderMain: #58a6ff;
+}
+
+// END color theme
 
 //utils
 .mtauto,
@@ -258,7 +258,7 @@ a {
   font-weight: 300;
 }
 .bold2 {
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .cap {
@@ -322,7 +322,7 @@ ul {
 
 .at:after {
   content: '@';
-  color: var(--colorForeground);
+  color: var(--colorTextMain);
 }
 
 #daynight-toggle {
@@ -338,12 +338,12 @@ ul {
 // start
 html {
   font-size: 16px;
-  color: var(--colorForeground);
+  color: var(--colorTextMain);
   font-family: var(--fontFamilyMain);
 }
 
 * {
-  background-color: var(--colorBackground);
+  background-color: var(--colorBgMain);
   line-height: 1.5;
 }
 
@@ -365,13 +365,10 @@ html {
 
 // app colors
 .c0 {
-  color: var(--colorForeground);
+  color: var(--colorTextMain);
 }
 .c1 {
-  color: var(--colorCyan);
-}
-.c2 {
-  color: var(--colorRed);
+  color: var(--colorTextLink);
 }
 
 // display helpers
@@ -414,7 +411,7 @@ html {
 // custom stuffs
 .hr {
   height: 2px;
-  background: var(--colorWhiteLight);
+  background: var(--colorBorderMain);
   margin-top: var(--spaceSize3);
   margin-bottom: var(--spaceSize3);
   margin-left: auto;
@@ -425,7 +422,6 @@ html {
 //screen only stuffs
 @media screen {
   :root {
-    --spaceSize0: 0;
     --spaceSize1: 5px;
     --spaceSize2: 12px;
     --spaceSize3: 16px;
@@ -445,7 +441,7 @@ html {
     .c1();
 
     &:hover {
-      .c2();
+      text-decoration: underline;
     }
   }
 
@@ -574,7 +570,7 @@ html {
 
   body {
     background-color: var(--colorWhite);
-    color: var(--colorBlacklight);
+    color: var(--colorBlack);
     width: 100%;
     padding: var(--spaceSize2) var(--spaceSize4);
     margin: 0;
@@ -597,8 +593,7 @@ html {
   }
 
   .c0,
-  .c1,
-  .c2 {
+  .c1 {
     color: var(--colorBlacklight);
   }
 

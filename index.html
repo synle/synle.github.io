@@ -321,7 +321,7 @@
       } catch (e) {}
       function _updateDarkMode() {
         document.querySelector('#daynight-toggle').innerHTML = isDarkMode ? '🌙' : '☀️';
-        document.querySelector('html').classList.toggle('dark-theme', isDarkMode);
+        document.querySelector('html').classList.toggle('light-theme', !isDarkMode);
       }
       _updateDarkMode();
       document.querySelector('#daynight-toggle').addEventListener('click', () => {
