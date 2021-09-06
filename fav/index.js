@@ -44,6 +44,10 @@ function getStrongPassword() {
 document.addEventListener('AppFullyLoaded', async (e) => {
   const { renderSchema } = e;
 
+  if (!renderSchema) {
+    return;
+  }
+
   const SITE_SCHEMA = `
   ! Sy's Favorites
   @ 🧑
@@ -171,10 +175,9 @@ document.addEventListener('AppFullyLoaded', async (e) => {
     return HOST_MAPPING_BLOCK_SCHEMA;
   }
 
-  if (typeof renderSchema === 'function') {
-    renderSchema(`
+  // construct and save the data to cache.
+  renderSchema(`
     ${SITE_SCHEMA}
     ${await getHostMappingSchema()}
   `);
-  }
 });
