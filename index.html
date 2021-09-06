@@ -229,6 +229,10 @@
     </div>
     <ul class="education-container section-content c0">
       <li class="row">
+        <a href="//github.com/synle/note-synchronizer"> Note Synchronizer </a>
+        - a background application written in Node, Reddis, and MySQL to sync emails / attachments to Google Drive
+      </li>
+      <li class="row">
         <a href="//github.com/synle/restapi-typescript-decorators">Rest API Decorators </a>
         - a Typescript library that make writing API Client for Nodejs and Frontend simpler inspired by
         <a href="//square.github.io/retrofit/">Square Retrofit library</a>
@@ -240,42 +244,38 @@
         (NodeJS ORM library) schema definitions.
       </li>
       <li class="row">
-        Developed
         <a href="//aura-fiddle.herokuapp.com/fiddle/fiddle.app?nameSpace=fiddlePlayground&amp;componentName=helloWorld"
           >Salesforce Aura Fiddle</a
         >
-        which lets users quickly learn, share and prototype their Salesforce Aura and Lightning components.
+        - which lets users quickly learn, share and prototype their Salesforce Aura and Lightning components.
       </li>
       <li class="row">
-        Contributed to
         <a href="//github.com/sqlectron/sqlectron-gui">SQLECTRON</a> - an Electron native desktop GUI app that allows
         you to manage your RMBDs and SQL queries.
       </li>
     </ul>
 
     <!-- Skills -->
-    <div>
-      <div class="section-header z5">
-        <div class="bold3">Skills</div>
-      </div>
-      <ul class="skill-container section-content c0">
-        <li class="row">
-          <span class="b mr1">Front End:</span> JavaScript, Typescript, React, Reselect, Redux, Jest, Angular,
-          Storybook, Sass, Grunt, Gulp, Puppeteer, Chai, Sinon, Axios.
-        </li>
-        <li class="row">
-          <span class="b mr1">Back End:</span> Node.js, Express, Java, Spring Boot, Maven, Mockito, Jackson, Jetty.
-        </li>
-        <li class="row">
-          <span class="b mr1">Databases / Technologies:</span> Microsoft SQL Server, MySQL, Redis, MongoDB, Selenium,
-          Cassandra, RabbitMQ
-        </li>
-        <li class="row">
-          <span class="b mr1">Tools:</span> Git, Docker, Vagrant, VirtualBox, NGINX, JIRA, Bash, Jenkins CI, TeamCity,
-          Travis CI, Azure, AWS and SauceLabs.
-        </li>
-      </ul>
+    <div class="section-header z5">
+      <div class="bold3">Skills</div>
     </div>
+    <ul class="skill-container section-content c0">
+      <li class="row">
+        <span class="b mr1">Front End:</span> JavaScript, Typescript, React, Reselect, Redux, Jest, Angular, Storybook,
+        Sass, Grunt, Gulp, Puppeteer, Chai, Sinon, Axios.
+      </li>
+      <li class="row">
+        <span class="b mr1">Back End:</span> Node.js, Express, Java, Spring Boot, Maven, Mockito, Jackson, Jetty.
+      </li>
+      <li class="row">
+        <span class="b mr1">Databases / Technologies:</span> Microsoft SQL Server, MySQL, Redis, MongoDB, Selenium,
+        Cassandra, RabbitMQ
+      </li>
+      <li class="row">
+        <span class="b mr1">Tools:</span> Git, Docker, Vagrant, VirtualBox, NGINX, JIRA, Bash, Jenkins CI, TeamCity,
+        Travis CI, Azure, AWS and SauceLabs.
+      </li>
+    </ul>
   </body>
 
   <!-- minor scripts -->
@@ -286,11 +286,6 @@
         window.addEventListener('load', function () {
           navigator.serviceWorker.register('/sw.js');
         });
-      }
-
-      // disable telephone detection for duration
-      for (const elem of document.querySelectorAll('.education-time-description,.job-time-description')) {
-        elem.innerHTML += '&zwj;';
       }
 
       // set up anchor rel attr
