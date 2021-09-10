@@ -1,4 +1,4 @@
-const version = 21;
+const version = 1;
 const CACHE_NAME = `synle-github-io-caches`;
 
 function _shouldCacheThisUrl(url) {
@@ -33,10 +33,15 @@ function _formatUrl(urlList) {
 const staticUrlsToCache = _formatUrl([
   '/index.css',
   '/common.less',
-  '/fav/',
+  // fav
   '/fav/index.html',
+  '/fav/index.css',
   '/fav/manifest.json',
-  '/app/nav-generator/core.css',
+  // nav generator
+  '/nav-generator/index.html',
+  '/nav-generator/index.css',
+  '/nav-generator/index.jsx',
+  // other minor apps
   '/app/fix-link.html',
   '/app/port-forwarding.html',
   '/app/setup-bash-profile.html',
@@ -62,7 +67,9 @@ self.addEventListener('install', function (event) {
 
   event.waitUntil(
     caches.open(CACHE_NAME).then(function (cache) {
-      return cache.addAll(cacheKeys);
+      return cache.addAll(cacheKeys).catch((err) => {
+        console.log('sw.install - failed to update caches', err);
+      });
     }),
   );
 });
@@ -71,21 +78,22 @@ self.addEventListener('activate', (event) => {
   // delete any caches that aren't in cacheKeys
   console.log('sw.activate', version, event);
   event.waitUntil(
-    caches
-      .keys()
-      .then((keys) =>
-        Promise.all(
-          keys.map((key) => {
-            if (!cacheKeys.includes(key)) {
+    Promise.allSettled([
+      caches
+        .keys()
+        .then((keys) =>
+          Promise.all(
+            keys.map((key) => {
+              // now deletes all the caches
               return caches.delete(key);
-            }
-          }),
-        ),
-      )
-      .catch((err) => {
-        console.log('New sw is now ready to handle fetches!', err);
-      })
-      .finally(() => clients.claim()), // https://stackoverflow.com/questions/39567642/service-worker-fetch-event-on-first-load
+            }),
+          ),
+        )
+        .catch((err) => {
+          console.log('sw.activate - New sw is now ready to handle fetches!', err);
+        }),
+      clients.claim(), // https://stackoverflow.com/questions/39567642/service-worker-fetch-event-on-first-load
+    ]),
   );
 });
 
