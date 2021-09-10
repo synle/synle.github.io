@@ -1,8 +1,0 @@
-{
-  "name": "Sy's Favorites",
-  "short_name": "Sy's Favorites",
-  "lang": "en-US",
-  "start_url": "/fav/index.html",
-  "display": "standalone",
-  "background_color": "#0d1117"
-}
