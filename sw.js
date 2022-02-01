@@ -1,4 +1,4 @@
-const version = 3;
+const version = 4;
 const CACHE_NAME = `synle-github-io-caches`;
 
 function _shouldCacheThisUrl(url) {
@@ -31,6 +31,9 @@ function _formatUrl(urlList) {
 }
 
 const staticUrlsToCache = _formatUrl([
+  'https://synle.github.io//index.css',
+  'https://synle.github.io/common.less',
+  //
   'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css',
   'https://unpkg.com/@babel/standalone/babel.min.js',
   'https://cdnjs.cloudflare.com/ajax/libs/less.js/4.1.1/less.min.js',
@@ -121,7 +124,8 @@ self.addEventListener('fetch', function (event) {
       return fetch(request).then(function (response) {
         // Check if we received a valid response
         const url = request.url || '';
-        if (!_shouldCacheThisUrl(url)) {
+        const method = (request.method || 'GET').toUpperCase();
+        if (!_shouldCacheThisUrl(url) ||  method !== 'GET') {
           // not caching this
           return response;
         }
