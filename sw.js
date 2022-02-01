@@ -1,8 +1,12 @@
-const version = 4;
+const version = 5;
 const CACHE_NAME = `synle-github-io-caches`;
 
 function _shouldCacheThisUrl(url) {
   if (url.includes('cdn.skypack.dev') || url.includes('cloudflare.com') || url.includes('unpkg.com')) {
+    return true;
+  }
+  
+  if(url === 'https://synle.github.io/'){
     return true;
   }
 
@@ -31,7 +35,7 @@ function _formatUrl(urlList) {
 }
 
 const staticUrlsToCache = _formatUrl([
-  'https://synle.github.io//index.css',
+  'https://synle.github.io/index.css',
   'https://synle.github.io/common.less',
   //
   'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css',
