@@ -1,4 +1,4 @@
-const version = 1;
+const version = 2;
 const CACHE_NAME = `synle-github-io-caches`;
 
 function _shouldCacheThisUrl(url) {
@@ -31,22 +31,6 @@ function _formatUrl(urlList) {
 }
 
 const staticUrlsToCache = _formatUrl([
-  '/index.css',
-  '/common.less',
-  // fav
-  '/fav/index.html',
-  '/fav/index.css',
-  '/fav/manifest.json',
-  // nav generator
-  '/nav-generator/index.html',
-  '/nav-generator/index.css',
-  '/nav-generator/index.jsx',
-  // other minor apps
-  '/app/fix-link.html',
-  '/app/port-forwarding.html',
-  '/app/setup-bash-profile.html',
-  '/app/stock-calculator.html',
-  '/app/time-converter.html',
   'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css',
   'https://unpkg.com/@babel/standalone/babel.min.js',
   'https://cdnjs.cloudflare.com/ajax/libs/less.js/4.1.1/less.min.js',
@@ -55,8 +39,6 @@ const staticUrlsToCache = _formatUrl([
 ]);
 
 const dynamicUrlsToCache = _formatUrl([
-  '/fav/index.js',
-  'https://raw.githubusercontent.com/synle/bashrc/master/software/metadata/ip-address.config',
 ]);
 
 const cacheKeys = [...staticUrlsToCache, ...dynamicUrlsToCache];
