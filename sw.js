@@ -1,4 +1,4 @@
-const version = 2;
+const version = 3;
 const CACHE_NAME = `synle-github-io-caches`;
 
 function _shouldCacheThisUrl(url) {
@@ -121,11 +121,9 @@ self.addEventListener('fetch', function (event) {
       return fetch(request).then(function (response) {
         // Check if we received a valid response
         const url = request.url || '';
-        if (!response) {
-          if (!_shouldCacheThisUrl(url)) {
-            // not caching this
-            return response;
-          }
+        if (!_shouldCacheThisUrl(url)) {
+          // not caching this
+          return response;
         }
 
         const responseToCache = response.clone(); // need to clone before used
