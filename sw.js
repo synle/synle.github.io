@@ -121,7 +121,7 @@ self.addEventListener('fetch', function (event) {
       return fetch(request).then(function (response) {
         // Check if we received a valid response
         const url = request.url || '';
-        if (!response || response.status !== 200 || response.type !== 'basic') {
+        if (!response) {
           if (!_shouldCacheThisUrl(url)) {
             // not caching this
             return response;
