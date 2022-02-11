@@ -22,10 +22,15 @@ jobs:
           node-version: ${{ matrix.node-version }}
           registry-url: https://registry.npmjs.org/
       - run: npm install
+      - run: npm version --no-git-tag-version patch
+      - id: package-version
+        uses: martinbeentjes/npm-get-version-action@master
+        with:
+          path: '.'
       - run: npm run format
       - run: npm run build
       - run: |
-          sed -i "s/const version = .*\+/const version = '${{ needs.create_release.outputs.package_version }}/';/" sw.js
+          sed -i "s/const version = .*\+/const version = '${{ steps.package-version.outputs.current-version }}';/" sw.js
       - uses: EndBug/add-and-commit@v7
         with:
           message: 'Server Automated Build'
