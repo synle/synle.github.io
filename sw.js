@@ -5,8 +5,8 @@ function _shouldCacheThisUrl(url) {
   if (url.includes('cdn.skypack.dev') || url.includes('cloudflare.com') || url.includes('unpkg.com')) {
     return true;
   }
-  
-  if(url === 'https://synle.github.io/'){
+
+  if (url === 'https://synle.github.io/') {
     return true;
   }
 
@@ -45,8 +45,7 @@ const staticUrlsToCache = _formatUrl([
   'https://cdn.skypack.dev/react-dom',
 ]);
 
-const dynamicUrlsToCache = _formatUrl([
-]);
+const dynamicUrlsToCache = _formatUrl([]);
 
 const cacheKeys = [...staticUrlsToCache, ...dynamicUrlsToCache];
 
@@ -129,7 +128,7 @@ self.addEventListener('fetch', function (event) {
         // Check if we received a valid response
         const url = request.url || '';
         const method = (request.method || 'GET').toUpperCase();
-        if (!_shouldCacheThisUrl(url) ||  method !== 'GET') {
+        if (!_shouldCacheThisUrl(url) || method !== 'GET') {
           // not caching this
           return response;
         }
