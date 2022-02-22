@@ -4,8 +4,9 @@
   "private": true,
   "description": "Sy's resume along with some mini apps",
   "main": "index.html",
-  "dependencies": {},
-  "devDependencies": {},
+  "devDependencies": {
+    "puppeteer": "^13.4.0"
+  },
   "scripts": {
     "build": "sh build.sh",
     "format": "sh format.sh",
