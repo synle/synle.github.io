@@ -5,7 +5,7 @@ const fs = require('fs');
   const browser = await puppeteer.launch();
 
   let contentHtml = fs.readFileSync('index.html', 'utf8');
-  contentHtml = contentHtml.replace('/index.css', 'https://synle.github.io/index.css')
+  contentHtml = contentHtml.replace('/index.css', 'https://synle.github.io/index.css');
   const page = await browser.newPage();
   await page.setContent(contentHtml);
   await page.pdf({ path: 'syle-resume.pdf', format: 'a4' });
