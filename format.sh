@@ -1,5 +1,4 @@
 echo '>> format formatting'
 npx prettier --write \
-  *.{md,json,html} \
-  **/**/**/**/*.{js,jsx,less,yml} \
+  **/*.{js,jsx,ts,tsx,less,yml,md,json,html} \
 && echo '>> done formatting...'

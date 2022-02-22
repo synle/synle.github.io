@@ -31,6 +31,7 @@ jobs:
       - run: npm run build
       - run: |
           sed -i "s/const version = .*\+/const version = '${{ steps.package-version.outputs.current-version }}';/" sw.js
+      - run: node generate-resume.js
       - uses: EndBug/add-and-commit@v7
         with:
-          message: 'Server Automated Build'
+          message: 'CI Build - Prettier & LESS build & PDF generation'
