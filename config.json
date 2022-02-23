@@ -5,14 +5,14 @@
         "degree": "Master Of Science",
         "program": "Software Engineering",
         "school": "San Jose State University",
-        "graduated": "graduated 2019",
+        "graduated": "Graduated 2019",
         "items": ["Graduated with Specialization in Cloud & Mobile Computing."]
       },
       {
         "degree": "Bachelor Of Science",
         "program": "Computer Science",
         "school": "San Jose State University",
-        "graduated": "graduated 2011",
+        "graduated": "Graduated 2011",
         "items": ["Graduated Cum Laude with Specialization in Computer Graphics."]
       }
     ]
