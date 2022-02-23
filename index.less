@@ -337,21 +337,23 @@ a {
     --fontSize3: 1rem;
   }
 
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
   html {
     font-family: var(--fontFamilySecondary);
     font-size: 11px;
-  }
-
-  @page {
-    margin: var(--spaceSize0);
-    padding: var(--spaceSize0);
+    background: #efefef;
   }
 
   body {
-    width: 100%;
-    max-width: var(--pageWidthPrint);
+    width: 210mm;
+    height: 297mm;
     padding: var(--spaceSize2) var(--spaceSize4) 0 var(--spaceSize4);
     margin: 0 auto;
+    background: #fff;
   }
 
   .section-header {
