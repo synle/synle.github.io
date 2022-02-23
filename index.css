@@ -203,9 +203,8 @@ a {
 .job-header,
 .education-header {
   font-size: var(--fontSize3);
-  display: flex;
-  text-transform: uppercase;
   font-weight: var(--fontWeightBold);
+  display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
