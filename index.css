@@ -62,8 +62,8 @@
     Segoe UI Emoji;
   --fontFamilySecondary: Helvetica, Tahoma, Geneva, sans-serif;
   --fontFamilyMonospace: monospace;
-  --fontWeightBold: 800;
-  --fontWeightSemiBold: 500;
+  --fontWeightBold: 500;
+  --fontWeightSemiBold: 400;
   --fontWeightLight: 300;
   --fontSize1: 1.5rem;
   --fontSize2: 1.2rem;
