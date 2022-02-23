@@ -107,6 +107,10 @@ h3 {
   --pageWidthPrint: 800px;
   --positionSticky: sticky;
 }
+:root {
+  --widthSection2: 300px;
+  --widthSection3: 180px;
+}
 html {
   font-size: 16px;
   font-family: var(--fontFamilyMain);
@@ -199,25 +203,25 @@ a {
   font-weight: var(--fontWeightBold);
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 .education-container .education-title,
 .job-container .education-title,
 .education-container .job-title,
 .job-container .job-title {
-  width: 425px;
+  flex-grow: 1;
 }
 .education-container .education-location,
 .job-container .education-location,
 .education-container .job-location,
 .job-container .job-location {
-  margin-left: auto;
-  width: 180px;
+  width: var(--widthSection2);
 }
 .education-container .education-time-description,
 .job-container .education-time-description,
 .education-container .job-time-description,
 .job-container .job-time-description {
-  margin-left: auto;
+  width: var(--widthSection3);
   text-align: right;
 }
 .job-description {
@@ -277,7 +281,7 @@ a {
     padding-bottom: 1rem;
   }
   .section-header {
-    margin-bottom: 0.5rem !important;
+    margin-bottom: 0.5rem;
   }
   .job-header,
   .education-header {
@@ -299,6 +303,8 @@ a {
     --fontSize1: 1rem;
     --fontSize2: 1rem;
     --fontSize3: 1rem;
+    --widthSection2: 260px;
+    --widthSection3: 175px;
   }
 }
 @media screen and (max-width: 949px) {
@@ -311,7 +317,7 @@ a {
     padding-bottom: 4rem;
   }
   .section-header {
-    margin-bottom: 10px !important;
+    margin-bottom: 10px;
   }
   .job-header,
   .education-header {
@@ -347,7 +353,12 @@ a {
   .education-container *,
   .job-container * {
     width: 100%;
-    text-align: left !important;
+  }
+  .education-container .education-time-description,
+  .job-container .education-time-description,
+  .education-container .job-time-description,
+  .job-container .job-time-description {
+    text-align: left;
   }
   ul {
     margin-left: 0;
@@ -427,7 +438,7 @@ a {
   }
   a {
     font-weight: var(--fontWeightSemiBold);
-    color: var(--colorBlack) !important;
+    color: var(--colorBlack);
   }
 }
 @media screen and (max-width: 1049px) {
