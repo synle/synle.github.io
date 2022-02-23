@@ -13,7 +13,9 @@
         "program": "Computer Science",
         "school": "San Jose State University",
         "graduated": "Graduated 2011",
-        "items": ["Graduated Cum Laude with Specialization in Computer Graphics."]
+        "items": [
+          "Graduated Cum Laude with Specialization in Computer Graphics."
+        ]
       }
     ]
   },
@@ -104,11 +106,11 @@
     "rows": [
       {
         "items": [
-          "<a href='//synle.github.io/sqlui-native'>sqlui-native</a>: created a cross-platform native desktop application written in Electron and React that allows you to manage a wide range of databases such as MySQL, PostgresSQL, MS SQL Server, Cassandra, MongoDB and Redis supporting Windows, Mac and Linux.",
-          "<a href='//synle.github.io/js-import-fixer'>import-fixer</a>: developed a npm executable module that cleans up javascript / TypeScript duplicates or unused imports in a deterministic way.",
-          "<a href='//synle.github.io/restapi-TypeScript-decorators'>Rest API Decorators</a>: a TypeScript library that make writing API Client for Nodejs and Frontend simpler inspired by <a href='//square.github.io/retrofit/'>Square Retrofit library</a>",
-          "<a href='//github.com/synle/note-synchronizer'>Note Synchronizer</a>: a background application written in Node, Reddis, and MySQL to sync emails / attachments to Google Drive",
-          "<a href='//github.com/synle/sequelize-TypeScript-decorators'>Sequelize ORM Decorators</a>: a TypeScript library that simplifies <a href='//sequelize.org/'>Sequelize</a> (NodeJS ORM library) schema definitions."
+          "<a href='//synle.github.io/sqlui-native'><strong class='mr1'>sqlui-native</strong></a>: created a cross-platform native desktop application written in Electron and React that allows you to manage a wide range of databases such as MySQL, PostgresSQL, MS SQL Server, Cassandra, MongoDB and Redis supporting Windows, Mac and Linux.",
+          "<a href='//synle.github.io/js-import-fixer'><strong class='mr1'>import-fixer</strong></a>: developed a npm executable module that cleans up javascript / TypeScript duplicates or unused imports in a deterministic way.",
+          "<a href='//synle.github.io/restapi-TypeScript-decorators'><strong class='mr1'>Rest API Decorators</strong></a>: a TypeScript library that make writing API Client for Nodejs and Frontend simpler inspired by <a href='//square.github.io/retrofit/'>Square Retrofit library</strong></a>",
+          "<a href='//github.com/synle/note-synchronizer'><strong class='mr1'>Note Synchronizer</strong></a>: a background application written in Node, Reddis, and MySQL to sync emails / attachments to Google Drive",
+          "<a href='//github.com/synle/sequelize-TypeScript-decorators'><strong class='mr1'>Sequelize ORM Decorators</strong></a>: a TypeScript library that simplifies <a href='//sequelize.org/'>Sequelize</a> (NodeJS ORM library) schema definitions."
         ]
       }
     ]
