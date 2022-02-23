@@ -6,7 +6,7 @@ const fs = require('fs');
 
   let contentHtml = fs.readFileSync('index.html', 'utf8');
   let contentCss = fs.readFileSync('index.css', 'utf8');
-  contentHtml += `<style>${contentCss}</style>`
+  contentHtml += `<style>${contentCss}</style>`;
   const page = await browser.newPage();
   await page.setContent(contentHtml);
   await page.pdf({ path: 'syle-resume.pdf', format: 'a4' });
