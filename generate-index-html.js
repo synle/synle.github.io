@@ -1,7 +1,6 @@
 const Mustache = require('mustache');
 const fs = require('fs');
 
-
 let yoe;
 try {
   yoe = new Date().getYear() - (2011 - 1900);
