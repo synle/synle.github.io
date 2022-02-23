@@ -339,11 +339,6 @@ a {
     display: block;
     width: 100%;
   }
-  .job-header .separator,
-  .education-header .separator {
-    content: '';
-    display: none;
-  }
   .job-header .at,
   .education-header .at {
     display: block;
