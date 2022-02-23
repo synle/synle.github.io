@@ -22,17 +22,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
           registry-url: https://registry.npmjs.org/
       - run: npm install
-      - run: npm version --no-git-tag-version patch
-      - id: package-version
-        uses: martinbeentjes/npm-get-version-action@master
-        with:
-          path: '.'
       - run: npm run build
-      - run: node generate-index-html.js
-      - run: npm run format
-      - run: |
-          sed -i "s/const version = .*\+/const version = '${{ steps.package-version.outputs.current-version }}';/" sw.js
-      - run: node generate-resume.js
       - uses: EndBug/add-and-commit@v7
         with:
           message: 'CI Build - Prettier & LESS build & PDF generation'
