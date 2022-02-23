@@ -19,5 +19,8 @@ fs.writeFileSync('index.html', output);
 
 // update the service worker version
 let swContent = fs.readFileSync('sw.js', 'utf8');
-swContent = swContent.replace(/const version = '1.0.[0-9]+';/, `const version = '1.0.${Date.now()}';`);
+swContent = swContent.replace(
+  /const version = '1.0.[0-9]+';/,
+  `const version = '1.0.${Date.now()}';`,
+);
 fs.writeFileSync('sw.js', swContent);
