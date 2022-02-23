@@ -13,7 +13,11 @@
 
       <div class="field mb">
         <label for="txt-details">Details</label>
-        <textarea id="txt-details" name="txt-details" type="text" style="min-height: 350px"></textarea>
+        <textarea
+          id="txt-details"
+          name="txt-details"
+          type="text"
+          style="min-height: 350px"></textarea>
       </div>
 
       <fieldset class="mb">
@@ -103,10 +107,14 @@
 
     <script>
       (function () {
-        document.getElementById('txt-text').value = `Event for ${new Date().toLocaleString()}`;
+        document.getElementById(
+          'txt-text',
+        ).value = `Event for ${new Date().toLocaleString()}`;
         document.getElementById('txt-date').valueAsDate = new Date();
         document.getElementById('txt-from').value = moment().format('HH:mm');
-        document.getElementById('txt-to').value = moment().add(1, 'hours').format('HH:mm');
+        document.getElementById('txt-to').value = moment()
+          .add(1, 'hours')
+          .format('HH:mm');
 
         try {
           const urlSearchParams = new URLSearchParams(window.location.search);
@@ -127,8 +135,12 @@
 
           const DATE_TIME_FORMAT_FROM = 'YYYY-MM-DD kk:mm';
           const DATE_TIME_FORMAT_TO = 'YYYYMMDDTkkmm00Z'; // 20210305T163000Z
-          const dateFrom = moment.utc(`${date} ${from}`, DATE_TIME_FORMAT_FROM).format(DATE_TIME_FORMAT_TO);
-          const dateTo = moment.utc(`${date} ${to}`, DATE_TIME_FORMAT_FROM).format(DATE_TIME_FORMAT_TO);
+          const dateFrom = moment
+            .utc(`${date} ${from}`, DATE_TIME_FORMAT_FROM)
+            .format(DATE_TIME_FORMAT_TO);
+          const dateTo = moment
+            .utc(`${date} ${to}`, DATE_TIME_FORMAT_FROM)
+            .format(DATE_TIME_FORMAT_TO);
 
           const link = generateLink({
             dateFrom,
@@ -149,7 +161,9 @@
           const { text, details, location, dateFrom, dateTo } = data;
           return `https://calendar.google.com/calendar/u/0/r/eventedit?dates=${dateFrom}/${dateTo}&trp=true&text=${encodeURIComponent(
             text,
-          )}&location=${encodeURIComponent(location)}&details=${encodeURIComponent(details)}`;
+          )}&location=${encodeURIComponent(
+            location,
+          )}&details=${encodeURIComponent(details)}`;
         }
       })();
     </script>

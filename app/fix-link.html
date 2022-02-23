@@ -74,13 +74,16 @@
       <div id="output" style="display: none"></div>
       <div style="display: flex; margin-bottom: 15px">
         <button type="submit" onClick="window.onGo()">Go</button>
-        <button type="button" onClick="window.onShowFixLinkBookmark()">Show Bookmarklet</button>
+        <button type="button" onClick="window.onShowFixLinkBookmark()">
+          Show Bookmarklet
+        </button>
         <button type="button" onclick="viewSource()">View Source</button>
       </div>
     </form>
     <script>
       window.viewSource = () => {
-        location.href = 'https://github.com/synle/synle.github.io/blob/master/link/index.html';
+        location.href =
+          'https://github.com/synle/synle.github.io/blob/master/link/index.html';
       };
 
       (() => {
@@ -99,7 +102,11 @@
           // https://seekingalpha.com/amp/article/4278986-simple-path-to-early-retirement-investing
           // https://seekingalpha.com/article/4278986-simple-path-to-early-retirement-investing
           // https://seekingalpha.com/news/3702883-splunk-analysts-cut-price-targets-after-earnings-with-too-many-moving-parts
-          url = cleanupUrl(url.replace('seekingalpha.com/amp/', '').replace('seekingalpha.com/', ''));
+          url = cleanupUrl(
+            url
+              .replace('seekingalpha.com/amp/', '')
+              .replace('seekingalpha.com/', ''),
+          );
           return `https://seekingalpha.com/amp/${url}`;
         }
 
@@ -109,7 +116,12 @@
         }
         function fixCnbcLink(url) {
           // https://www.cnbc.com/amp/2021/05/18/yellen-pushes-higher-taxes-stronger-unions-more-competition-to-us-chamber.html
-          url = cleanupUrl(url.replace('www.cnbc.com', '').replace('cnbc.com', '').replace('amp', ''));
+          url = cleanupUrl(
+            url
+              .replace('www.cnbc.com', '')
+              .replace('cnbc.com', '')
+              .replace('amp', ''),
+          );
           return `https://www.cnbc.com/amp/${url}`;
         }
 
@@ -119,7 +131,12 @@
         }
         function fixFoolLink(url) {
           // https://www.fool.com/amp/investing/2021/05/19/an-att-dividend-cut-is-coming-buy-this-telecom-ins/
-          url = cleanupUrl(url.replace('www.fool.com', '').replace('fool.com', '').replace('amp', ''));
+          url = cleanupUrl(
+            url
+              .replace('www.fool.com', '')
+              .replace('fool.com', '')
+              .replace('amp', ''),
+          );
           return `https://www.fool.com/${url}`;
         }
 
@@ -149,7 +166,8 @@
 
         function setOutput(html) {
           document.querySelector('#output').innerHTML = html;
-          document.querySelector('#output').style.display = html.length > 0 ? 'block' : 'hidden';
+          document.querySelector('#output').style.display =
+            html.length > 0 ? 'block' : 'hidden';
         }
 
         // start
@@ -241,7 +259,11 @@
 
         const URL_MATCHERS = [isSeekingAlphaLink, isCnbcLink, isFoolLink];
 
-        if (URL_MATCHERS.some((matcher) => matcher(document.querySelector('#input').value))) {
+        if (
+          URL_MATCHERS.some((matcher) =>
+            matcher(document.querySelector('#input').value),
+          )
+        ) {
           onGo();
         }
 

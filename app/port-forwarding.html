@@ -128,13 +128,22 @@
       <datalist id="datalistDestIp"></datalist>
 
       <div class="row">
-        <input id="server" required2 placeholder server value="syle@sy-mp" onBlur="onBlurFormat(this)" />
+        <input
+          id="server"
+          required2
+          placeholder
+          server
+          value="syle@sy-mp"
+          onBlur="onBlurFormat(this)" />
       </div>
 
       <div class="row">
         <button type="submit">Submit</button>
         <button type="button" onClick="onReset()">Reset</button>
-        <a href="https://github.com/synle/synle.github.io/blob/master/app/port-forwarding.html">Source Code</a>
+        <a
+          href="https://github.com/synle/synle.github.io/blob/master/app/port-forwarding.html"
+          >Source Code</a
+        >
       </div>
     </form>
     <div id="output"></div>
@@ -177,7 +186,9 @@
           const lastInputRow = getLastInputRow();
           if (lastInputRow) {
             localIp = lastInputRow.querySelector('.local_ip').value.trim();
-            destinationIp = lastInputRow.querySelector('.destination_ip').value.trim();
+            destinationIp = lastInputRow
+              .querySelector('.destination_ip')
+              .value.trim();
           }
         }
 
@@ -218,8 +229,12 @@
           .map((dom) => {
             const local_ip = dom.querySelector('.local_ip').value;
             const local_port = dom.querySelector('.local_port').value;
-            const destination_ip = dom.querySelector('.destination_ip').value.trim();
-            const destination_port = dom.querySelector('.destination_port').value.trim();
+            const destination_ip = dom
+              .querySelector('.destination_ip')
+              .value.trim();
+            const destination_port = dom
+              .querySelector('.destination_port')
+              .value.trim();
 
             if (local_ip <= 1024 || destination_ip <= 1024) {
               needSudo = true;
@@ -241,8 +256,12 @@
           .map((dom) => {
             const local_ip = dom.querySelector('.local_ip').value;
             const local_port = dom.querySelector('.local_port').value;
-            const destination_ip = dom.querySelector('.destination_ip').value.trim();
-            const destination_port = dom.querySelector('.destination_port').value.trim();
+            const destination_ip = dom
+              .querySelector('.destination_ip')
+              .value.trim();
+            const destination_port = dom
+              .querySelector('.destination_port')
+              .value.trim();
 
             return `${local_port}:${local_ip}:${destination_ip}:${destination_port}`;
           })
@@ -295,13 +314,22 @@
             });
         }
 
-        addDataListOption(document.querySelector('#datalistLocalIp'), setLocalIps);
-        addDataListOption(document.querySelector('#datalistDestIp'), setDestinationIps);
+        addDataListOption(
+          document.querySelector('#datalistLocalIp'),
+          setLocalIps,
+        );
+        addDataListOption(
+          document.querySelector('#datalistDestIp'),
+          setDestinationIps,
+        );
         addDataListOption(document.querySelector('#datalistPorts'), setPorts);
 
         function addDataListOption(listDom, options) {
           for (const optionVal of options) {
-            listDom.insertAdjacentHTML('beforeend', `<option>${optionVal}</option>`);
+            listDom.insertAdjacentHTML(
+              'beforeend',
+              `<option>${optionVal}</option>`,
+            );
           }
         }
 

@@ -67,7 +67,8 @@
               amt: 0,
             };
             res[date1].count = res[date1].count + amt;
-            res[date1].amt = '$' + (res[date1].count * stockPrice).toLocaleString();
+            res[date1].amt =
+              '$' + (res[date1].count * stockPrice).toLocaleString();
             return res;
           }, {});
         window.result1 = d2;
@@ -90,7 +91,10 @@
         s.onload = callback;
         document.body.appendChild(s);
       }
-      addScript('https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js', doWork);
+      addScript(
+        'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js',
+        doWork,
+      );
     </script>
   </body>
 </html>

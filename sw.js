@@ -1,8 +1,12 @@
-const version = '1.0.1645658963878';
+const version = '1.0.1645660493729';
 const CACHE_NAME = `synle-github-io-caches`;
 
 function _shouldCacheThisUrl(url) {
-  if (url.includes('cdn.skypack.dev') || url.includes('cloudflare.com') || url.includes('unpkg.com')) {
+  if (
+    url.includes('cdn.skypack.dev') ||
+    url.includes('cloudflare.com') ||
+    url.includes('unpkg.com')
+  ) {
     return true;
   }
 
@@ -78,7 +82,10 @@ self.addEventListener('activate', (event) => {
           ),
         )
         .catch((err) => {
-          console.log('sw.activate - New sw is now ready to handle fetches!', err);
+          console.log(
+            'sw.activate - New sw is now ready to handle fetches!',
+            err,
+          );
         }),
       clients.claim(), // https://stackoverflow.com/questions/39567642/service-worker-fetch-event-on-first-load
     ]),
@@ -109,11 +116,17 @@ self.addEventListener('fetch', function (event) {
                   queueFetchUrls[url] = false;
                 })
                 .catch((err) => {
-                  console.log('sw.fetch - failed to refetch new data in background', request);
+                  console.log(
+                    'sw.fetch - failed to refetch new data in background',
+                    request,
+                  );
                   queueFetchUrls[url] = false;
                 });
             }
-            console.log('sw.fetch - from cache - and fetch new in background', request);
+            console.log(
+              'sw.fetch - from cache - and fetch new in background',
+              request,
+            );
             return response;
           }
         }
