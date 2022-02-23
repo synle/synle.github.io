@@ -25,9 +25,9 @@
         "location": "Sunnyvale, CA",
         "duration": "03/2020 - Present",
         "items": [
-          "Providing guidance for core Front End initatives, UI framework, and Azure DevOps CI &amp; CD pipeline for Linkedin EPE.",
-          "Working on <a href=\"//www.linkedin.com/help/linkedin\">Linkedin Support Portal</a> that manages customers' chats and offline cases on Dynamics365 CRM using C#, .NET Core, React and Fluent UI.",
-          "Architected modern codebase Sendbloom with Typescript, React, Redux, Node.js, Express, Redis and MySQL"
+          "Providing guidance for core Front End initiatives, UI framework, and Azure DevOps CI &amp; CD pipeline for Linkedin EPE.",
+          "Working on <a href=\"//linkedin.com/help/linkedin\">Linkedin Support Portal</a> that manages customers' chats and offline cases on Microsoft Dynamics365 CRM using C#, .NET Core, React and Microsoft Fluent UI.",
+          "Redesigned modern codebase Sendbloom with TypeScript, React, Redux, Node.js, Express, Redis and MySQL."
         ]
       },
       {
@@ -38,7 +38,7 @@
         "items": [
           "Software Engineer for Linkedin Enterprise Learning and Enterprise Productivity Engineering using JavaScript, Ember, React, Node.js, Java, Spring Boot, Python, Flask, MySQL, Redis and Azure.",
           "Full Stack Engineer Team Lead, worked on Nucleus, an end-to-end purchase flow automation with React-and-Redux Front End, and Spring Boot Back End hosted on Azure having integrations with ServiceNow and JIRA.",
-          "Corporated <a href=\"//www.linkedin.com/learning/\">Linkedin Learning</a> with Slideshare DocViewer to allow end-to-end custom document content creation and viewing.",
+          "Integrated <a href=\"//linkedin.com/learning/\">Linkedin Learning</a> with Slideshare DocViewer to allow end-to-end custom document content creation and viewing.",
           "Developed and Presented Room Booking Assistant (RoomBA), a bot written with Node.js and Azure Message Service Bus to intelligently book meeting rooms using attendees' locations at Linkedin GOPs Expo 2017."
         ]
       },
@@ -52,33 +52,36 @@
           "Major contributor for SalesforceIQ Inbox, led and provided mentorship for junior members in the team of <a href=\"//www.salesforceiq.com/products/inbox/desktop-apps\">SalesforceIQ Inbox Desktop</a>.",
           "Built Lightning integration that brings Inbox productivity features with <a href=\"//store.office.com/en-us/app.aspx?assetid=WA104379334&amp;ui=en-US&amp;rs=en-US&amp;ad=US&amp;appredirect=false\">Salesforce Lightning for Gmail and Outlook</a>.",
           "Prototyped Inbox Desktop Email client with React and Electron that lets you read your emails and interact with Salesforce Records.",
-          "Prototyped Desktop Dialer with Twilio which sales reps to communicate with customers right on the browser."
+          "Prototyped Desktop Dialer with Twilio which sales reps to communicate with customers right on the browser.",
+          "Won SalesforceIQ Hackday Fall 2016 Most Creative with predictive email compose suggestion project.",
+          "Won SalesforceIQ Hackday Spring 2017 Most heroic award with mass email project."
         ]
       },
       {
         "title": "Tech Yahoo, Software Dev Engineer",
-        "company": "Yahoo",
+        "company": "Yahoo Inc",
         "location": "Sunnyvale, CA",
         "duration": "07/2014 - 04/2015",
         "items": [
           "Front End Engineer for Yahoo Monitoring team, doing redesign of Yamas 2.0 Dashboard with JavaScript, Angular, Node.js and Express.",
-          "Within a short time, completed the redesign of Yamas which received internal Yahoo TechPulse 2014 conference award."
+          "Within a short time, completed the redesign of Yamas which received internal Yahoo TechPulse 2014 conference award.",
+          "Set up CI and CD pipeline for Express Back End applications with Jenkins CI and Chef CD to streamline building and deployment."
         ]
       },
       {
         "title": "Software Engineer",
-        "company": "Ebay Inc",
+        "company": "eBay Inc",
         "location": "San Jose, CA",
         "duration": "08/2013 - 07/2014",
         "items": [
           "Software Engineer for Transaction Flow and Registration team, working with JavaScript, Java and Spring MVC Framework.",
           "Implemented the responsive Guest Checkout Registration which allows users to register for new eBay account after checking out as guest.",
-          "Rearchitected Selenium UI automation to extend coverage to iPad and iPhone using Selenium iWebDriver."
+          "Integrated Selenium UI automation to extend UI integration test coverage to iPad and iPhone using Selenium iWebDriver."
         ]
       },
       {
-        "title": "Software Engineer Etrigue",
-        "company": "Inc",
+        "title": "Software Engineer",
+        "company": "eTrigue Inc",
         "location": "San Jose, CA",
         "duration": "10/2011 - 08/2013",
         "items": [
@@ -88,7 +91,7 @@
       },
       {
         "title": "Software Engineer",
-        "company": "Mtss",
+        "company": "MTSS",
         "location": "San Jose, CA",
         "duration": "08/2010 - 10/2011",
         "items": [
@@ -101,11 +104,11 @@
     "rows": [
       {
         "items": [
-          "<a href=\"//synle.github.io/sqlui-native\">sqlui-native</a> - created a cross-platform native desktop application written in Electron and React that allows you to manage a wide range of databases such as MySQL, PostgresSQL, MS SQL Server, Cassandra, MongoDB and Redis supporting Windows, Mac and Linux.",
-          "<a href=\"//synle.github.io/js-import-fixer\">import-fixer</a> - developed a npm executable module that cleans up javascript / typescript duplicates or unused imports in a deterministic way.",
-          "<a href=\"//synle.github.io/restapi-typescript-decorators\">Rest API Decorators </a> - a Typescript library that make writing API Client for Nodejs and Frontend simpler inspired by <a href=\"//square.github.io/retrofit/\">Square Retrofit library</a>",
-          "<a href=\"//github.com/synle/note-synchronizer\">Note Synchronizer </a> - a background application written in Node, Reddis, and MySQL to sync emails / attachments to Google Drive",
-          "<a href=\"//github.com/synle/sequelize-typescript-decorators\">Sequelize ORM Decorators </a> - a Typescript library that simplifies <a href=\"//sequelize.org/\">Sequelize</a> (NodeJS ORM library) schema definitions."
+          "<a href=\"//synle.github.io/sqlui-native\">sqlui-native:</a> created a cross-platform native desktop application written in Electron and React that allows you to manage a wide range of databases such as MySQL, PostgresSQL, MS SQL Server, Cassandra, MongoDB and Redis supporting Windows, Mac and Linux.",
+          "<a href=\"//synle.github.io/js-import-fixer\">import-fixer:</a> developed a npm executable module that cleans up javascript / TypeScript duplicates or unused imports in a deterministic way.",
+          "<a href=\"//synle.github.io/restapi-TypeScript-decorators\">Rest API Decorators:</a> a TypeScript library that make writing API Client for Nodejs and Frontend simpler inspired by <a href=\"//square.github.io/retrofit/\">Square Retrofit library</a>",
+          "<a href=\"//github.com/synle/note-synchronizer\">Note Synchronizer:</a> a background application written in Node, Reddis, and MySQL to sync emails / attachments to Google Drive",
+          "<a href=\"//github.com/synle/sequelize-TypeScript-decorators\">Sequelize ORM Decorators:</a> a TypeScript library that simplifies <a href=\"//sequelize.org/\">Sequelize</a> (NodeJS ORM library) schema definitions."
         ]
       }
     ]
@@ -114,7 +117,7 @@
     "rows": [
       {
         "items": [
-          "<strong class=\"mr1\">Front End:</strong> JavaScript, Typescript, React, Redux, Reselect, React Query, Jest, Angular, Storybook, Sass, Grunt, Gulp, Puppeteer, Chai, Sinon, Axios.",
+          "<strong class=\"mr1\">Front End:</strong> JavaScript, TypeScript, React, Redux, Reselect, React Query, Jest, Angular, Storybook, Sass, Grunt, Gulp, Puppeteer, Sinon, Axios.",
           "<strong class=\"mr1\">Back End:</strong> Node.js, Express, Java, Spring Boot, Maven, Mockito, Jackson, Jetty.",
           "<strong class=\"mr1\">Databases / Technologies:</strong> MySQL, Microsoft SQL Server, Redis, MongoDB, Selenium, Cassandra, RabbitMQ",
           "<strong class=\"mr1\">Tools:</strong> Git, Docker, Vagrant, VirtualBox, NGINX, JIRA, Bash, Jenkins CI, Github Actions, Azure, AWS and SauceLabs."
