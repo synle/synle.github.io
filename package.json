@@ -5,6 +5,7 @@
   "description": "Sy's resume along with some mini apps",
   "main": "index.html",
   "devDependencies": {
+    "mustache": "^4.2.0",
     "puppeteer": "^13.4.0"
   },
   "scripts": {

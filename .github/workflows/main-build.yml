@@ -27,8 +27,9 @@ jobs:
         uses: martinbeentjes/npm-get-version-action@master
         with:
           path: '.'
-      - run: npm run format
       - run: npm run build
+      - run: node generate-index-html.js
+      - run: npm run format
       - run: |
           sed -i "s/const version = .*\+/const version = '${{ steps.package-version.outputs.current-version }}';/" sw.js
       - run: node generate-resume.js
