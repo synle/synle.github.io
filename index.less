@@ -147,7 +147,6 @@ a {
   .education-location,
   .job-location {
     width: var(--widthSection2);
-    text-align: center;
   }
 
   .education-time-description,
@@ -185,7 +184,7 @@ a {
 
   a {
     .c1();
-    .bold2();
+    .bold1();
 
     &:hover {
       text-decoration: underline;
@@ -224,18 +223,18 @@ a {
 // desktop
 @media screen and (min-width: @pageWidthDesktop) {
   body {
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
   }
   .section-header {
-    margin-bottom: 10px !important;
+    margin-bottom: 0.5rem;
   }
   .job-header,
   .education-header {
     position: var(--positionSticky);
     top: 28px;
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     margin-left: 0;
   }
   .visible-desktop {
@@ -271,7 +270,7 @@ a {
   }
 
   .section-header {
-    margin-bottom: 10px !important;
+    margin-bottom: 10px;
   }
 
   .job-header,
@@ -309,7 +308,10 @@ a {
   .job-container {
     * {
       width: 100%;
-      text-align: left !important;
+    }
+    .education-time-description,
+    .job-time-description {
+      text-align: left;
     }
   }
 

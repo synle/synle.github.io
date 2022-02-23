@@ -61,7 +61,7 @@
   --fontFamilyMain: Helvetica, Arial;
   --fontFamilySecondary: Helvetica, Arial;
   --fontFamilyMonospace: monospace;
-  --fontWeightBold: 700;
+  --fontWeightBold: 600;
   --fontWeightSemiBold: 500;
   --fontWeightLight: 300;
   --fontSize1: 1.5rem;
@@ -106,10 +106,6 @@ h3 {
   --pageWidthDesktop: 1050px;
   --pageWidthPrint: 800px;
   --positionSticky: sticky;
-}
-:root {
-  --widthSection2: 300px;
-  --widthSection3: 180px;
 }
 html {
   font-size: 16px;
@@ -203,26 +199,25 @@ a {
   font-weight: var(--fontWeightBold);
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
 }
 .education-container .education-title,
 .job-container .education-title,
 .education-container .job-title,
 .job-container .job-title {
-  flex-grow: 1;
+  width: 425px;
 }
 .education-container .education-location,
 .job-container .education-location,
 .education-container .job-location,
 .job-container .job-location {
-  width: var(--widthSection2);
-  text-align: center;
+  margin-left: auto;
+  width: 180px;
 }
 .education-container .education-time-description,
 .job-container .education-time-description,
 .education-container .job-time-description,
 .job-container .job-time-description {
-  width: var(--widthSection3);
+  margin-left: auto;
   text-align: right;
 }
 .job-description {
@@ -248,7 +243,7 @@ a {
   }
   a {
     color: var(--colorTextLink);
-    font-weight: var(--fontWeightBold);
+    font-weight: var(--fontWeightSemiBold);
   }
   a:hover {
     text-decoration: underline;
@@ -278,18 +273,18 @@ a {
 }
 @media screen and (min-width: 1050px) {
   body {
-    padding-top: 15px;
-    padding-bottom: 15px;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
   }
   .section-header {
-    margin-bottom: 10px !important;
+    margin-bottom: 0.5rem !important;
   }
   .job-header,
   .education-header {
     position: var(--positionSticky);
     top: 28px;
-    margin-top: 15px;
-    margin-bottom: 15px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
     margin-left: 0;
   }
   .visible-desktop {
@@ -304,8 +299,6 @@ a {
     --fontSize1: 1rem;
     --fontSize2: 1rem;
     --fontSize3: 1rem;
-    --widthSection2: 260px;
-    --widthSection3: 175px;
   }
 }
 @media screen and (max-width: 949px) {
