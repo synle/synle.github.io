@@ -58,12 +58,11 @@
   --colorBlacklight: #333;
 }
 :root {
-  --fontFamilyMain: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji,
-    Segoe UI Emoji;
-  --fontFamilySecondary: Helvetica, Tahoma, Geneva, sans-serif;
+  --fontFamilyMain: Helvetica, Arial;
+  --fontFamilySecondary: Helvetica, Arial;
   --fontFamilyMonospace: monospace;
-  --fontWeightBold: 500;
-  --fontWeightSemiBold: 400;
+  --fontWeightBold: 700;
+  --fontWeightSemiBold: 500;
   --fontWeightLight: 300;
   --fontSize1: 1.5rem;
   --fontSize2: 1.2rem;
@@ -114,8 +113,9 @@ h3 {
 }
 html {
   font-size: 16px;
-  color: var(--colorTextMain);
   font-family: var(--fontFamilyMain);
+  font-weight: var(--fontWeightLight);
+  color: var(--colorTextMain);
 }
 * {
   box-sizing: border-box;
@@ -126,12 +126,9 @@ a {
   text-decoration: none;
 }
 .bold1 {
-  font-weight: var(--fontWeightLight);
-}
-.bold2 {
   font-weight: var(--fontWeightSemiBold);
 }
-.bold3 {
+.bold2 {
   font-weight: var(--fontWeightBold);
 }
 .cap {
@@ -251,7 +248,7 @@ a {
   }
   a {
     color: var(--colorTextLink);
-    font-weight: var(--fontWeightSemiBold);
+    font-weight: var(--fontWeightBold);
   }
   a:hover {
     text-decoration: underline;
@@ -378,7 +375,7 @@ a {
   }
   html {
     font-family: var(--fontFamilySecondary);
-    font-size: 12px;
+    font-size: 11px;
   }
   @page {
     margin: var(--spaceSize0);
@@ -436,8 +433,8 @@ a {
     margin-bottom: var(--spaceSize1);
   }
   a {
+    font-weight: var(--fontWeightSemiBold);
     color: var(--colorBlack) !important;
-    font-weight: bold;
   }
 }
 @media screen and (max-width: 1049px) {

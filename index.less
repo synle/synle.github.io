@@ -25,8 +25,9 @@
 
 html {
   font-size: 16px;
-  color: var(--colorTextMain);
   font-family: var(--fontFamilyMain);
+  font-weight: var(--fontWeightLight);
+  color: var(--colorTextMain);
 }
 
 * {
@@ -40,12 +41,10 @@ a {
 }
 
 .bold1 {
-  font-weight: var(--fontWeightLight);
-}
-.bold2 {
   font-weight: var(--fontWeightSemiBold);
 }
-.bold3 {
+
+.bold2 {
   font-weight: var(--fontWeightBold);
 }
 
@@ -61,7 +60,7 @@ a {
     content: '\b7';
     margin-right: 2px;
     vertical-align: middle;
-    .bold3();
+    .bold2();
   }
 }
 
@@ -132,7 +131,7 @@ a {
 .job-header,
 .education-header {
   .h3();
-  .bold3();
+  .bold2();
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -338,7 +337,7 @@ a {
 
   html {
     font-family: var(--fontFamilySecondary);
-    font-size: 12px;
+    font-size: 11px;
   }
 
   @page {
@@ -414,8 +413,8 @@ a {
   }
 
   a {
+    .bold1();
     color: var(--colorBlack) !important;
-    font-weight: bold;
   }
 }
 
