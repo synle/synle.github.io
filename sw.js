@@ -1,11 +1,11 @@
-const version = '1.0.1645720368161';
+const version = '1.0.1645726927333';
 const CACHE_NAME = `synle-github-io-caches`;
 
 function _shouldCacheThisUrl(url) {
-  if(!url.includes('chrome-extension://')){
+  if (!url.includes('chrome-extension://')) {
     return false;
   }
-  
+
   if (
     url.includes('cdn.skypack.dev') ||
     url.includes('cloudflare.com') ||
