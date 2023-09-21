@@ -3,14 +3,14 @@
   "Education": {
     "rows": [
       {
-        "degree": "Master Of Science",
+        "degree": "Master of Science",
         "program": "Software Engineering",
         "school": "San Jose State University",
         "graduated": "Graduated 2019",
         "items": ["Graduated with Specialization in Cloud & Mobile Computing."]
       },
       {
-        "degree": "Bachelor Of Science",
+        "degree": "Bachelor of Science",
         "program": "Computer Science",
         "school": "San Jose State University",
         "graduated": "Graduated 2011",
@@ -38,7 +38,7 @@
         ]
       },
       {
-        "title": "Senior Member Of Technical Staff",
+        "title": "Senior Member of Technical Staff",
         "company": "Salesforce",
         "location": "San Francisco, CA",
         "duration": "04/2015 - 05/2017",
