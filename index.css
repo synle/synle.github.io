@@ -369,17 +369,19 @@ a {
 }
 @media print {
   :root {
-    --spaceSize1: 3px;
-    --spaceSize2: 6px;
-    --spaceSize3: 8px;
-    --spaceSize4: 12px;
+    --spaceSize1: 2px;
+    --spaceSize2: 5px;
+    --spaceSize3: 7px;
+    --spaceSize4: 11px;
     --fontSize1: 1rem;
     --fontSize2: 1rem;
     --fontSize3: 1rem;
   }
+  * {
+    font-size: 11px !important;
+  }
   @page {
-    size: A4;
-    margin: 0;
+    margin: 1.25rem 1.25rem;
   }
   html,
   body {

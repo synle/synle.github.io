@@ -10,7 +10,7 @@ try {
   yoe = '8+';
 }
 
-const viewData = JSON.parse(fs.readFileSync('config.json', 'utf8'));
+const viewData = eval(fs.readFileSync('config.js', 'utf8'));
 viewData.yoe = yoe;
 
 const template = fs.readFileSync('index.mustache', 'utf8');
