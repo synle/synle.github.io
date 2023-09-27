@@ -112,7 +112,7 @@ const resp = {
       {
         items: [
           `<strong class='mr1'>Front End:</strong> JavaScript, TypeScript, React, Redux, Reselect, React Query, Jest, Angular, Storybook, Sass, Grunt, Gulp, Puppeteer, Sinon.`,
-          `<strong class='mr1'>Back End:</strong> Node.js, RemixJS, Express, Python, Flask, Sqlalchemy, Java, Spring Boot, Maven, Mockito, Jackson, Jetty.`,
+          `<strong class='mr1'>Back End:</strong> Node.js, RemixJS, Express, next.js, Python, Flask, Sqlalchemy, Java, Spring Boot, Maven, Mockito, Jackson, Jetty.`,
           `<strong class='mr1'>Databases / Technologies:</strong> MySQL, Microsoft SQL Server, Redis, MongoDB, Selenium, Cassandra, RabbitMQ`,
           `<strong class='mr1'>Tools:</strong> Git, Docker, Vagrant, VirtualBox, NGINX, JIRA, Bash, Jenkins CI, Github Actions, Azure, AWS and SauceLabs.`,
         ],
