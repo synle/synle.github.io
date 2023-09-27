@@ -1,4 +1,4 @@
-const version = '1.0.1695265652201';
+const version = '1.0.1695832419536';
 const CACHE_NAME = `synle-github-io-caches`;
 
 function _shouldCacheThisUrl(url) {
