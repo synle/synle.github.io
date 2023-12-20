@@ -16,20 +16,22 @@
   </head>
   <body>
     <!-- Contact Info -->
-    <header class="page-header visible-print-flex">
-      <span class="bold1 cap">Sy Le</span>
-      <span class="cap">SF Bay Area, CA</span>
-      <a href="tel:1-408-216-3428" class="info-phone cap">408-216-3428</a>
-      <a href="mailto:lenguyensy@gmail.com" class="info-email cap">le.nguyen.sy@gmail.com</a>
-      <a href="//synle.github.io" class="info-github visible-print cap">synle.github.io</a>
-      <a href="//linkedin.com/in/syle1021/" class="info-linkedin visible-print cap">linkedin.com/in/syle1021</a>
+    <header class="visible-print">
+      <h1 id="full_name" class="cap">Sy Le</h1>
+      <div class="page-header visible-print-flex">
+        <span id="location" class="cap">SF Bay Area, CA</span>
+        <a id="contact_phone_number" href="tel:1-408-216-3428" class="info-phone cap">408-216-3428</a>
+        <a id="contact_email" href="mailto:lenguyensy@gmail.com" class="info-email cap">le.nguyen.sy@gmail.com</a>
+        <a href="//synle.github.io" class="info-github visible-print cap">synle.github.io</a>
+        <a href="//linkedin.com/in/syle1021/" class="info-linkedin visible-print cap">linkedin.com/in/syle1021</a>
+      </div>
     </header>
 
     <header class="page-header visible-desktop visible-mobile mb4">
-      <div class="bold1 cap">Sy Le</div>
-      <div class="cap">SF Bay Area, CA</div>
-      <div><a href="tel:1-408-216-3428" class="info-phone cap">408-216-3428</a></div>
-      <div><a href="mailto:lenguyensy@gmail.com" class="info-email cap">le.nguyen.sy@gmail.com</a></div>
+      <h1 id="full_name" class="bold1 cap">Sy Le</h1>
+      <div id="location" class="cap">SF Bay Area, CA</div>
+      <div><a id="contact_phone_number" href="tel:1-408-216-3428" class="info-phone cap">408-216-3428</a></div>
+      <div><a id="contact_email" href="mailto:lenguyensy@gmail.com" class="info-email cap">le.nguyen.sy@gmail.com</a></div>
     </header>
 
     <!--   social links   -->
@@ -56,7 +58,7 @@
       <div class="education-container section-content">
         {{#rows}}
           <div class="education-header z2">
-            <div class="education-title">{{degree}} <span class="in"></span> {{program}}</div>
+            <div class="education-title">{{degree}}, {{program}}</div>
             <div class="education-location">{{school}}</div>
             <div class="education-time-description">{{graduated}}</div>
           </div>
@@ -77,9 +79,9 @@
       <div class="job-container section-content">
         {{#rows}}
           <div class="job-header z3">
-            <div class="job-title">{{title}} <span class="at"></span> {{company}}</div>
+            <div class="job-title">{{title}} at {{company}}</div>
             <div class="job-location">{{location}}</div>
-            <div class="job-time-description">{{from}} - {{to}}</div>
+            <div class="job-time-description">From {{from}} To {{to}}</div>
           </div>
           <ul class="job-description">
             {{#items}}

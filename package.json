@@ -11,6 +11,7 @@
   "scripts": {
     "build": "sh build.sh",
     "format": "sh format.sh",
+    "dev": "sh dev.sh",
     "test": "echo \"TBD\"",
     "start": "npx http-server --cors ."
   },

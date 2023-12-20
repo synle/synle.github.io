@@ -20,7 +20,7 @@
 
 :root {
   --widthSection2: 300px;
-  --widthSection3: 180px;
+  --widthSection3: 220px;
 }
 
 html {
@@ -92,14 +92,6 @@ a {
 // display helpers
 .hidden {
   display: none;
-}
-
-// custom stuffs
-.at:after {
-  content: '@';
-}
-.in:after {
-  content: 'in';
 }
 
 .page-header {
@@ -341,6 +333,12 @@ a {
     font-size: 11px !important;
   }
 
+  #full_name {
+    font-size: 22px !important;
+    margin-bottom: 5px;
+    display: block;
+  }
+
   @page {
     margin: 1.25rem 1.25rem;
   }
@@ -364,10 +362,6 @@ a {
     background: #fff;
   }
 
-  .section-header {
-    margin-top: 14px;
-  }
-
   header * {
     padding-block: 0;
   }
@@ -376,9 +370,10 @@ a {
     line-height: normal;
   }
 
+  .section-header,
   .education-container,
   .job-container {
-    margin-top: 10px;
+    margin-top: 11px;
   }
 
   .job-header,
