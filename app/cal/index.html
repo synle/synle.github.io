@@ -107,9 +107,8 @@
 
     <script>
       (function () {
-        document.getElementById(
-          'txt-text',
-        ).value = `Event for ${new Date().toLocaleString()}`;
+        document.getElementById('txt-text').value =
+          `Event for ${new Date().toLocaleString()}`;
         document.getElementById('txt-date').valueAsDate = new Date();
         document.getElementById('txt-from').value = moment().format('HH:mm');
         document.getElementById('txt-to').value = moment()

@@ -109,7 +109,7 @@ h3 {
 }
 :root {
   --widthSection2: 300px;
-  --widthSection3: 180px;
+  --widthSection3: 220px;
 }
 html {
   font-size: 16px;
@@ -167,12 +167,6 @@ a {
 }
 .hidden {
   display: none;
-}
-.at:after {
-  content: '@';
-}
-.in:after {
-  content: 'in';
 }
 .page-header {
   font-size: var(--fontSize2);
@@ -380,6 +374,11 @@ a {
   * {
     font-size: 11px !important;
   }
+  #full_name {
+    font-size: 22px !important;
+    margin-bottom: 5px;
+    display: block;
+  }
   @page {
     margin: 1.25rem 1.25rem;
   }
@@ -399,18 +398,16 @@ a {
     margin: 0 auto;
     background: #fff;
   }
-  .section-header {
-    margin-top: 14px;
-  }
   header * {
     padding-block: 0;
   }
   * {
     line-height: normal;
   }
+  .section-header,
   .education-container,
   .job-container {
-    margin-top: 10px;
+    margin-top: 11px;
   }
   .education-container .education-location,
   .job-container .education-location,
