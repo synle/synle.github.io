@@ -1,0 +1,20 @@
+<body></body>
+<script>
+  const targetURLSearchParams = new URLSearchParams(window.location.search);
+  let url = targetURLSearchParams.get('state');
+
+  targetURLSearchParams.set('state', `${location.origin}${location.pathname}`);
+  url = `${url.replace(
+    'https://',
+    'http://',
+  )}?${targetURLSearchParams.toString()}`;
+
+  const link = document.createElement('a');
+  link.textContent = url;
+  link.href = url;
+
+  // Append the div to the body of the document
+  document.body.appendChild(link);
+
+  setTimeout(() => (location.href = url), 2000);
+</script>
