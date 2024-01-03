@@ -4,10 +4,7 @@
   let url = targetURLSearchParams.get('state');
 
   targetURLSearchParams.set('state', `${location.origin}${location.pathname}`);
-  url = `${url.replace(
-    'https://',
-    'http://',
-  )}?${targetURLSearchParams.toString()}`;
+  url = `${url}?${targetURLSearchParams.toString()}`;
 
   const link = document.createElement('a');
   link.textContent = url;
