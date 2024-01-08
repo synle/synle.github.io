@@ -13,8 +13,12 @@
   // Append the div to the body of the document
   document.body.appendChild(link);
 
-  if(url.includes('192.168.') || url.includes('localhost') || url.includes('tplinkdns.com')){
-    location.href = url
+  if (
+    url.includes('192.168.') ||
+    url.includes('localhost') ||
+    url.includes('tplinkdns.com')
+  ) {
+    location.href = url;
   } else {
     setTimeout(() => (location.href = url), 2000);
   }
