@@ -7,19 +7,20 @@
   url = `${url}?${targetURLSearchParams.toString()}`;
 
   const link = document.createElement('a');
-  link.textContent = url;
-  link.href = url;
-
+  
   // Append the div to the body of the document
   document.body.appendChild(link);
-
+  
   if (
     url.includes('192.168.') ||
     url.includes('localhost') ||
     url.includes('tplinkdns.com')
   ) {
     location.href = url;
+    link.textContent = `Redirecting. Please wait...`;
   } else {
     setTimeout(() => (location.href = url), 2000);
+    link.textContent = url;
+    link.href = url;
   }
 </script>
