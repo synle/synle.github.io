@@ -1,11 +1,11 @@
 echo '> build index.html'
-node generate-index-html.js
+node src/generate-index-html.js
 
 echo '> build css'
-npx -p less lessc index.less index.css
+npx -p less lessc src/index.less index.css
 
 echo '> format code'
 npm run format
 
 echo '> build syle-resume.pdf'
-node generate-resume.js
+node src/generate-resume.js
