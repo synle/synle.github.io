@@ -14,7 +14,7 @@
     "format": "sh format.sh",
     "dev": "sh dev.sh",
     "test": "echo \"TBD\"",
-    "start": "npx http-server --cors ."
+    "start": "npx http-server --cors . -p 3000"
   },
   "keywords": [
     "Sy",
