@@ -138,10 +138,10 @@ a {
   margin-bottom: var(--spaceSize2);
   list-style: none;
 }
-.row::before {
-  content: '\b7';
+.row > span {
   margin-right: 2px;
   vertical-align: middle;
+  font-family: monospace;
   font-weight: var(--fontWeightBold);
 }
 .z1 {
@@ -246,7 +246,7 @@ a {
   a:hover {
     text-decoration: underline;
   }
-  .row::before {
+  .row > span {
     color: #666;
   }
   .visible-screen {
