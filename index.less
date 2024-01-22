@@ -56,10 +56,10 @@ a {
   margin-bottom: var(--spaceSize2);
   list-style: none;
 
-  &::before {
-    content: '\b7';
+  > span {
     margin-right: 2px;
     vertical-align: middle;
+    font-family: monospace;
     .bold2();
   }
 }
@@ -183,8 +183,10 @@ a {
     }
   }
 
-  .row::before {
-    color: #666;
+  .row {
+    > span {
+      color: #666;
+    }
   }
 
   .visible-screen {

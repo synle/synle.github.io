@@ -1,2 +1,2 @@
 npm i
-while sleep 3; do sh build.sh; done
+./node_modules/.bin/concurrently "npm start" "while sleep 3; do sh build.sh; done"

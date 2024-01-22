@@ -1,27 +1,4 @@
 const resp = {
-  Summary: `
-    I'm Sy Le, a software engineer with a decade of experience at LinkedIn, Salesforce, and Yahoo. I built software for CRM, marketing automation, e-commerce, and monitoring platforms. My skills include JavaScript/TypeScript and React for front-end, and Node.js / RemixJS / Express for back-end development.
-    `,
-  Education: {
-    rows: [
-      {
-        degree: 'Master of Science',
-        program: 'Software Engineering',
-        school: 'San Jose State University',
-        graduated: 'Graduated 2019',
-        items: ['Graduated with Specialization in Cloud & Mobile Computing.'],
-      },
-      {
-        degree: 'Bachelor of Science',
-        program: 'Computer Science',
-        school: 'San Jose State University',
-        graduated: 'Graduated 2011',
-        items: [
-          `Graduated Cum Laude with Specialization in Computer Graphics.`,
-        ],
-      },
-    ],
-  },
   Experience: {
     rows: [
       {
@@ -33,10 +10,10 @@ const resp = {
         items: [
           `As a Software Engineer at LinkedIn Enterprise Learning and Productivity Engineering, I leveraged my expertise in a wide range of technologies, including JavaScript, Ember, React, Node.js, Java, Spring Boot, Python, Flask, MySQL, Redis, and Azure to drive successful projects.`,
           `I provided expert guidance on UI frameworks and Azure DevOps CI/CD pipelines to drive success. My insights and expertise have helped the team streamline development and achieve outstanding results.`,
-          `Working on <a href='//linkedin.com/help/linkedin'>Linkedin Support Portal</a> that manages customers' chats and offline cases on Microsoft Dynamics365 CRM using C#, .NET Core, React and Microsoft Fluent UI.`,
+          `Working on <a href=' //linkedin.com/help/linkedin'>Linkedin Support Portal</a> that manages customers' chats and offline cases on Microsoft Dynamics365 CRM using C#, .NET Core, React and Microsoft Fluent UI.`,
           `As a Full-Stack Engineer Team Lead, I led the development of Nucleus, an end-to-end purchase flow automation platform, featuring a modern React-and-Redux Front-End and a robust Spring Boot back-end hosted on Azure, with integrations with ServiceNow and JIRA.`,
           `As a skilled full-stack developer, I have played a key role in redesigning Sendbloom's codebase, using the latest tools and technologies such as TypeScript, React, Redux, Node.js, Express, Redis, and MySQL. With my contributions, the platform is now more efficient, and user-friendly.`,
-          `I integrated <a href='//linkedin.com/learning/'>Linkedin Learning</a> with Slideshare DocViewer, enabling end-to-end custom document content creation and viewing, which provided instructors with more options to organize and prepare their course outlines.`,
+          `I integrated <a href=' //linkedin.com/learning/'>Linkedin Learning</a> with Slideshare DocViewer, enabling end-to-end custom document content creation and viewing, which provided instructors with more options to organize and prepare their course outlines.`,
           `At the LinkedIn GOPs Expo 2017, I developed and presented the Room Booking Assistant (RoomBA), an innovative bot that intelligently identifies the best meeting rooms and books them on behalf of users, simplifying the process and saving valuable time.`,
         ],
       },
@@ -48,7 +25,7 @@ const resp = {
         to: '05/2017',
         items: [
           `Software Engineer for SalesforceIQ, and Aura using JavaScript, Angular, React, Salesforce Aura / Lightning, Node.js, Express, and Java.`,
-          `Contributed significantly to <a href='//store.office.com/en-us/app.aspx?assetid=WA104379334&amp;ui=en-US&amp;rs=en-US&amp;ad=US&amp;appredirect=false'>SalesforceIQ Inbox Desktop</a>, and providing leadership and mentorship to junior team members.`,
+          `Contributed significantly to <a href=' //store.office.com/en-us/app.aspx?assetid=WA104379334&amp;ui=en-US&amp;rs=en-US&amp;ad=US&amp;appredirect=false'>SalesforceIQ Inbox Desktop</a>, and providing leadership and mentorship to junior team members.`,
           `Built various prototypes, including an Inbox Desktop Email client with React and Electron and a Desktop Dialer with Twilio.`,
           `Won the SalesforceIQ Hackday Fall 2016 Most Creative award with the predictive email compose suggestion project and won the SalesforceIQ Hackday Spring 2017 Most Heroic award with the mass email project.`,
         ],
@@ -80,7 +57,7 @@ const resp = {
         from: '10/2011',
         to: '08/2013',
         items: [
-          `As a Full-Stack Engineer, I used JavaScript, PHP, Node.js, C#, MySQL, Cassandra, and RabbitMQ to build key components of the <a href='//www.etrigue.com/'>eTrigue Demand Center</a>. This includes Prospect List, Campaign Builder, ETL Jobs, and vendor integration with Cisco Webex and Citrix GoToWebinar.`,
+          `As a Full-Stack Engineer, I used JavaScript, PHP, Node.js, C#, MySQL, Cassandra, and RabbitMQ to build key components of the <a href=' //www.etrigue.com/'>eTrigue Demand Center</a>. This includes Prospect List, Campaign Builder, ETL Jobs, and vendor integration with Cisco Webex and Citrix GoToWebinar.`,
         ],
       },
       {
@@ -91,30 +68,6 @@ const resp = {
         to: '10/2011',
         items: [
           `As a Full-Stack Engineer, I built Clinic Tree, a clinic portal that includes features like patient record charting, appointment management, and a content management system. The portal was built using JavaScript, C#, and .NET.`,
-        ],
-      },
-    ],
-  },
-  SideProjects: {
-    rows: [
-      {
-        items: [
-          `<a href='//synle.github.io/sqlui-native'><strong class='mr1'>sqlui-native</strong></a>: a cross-platform native desktop application built with Electron and React, which can manage various databases, including MySQL, PostgreSQL, MS SQL Server, Cassandra, MongoDB, and Redis. It supports Windows, Mac, and Linux operating systems.`,
-          `<a href='//synle.github.io/display-dj'><strong class='mr1'>display-dj</strong></a>: a cross-platform desktop application that allows users to adjust brightness for integrated and external monitors and switch to dark mode. It is compatible with Windows and Mac operating systems.`,
-          `<a href='//synle.github.io/js-import-fixer'><strong class='mr1'>import-fixer</strong></a>: A deterministic npm executable module that removes duplicate or unused JavaScript/TypeScript imports.`,
-          `<a href='//synle.github.io/restapi-typescript-decorators'><strong class='mr1'>Rest API Decorators</strong></a>: a TypeScript library that make writing API Client for Nodejs and Frontend simpler inspired by <a href='//square.github.io/retrofit/'><strong>Square Retrofit library</strong></a>`,
-        ],
-      },
-    ],
-  },
-  Skills: {
-    rows: [
-      {
-        items: [
-          `<strong class='mr1'>Front End:</strong> JavaScript, TypeScript, React, Redux, Reselect, React Query, Jest, Angular, Storybook, Sass, Grunt, Gulp, Puppeteer, Sinon.`,
-          `<strong class='mr1'>Back End:</strong> Node.js, RemixJS, Express, next.js, Python, Flask, Sqlalchemy, Java, Spring Boot, Maven, Mockito, Jackson, Jetty.`,
-          `<strong class='mr1'>Databases / Technologies:</strong> MySQL, Microsoft SQL Server, Redis, MongoDB, Selenium, Cassandra, RabbitMQ`,
-          `<strong class='mr1'>Tools:</strong> Git, Docker, Vagrant, VirtualBox, NGINX, JIRA, Bash, Jenkins CI, Github Actions, Azure, AWS and SauceLabs.`,
         ],
       },
     ],

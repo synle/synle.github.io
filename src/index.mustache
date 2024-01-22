@@ -43,7 +43,7 @@
 
     <!-- summary  -->
     <div class="section-header z3">
-      <div class="bold1">Summary</div>
+      <div class="bold1">Summary:</div>
     </div>
     <div class="section-content">
       {{Summary}}
@@ -52,7 +52,7 @@
 
     <!-- Educations -->
     <div class="section-header z3">
-      <div class="bold1">Education</div>
+      <div class="bold1">Education:</div>
     </div>
     {{#Education}}
       <div class="education-container section-content">
@@ -64,7 +64,7 @@
           </div>
           <ul class="education-description c0">
             {{#items}}
-              <li class="row">{{{.}}}</li>
+              <li class="row"><span>&#183;</span>{{{.}}}</li>
             {{/items}}
           </ul>
         {{/rows}}
@@ -73,7 +73,7 @@
 
     <!-- Experience -->
     <div class="section-header z2">
-      <div class="bold1">Experience</div>
+      <div class="bold1">Experience:</div>
     </div>
     {{#Experience}}
       <div class="job-container section-content">
@@ -85,7 +85,7 @@
           </div>
           <ul class="job-description">
             {{#items}}
-              <li class="row">{{{.}}}</li>
+              <li class="row"><span>&#183;</span>{{{.}}}</li>
             {{/items}}
           </ul>
         {{/rows}}
@@ -94,13 +94,13 @@
 
     <!-- Side Project -->
     <div class="section-header z4">
-      <div class="bold1">Side Projects</div>
+      <div class="bold1">Side Projects:</div>
     </div>
     {{#SideProjects}}
       {{#rows}}
         <ul class="side-project-container section-content c0">
           {{#items}}
-            <li class="row">{{{.}}}</li>
+            <li class="row"><span>&#183;</span>{{{.}}}</li>
           {{/items}}
         </ul>
       {{/rows}}
@@ -108,13 +108,13 @@
 
     <!-- Skills -->
     <div class="section-header z5">
-      <div class="bold1">Skills</div>
+      <div class="bold1">Skills:</div>
     </div>
     {{#Skills}}
       {{#rows}}
         <ul class="skill-container section-content c0">
           {{#items}}
-            <li class="row">{{{.}}}</li>
+            <li class="row"><span>&#183;</span>{{{.}}}</li>
           {{/items}}
         </ul>
       {{/rows}}
