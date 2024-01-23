@@ -20,20 +20,26 @@ function generateView(inputData, outputFile) {
     ...commonData,
   };
 
-  const template = fs.readFileSync('src/index.mustache', 'utf8');
+  const template = readFile('src/index.mustache');
   const output = Mustache.render(template, viewData);
   fs.writeFileSync(outputFile, output);
 }
 
-let dataCommon = eval(fs.readFileSync('src/data.common.js', 'utf8'));
-let dataShort = eval(fs.readFileSync('src/data-short.js', 'utf8'));
-let dataFull = eval(fs.readFileSync('src/data-full.js', 'utf8'));
+function readFile(inputFile) {
+  return fs.readFileSync(inputFile, 'utf8');
+}
+
+const srcCommon = readFile('src/data.common.js');
+
+const dataBase = eval(srcCommon + readFile('src/data-base.js'));
+let dataShort = eval(srcCommon + readFile('src/data-short.js'));
+let dataFull = eval(srcCommon + readFile('src/data-full.js'));
 dataShort = {
-  ...dataCommon,
+  ...dataBase,
   ...dataFull,
 };
 dataFull = {
-  ...dataCommon,
+  ...dataBase,
   ...dataFull,
 };
 
