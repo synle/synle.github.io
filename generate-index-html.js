@@ -36,7 +36,7 @@ let dataShort = eval(srcCommon + readFile('src/data-short.js'));
 let dataFull = eval(srcCommon + readFile('src/data-full.js'));
 dataShort = {
   ...dataBase,
-  ...dataFull,
+  ...dataShort,
 };
 dataFull = {
   ...dataBase,
