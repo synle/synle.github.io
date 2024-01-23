@@ -15,9 +15,9 @@ As a Software Engineer at LinkedIn Enterprise Learning and Productivity Engineer
 
 I provided expert guidance on UI frameworks and Azure DevOps CI/CD pipelines to drive success. My insights and expertise have helped the team streamline development and achieve outstanding results
 
-Working on <a href='//linkedin.com/help/linkedin'>Linkedin Support Portal</a> that manages customers' chats and offline cases on
+Currently a full-stack developer using Python/Flask and ReactJS in HRIT org. Leading the development of TDE, a platform for LinkedIn engineers and managers to collaborate on and manage career promotion packages.
 
-Microsoft Dynamics365 CRM using C#, .NET Core, React and Microsoft Fluent UI
+Worked on <a href='//linkedin.com/help/linkedin'>Linkedin Support Portal</a> that manages customers' chats and offline cases on Microsoft Dynamics365 CRM using C#, .NET Core, React and Microsoft Fluent UI
 
 As a Full-Stack Engineer Team Lead, I led the development of Nucleus, an end-to-end purchase flow automation platform, featuring a modern React-and-Redux Front-End and a robust Spring Boot back-end hosted on Azure, with integrations with ServiceNow and JIRA
 
