@@ -1,11 +1,4 @@
-String.prototype._reformatItems = function () {
-  return this.split('\n')
-    .map((s) => s.trim())
-    .filter((s) => s)
-    .map((s) => `${s}.`);
-};
-
-const resp = {
+let resp = {
   Summary: `
 I'm Sy Le, a software engineer with a decade of experience at LinkedIn, Salesforce, and Yahoo. I built software for CRM, marketing automation, e-commerce, and monitoring platforms. My skills include JavaScript/TypeScript and React for front-end, and Node.js / RemixJS / Express for back-end development.
     `.trim(),
