@@ -51,7 +51,7 @@ Won the SalesforceIQ Hackday Fall 2016 Most Creative award with the predictive e
         from: '07/2014',
         to: '04/2015',
         items: `
-As a Front-End engineer on the Yahoo Monitoring team, I worked on the redesign of the YAMAS 2.0 Dashboard using JavaScript, Angular, Node.js, and Express. Our redesign won an award at the internal Yahoo TechPulse 2014 conference. Additionally, I set up a CI and CD pipeline for Express back-end applications using Jenkins CI and Chef CD to streamline building and deployment
+As an Engineer on the Yahoo Monitoring team, I worked on the redesign of the YAMAS 2.0 Dashboard using JavaScript, Angular, Node.js, and Express. Our redesign won an award at the internal Yahoo TechPulse 2014 conference. Additionally, I set up a CI and CD pipeline for Express back-end applications using Jenkins CI and Chef CD to streamline building and deployment
           `._reformatItems(),
       },
       {
