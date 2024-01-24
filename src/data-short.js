@@ -13,7 +13,7 @@ I'm Sy Le, a software engineer with a decade of experience at LinkedIn, Salesfor
         items: `
 As a Software Engineer at LinkedIn Enterprise Learning and Productivity Engineering, I leveraged my expertise in a wide range of technologies, including JavaScript, Ember, React, Node.js, Java, Spring Boot, Python, Flask, MySQL, Redis, and Azure to drive successful projects
 
-Currently as a full-stack tech lead in HRIT, I lead the development of TDE—a platform facilitating collaboration among LinkedIn engineers and managers on career promotion packages, utilizing Python/Flask, SQLAlchemy, MySQL and ReactJS.
+Currently as a full-stack tech lead in HRIT, I lead the development of TDE—a platform facilitating collaboration among LinkedIn engineers and managers on career promotion packages, utilizing Python/Flask, SQLAlchemy, MySQL and ReactJS
 
 I provided expert guidance on UI frameworks and Azure DevOps CI/CD pipelines to drive success. My insights and expertise have helped the team streamline development and achieve outstanding results
 
