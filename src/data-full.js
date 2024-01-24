@@ -13,9 +13,9 @@ I'm Sy Le, a software engineer with a decade of experience at LinkedIn, Salesfor
         items: `
 As a Software Engineer at LinkedIn Enterprise Learning and Productivity Engineering, I leveraged my expertise in a wide range of technologies, including JavaScript, Ember, React, Node.js, Java, Spring Boot, Python, Flask, MySQL, Redis, and Azure to drive successful projects
 
-I provided expert guidance on UI frameworks and Azure DevOps CI/CD pipelines to drive success. My insights and expertise have helped the team streamline development and achieve outstanding results
+Currently as a full-stack tech lead in HRIT, I lead the development of TDE—a platform facilitating collaboration among LinkedIn engineers and managers on career promotion packages, utilizing Python/Flask, SQLAlchemy, MySQL and ReactJS.
 
-Currently a full-stack developer using Python/Flask and ReactJS in HRIT org. Leading the development of TDE, a platform for LinkedIn engineers and managers to collaborate on and manage career promotion packages.
+I provided expert guidance on UI frameworks and Azure DevOps CI/CD pipelines to drive success. My insights and expertise have helped the team streamline development and achieve outstanding results
 
 Worked on <a href='//linkedin.com/help/linkedin'>Linkedin Support Portal</a> that manages customers' chats and offline cases on Microsoft Dynamics365 CRM using C#, .NET Core, React and Microsoft Fluent UI
 
@@ -26,8 +26,6 @@ As a skilled full-stack developer, I have played a key role in redesigning Sendb
 I integrated <a href='//linkedin.com/learning/'>Linkedin Learning</a> with Slideshare DocViewer, enabling end-to-end custom document content creation and viewing, which provided instructors with more options to organize and prepare their course outlines
 
 At the LinkedIn GOPs Expo 2017, I developed and presented the Room Booking Assistant (RoomBA), an innovative bot that intelligently identifies the best meeting rooms and books them on behalf of users, simplifying the process and saving valuable time
-
-Utilized technologies such as Azure, Node JS, Python (Flask), Java (Spring Boot), Dynamics 365, SharePoint, JavaScript, TypeScript, React, and Ember in the job role
           `._reformatItems(),
       },
       {
