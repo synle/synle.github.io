@@ -43,7 +43,7 @@ I'm Sy Le, a software engineer with a decade of experience at LinkedIn, Salesfor
         items: `
 <strong class='mr1'>Front End:</strong> JavaScript, TypeScript, React, Redux, Reselect, React Query, Jest, Angular, Storybook, Sass, Grunt, Gulp, Puppeteer, Sinon
 
-<strong class='mr1'>Back End:</strong> Node.js, RemixJS, Express, next.js, Python, Flask, Sqlalchemy, Java, Spring Boot, Maven, Mockito, Jackson, Jetty
+<strong class='mr1'>Back End:</strong> Node.js, RemixJS, Express, next.js, Python, Flask, SQLAlchemy, Java, Spring Boot, Maven, Mockito, Jackson, Jetty
 
 <strong class='mr1'>Databases / Technologies:</strong> MySQL, Microsoft SQL Server, Redis, MongoDB, Selenium, Cassandra, RabbitMQ
 
