@@ -14,7 +14,7 @@
   --colorBgSecondary: #f2f2f2;
   --colorBgHover: #f2f2f2;
   --colorTextMain: #000;
-  --colorTextLight: #000;
+  --colorTextLight: #666;
   --colorTextLink: #005594;
   --colorBorderMain: #58a6ff;
   --colorBorderSecondary: #c9d1d9;
@@ -50,7 +50,7 @@
     --colorBgSecondary: #f2f2f2;
     --colorBgHover: #f2f2f2;
     --colorTextMain: #000;
-    --colorTextLight: #000;
+    --colorTextLight: #666;
     --colorTextLink: #005594;
     --colorBorderMain: #58a6ff;
     --colorBorderSecondary: #c9d1d9;
