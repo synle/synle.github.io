@@ -44,17 +44,11 @@ const dataShort = parseConfigFile('src/data-short.js', dataBase);
 // default short
 generateView(dataShort, 'index.html');
 
-for (const file of fs.readdirSync('src')) {
-  if (
-    !file.includes('base') &&
-    file.includes('data-') &&
-    file.includes('.js')
-  ) {
-    const inputFile = 'src/' + file;
-    const outputFile = file.replace('.js', '').replace('data-', '') + '.html';
+for(const file of fs.readdirSync('src').filter(file => !file.includes('base')&& file.includes('data-') && file.includes('.js'))){
+  const inputFile = 'src/' + file
+  const outputFile = file.replace('.js', '').replace('data-', '') + '.html';
 
-    console.log('> ', inputFile, outputFile);
-    const targetData = parseConfigFile(inputFile, dataBase);
-    generateView(targetData, outputFile);
-  }
+  console.log('> ', inputFile, outputFile);
+  const targetData = parseConfigFile(inputFile, dataBase);
+  generateView(targetData, outputFile);
 }
