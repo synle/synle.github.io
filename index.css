@@ -108,7 +108,7 @@ h3 {
   --positionSticky: sticky;
 }
 :root {
-  --widthSection2: 300px;
+  --widthSection2: 250px;
   --widthSection3: 220px;
 }
 html {
@@ -265,8 +265,8 @@ a {
     position: var(--positionSticky);
     top: 0;
   }
-  .section-content .row:last-child {
-    padding-bottom: 0;
+  .row:last-child {
+    margin-bottom: 2rem;
   }
 }
 @media screen and (min-width: 1050px) {
@@ -298,7 +298,7 @@ a {
     --fontSize2: 1rem;
     --fontSize3: 1rem;
     --widthSection2: 260px;
-    --widthSection3: 175px;
+    --widthSection3: 200px;
   }
 }
 @media screen and (max-width: 949px) {

@@ -17,28 +17,28 @@
   <body>
     <!-- Contact Info -->
     <header class="visible-print">
-      <h1 id="full_name" class="cap">Sy Le</h1>
+      <h1 id="full_name">{{FullName}}</h1>
       <div class="page-header visible-print-flex">
-        <span id="location" class="cap">SF Bay Area, CA</span>
-        <a id="contact_phone_number" href="tel:1-408-216-3428" class="info-phone cap">408-216-3428</a>
-        <a id="contact_email" href="mailto:lenguyensy@gmail.com" class="info-email cap">le.nguyen.sy@gmail.com</a>
-        <a href="//synle.github.io" class="info-github visible-print cap">synle.github.io</a>
-        <a href="//linkedin.com/in/syle1021/" class="info-linkedin visible-print cap">linkedin.com/in/syle1021</a>
+        <span id="location">{{Location}}</span>
+        <a id="contact_phone_number" href="tel:1-{{PhoneNumber}}" class="info-phone cap">{{PhoneNumber}}</a>
+        <a id="contact_email" href="mailto:{{Email}}" class="info-email cap">{{Email}}</a>
+        <a href="//{{HomePageURL}}" class="info-github visible-print cap">{{HomePageURL}}</a>
+        <a href="//{{LinkedinURL}}" class="info-linkedin visible-print cap">{{LinkedinURL}}</a>
       </div>
     </header>
 
     <header class="page-header visible-desktop visible-mobile mb4">
-      <h1 id="full_name" class="bold1 cap">Sy Le</h1>
-      <div id="location" class="cap">SF Bay Area, CA</div>
-      <div><a id="contact_phone_number" href="tel:1-408-216-3428" class="info-phone cap">408-216-3428</a></div>
-      <div><a id="contact_email" href="mailto:lenguyensy@gmail.com" class="info-email cap">le.nguyen.sy@gmail.com</a></div>
+      <h1 id="full_name" class="bold1">{{FullName}}</h1>
+      <div id="location">{{Location}}</div>
+      <div><a id="contact_phone_number" href="tel:1-{{PhoneNumber}}" class="info-phone cap">{{PhoneNumber}}</a></div>
+      <div><a id="contact_email" href="mailto:{{Email}}" class="info-email cap">{{Email}}</a></div>
     </header>
 
     <!--   social links   -->
     <section class="social-links visible-screen-flex">
-      <a href="//linkedin.com/in/syle1021" class="info-linkedin cap" title="Linkedin Profile"> Linkedin </a>
-      <a href="//github.com/synle" class="info-github cap ms4" title="Github Profile"> github.com/synle </a>
-      <a href="/syle-resume.pdf" download="" class="cap" title="Download Resume"> Resume </a>
+      <a href="//{{LinkedinURL}}" class="info-linkedin cap" title="Linkedin Profile"> Linkedin </a>
+      <a href="//{{GithubURL}}" class="info-github cap ms4" title="Github Profile"> {{GithubURL}} </a>
+      <a href="/{{ResumeURL}}" download="" class="cap" title="Download Resume"> Resume </a>
     </section>
 
     <!-- summary  -->
@@ -46,7 +46,7 @@
       <div class="bold1">Summary:</div>
     </div>
     <div class="section-content">
-      {{Summary}}
+      <div class="row">{{Summary}}</div>
     </div>
 
 

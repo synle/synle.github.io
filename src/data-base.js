@@ -1,4 +1,15 @@
 let resp = {
+  // contacts
+  FullName: 'Sy Le',
+  Location: 'Morgan Hill, CA',
+  PhoneNumber: '408-216-3428',
+  Email: 'le.nguyen.sy@gmail.com',
+  HomePageURL: 'synle.github.io',
+  GithubURL: 'github.com/synle',
+  LinkedinURL: 'linkedin.com/in/syle1021',
+  ResumeURL: '/syle-resume.pdf',
+
+  // entries
   Education: {
     rows: [
       {
