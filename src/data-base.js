@@ -79,15 +79,21 @@ let resp = {
   Skills: {
     rows: [
       {
+        label: `Programing Languages`,
+        description: `
+          JavaScript, TypeScript, Python, Java
+        `._formatString(),
+      },
+      {
         label: `Front End`,
         description: `
-          JavaScript, TypeScript, React, Redux, Reselect, React Query, Jest, Angular, Storybook, Sass, Grunt, Gulp, Puppeteer, Sinon
+          React, Redux, Reselect, React Query, Jest, Angular, Storybook, Sass, Grunt, Gulp, Puppeteer, Sinon
         `._formatString(),
       },
       {
         label: `Back End`,
         description: `
-          Node.js, RemixJS, Express, next.js, Python, Flask, SQLAlchemy, Java, Spring Boot, Maven, Mockito, Jackson, Jetty
+          Node.js, RemixJS, Express, next.js, Python / Flask, SQLAlchemy, Java / Spring Boot, Maven, Mockito, Jackson, Jetty
         `._formatString(),
       },
       {
