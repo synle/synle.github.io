@@ -1,15 +1,17 @@
 let resp = {
   Summary: `
-I'm Sy Le, a software engineer with a decade of experience at LinkedIn, Salesforce, and Yahoo. I built software for CRM, marketing automation, e-commerce, and monitoring platforms. My skills include JavaScript/TypeScript and React for front-end, and Node.js / RemixJS / Express for back-end development.
+I'm Sy Le, a software engineer with a decade of experience at LinkedIn, Salesforce, and Yahoo.
+I built software for CRM, marketing automation, e-commerce, and monitoring platforms.
+My skills include JavaScript/TypeScript and React for front-end, and Node.js / RemixJS / Express for back-end development.
     `.trim(),
   Experience: {
     rows: [
       {
-        title: 'Staff Software Engineer',
-        company: 'Linkedin',
-        location: 'Sunnyvale, CA',
-        from: '05/2017',
-        to: 'Present',
+        title: `Staff Software Engineer`,
+        company: `Linkedin`,
+        location: `Sunnyvale, CA`,
+        from: `05/2017`,
+        to: `Present`,
         items: `
 As a Software Engineer at LinkedIn Enterprise Learning and Productivity Engineering, I leveraged my expertise in a wide range of technologies, including JavaScript, Ember, React, Node.js, Java, Spring Boot, Python, Flask, MySQL, Redis, and Azure to drive successful projects
 
@@ -29,11 +31,11 @@ At the LinkedIn GOPs Expo 2017, I developed and presented the Room Booking Assis
           `._reformatItems(),
       },
       {
-        title: 'Senior Member of Technical Staff',
-        company: 'Salesforce',
-        location: 'San Francisco, CA',
-        from: '04/2015',
-        to: '05/2017',
+        title: `Senior Member of Technical Staff`,
+        company: `Salesforce`,
+        location: `San Francisco, CA`,
+        from: `04/2015`,
+        to: `05/2017`,
         items: `
 Contributed as a software engineer for SalesforceIQ Inbox, IoT Cloud, and Aura, utilizing a tech stack including Javascript, Angular, React, Aura/Lightning, Node, Express, and Java
 
@@ -54,11 +56,11 @@ Innovated the Aura Fiddle, allowing users to swiftly learn, share, and prototype
           `._reformatItems(),
       },
       {
-        title: 'Tech Yahoo, Software Dev Engineer',
-        company: 'Yahoo Inc',
-        location: 'Sunnyvale, CA',
-        from: '07/2014',
-        to: '04/2015',
+        title: `Tech Yahoo, Software Dev Engineer`,
+        company: `Yahoo Inc`,
+        location: `Sunnyvale, CA`,
+        from: `07/2014`,
+        to: `04/2015`,
         items: `
 Functioned as a Full-Stack within Yahoo's Platforms team, implementing Agile development methodologies. Led the transformation of UI code for Yamas 2 (yo/yamas2) from Angular to Node and Express
 
@@ -76,11 +78,11 @@ Utilized technologies including Node Js, Express, Grunt, Karma, Protractor, Moch
           `._reformatItems(),
       },
       {
-        title: 'Software Engineer',
-        company: 'eBay Inc',
-        location: 'San Jose, CA',
-        from: '08/2013',
-        to: '07/2014',
+        title: `Software Engineer`,
+        company: `eBay Inc`,
+        location: `San Jose, CA`,
+        from: `08/2013`,
+        to: `07/2014`,
         items: `
 Successfully migrated the legacy "Manage Best Offer" page, optimizing the platform for sellers to respond efficiently to buyers' best offers
 
@@ -94,11 +96,11 @@ Leveraged a skill set including JavaScript, jQuery, CSS, HTML, Git, Java, eBay R
           `._reformatItems(),
       },
       {
-        title: 'Software Engineer',
-        company: 'eTrigue Inc',
-        location: 'San Jose, CA',
-        from: '10/2011',
-        to: '08/2013',
+        title: `Software Engineer`,
+        company: `eTrigue Inc`,
+        location: `San Jose, CA`,
+        from: `10/2011`,
+        to: `08/2013`,
         items: `
 Spearheaded front-end development and seamlessly integrated APIs within Demand Center, a product empowering marketing professionals to convert anonymous visitors into potential buyers. Collaborated with Salesforce CRM and Microsoft Dynamics for enhanced integration
 
@@ -113,11 +115,11 @@ Proficiently employed technologies such as HTML5, CSS, JavaScript, jQuery (core/
         `._reformatItems(),
       },
       {
-        title: 'Software Engineer',
-        company: 'MTSS',
-        location: 'San Jose, CA',
-        from: '08/2010',
-        to: '10/2011',
+        title: `Software Engineer`,
+        company: `MTSS`,
+        location: `San Jose, CA`,
+        from: `08/2010`,
+        to: `10/2011`,
         items: `
 As a Full-Stack Engineer, I built Clinic Tree, a clinic portal that includes features like patient record charting, appointment management, and a content management system. The portal was built using JavaScript, C#, and .NET
 
