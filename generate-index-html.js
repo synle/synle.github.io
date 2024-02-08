@@ -50,7 +50,7 @@ for(const file of fs.readdirSync('src')){
     const outputFile = file.replace('.js', '').replace('data-', '') + '.html';
 
     console.log('> ', inputFile, outputFile);
-    const dataFull = parseConfigFile(inputFile, dataBase);
-    generateView(dataFull, outputFile);
+    const targetData = parseConfigFile(inputFile, dataBase);
+    generateView(targetData, outputFile);
   }
 }
