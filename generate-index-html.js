@@ -29,19 +29,18 @@ function readFile(inputFile) {
   return fs.readFileSync(inputFile, 'utf8');
 }
 
+function parseConfigFile(inputFile, baseConfigs = {}) {
+  return {
+    ...baseConfigs,
+    ...eval(srcCommon + readFile(inputFile)),
+  };
+}
+
 const srcCommon = readFile('src/data.common.js');
 
-const dataBase = eval(srcCommon + readFile('src/data-base.js'));
-let dataShort = eval(srcCommon + readFile('src/data-short.js'));
-let dataFull = eval(srcCommon + readFile('src/data-full.js'));
-dataShort = {
-  ...dataBase,
-  ...dataShort,
-};
-dataFull = {
-  ...dataBase,
-  ...dataFull,
-};
+const dataBase = parseConfigFile('src/data-base.js');
+const dataShort = parseConfigFile('src/data-short.js', dataBase);
+const dataFull = parseConfigFile('src/data-full.js', dataBase);
 
 generateView(dataShort, 'index.html');
 generateView(dataFull, 'full.html');
