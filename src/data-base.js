@@ -9,6 +9,12 @@ let resp = {
   LinkedinURL: `linkedin.com/in/syle1021`,
   ResumeURL: `/syle-resume.pdf`,
 
+  Summary: `
+I am Sy Le, a software engineer with a decade of experience at LinkedIn, Salesforce, and Yahoo.
+I built software for CRM, marketing automation, e-commerce, and monitoring platforms.
+My skills include JavaScript/TypeScript and React for front-end, and Node.js / RemixJS / Express for back-end development.
+    `.trim(),
+
   // entries
   Education: {
     rows: [
@@ -30,11 +36,8 @@ let resp = {
       },
     ],
   },
-  Summary: `
-I am Sy Le, a software engineer with a decade of experience at LinkedIn, Salesforce, and Yahoo.
-I built software for CRM, marketing automation, e-commerce, and monitoring platforms.
-My skills include JavaScript/TypeScript and React for front-end, and Node.js / RemixJS / Express for back-end development.
-    `.trim(),
+
+  //
   SideProjects: {
     rows: [
       {
@@ -50,6 +53,8 @@ My skills include JavaScript/TypeScript and React for front-end, and Node.js / R
       },
     ],
   },
+
+  //
   Skills: {
     rows: [
       {
