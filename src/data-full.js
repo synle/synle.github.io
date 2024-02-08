@@ -23,7 +23,7 @@ As a skilled full-stack developer, I have played a key role in redesigning Sendb
 I integrated <a href='//linkedin.com/learning/'>Linkedin Learning</a> with Slideshare DocViewer, enabling end-to-end custom document content creation and viewing, which provided instructors with more options to organize and prepare their course outlines
 
 At the LinkedIn GOPs Expo 2017, I developed and presented the Room Booking Assistant (RoomBA), an innovative bot that intelligently identifies the best meeting rooms and books them on behalf of users, simplifying the process and saving valuable time
-          `._reformatItems(),
+          `._formatStringList(),
       },
       {
         title: `Senior Member of Technical Staff`,
@@ -48,7 +48,7 @@ Developed a Desktop Dialer with Twilio, empowering sales reps to communicate wit
 Created the Aura Explorer, facilitating developers in researching how Aura components are used
 
 Innovated the Aura Fiddle, allowing users to swiftly learn, share, and prototype their Aura/Lightning components
-          `._reformatItems(),
+          `._formatStringList(),
       },
       {
         title: `Tech Yahoo, Software Dev Engineer`,
@@ -70,7 +70,7 @@ Engaged in weekly support meetings with the Project Manager, offering training s
 Mentored engineers on Angular JS and Node JS, enabling them to become proficient and productive within our UI code base
 
 Utilized technologies including Node Js, Express, Grunt, Karma, Protractor, Mocha, Jasmine, Angular, JS Dygraph, Java, OpenTSDB, HBase, and Git
-          `._reformatItems(),
+          `._formatStringList(),
       },
       {
         title: `Software Engineer`,
@@ -88,7 +88,7 @@ Implemented a responsive UI for "Guest Checkout Registration," enabling users to
 Modified existing Selenium UI automation unit tests to extend coverage to iPad and iPhone using Selenium iWebDriver
 
 Leveraged a skill set including JavaScript, jQuery, CSS, HTML, Git, Java, eBay Raptor/Raptor JS, Spring MVC, Maven, and Jenkins CI to execute these enhancements
-          `._reformatItems(),
+          `._formatStringList(),
       },
       {
         title: `Software Engineer`,
@@ -107,7 +107,7 @@ Developed a CRM Management tool to efficiently handle integration and field mapp
 Utilized Cassandra, Helenus, and Node JS to implement the ETL process for Sales Velocity and ROI reports
 
 Proficiently employed technologies such as HTML5, CSS, JavaScript, jQuery (core/UI/Template), PHP, Code Igniter, RabbitMQ, SVN, C#, REST API, SQL Server, and VirtualBox in project execution
-        `._reformatItems(),
+        `._formatStringList(),
       },
       {
         title: `Software Engineer`,
@@ -123,7 +123,7 @@ Created clinic portal software for efficient management of patient visits and me
 Architected and constructed key modules, including appointment scheduling, audit trail, CMS, and patient registration. Integrated drug and medical journals for comprehensive functionality
 
 Employed technologies such as C# .Net 4.0, Microsoft Enterprise Library, SQL Server 2008 R2, TFS, HTML, and JavaScript in the development process.
-        `._reformatItems(),
+        `._formatStringList(),
       },
     ],
   },

@@ -46,7 +46,7 @@
       <div class="bold1">Summary:</div>
     </div>
     <div class="section-content">
-      <div class="row">{{Summary}}</div>
+      <div class="row c1">{{Summary}}</div>
     </div>
 
 
@@ -62,7 +62,7 @@
             <div class="education-location">{{school}}</div>
             <div class="education-time-description">{{graduated}}</div>
           </div>
-          <ul class="education-description c0">
+          <ul class="education-description c1">
             {{#items}}
               <li class="row"><span>&#183;</span>{{{.}}}</li>
             {{/items}}
@@ -83,7 +83,7 @@
             <div class="job-location">{{location}}</div>
             <div class="job-time-description">From {{from}} To {{to}}</div>
           </div>
-          <ul class="job-description">
+          <ul class="job-description c1">
             {{#items}}
               <li class="row"><span>&#183;</span>{{{.}}}</li>
             {{/items}}
@@ -96,29 +96,25 @@
     <div class="section-header z4">
       <div class="bold1">Side Projects:</div>
     </div>
-    {{#SideProjects}}
-      {{#rows}}
-        <ul class="side-project-container section-content c0">
-          {{#items}}
-            <li class="row"><span>&#183;</span>{{{.}}}</li>
-          {{/items}}
-        </ul>
-      {{/rows}}
-    {{/SideProjects}}
+    <ul class="side-project-container section-content c1">
+      {{#SideProjects}}
+        {{#rows}}
+            <li class="row"><span>&#183;</span><a href="{{link}}"><strong>{{label}}:</strong></a> {{{description}}}</li>
+        {{/rows}}
+      {{/SideProjects}}
+    </ul>
 
     <!-- Skills -->
     <div class="section-header z5">
       <div class="bold1">Skills:</div>
     </div>
-    {{#Skills}}
-      {{#rows}}
-        <ul class="skill-container section-content c0">
-          {{#items}}
-            <li class="row"><span>&#183;</span>{{{.}}}</li>
-          {{/items}}
-        </ul>
-      {{/rows}}
-    {{/Skills}}
+    <ul class="skill-container section-content c1">
+      {{#Skills}}
+        {{#rows}}
+          <li class="row"><span>&#183;</span><strong class='c0'>{{label}}:</strong> {{{description}}}</li>
+        {{/rows}}
+      {{/Skills}}
+    </ul>
   </body>
 
   <!-- minor scripts -->

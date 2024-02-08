@@ -3,6 +3,7 @@
   --colorBgSecondary: #161b22;
   --colorBgHover: #102138;
   --colorTextMain: #c9d1d9;
+  --colorTextLight: #999;
   --colorTextLink: #58a6ff;
   --colorBorderMain: #58a6ff;
   --colorBorderSecondary: #30363d;
@@ -13,6 +14,7 @@
   --colorBgSecondary: #f2f2f2;
   --colorBgHover: #f2f2f2;
   --colorTextMain: #000;
+  --colorTextLight: #000;
   --colorTextLink: #005594;
   --colorBorderMain: #58a6ff;
   --colorBorderSecondary: #c9d1d9;
@@ -23,6 +25,7 @@
   --colorBgSecondary: #161b22;
   --colorBgHover: #102138;
   --colorTextMain: #c9d1d9;
+  --colorTextLight: #999;
   --colorTextLink: #58a6ff;
   --colorBorderMain: #58a6ff;
   --colorBorderSecondary: #30363d;
@@ -34,6 +37,7 @@
     --colorBgSecondary: #161b22;
     --colorBgHover: #102138;
     --colorTextMain: #c9d1d9;
+    --colorTextLight: #999;
     --colorTextLink: #58a6ff;
     --colorBorderMain: #58a6ff;
     --colorBorderSecondary: #30363d;
@@ -46,6 +50,7 @@
     --colorBgSecondary: #f2f2f2;
     --colorBgHover: #f2f2f2;
     --colorTextMain: #000;
+    --colorTextLight: #000;
     --colorTextLink: #005594;
     --colorBorderMain: #58a6ff;
     --colorBorderSecondary: #c9d1d9;
@@ -107,10 +112,6 @@ h3 {
   --pageWidthPrint: 800px;
   --positionSticky: sticky;
 }
-:root {
-  --widthSection2: 250px;
-  --widthSection3: 220px;
-}
 html {
   font-size: 16px;
   font-family: var(--fontFamilyMain);
@@ -163,6 +164,9 @@ a {
   color: var(--colorTextMain);
 }
 .c1 {
+  color: var(--colorTextLight);
+}
+.c2 {
   color: var(--colorTextLink);
 }
 .hidden {
@@ -199,27 +203,11 @@ a {
   flex-wrap: wrap;
   justify-content: space-between;
 }
-.education-container .education-title,
-.job-container .education-title,
-.education-container .job-title,
-.job-container .job-title {
-  flex-grow: 1;
-}
-.education-container .education-location,
-.job-container .education-location,
-.education-container .job-location,
-.job-container .job-location {
-  width: var(--widthSection2);
-}
 .education-container .education-time-description,
 .job-container .education-time-description,
 .education-container .job-time-description,
 .job-container .job-time-description {
-  width: var(--widthSection3);
   text-align: right;
-}
-.job-description {
-  color: var(--colorTextMain);
 }
 .social-links {
   font-size: var(--fontSize2);
@@ -297,8 +285,6 @@ a {
     --fontSize1: 1rem;
     --fontSize2: 1rem;
     --fontSize3: 1rem;
-    --widthSection2: 260px;
-    --widthSection3: 200px;
   }
 }
 @media screen and (max-width: 949px) {
@@ -425,7 +411,8 @@ a {
     color: var(--colorBlack);
   }
   .c0,
-  .c1 {
+  .c1,
+  .c2 {
     color: var(--colorBlacklight);
   }
   .visible-screen,
@@ -448,6 +435,9 @@ a {
   a {
     font-weight: var(--fontWeightSemiBold);
     color: var(--colorBlack);
+  }
+  .row:last-child {
+    margin-bottom: 11px;
   }
 }
 @media screen and (max-width: 1049px) {

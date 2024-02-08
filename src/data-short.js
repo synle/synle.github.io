@@ -23,7 +23,7 @@ As a skilled full-stack developer, I have played a key role in redesigning Sendb
 I integrated <a href='//linkedin.com/learning/'>Linkedin Learning</a> with Slideshare DocViewer, enabling end-to-end custom document content creation and viewing, which provided instructors with more options to organize and prepare their course outlines
 
 At the LinkedIn GOPs Expo 2017, I developed and presented the Room Booking Assistant (RoomBA), an innovative bot that intelligently identifies the best meeting rooms and books them on behalf of users, simplifying the process and saving valuable time
-          `._reformatItems(),
+          `._formatStringList(),
       },
       {
         title: `Senior Member of Technical Staff`,
@@ -39,7 +39,7 @@ Contributed significantly to <a href='//store.office.com/en-us/app.aspx?assetid=
 Built various prototypes, including an Inbox Desktop Email client with React and Electron and a Desktop Dialer with Twilio
 
 Won the SalesforceIQ Hackday Fall 2016 Most Creative award with the predictive email compose suggestion project and won the SalesforceIQ Hackday Spring 2017 Most Heroic award with the mass email project
-          `._reformatItems(),
+          `._formatStringList(),
       },
       {
         title: `Tech Yahoo, Software Dev Engineer`,
@@ -49,7 +49,7 @@ Won the SalesforceIQ Hackday Fall 2016 Most Creative award with the predictive e
         to: `04/2015`,
         items: `
 As an Engineer on the Yahoo Monitoring team, I worked on the redesign of the YAMAS 2.0 Dashboard using JavaScript, Angular, Node.js, and Express. Our redesign won an award at the internal Yahoo TechPulse 2014 conference. Additionally, I set up a CI and CD pipeline for Express back-end applications using Jenkins CI and Chef CD to streamline building and deployment
-          `._reformatItems(),
+          `._formatStringList(),
       },
       {
         title: `Software Engineer`,
@@ -59,7 +59,7 @@ As an Engineer on the Yahoo Monitoring team, I worked on the redesign of the YAM
         to: `07/2014`,
         items: `
 As a Software Engineer on eBay Transaction Flow and Registration team, I implemented the responsive Guest Checkout Registration and integrated Selenium UI automation to extend UI integration test coverage to iPad and iPhone with JavaScript, Java and Spring MVC Framework
-          `._reformatItems(),
+          `._formatStringList(),
       },
       {
         title: `Software Engineer`,
@@ -69,7 +69,7 @@ As a Software Engineer on eBay Transaction Flow and Registration team, I impleme
         to: `08/2013`,
         items: `
 As a Full-Stack Engineer, I used JavaScript, PHP, Node.js, C#, MySQL, Cassandra, and RabbitMQ to build key components of the <a href='//www.etrigue.com/'>eTrigue Demand Center</a>. This includes Prospect List, Campaign Builder, ETL Jobs, and vendor integration with Cisco Webex and Citrix GoToWebinar
-        `._reformatItems(),
+        `._formatStringList(),
       },
       {
         title: `Software Engineer`,
@@ -79,7 +79,7 @@ As a Full-Stack Engineer, I used JavaScript, PHP, Node.js, C#, MySQL, Cassandra,
         to: `10/2011`,
         items: `
 As a Full-Stack Engineer, I built Clinic Tree, a clinic portal that includes features like patient record charting, appointment management, and a content management system. The portal was built using JavaScript, C#, and .NET
-        `._reformatItems(),
+        `._formatStringList(),
       },
     ],
   },
