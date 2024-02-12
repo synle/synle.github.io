@@ -32,11 +32,9 @@ At the LinkedIn GOPs Expo 2017, I developed and presented the Room Booking Assis
         from: `04/2015`,
         to: `05/2017`,
         items: `
-Software Engineer for SalesforceIQ, and Aura using JavaScript, Angular, React, Salesforce Aura / Lightning, Node.js, Express, and Java
+As a Software Engineer on Salesforce Lightning / Auro, I created <a href="https://github.com/synle/aura_explorer">Aura Explorer</a>, enabling swift exploration of component details like dependencies, references, and attributes
 
-Contributed significantly to <a href='//store.office.com/en-us/app.aspx?assetid=WA104379334&amp;ui=en-US&amp;rs=en-US&amp;ad=US&amp;appredirect=false'>SalesforceIQ Inbox Desktop</a>, and providing leadership and mentorship to junior team members
-
-Built various prototypes, including an Inbox Desktop Email client with React and Electron and a Desktop Dialer with Twilio
+As a Software Engineer on SalesforceIQ, I contributed significantly to <a href='//store.office.com/en-us/app.aspx?assetid=WA104379334&amp;ui=en-US&amp;rs=en-US&amp;ad=US&amp;appredirect=false'>SalesforceIQ Inbox Desktop</a> using TypeScript and Angular 1x, and providing leadership and mentorship to junior team members. I also built various prototypes, including an Inbox Desktop Email client with React and Electron and a Desktop Dialer with Twilio using Node.js, Express and Java
 
 Won the SalesforceIQ Hackday Fall 2016 Most Creative award with the predictive email compose suggestion project and won the SalesforceIQ Hackday Spring 2017 Most Heroic award with the mass email project
           `._formatStringList(),
