@@ -92,7 +92,7 @@ Leveraged a skill set including JavaScript, jQuery, CSS, HTML, Git, Java, eBay R
       },
       {
         title: `Software Engineer`,
-        company: `eTrigue Inc`,
+        company: `Etrigue Inc`,
         location: `San Jose, CA`,
         from: `10/2011`,
         to: `08/2013`,

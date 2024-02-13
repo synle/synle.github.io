@@ -61,7 +61,7 @@ As a Software Engineer on eBay Transaction Flow and Registration team, I impleme
       },
       {
         title: `Software Engineer`,
-        company: `eTrigue Inc`,
+        company: `Etrigue Inc`,
         location: `San Jose, CA`,
         from: `10/2011`,
         to: `08/2013`,
