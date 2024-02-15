@@ -223,7 +223,9 @@ a {
 }
 .visible-mobile,
 .visible-desktop,
-.visible-desktop-flex {
+.visible-desktop-flex,
+.visible-screen-inline-block,
+.visible-print-inline-block {
   display: none;
 }
 @media screen {
@@ -245,12 +247,14 @@ a {
   .visible-screen {
     display: block;
   }
+  .visible-screen-inline-block {
+    display: inline-block;
+  }
   .visible-screen-flex {
     display: flex;
   }
-  .visible-print {
-    display: none;
-  }
+  .visible-print,
+  .visible-print-inline-block,
   .visible-print-flex {
     display: none;
   }
@@ -373,6 +377,9 @@ a {
   }
   .visible-print {
     display: block;
+  }
+  .visible-print-inline-block {
+    display: inline-block;
   }
   .visible-print-flex {
     display: flex;

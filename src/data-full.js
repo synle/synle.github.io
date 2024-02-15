@@ -14,13 +14,13 @@ Currently as a full-stack tech lead in HRIT, I lead the development of TDE—a p
 
 I provided expert guidance on UI frameworks and Azure DevOps CI/CD pipelines to drive success. My insights and expertise have helped the team streamline development and achieve outstanding results
 
-Worked on <a href='//linkedin.com/help/linkedin'>Linkedin Support Portal</a> that manages customers' chats and offline cases on Microsoft Dynamics365 CRM using C#, .NET Core, React and Microsoft Fluent UI
+Worked on <a href='https://linkedin.com/help/linkedin'>Linkedin Support Portal</a> that manages customers' chats and offline cases on Microsoft Dynamics365 CRM using C#, .NET Core, React and Microsoft Fluent UI
 
 As a Full-Stack Engineer Team Lead, I led the development of Nucleus, an end-to-end purchase flow automation platform, featuring a modern React-and-Redux Front-End and a robust Spring Boot back-end hosted on Azure, with integrations with ServiceNow and JIRA
 
 As a skilled full-stack developer, I have played a key role in redesigning Sendbloom's codebase, using the latest tools and technologies such as TypeScript, React, Redux, Node.js, Express, Redis, and MySQL. With my contributions, the platform is now more efficient, and user-friendly
 
-I integrated <a href='//linkedin.com/learning/'>Linkedin Learning</a> with Slideshare DocViewer, enabling end-to-end custom document content creation and viewing, which provided instructors with more options to organize and prepare their course outlines
+I integrated <a href='https://linkedin.com/learning/'>Linkedin Learning</a> with Slideshare DocViewer, enabling end-to-end custom document content creation and viewing, which provided instructors with more options to organize and prepare their course outlines
 
 At the LinkedIn GOPs Expo 2017, I developed and presented the Room Booking Assistant (RoomBA), an innovative bot that intelligently identifies the best meeting rooms and books them on behalf of users, simplifying the process and saving valuable time
           `._formatStringList(),

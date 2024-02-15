@@ -14,13 +14,13 @@ Currently as a full-stack tech lead in HRIT, I lead the development of TDE—a p
 
 I provided expert guidance on UI frameworks and Azure DevOps CI/CD pipelines to drive success. My insights and expertise have helped the team streamline development and achieve outstanding results
 
-Worked on <a href='//linkedin.com/help/linkedin'>Linkedin Support Portal</a> that manages customers' chats and offline cases on Microsoft Dynamics365 CRM using C#, .NET Core, React and Microsoft Fluent UI
+Worked on <a href='https://linkedin.com/help/linkedin'>Linkedin Support Portal</a> that manages customers' chats and offline cases on Microsoft Dynamics365 CRM using C#, .NET Core, React and Microsoft Fluent UI
 
 As a Full-Stack Engineer Team Lead, I led the development of Nucleus, an end-to-end purchase flow automation platform, featuring a modern React-and-Redux Front-End and a robust Spring Boot back-end hosted on Azure, with integrations with ServiceNow and JIRA
 
 As a skilled full-stack developer, I have played a key role in redesigning Sendbloom's codebase, using the latest tools and technologies such as TypeScript, React, Redux, Node.js, Express, Redis, and MySQL. With my contributions, the platform is now more efficient, and user-friendly
 
-I integrated <a href='//linkedin.com/learning/'>Linkedin Learning</a> with Slideshare DocViewer, enabling end-to-end custom document content creation and viewing, which provided instructors with more options to organize and prepare their course outlines
+I integrated <a href='https://linkedin.com/learning/'>Linkedin Learning</a> with Slideshare DocViewer, enabling end-to-end custom document content creation and viewing, which provided instructors with more options to organize and prepare their course outlines
 
 At the LinkedIn GOPs Expo 2017, I developed and presented the Room Booking Assistant (RoomBA), an innovative bot that intelligently identifies the best meeting rooms and books them on behalf of users, simplifying the process and saving valuable time
           `._formatStringList(),
@@ -34,7 +34,7 @@ At the LinkedIn GOPs Expo 2017, I developed and presented the Room Booking Assis
         items: `
 As a Software Engineer on Salesforce Lightning / Auro, I created <a href="https://github.com/synle/aura_explorer">Aura Explorer</a>, enabling swift exploration of component details like dependencies, references, and attributes
 
-As a Software Engineer on SalesforceIQ, I contributed significantly to <a href='//store.office.com/en-us/app.aspx?assetid=WA104379334&amp;ui=en-US&amp;rs=en-US&amp;ad=US&amp;appredirect=false'>SalesforceIQ Inbox Desktop</a> using TypeScript and Angular 1x, and providing leadership and mentorship to junior team members. I also built various prototypes, including an Inbox Desktop Email client with React and Electron and a Desktop Dialer with Twilio using Node.js, Express and Java
+As a Software Engineer on SalesforceIQ, I contributed significantly to <a href='https://store.office.com/en-us/app.aspx?assetid=WA104379334&amp;ui=en-US&amp;rs=en-US&amp;ad=US&amp;appredirect=false'>SalesforceIQ Inbox Desktop</a> using TypeScript and Angular 1x, and providing leadership and mentorship to junior team members. I also built various prototypes, including an Inbox Desktop Email client with React and Electron and a Desktop Dialer with Twilio using Node.js, Express and Java
 
 Won the SalesforceIQ Hackday Fall 2016 Most Creative award with the predictive email compose suggestion project and won the SalesforceIQ Hackday Spring 2017 Most Heroic award with the mass email project
           `._formatStringList(),
@@ -66,7 +66,7 @@ As a Software Engineer on eBay Transaction Flow and Registration team, I impleme
         from: `10/2011`,
         to: `08/2013`,
         items: `
-As a Full-Stack Engineer, I used JavaScript, PHP, Node.js, C#, MySQL, Cassandra, and RabbitMQ to build key components of the <a href='//www.etrigue.com/'>eTrigue Demand Center</a>. This includes Prospect List, Campaign Builder, ETL Jobs, and vendor integration with Cisco Webex and Citrix GoToWebinar
+As a Full-Stack Engineer, I used JavaScript, PHP, Node.js, C#, MySQL, Cassandra, and RabbitMQ to build key components of the <a href='https://www.etrigue.com/'>eTrigue Demand Center</a>. This includes Prospect List, Campaign Builder, ETL Jobs, and vendor integration with Cisco Webex and Citrix GoToWebinar
         `._formatStringList(),
       },
       {

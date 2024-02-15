@@ -42,7 +42,7 @@ let resp = {
     rows: [
       {
         label: `sqlui-native`,
-        link: `synle.github.io/sqlui-native`,
+        link: `https://synle.github.io/sqlui-native`,
         description: `
           a cross-platform native desktop application built with Electron and React,
           which can manage various databases, including MySQL, PostgreSQL, MS SQL Server, Cassandra, MongoDB, and Redis.
@@ -51,7 +51,7 @@ let resp = {
       },
       {
         label: `display-dj`,
-        link: `synle.github.io/display-dj`,
+        link: `https://synle.github.io/display-dj`,
         description: `
           a cross-platform desktop application that allows users to adjust brightness for integrated and external monitors and switch to dark mode.
           It is compatible with Windows and Mac operating systems
@@ -59,17 +59,17 @@ let resp = {
       },
       {
         label: `import-fixer`,
-        link: `synle.github.io/js-import-fixer`,
+        link: `https://synle.github.io/js-import-fixer`,
         description: `
           A deterministic npm executable module that removes duplicate or unused JavaScript/TypeScript imports
         `._formatString(),
       },
       {
         label: `Rest API Decorators`,
-        link: `synle.github.io/restapi-typescript-decorators`,
+        link: `https://synle.github.io/restapi-typescript-decorators`,
         description: `
           a TypeScript library that make writing API Client for Nodejs and Frontend simpler inspired
-          by <a href='//square.github.io/retrofit/'><strong>Square Retrofit library</strong></a>
+          by <a href='https://square.github.io/retrofit/'>Square Retrofit library</a>
         `._formatString(),
       },
     ],
