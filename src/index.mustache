@@ -20,8 +20,8 @@
         <span id="location">{{Location}}</span>
         <a id="contact_phone_number" href="tel:1-{{PhoneNumber}}" class="info-phone cap">{{PhoneNumber}}</a>
         <a id="contact_email" href="mailto:{{Email}}" class="info-email cap">{{Email}}</a>
-        <a href="//{{HomePageURL}}" class="info-github visible-print cap">{{HomePageURL}}</a>
-        <a href="//{{LinkedinURL}}" class="info-linkedin visible-print cap">{{LinkedinURL}}</a>
+        <a href="https://{{HomePageURL}}" class="info-github visible-print cap">{{HomePageURL}}</a>
+        <a href="https://{{LinkedinURL}}" class="info-linkedin visible-print cap">{{LinkedinURL}}</a>
       </div>
     </header>
 
@@ -71,7 +71,7 @@
 
     <!-- Experience -->
     <div class="section-header">
-      Experience:
+      Work Experience:
     </div>
     {{#Experience}}
       <article>
@@ -79,7 +79,10 @@
           <header class="section-row-title">
             <div>{{title}} at {{company}}</div>
             <div>{{location}}</div>
-            <div>From {{from}} To {{to}}</div>
+            <div>
+              <span class="visible-screen-inline-block"><span aria-label="from">From</span> {{from}} <span aria-label="to">To</span> {{to}}</span>
+              <span class="visible-print-inline-block">{{from}} <span aria-label="to">-</span> {{to}}</span>
+            </div>
           </header>
           <ul class="section-row-content">
             {{#items}}
@@ -98,7 +101,7 @@
       <ul class="section-row-content">
         {{#SideProjects}}
           {{#rows}}
-              <li class="row"><span>&#183;</span><a href="{{link}}"><strong>{{label}}:</strong></a> {{{description}}}</li>
+              <li class="row"><span>&#183;</span><a href="{{link}}">{{label}}:</a> {{{description}}}</li>
           {{/rows}}
         {{/SideProjects}}
       </ul>
