@@ -13,6 +13,7 @@
     "build": "sh build.sh",
     "format": "sh format.sh",
     "dev": "sh dev.sh",
+    "clean": "sh clean.sh",
     "test": "echo \"TBD\"",
     "start": "npx http-server --cors . -p 3000"
   },
