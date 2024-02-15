@@ -13,6 +13,7 @@
   </head>
   <body>
     <!-- Contact Info -->
+    <!--   Printer only   -->
     <header class="visible-print">
       <h1 id="full_name">{{FullName}}</h1>
       <div class="page-header visible-print-flex">
@@ -31,16 +32,16 @@
       <div><a id="contact_email" href="mailto:{{Email}}" class="info-email cap">{{Email}}</a></div>
     </header>
 
-    <!--   social links   -->
+    <!--   Screen only - social links   -->
     <section class="social-links visible-screen-flex">
       <a href="//{{LinkedinURL}}" class="info-linkedin cap" title="Linkedin Profile"> Linkedin </a>
-      <a href="//{{GithubURL}}" class="info-github cap ms4" title="Github Profile"> {{GithubURL}} </a>
+      <a href="//{{GithubURL}}" class="info-github cap ms4" title="Github Profile"> Github </a>
       <a href="{{ResumeURL}}" download="" class="cap" title="Download Resume"> Resume </a>
     </section>
 
     <!-- summary  -->
     <div class="section-header z3">
-      <div class="bold1">Summary:</div>
+      Summary:
     </div>
     <div class="section-content">
       <div class="row c1">{{Summary}}</div>
@@ -49,69 +50,73 @@
 
     <!-- Educations -->
     <div class="section-header z3">
-      <div class="bold1">Education:</div>
+      Education:
     </div>
     {{#Education}}
-      <div class="education-container section-content">
+      <article>
         {{#rows}}
-          <div class="education-header z2">
-            <div class="education-title">{{degree}}, {{program}}</div>
-            <div class="education-location">{{school}}</div>
-            <div class="education-time-description">{{graduated}}</div>
-          </div>
-          <ul class="education-description c1">
+          <header class="section-row-title">
+            <div>{{degree}}, {{program}}</div>
+            <div>{{school}}</div>
+            <div>{{graduated}}</div>
+          </header>
+          <ul class="section-row-content">
             {{#items}}
               <li class="row"><span>&#183;</span>{{{.}}}</li>
             {{/items}}
           </ul>
         {{/rows}}
-      </div>
+      </article>
     {{/Education}}
 
     <!-- Experience -->
-    <div class="section-header z2">
-      <div class="bold1">Experience:</div>
+    <div class="section-header">
+      Experience:
     </div>
     {{#Experience}}
-      <div class="job-container section-content">
+      <article>
         {{#rows}}
-          <div class="job-header z3">
-            <div class="job-title">{{title}} at {{company}}</div>
-            <div class="job-location">{{location}}</div>
-            <div class="job-time-description">From {{from}} To {{to}}</div>
-          </div>
-          <ul class="job-description c1">
+          <header class="section-row-title">
+            <div>{{title}} at {{company}}</div>
+            <div>{{location}}</div>
+            <div>From {{from}} To {{to}}</div>
+          </header>
+          <ul class="section-row-content">
             {{#items}}
               <li class="row"><span>&#183;</span>{{{.}}}</li>
             {{/items}}
           </ul>
         {{/rows}}
-      </div>
+      </article>
     {{/Experience}}
 
     <!-- Side Project -->
     <div class="section-header z4">
-      <div class="bold1">Side Projects:</div>
+      Side Projects:
     </div>
-    <ul class="side-project-container section-content c1">
-      {{#SideProjects}}
-        {{#rows}}
-            <li class="row"><span>&#183;</span><a href="{{link}}"><strong>{{label}}:</strong></a> {{{description}}}</li>
-        {{/rows}}
-      {{/SideProjects}}
-    </ul>
+    <article>
+      <ul class="section-row-content">
+        {{#SideProjects}}
+          {{#rows}}
+              <li class="row"><span>&#183;</span><a href="{{link}}"><strong>{{label}}:</strong></a> {{{description}}}</li>
+          {{/rows}}
+        {{/SideProjects}}
+      </ul>
+    </article>
 
     <!-- Skills -->
     <div class="section-header z5">
-      <div class="bold1">Skills:</div>
+      Skills:
     </div>
-    <ul class="skill-container section-content c1">
-      {{#Skills}}
-        {{#rows}}
-          <li class="row"><span>&#183;</span><strong class='c0'>{{label}}:</strong> {{{description}}}</li>
-        {{/rows}}
-      {{/Skills}}
-    </ul>
+    <article>
+      <ul class="section-row-content">
+        {{#Skills}}
+          {{#rows}}
+            <li class="row"><span>&#183;</span><strong class='c0'>{{label}}:</strong> {{{description}}}</li>
+          {{/rows}}
+        {{/Skills}}
+      </ul>
+    </article>
   </body>
 
   <!-- minor scripts -->
