@@ -1,0 +1,104 @@
+// BEGIN Color
+
+@mixin dark-theme {
+  --colorBgMain: #0d1117;
+  --colorBgSecondary: #161b22;
+  --colorBgHover: #102138;
+  --colorTextMain: #c9d1d9;
+  --colorTextSecondary: #999;
+  --colorLinkPrimary: #58a6ff;
+  --colorBorderMain: #58a6ff;
+  --colorBorderSecondary: #30363d;
+  --colorShadow: #333;
+}
+
+@mixin light-theme {
+  --colorBgMain: #fff;
+  --colorBgSecondary: #f2f2f2;
+  --colorBgHover: #f2f2f2;
+  --colorTextMain: #6e6e73;
+  --colorTextSecondary: #1d1d1f;
+  --colorLinkPrimary: #0066cc;
+  --colorBorderMain: #58a6ff;
+  --colorBorderSecondary: #d2d2d7;
+  --colorShadow: #aaa;
+}
+
+:root {
+  @include dark-theme;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    @include dark-theme;
+  }
+}
+
+@media print, (prefers-color-scheme: light) {
+  :root {
+    @include light-theme;
+  }
+}
+
+:root {
+  --colorWhite: #fff;
+  --colorBlack: #000;
+  --colorBlacklight: #333;
+}
+
+// END Color
+
+:root {
+  --fontFamilyMain:
+    SF Pro Display, SF Pro Icons, Helvetica Neue, Helvetica, Arial, sans-serif;
+  --fontSize1: 1.25rem;
+  --fontSize2: 1.1rem;
+  --fontSize3: 1rem;
+  --spaceSizeAuto: auto;
+  --spaceSize0: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+form,
+pre,
+p,
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+.h1,
+h1 {
+  font-size: var(--fontSize1);
+}
+
+.h2,
+h2 {
+  font-size: var(--fontSize2);
+}
+
+.h3,
+h3 {
+  font-size: var(--fontSize3);
+}
+
+a {
+  color: var(--colorLinkPrimary);
+  text-decoration: none;
+}
+
+html {
+  font-family: var(--fontFamilyMain);
+  background-color: var(--colorBgMain);
+  color: var(--colorTextMain);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}

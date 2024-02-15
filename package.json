@@ -1,25 +1,21 @@
 {
   "name": "syle-github-io",
-  "version": "1.0.17",
+  "version": "2.0.0",
   "private": true,
   "description": "Sy's resume along with some mini apps",
   "main": "index.html",
-  "devDependencies": {
-    "concurrently": "^8.2.2",
-    "mustache": "^4.2.0",
-    "puppeteer": "^13.4.0"
-  },
-  "scripts": {
-    "build": "sh build.sh",
-    "format": "sh format.sh",
-    "dev": "sh dev.sh",
-    "test": "echo \"TBD\"",
-    "start": "npx http-server --cors . -p 3000"
-  },
+  "scripts": {},
   "keywords": [
     "Sy",
     "Le"
   ],
   "author": "Sy Le",
-  "license": "ISC"
+  "license": "ISC",
+  "engines": {
+    "node": ">=20"
+  },
+  "devDependencies": {
+    "mustache": "^4.2.0",
+    "puppeteer": "^24.40.0"
+  }
 }

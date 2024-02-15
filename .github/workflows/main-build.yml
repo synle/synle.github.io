@@ -1,32 +1,24 @@
-name: main-build
+name: build-main
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+    branches: [master, main]
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
-on:
-  push:
-    branches: [master, main]
-
 jobs:
   build:
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [14.x]
-
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          ref: ${{ github.head_ref }}
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-          registry-url: https://registry.npmjs.org/
-      - run: npm install
-      - run: npm run build
-      - uses: EndBug/add-and-commit@v7
-        with:
-          message: 'CI Build - Prettier & LESS build & PDF generation'
+    # https://github.com/synle/gha-workflows/blob/main/.github/workflows/build-and-commit-sh.yml
+    uses: synle/gha-workflows/.github/workflows/build-and-commit-sh.yml@main
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    with:
+      node-version: "24.x"
+      early-exit-on-commit: false
+      deploy-to-pages: true

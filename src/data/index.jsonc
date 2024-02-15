@@ -1,0 +1,108 @@
+// March 2026 resume — tailored for staff+ full-stack / AI platform roles.
+// Overrides: Summary, Experience, Skills
+{
+  "Summary": "Staff Software Engineer with 15+ years building large-scale platforms at LinkedIn, Salesforce, and Yahoo. Owned the technical vision for a company-wide talent management platform, defined AI strategy for LLM-powered services, and built high-performing engineering teams. Currently pursuing an MS in Artificial Intelligence at UT Austin.",
+
+  "Experience": {
+    "rows": [
+      {
+        "title": "Staff Software Engineer",
+        "company": "Linkedin",
+        "location": "Sunnyvale, CA",
+        "from": "05/2017",
+        "to": "Present",
+        "items": [
+          "Owned the technical vision and end-to-end architecture of a company-wide talent management platform (React, Python/Flask, SQLAlchemy, gRPC), scaling it from prototype to production and establishing it as the system of record for engineering leadership decisions",
+          "Defined the AI strategy and architected an AI agent service with gRPC streaming, LangChain, and Azure OpenAI, establishing the foundational patterns for LLM-powered features, structured prompt management, and content moderation across the platform",
+          "Designed and drove adoption of data aggregation pipelines consolidating 7 sources into a unified talent insights view, eliminating 80% of manual data collection and shaping how managers evaluate talent org-wide",
+          "Built a high-performing engineering team by mentoring engineers on platform architecture and AI pipelines, compressing onboarding from ~8 weeks to ~2 weeks and directly increasing team delivery velocity",
+          "Drove execution of a skills identification tool under a compressed 8-week timeline, increasing skill visibility coverage by 30% and enabling data-driven workforce planning across multiple engineering organizations",
+          "Designed timezone standardization for a global interview scheduling platform used across international offices, reducing scheduling errors by 50% and unblocking global hiring workflows",
+          "Spearheaded Okta SSO migration and Kubernetes deployment strategy, cutting login latency by 10 seconds and reducing page load times from 60s to 5s through caching and infrastructure optimizations",
+          "Led technical strategy for internal tools supporting large-scale organizational transitions, enabling rapid data-driven decision-making across senior leadership while maintaining seamless employee experience",
+          "Architected an end-to-end purchase flow automation platform (React, Redux, Spring Boot, Azure) integrating ServiceNow and JIRA, and drove developer productivity improvements across multiple teams",
+        ],
+      },
+      {
+        "title": "Senior Member of Technical Staff",
+        "company": "Salesforce",
+        "location": "San Francisco, CA",
+        "from": "04/2015",
+        "to": "05/2017",
+        "items": [
+          "Built and shipped SalesforceIQ Inbox and Lightning integrations using TypeScript, Angular, React, and Java, mentoring junior engineers and leading the desktop team",
+          "Prototyped an Electron-based email client and Twilio-powered desktop dialer, winning two internal hackathon awards for predictive email and mass email projects",
+        ],
+      },
+      {
+        "title": "Tech Yahoo, Software Dev Engineer",
+        "company": "Yahoo Inc.",
+        "location": "Sunnyvale, CA",
+        "from": "07/2014",
+        "to": "04/2015",
+        "items": [
+          "Redesigned the YAMAS 2.0 monitoring dashboard (Angular, Node.js, Express), winning an award at Yahoo TechPulse 2014, and set up CI/CD pipelines with Jenkins and Chef",
+        ],
+      },
+      {
+        "title": "Software Engineer",
+        "company": "eBay Inc.",
+        "location": "San Jose, CA",
+        "from": "08/2013",
+        "to": "07/2014",
+        "items": [
+          "Built responsive checkout and registration flows and extended Selenium UI automation to mobile devices using JavaScript, Java, and Spring MVC",
+        ],
+      },
+      {
+        "title": "Software Engineer",
+        "company": "Etrigue Inc.",
+        "location": "San Jose, CA",
+        "from": "10/2011",
+        "to": "08/2013",
+        "items": [
+          "Built core modules of a marketing automation platform (JavaScript, PHP, Node.js, C#, MySQL, Cassandra, RabbitMQ) including ETL pipelines and third-party vendor integrations",
+        ],
+      },
+      {
+        "title": "Software Engineer",
+        "company": "MTSS",
+        "location": "San Jose, CA",
+        "from": "08/2010",
+        "to": "10/2011",
+        "items": [
+          "Built a full-stack clinic portal with patient charting, appointment management, and CMS using JavaScript, C#, and .NET",
+        ],
+      },
+    ],
+  },
+
+  "Skills": {
+    "rows": [
+      {
+        "label": "Languages",
+        "description": "JavaScript, TypeScript, Python, Java, C#",
+      },
+      {
+        "label": "AI / ML",
+        "description": "LangChain, Azure OpenAI, gRPC, Protobuf, Prompt Engineering, AI Agents, Content Moderation",
+      },
+      {
+        "label": "Front End",
+        "description": "React, Redux, React Query, Material-UI, Jest, Angular, Storybook, Sass, Puppeteer",
+      },
+      {
+        "label": "Back End",
+        "description": "Python / Flask, SQLAlchemy, Node.js, Express, Java / Spring Boot, gRPC, REST APIs",
+      },
+      {
+        "label": "Infrastructure",
+        "description": "MySQL, Redis, MongoDB, Cassandra, Docker, Kubernetes, NGINX, Azure, AWS, Okta SSO",
+      },
+      {
+        "label": "Tools",
+        "description": "Git, GitHub Actions, Jenkins CI, Azure DevOps, JIRA, Alembic, Bash",
+      },
+    ],
+  },
+}

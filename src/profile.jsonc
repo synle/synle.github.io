@@ -1,0 +1,99 @@
+// Shared profile data used as the base for all resume variants.
+// Variant-specific data files (in src/data/) override or extend these fields.
+{
+  // Contact information
+  "FullName": "Sy Le",
+  "Location": "Morgan Hill, CA",
+  "LocationURL": "google.com/maps/place/Morgan Hill,CA",
+  "PhoneNumber": "408-216-3428",
+  "Email": "lenguyensy@gmail.com",
+  "HomePageURL": "synle.github.io",
+  "GithubURL": "github.com/synle",
+  "LinkedinURL": "linkedin.com/in/syle1021",
+  "ResumeURL": "/syle-resume.pdf",
+
+  "Summary": "Staff Software Engineer with 15+ years building large-scale platforms at LinkedIn, Salesforce, and Yahoo. Specialized in full-stack systems, AI-powered product development, and internal platforms that drive engineering productivity at scale. Currently pursuing an MS in Artificial Intelligence at UT Austin, with a focus on applied AI and product integration.",
+
+  // Education history
+  "Education": {
+    "rows": [
+      {
+        "degree": "Master of Science",
+        "program": "Artificial Intelligence",
+        "school": "The University of Texas at Austin",
+        "graduated": "2024 - Present",
+        "items": [],
+      },
+      {
+        "degree": "Master of Science",
+        "program": "Software Engineering",
+        "school": "San Jose State University",
+        "graduated": "Graduated 2019",
+      },
+      {
+        "degree": "Bachelor of Science",
+        "program": "Computer Science",
+        "school": "San Jose State University",
+        "graduated": "Graduated 2011",
+        "items": [],
+      },
+    ],
+  },
+
+  // Open source and personal projects
+  "SideProjects": {
+    "rows": [
+      {
+        "label": "react-dialog-mui",
+        "link": "https://synle.github.io/react-dialog-mui",
+        "description": "This React library streamlines Material-UI dialog usage by abstracting state management and providing convenient replicas of standard JavaScript dialog methods like alert, confirm, and prompt, simplifying common UX flows",
+      },
+      {
+        "label": "sqlui-native",
+        "link": "https://synle.github.io/sqlui-native",
+        "description": "A cross-platform database management tool (Electron, React, TypeScript) supporting 12+ data stores including MySQL, PostgreSQL, SQLite, MongoDB, Redis, and Salesforce with features like data migration between engines, session management, and a VS Code-style command palette for fast workflows",
+      },
+      {
+        "label": "display-dj",
+        "link": "https://synle.github.io/display-dj",
+        "description": "A cross-platform desktop utility (Electron) for controlling brightness on both laptop and external monitors without physical buttons, with global keyboard shortcuts, dark mode toggle, and per-display profiles on Windows and macOS",
+      },
+      {
+        "label": "import-fixer",
+        "link": "https://synle.github.io/js-import-fixer",
+        "description": "A deterministic npm executable module that removes duplicate or unused JavaScript/TypeScript imports",
+      },
+      {
+        "label": "Rest API Decorators",
+        "link": "https://synle.github.io/restapi-typescript-decorators",
+        "description": "a TypeScript library that make writing API Client for Nodejs and Frontend simpler inspired by <a href='https://square.github.io/retrofit/'>Square Retrofit library</a>",
+      },
+    ],
+  },
+
+  // Technical skills by category
+  "Skills": {
+    "rows": [
+      {
+        "label": "Programing Languages",
+        "description": "JavaScript, TypeScript, Python, Java",
+      },
+      {
+        "label": "Front End",
+        "description": "React, Redux, Reselect, React Query, Jest, Angular, Storybook, Sass, Grunt, Gulp, Puppeteer, Sinon",
+      },
+      {
+        "label": "Back End",
+        "description": "Node.js, RemixJS, Express, next.js, Python / Flask, SQLAlchemy, Java / Spring Boot, Maven, Mockito, Jackson, Jetty",
+      },
+      {
+        "label": "Databases / Technologies",
+        "description": "MySQL, Microsoft SQL Server, Redis, MongoDB, Selenium, Cassandra, RabbitMQ",
+      },
+      {
+        "label": "Tools",
+        "description": "Git, Docker, Vagrant, VirtualBox, NGINX, JIRA, Bash, Jenkins CI, Github Actions, Azure, AWS and SauceLabs",
+      },
+    ],
+  },
+}

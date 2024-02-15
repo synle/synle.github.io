@@ -1,0 +1,28 @@
+// Resume variants configuration.
+// Each entry generates: {name}.html and {name}.pdf
+// Use name "index" for the default resume (becomes index.html).
+// dataFile is optional — defaults to {name}.jsonc
+// allowMultiplePages is optional — auto-set to true if name contains "full"
+//
+// To add a new resume variant:
+// 1. Create a new data file in src/data/ (e.g., frontend.jsonc)
+// 2. Add an entry here with name and description
+[
+  {
+    "name": "syle-resume",
+    "description": "Default resume PDF (mirrors index)",
+    "dataFile": "index.jsonc",
+  },
+  {
+    "name": "full",
+    "description": "Complete resume with detailed experience for all positions, suitable for in-depth review.",
+  },
+  {
+    "name": "snapshot-2025",
+    "description": "Snapshot of previous default resume, kept for reference.",
+  },
+  {
+    "name": "2025",
+    "description": "2025 resume version, kept for reference.",
+  },
+]

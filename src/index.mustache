@@ -1,139 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>syle-resume</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="format-detection" content="telephone=no" />
-    <meta name="keywords"   content="resume, synle, sy le, front end engineer, full stack engineer.">
-    <meta name="Description" content="{{Summary}}" />
-    <link
-      rel="icon"
-      href="data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2016%2016'%3E%3Ctext%20x%3D'0'%20y%3D'16'%3E🧑%3C%2Ftext%3E%3C%2Fsvg%3E" />
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
-    </style>
-    <link rel="stylesheet" href="/index.css" />
-  </head>
-  <body>
+
+<head>
+  <title>syle-resume</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="keywords" content="resume, synle, sy le, front end engineer, full stack engineer." />
+  <meta name="description" content="{{Summary}}" />
+  <link rel="stylesheet" href="/index.css" />
+</head>
+
+<body>
+  <div class='paper'>
     <!-- Contact Info -->
-    <header class="visible-print">
-      <h1 id="full_name">{{FullName}}</h1>
-      <div class="page-header visible-print-flex">
-        <span id="location">{{Location}}</span>
-        <a id="contact_phone_number" href="tel:1-{{PhoneNumber}}" class="info-phone cap">{{PhoneNumber}}</a>
-        <a id="contact_email" href="mailto:{{Email}}" class="info-email cap">{{Email}}</a>
-        <a href="//{{HomePageURL}}" class="info-github visible-print cap">{{HomePageURL}}</a>
-        <a href="//{{LinkedinURL}}" class="info-linkedin visible-print cap">{{LinkedinURL}}</a>
-      </div>
-    </header>
+    <article>
+      <div><h1>{{FullName}}</h1></div>
+      <header>
+        <a href="//{{LocationURL}}">{{Location}}</a>
+        <a href="tel:1-{{PhoneNumber}}">{{PhoneNumber}}</a>
+        <a href="mailto:{{Email}}" title="Send email">{{Email}}</a>
+        <a class='hiddenMobile' href="//{{HomePageURL}}" title="Sy's Homepage">{{HomePageURL}}</a>
+        <a href="//{{LinkedinURL}}" title="Linkedin Profile">{{LinkedinURL}}</a>
+        <a href="//{{GithubURL}}" title="View Github Contributions">{{GithubURL}}</a>
+        <a class='hiddenPrint' href="{{ResumeURL}}" title="Download Resume as PDF" download>Download Resume</a>
+      </header>
+    </article>
 
-    <header class="page-header visible-desktop visible-mobile mb4">
-      <h1 id="full_name" class="bold1">{{FullName}}</h1>
-      <div id="location">{{Location}}</div>
-      <div><a id="contact_phone_number" href="tel:1-{{PhoneNumber}}" class="info-phone cap">{{PhoneNumber}}</a></div>
-      <div><a id="contact_email" href="mailto:{{Email}}" class="info-email cap">{{Email}}</a></div>
-    </header>
+    <!-- Summary -->
+    <article>
+      <section><h3>Summary:</h3></section>
+      <p>{{Summary}}</p>
+    </article>
 
-    <!--   social links   -->
-    <section class="social-links visible-screen-flex">
-      <a href="//{{LinkedinURL}}" class="info-linkedin cap" title="Linkedin Profile"> Linkedin </a>
-      <a href="//{{GithubURL}}" class="info-github cap ms4" title="Github Profile"> {{GithubURL}} </a>
-      <a href="{{ResumeURL}}" download="" class="cap" title="Download Resume"> Resume </a>
-    </section>
-
-    <!-- summary  -->
-    <div class="section-header z3">
-      <div class="bold1">Summary:</div>
-    </div>
-    <div class="section-content">
-      <div class="row c1">{{Summary}}</div>
-    </div>
-
-
-    <!-- Educations -->
-    <div class="section-header z3">
-      <div class="bold1">Education:</div>
-    </div>
-    {{#Education}}
-      <div class="education-container section-content">
-        {{#rows}}
-          <div class="education-header z2">
-            <div class="education-title">{{degree}}, {{program}}</div>
-            <div class="education-location">{{school}}</div>
-            <div class="education-time-description">{{graduated}}</div>
+    <!-- Education -->
+    <article>
+      <section><h3>Education:</h3></section>
+      <div class="col-container">
+        {{#Education}}
+          {{#rows}}
+          <div>
+            <div class='row-container space-between'>
+              <h4>{{school}}</h4>
+              <div>{{degree}}, {{program}}</div>
+              <div>{{graduated}}</div>
+            </div>
+            <ul>
+              {{#items}}
+              <li>{{.}}</li>
+              {{/items}}
+            </ul>
           </div>
-          <ul class="education-description c1">
-            {{#items}}
-              <li class="row"><span>&#183;</span>{{{.}}}</li>
-            {{/items}}
-          </ul>
-        {{/rows}}
+          {{/rows}}
+        {{/Education}}
       </div>
-    {{/Education}}
+    </article>
 
-    <!-- Experience -->
-    <div class="section-header z2">
-      <div class="bold1">Experience:</div>
-    </div>
-    {{#Experience}}
-      <div class="job-container section-content">
+    <!-- Work Experience -->
+    <article>
+      <section><h3>Work Experience:</h3></section>
+      {{#Experience}}
+      <div class="row-container row-gap1">
         {{#rows}}
-          <div class="job-header z3">
-            <div class="job-title">{{title}} at {{company}}</div>
-            <div class="job-location">{{location}}</div>
-            <div class="job-time-description">From {{from}} To {{to}}</div>
+          <div>
+            <div class='row-container space-between'>
+              <h4>{{title}} at {{company}}</h4>
+              <div>{{location}}</div>
+              <div>{{from}} - {{to}}</div>
+            </div>
+            <ul class='list-items'>
+              {{#items}}
+              <li>{{{.}}}</li>
+              {{/items}}
+            </ul>
           </div>
-          <ul class="job-description c1">
-            {{#items}}
-              <li class="row"><span>&#183;</span>{{{.}}}</li>
-            {{/items}}
-          </ul>
         {{/rows}}
       </div>
-    {{/Experience}}
+      {{/Experience}}
+    </article>
 
-    <!-- Side Project -->
-    <div class="section-header z4">
-      <div class="bold1">Side Projects:</div>
-    </div>
-    <ul class="side-project-container section-content c1">
-      {{#SideProjects}}
+    <!-- Side Projects -->
+    <article>
+      <section><h3>Side Projects:</h3></section>
+      <ul class='list-items'>
+        {{#SideProjects}}
         {{#rows}}
-            <li class="row"><span>&#183;</span><a href="{{link}}"><strong>{{label}}:</strong></a> {{{description}}}</li>
+        <li><a href="{{link}}">{{label}}:</a> {{{description}}}</li>
         {{/rows}}
-      {{/SideProjects}}
-    </ul>
+        {{/SideProjects}}
+      </ul>
+    </article>
 
     <!-- Skills -->
-    <div class="section-header z5">
-      <div class="bold1">Skills:</div>
-    </div>
-    <ul class="skill-container section-content c1">
-      {{#Skills}}
+    <article>
+      <section><h3>Skills:</h3></section>
+      <ul class='list-items'>
+        {{#Skills}}
         {{#rows}}
-          <li class="row"><span>&#183;</span><strong class='c0'>{{label}}:</strong> {{{description}}}</li>
+        <li><strong>{{label}}:</strong> {{{description}}}</li>
         {{/rows}}
-      {{/Skills}}
-    </ul>
-  </body>
+        {{/Skills}}
+      </ul>
+    </article>
+  </paper>
+</body>
 
-  <!-- minor scripts -->
-  <script>
-    (function () {
-      // set up anchor rel attr
-      try {
-        for(const anchorTag of document.querySelectorAll('a')){
-          anchorTag.setAttribute('target', '_blank');
-          anchorTag.setAttribute('rel', 'noopener noreferrer');
-        }
-      } catch (e) {}
+<!-- Minor Scripts -->
+<script>
+  (function () {
+    // set up anchor rel attr
+    document.querySelectorAll('a').forEach(anchorTag => {
+      anchorTag.setAttribute('target', '_blank');
+      anchorTag.setAttribute('rel', 'noopener noreferrer');
+    });
 
-      // dark mode toggle
-      let isDarkMode = false;
-      try {
-        isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      } catch (e) {}
-      document.querySelector('html').classList.toggle('light-theme', !isDarkMode);
-    })();
-  </script>
+    // dark mode toggle
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.classList.toggle('light-theme', !isDarkMode);
+  })();
+</script>
+
 </html>

@@ -1,59 +1,50 @@
-const Mustache = require('mustache');
-const fs = require('fs');
+const Mustache = require("mustache");
+const fs = require("fs");
+const { parseJsonc, autoFormat, loadResumes } = require("./src/build-utils");
 
-function generateView(inputData, outputFile) {
-  // generate the view
-  let yoe;
-  try {
-    yoe = new Date().getYear() - (2011 - 1900);
-    yoe += '+';
-  } catch (e) {
-    yoe = '8+';
+const resumes = loadResumes();
+
+// Validate resume names against reserved filenames
+const reservedNames = ["list"];
+for (const resume of resumes) {
+  if (reservedNames.includes(resume.name)) {
+    throw new Error(
+      `Resume name "${resume.name}" is reserved (conflicts with ${resume.name}.html). Choose a different name.`,
+    );
   }
+}
 
-  const commonData = {
-    yoe,
-  };
+// Parse and format shared profile data
+const profileData = autoFormat(parseJsonc("src/profile.jsonc"));
 
-  const viewData = {
-    ...eval(inputData),
-    ...commonData,
-  };
+// Generate HTML for each resume variant
+for (const resume of resumes) {
+  const dataFile = resume.dataFile || resume.name + ".jsonc";
+  const inputFile = "src/data/" + dataFile;
+  const outputFile = resume.name + ".html";
 
-  const template = readFile('src/index.mustache');
+  const variantData = autoFormat(parseJsonc(inputFile));
+  const viewData = { ...profileData, ...variantData };
+
+  const template = fs.readFileSync("src/index.mustache", "utf8");
   const output = Mustache.render(template, viewData);
   fs.writeFileSync(outputFile, output);
+
+  console.log(">", inputFile, "->", outputFile);
 }
 
-function readFile(inputFile) {
-  return fs.readFileSync(inputFile, 'utf8');
-}
-
-function parseConfigFile(inputFile, baseConfigs = {}) {
-  return {
-    ...baseConfigs,
-    ...eval(srcCommon + readFile(inputFile)),
-  };
-}
-
-const srcCommon = readFile('src/data.common.js');
-
-const dataBase = parseConfigFile('src/data-base.js');
-const dataShort = parseConfigFile('src/data-short.js', dataBase);
-
-// default short
-generateView(dataShort, 'index.html');
-
-for (const file of fs
-  .readdirSync('src')
-  .filter(
-    (file) =>
-      !file.includes('base') && file.includes('data-') && file.includes('.js'),
-  )) {
-  const inputFile = 'src/' + file;
-  const outputFile = file.replace('.js', '').replace('data-', '') + '.html';
-
-  console.log('> ', inputFile, outputFile);
-  const targetData = parseConfigFile(inputFile, dataBase);
-  generateView(targetData, outputFile);
-}
+// Generate list.html (index of all resume variants)
+const listTemplate = fs.readFileSync("src/list.mustache", "utf8");
+const listData = {
+  resumes: resumes.map((r) => ({
+    name: r.name,
+    description: r.description || "",
+    htmlFile: r.name + ".html",
+    pdfFile: r.name.startsWith("syle-resume")
+      ? r.name + ".pdf"
+      : "syle-resume-" + r.name + ".pdf",
+  })),
+};
+const listOutput = Mustache.render(listTemplate, listData);
+fs.writeFileSync("list.html", listOutput);
+console.log("> generated list.html");
