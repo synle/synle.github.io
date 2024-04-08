@@ -41,6 +41,13 @@ let resp = {
   SideProjects: {
     rows: [
       {
+        label: `react-dialog-mui`,
+        link: `https://synle.github.io/react-dialog-mui`,
+        description: `
+          This React library streamlines Material-UI dialog usage by abstracting state management and providing convenient replicas of standard JavaScript dialog methods like alert, confirm, and prompt, simplifying common UX flows
+        `._formatString(),
+      },
+      {
         label: `sqlui-native`,
         link: `https://synle.github.io/sqlui-native`,
         description: `
