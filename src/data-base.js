@@ -20,6 +20,13 @@ let resp = {
     rows: [
       {
         degree: `Master of Science`,
+        program: `Artificial Intelligence`,
+        school: `University of Texas - Austin`,
+        graduated: `2024 - Present`,
+        items: [],
+      },
+      {
+        degree: `Master of Science`,
         program: `Software Engineering`,
         school: `San Jose State University`,
         graduated: `Graduated 2019`,
