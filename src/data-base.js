@@ -36,8 +36,7 @@ let resp = {
         program: `Computer Science`,
         school: `San Jose State University`,
         graduated: `Graduated 2011`,
-        items: [
-        ],
+        items: [],
       },
     ],
   },
