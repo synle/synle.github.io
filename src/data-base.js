@@ -30,7 +30,6 @@ let resp = {
         program: `Software Engineering`,
         school: `San Jose State University`,
         graduated: `Graduated 2019`,
-        items: [`Graduated with Specialization in Cloud & Mobile Computing.`],
       },
       {
         degree: `Bachelor of Science`,
@@ -38,7 +37,6 @@ let resp = {
         school: `San Jose State University`,
         graduated: `Graduated 2011`,
         items: [
-          `Graduated Cum Laude with Specialization in Computer Graphics.`,
         ],
       },
     ],
