@@ -10,6 +10,7 @@ on:
 
 jobs:
   build:
+    if: "!contains(github.event.head_commit.message, '[CI Build]')"
     runs-on: ubuntu-latest
 
     strategy:
@@ -29,4 +30,4 @@ jobs:
       - run: npm run build
       - uses: EndBug/add-and-commit@v7
         with:
-          message: 'CI Build - Prettier & LESS build & PDF generation'
+          message: '[CI Build] - Prettier & LESS build & PDF generation'

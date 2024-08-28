@@ -21,7 +21,7 @@ let resp = {
       {
         degree: `Master of Science`,
         program: `Artificial Intelligence`,
-        school: `University of Texas - Austin`,
+        school: `The University of Texas at Austin`,
         graduated: `2024 - Present`,
         items: [],
       },
