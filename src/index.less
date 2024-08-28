@@ -122,18 +122,28 @@ a {
 
 .section-row-title {
   .h3();
-  .bold2();
   .z2();
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  gap: 1rem;
 
   > * {
     flex-shrink: 0;
   }
 
+  > *:nth-child(1) {
+    width: 400px;
+    .bold2();
+  }
+
+  > *:nth-child(2) {
+    .bold2();
+  }
+
   > *:last-child {
+    margin-left: auto;
     text-align: right;
+    .bold2();
   }
 }
 
