@@ -11,86 +11,97 @@
 </head>
 
 <body>
-  <!-- Contact Info -->
-  <section>
-    <h1>{{FullName}}</h1>
-    <div>{{Location}}</div>
-    <div><a href="tel:1-{{PhoneNumber}}">{{PhoneNumber}}</a></div>
-    <div><a href="mailto:{{Email}}">{{Email}}</a></div>
-    <div>
-      <a href="//{{HomePageURL}}">HomePage</a>
-      <a href="//{{LinkedinURL}}">LinkedIn</a>
-      <a href="//{{GithubURL}}">GitHub</a>
-      <a href="{{ResumeURL}}" download>Download Resume</a>
-    </div>
-  </section>
+  <div class='paper'>
+    <!-- Contact Info -->
+    <section>
+      <h1>{{FullName}}</h1>
+      <div>{{Location}}</div>
+      <div><a href="tel:1-{{PhoneNumber}}">{{PhoneNumber}}</a></div>
+      <div><a href="mailto:{{Email}}">{{Email}}</a></div>
+      <div>
+        <a href="//{{HomePageURL}}">HomePage</a>
+        <a href="//{{LinkedinURL}}">LinkedIn</a>
+        <a href="//{{GithubURL}}">GitHub</a>
+        <a href="{{ResumeURL}}" download>Download Resume</a>
+      </div>
+    </section>
 
-  <!-- Summary -->
-  <section>
-    <h2>Summary</h2>
-    <p>{{Summary}}</p>
-  </section>
+    <!-- Summary -->
+    <section>
+      <h2>Summary</h2>
+      <p>{{Summary}}</p>
+    </section>
 
-  <!-- Education -->
-  <section>
-    <h2>Education</h2>
-    {{#Education}}
-    <div>
-      {{#rows}}
-      <h3>{{degree}}, {{program}}</h3>
-      <div>{{school}}, {{graduated}}</div>
-      <ul>
-        {{#items}}
-        <li>{{.}}</li>
-        {{/items}}
+    <!-- Education -->
+    <section>
+      <h2>Education</h2>
+      <div class="row-container row-gap1">
+        {{#Education}}
+          {{#rows}}
+          <div>
+            <div class='row-container col-gap1'>
+              <h3>{{degree}}, {{program}}</h3>
+              <div>{{school}}</div>
+              <div>{{graduated}}</div>
+            </div>
+            <ul>
+              {{#items}}
+              <li>{{.}}</li>
+              {{/items}}
+            </ul>
+          </div>
+          {{/rows}}
+        {{/Education}}
+      </div>
+    </section>
+
+    <!-- Work Experience -->
+    <section>
+      <h2>Work Experience</h2>
+      {{#Experience}}
+      <div class="row-container row-gap1">
+        {{#rows}}
+          <div>
+            <div class='row-container col-gap1'>
+              <h3>{{title}} at {{company}}</h3>
+              <div>{{location}}</div>
+              <div>{{from}} - {{to}}</div>
+            </div>
+            <ul class='list-items'>
+              {{#items}}
+              <li>{{{.}}}</li>
+              {{/items}}
+            </ul>
+          </div>
+        {{/rows}}
+      </div>
+      {{/Experience}}
+    </section>
+
+    <!-- Side Projects -->
+    <section>
+      <h2>Side Projects</h2>
+      <ul class='list-items'>
+        {{#SideProjects}}
+        {{#rows}}
+        <li><a href="{{link}}">{{label}}:</a> {{{description}}}</li>
+        {{/rows}}
+        {{/SideProjects}}
       </ul>
-      {{/rows}}
-    </div>
-    {{/Education}}
-  </section>
+    </section>
 
-  <!-- Work Experience -->
-  <section>
-    <h2>Work Experience</h2>
-    {{#Experience}}
-    <div>
-      {{#rows}}
-      <h3>{{title}} at {{company}}</h3>
-      <div>{{location}}</div>
-      <div>{{from}} - {{to}}</div>
-      <ul>
-        {{#items}}
-        <li>{{{.}}}</li>
-        {{/items}}
+    <!-- Skills -->
+    <section>
+      <h2>Skills</h2>
+      <ul class='list-items'>
+        {{#Skills}}
+        {{#rows}}
+        <li><strong>{{label}}:</strong> {{{description}}}</li>
+        {{/rows}}
+        {{/Skills}}
       </ul>
-      {{/rows}}
-    </div>
-    {{/Experience}}
-  </section>
-
-  <!-- Side Projects -->
-  <section>
-    <h2>Side Projects</h2>
-    <ul>
-      {{#SideProjects}}
-      {{#rows}}
-      <li><a href="{{link}}">{{label}}:</a> {{{description}}}</li>
-      {{/rows}}
-      {{/SideProjects}}
-    </ul>
-  </section>
-
-  <!-- Skills -->
-  <section>
-    <h2>Skills</h2>
-    <ul>
-      {{#Skills}}
-      {{#rows}}
-      <li><strong>{{label}}:</strong> {{{description}}}</li>
-      {{/rows}}
-      {{/Skills}}
-    </ul>
-  </section>
+    </section>
+  </paper>
 </body>
 
 <!-- Minor Scripts -->

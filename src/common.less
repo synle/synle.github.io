@@ -50,17 +50,10 @@
 
 :root {
   --fontFamilyMain: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  --fontFamilySecondary: var(--fontFamilyMain);
-  --fontFamilyMonospace: monospace;
-
-  --fontWeightBold: 600;
-  --fontWeightSemiBold: 500;
-  --fontWeightLight: 300;
 
   --fontSize1: 1.25rem;
   --fontSize2: 1.1rem;
   --fontSize3: 1rem;
-  --fontSize4: 0.8rem;
 
   --spaceSizeAuto: auto;
   --spaceSize0: 0;
@@ -93,4 +86,20 @@ h2 {
 .h3,
 h3 {
   font-size: var(--fontSize3);
+}
+
+a {
+  color: var(--colorTextLink);
+  font-weight: bold;
+}
+
+html {
+  font-family: var(--fontFamilyMain);
+  background-color: var(--colorBgMain);
+  color: var(--colorTextMain);
+}
+
+body {
+  margin: 0;
+  padding: 0;
 }

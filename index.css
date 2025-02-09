@@ -64,15 +64,9 @@
 }
 :root {
   --fontFamilyMain: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  --fontFamilySecondary: var(--fontFamilyMain);
-  --fontFamilyMonospace: monospace;
-  --fontWeightBold: 600;
-  --fontWeightSemiBold: 500;
-  --fontWeightLight: 300;
   --fontSize1: 1.25rem;
   --fontSize2: 1.1rem;
   --fontSize3: 1rem;
-  --fontSize4: 0.8rem;
   --spaceSizeAuto: auto;
   --spaceSize0: 0;
 }
@@ -101,12 +95,53 @@ h2 {
 h3 {
   font-size: var(--fontSize3);
 }
+a {
+  color: var(--colorTextLink);
+  font-weight: bold;
+}
 html {
   font-family: var(--fontFamilyMain);
-  font-size: 14px;
+  background-color: var(--colorBgMain);
+  color: var(--colorTextMain);
 }
 body {
+  margin: 0;
+  padding: 0;
+}
+html {
+  font-size: 14px;
+}
+.paper {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  max-width: 1200px;
+  margin: 2rem 1rem;
+}
+.paper .row-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.paper .row-container.col-gap1 {
+  column-gap: 1rem;
+}
+.paper .row-container.row-gap1 {
+  row-gap: 0.5rem;
+  flex-direction: column;
+}
+.paper .list-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  list-style: none;
+}
+.paper .list-items > *::before {
+  content: '-';
+  margin-right: 0.2rem;
+}
+@media print {
+  .paper {
+    padding: 0;
+    margin: 0;
+  }
 }
