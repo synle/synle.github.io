@@ -15,15 +15,15 @@
     <!-- Contact Info -->
     <article>
       <h1>{{FullName}}</h1>
-      <div class='row-container space-between'>
+      <header class='row-container space-between'>
         <a href="//{{LocationURL}}">{{Location}}</a>
         <a href="tel:1-{{PhoneNumber}}">{{PhoneNumber}}</a>
         <a href="mailto:{{Email}}">{{Email}}</a>
-        <a href="//{{HomePageURL}}">{{HomePageURL}}</a>
+        <a class='hiddenMobile' href="//{{HomePageURL}}">{{HomePageURL}}</a>
         <a href="//{{LinkedinURL}}">{{LinkedinURL}}</a>
         <a href="//{{GithubURL}}">{{GithubURL}}</a>
         <a class='hiddenPrint' href="{{ResumeURL}}" download>Download Resume</a>
-      </div>
+      </header>
     </article>
 
     <!-- Summary -->
@@ -40,9 +40,9 @@
           {{#rows}}
           <div>
             <div class='row-container space-between'>
-              <h4>{{degree}}, {{program}}</h4>
               <h4>{{school}}</h4>
-              <h4>{{graduated}}</h4>
+              <div>{{degree}}, {{program}}</div>
+              <div>{{graduated}}</div>
             </div>
             <ul>
               {{#items}}
@@ -64,8 +64,8 @@
           <div>
             <div class='row-container space-between'>
               <h4>{{title}} at {{company}}</h4>
-              <h4>{{location}}</h4>
-              <h4>{{from}} - {{to}}</h4>
+              <div>{{location}}</div>
+              <div>{{from}} - {{to}}</div>
             </div>
             <ul class='list-items'>
               {{#items}}
