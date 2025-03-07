@@ -41,7 +41,7 @@ Won the SalesforceIQ Hackday Fall 2016 Most Creative award with the predictive e
       },
       {
         title: `Tech Yahoo, Software Dev Engineer`,
-        company: `Yahoo Inc`,
+        company: `Yahoo Inc.`,
         location: `Sunnyvale, CA`,
         from: `07/2014`,
         to: `04/2015`,
@@ -51,7 +51,7 @@ As an Engineer on the Yahoo Monitoring team, I worked on the redesign of the YAM
       },
       {
         title: `Software Engineer`,
-        company: `eBay Inc`,
+        company: `eBay Inc.`,
         location: `San Jose, CA`,
         from: `08/2013`,
         to: `07/2014`,

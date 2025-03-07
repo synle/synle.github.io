@@ -1,27 +1,40 @@
 @import '/common';
 
+// specific to this app
 html {
-  font-size: 14px;
+  line-height: 1.5;
 }
 
 .paper {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  max-width: 1200px;
-  margin: 2rem 1rem;
+  max-width: 900px;
+  margin: 3rem 4rem;
 
   .row-container {
     display: flex;
     flex-wrap: wrap;
+  }
 
+  .col-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+
+  .row-container,
+  .col-container {
     &.col-gap1 {
       column-gap: 1rem;
     }
 
     &.row-gap1 {
       row-gap: 0.5rem;
-      flex-direction: column;
+    }
+
+    &.space-between {
+      justify-content: space-between;
     }
   }
 
@@ -36,11 +49,76 @@ html {
       margin-right: 0.2rem;
     }
   }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    color: var(--colorTextMain);
+  }
+
+  article section h3 {
+    display: flex;
+    align-items: center;
+    text-transform: uppercase;
+    font-weight: normal;
+
+    &::after {
+      content: '';
+      flex-grow: 1;
+      height: 2px;
+      background-color: var(--colorTextMain);
+      margin-left: 0.5rem;
+    }
+  }
 }
 
 @media print {
+  html {
+    font-size: 12px;
+    line-height: 1.1;
+  }
+
   .paper {
-    padding: 0;
+    padding: 15px;
     margin: 0;
+  }
+
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    width: 100%;
+    height: 100vh;
+    page-break-after: avoid;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 0;
+    bleed: 0;
+    marks: none;
+  }
+
+  .hiddenPrint {
+    display: none;
+  }
+
+  a {
+    color: var(--colorTextMain);
+    text-decoration: none;
+  }
+}
+
+// mobile and tablet visibility
+@media screen and (max-width: 700px) {
+  .paper {
+    .row-container,
+    .col-container {
+      display: block;
+      > * {
+        display: block;
+      }
+    }
   }
 }

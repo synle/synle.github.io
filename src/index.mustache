@@ -13,36 +13,36 @@
 <body>
   <div class='paper'>
     <!-- Contact Info -->
-    <section>
+    <article>
       <h1>{{FullName}}</h1>
-      <div>{{Location}}</div>
-      <div><a href="tel:1-{{PhoneNumber}}">{{PhoneNumber}}</a></div>
-      <div><a href="mailto:{{Email}}">{{Email}}</a></div>
-      <div>
-        <a href="//{{HomePageURL}}">HomePage</a>
-        <a href="//{{LinkedinURL}}">LinkedIn</a>
-        <a href="//{{GithubURL}}">GitHub</a>
-        <a href="{{ResumeURL}}" download>Download Resume</a>
+      <div class='row-container space-between'>
+        <a href="//{{LocationURL}}">{{Location}}</a>
+        <a href="tel:1-{{PhoneNumber}}">{{PhoneNumber}}</a>
+        <a href="mailto:{{Email}}">{{Email}}</a>
+        <a href="//{{HomePageURL}}">{{HomePageURL}}</a>
+        <a href="//{{LinkedinURL}}">{{LinkedinURL}}</a>
+        <a href="//{{GithubURL}}">{{GithubURL}}</a>
+        <a class='hiddenPrint' href="{{ResumeURL}}" download>Download Resume</a>
       </div>
-    </section>
+    </article>
 
     <!-- Summary -->
-    <section>
-      <h2>Summary</h2>
+    <article>
+      <section><h3>Summary:</h3></section>
       <p>{{Summary}}</p>
-    </section>
+    </article>
 
     <!-- Education -->
-    <section>
-      <h2>Education</h2>
-      <div class="row-container row-gap1">
+    <article>
+      <section><h3>Education:</h3></section>
+      <div class="col-container">
         {{#Education}}
           {{#rows}}
           <div>
-            <div class='row-container col-gap1'>
-              <h3>{{degree}}, {{program}}</h3>
-              <div>{{school}}</div>
-              <div>{{graduated}}</div>
+            <div class='row-container space-between'>
+              <h4>{{degree}}, {{program}}</h4>
+              <h4>{{school}}</h4>
+              <h4>{{graduated}}</h4>
             </div>
             <ul>
               {{#items}}
@@ -53,19 +53,19 @@
           {{/rows}}
         {{/Education}}
       </div>
-    </section>
+    </article>
 
     <!-- Work Experience -->
-    <section>
-      <h2>Work Experience</h2>
+    <article>
+      <section><h3>Work Experience:</h3></section>
       {{#Experience}}
       <div class="row-container row-gap1">
         {{#rows}}
           <div>
-            <div class='row-container col-gap1'>
-              <h3>{{title}} at {{company}}</h3>
-              <div>{{location}}</div>
-              <div>{{from}} - {{to}}</div>
+            <div class='row-container space-between'>
+              <h4>{{title}} at {{company}}</h4>
+              <h4>{{location}}</h4>
+              <h4>{{from}} - {{to}}</h4>
             </div>
             <ul class='list-items'>
               {{#items}}
@@ -76,11 +76,11 @@
         {{/rows}}
       </div>
       {{/Experience}}
-    </section>
+    </article>
 
     <!-- Side Projects -->
-    <section>
-      <h2>Side Projects</h2>
+    <article>
+      <section><h3>Side Projects:</h3></section>
       <ul class='list-items'>
         {{#SideProjects}}
         {{#rows}}
@@ -88,11 +88,11 @@
         {{/rows}}
         {{/SideProjects}}
       </ul>
-    </section>
+    </article>
 
     <!-- Skills -->
-    <section>
-      <h2>Skills</h2>
+    <article>
+      <section><h3>Skills:</h3></section>
       <ul class='list-items'>
         {{#Skills}}
         {{#rows}}
@@ -100,7 +100,7 @@
         {{/rows}}
         {{/Skills}}
       </ul>
-    </section>
+    </article>
   </paper>
 </body>
 
