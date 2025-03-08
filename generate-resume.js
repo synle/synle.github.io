@@ -2,7 +2,9 @@ const puppeteer = require('puppeteer');
 const fs = require('fs');
 
 (async () => {
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+  });
 
   let contentHtml = fs.readFileSync('index.html', 'utf8');
   let contentCss = fs.readFileSync('index.css', 'utf8');

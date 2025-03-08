@@ -63,7 +63,7 @@
   --colorBlacklight: #333;
 }
 :root {
-  --fontFamilyMain: tahoma;
+  --fontFamilyMain: 'Arial', 'Tahoma', sans-serif;
   --fontSize1: 1.25rem;
   --fontSize2: 1.1rem;
   --fontSize3: 1rem;
@@ -181,6 +181,20 @@ html {
     padding: 15px;
     margin: 0;
   }
+  .paper header {
+    display: flex;
+    gap: 0.5rem;
+  }
+  .paper header > * {
+    flex: 1 1 calc(33.33% - 10px);
+    max-width: calc(33.33% - 10px);
+  }
+  .paper header > *:nth-child(3n) {
+    text-align: right;
+  }
+  .paper .hiddenPrint {
+    display: none;
+  }
   body {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
@@ -193,9 +207,6 @@ html {
     margin: 0;
     bleed: 0;
     marks: none;
-  }
-  .hiddenPrint {
-    display: none;
   }
   a {
     text-decoration: none;
