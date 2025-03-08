@@ -83,6 +83,24 @@ html {
   .paper {
     padding: 15px;
     margin: 0;
+
+    header {
+      display: flex;
+      gap: 0.5rem;
+
+      & > * {
+        flex: 1 1 calc(33.33% - 10px);
+        max-width: calc(33.33% - 10px);
+
+        &:nth-child(3n) {
+          text-align: right;
+        }
+      }
+    }
+
+    .hiddenPrint {
+      display: none;
+    }
   }
 
   body {
@@ -98,10 +116,6 @@ html {
     margin: 0;
     bleed: 0;
     marks: none;
-  }
-
-  .hiddenPrint {
-    display: none;
   }
 
   a {
