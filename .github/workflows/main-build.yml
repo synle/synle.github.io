@@ -18,16 +18,25 @@ jobs:
         node-version: [21.x]
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
-          ref: ${{ github.head_ref }}
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+          fetch-depth: 0 # Ensures full history is available
+
+      - name: Set up Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
           registry-url: https://registry.npmjs.org/
-      - run: npm install
-      - run: npm run build
-      - uses: EndBug/add-and-commit@v9
+
+      - name: Install dependencies
+        run: npm ci # More reliable than 'npm install'
+
+      - name: Build project
+        run: npm run build
+
+      - name: Commit changes
+        uses: EndBug/add-and-commit@v9
         with:
-          message: '[CI Build] - Prettier & LESS build & PDF generation'
+          message: '[CI Build] - Prettier & LESS build & PDF generation [skip ci]'
+          add: '.'
