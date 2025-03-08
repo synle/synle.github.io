@@ -52,7 +52,7 @@ Innovated the Aura Fiddle, allowing users to swiftly learn, share, and prototype
       },
       {
         title: `Tech Yahoo, Software Dev Engineer`,
-        company: `Yahoo Inc`,
+        company: `Yahoo Inc.`,
         location: `Sunnyvale, CA`,
         from: `07/2014`,
         to: `04/2015`,
@@ -74,7 +74,7 @@ Utilized technologies including Node Js, Express, Grunt, Karma, Protractor, Moch
       },
       {
         title: `Software Engineer`,
-        company: `eBay Inc`,
+        company: `eBay Inc.`,
         location: `San Jose, CA`,
         from: `08/2013`,
         to: `07/2014`,
@@ -92,7 +92,7 @@ Leveraged a skill set including JavaScript, jQuery, CSS, HTML, Git, Java, eBay R
       },
       {
         title: `Software Engineer`,
-        company: `Etrigue Inc`,
+        company: `Etrigue Inc.`,
         location: `San Jose, CA`,
         from: `10/2011`,
         to: `08/2013`,

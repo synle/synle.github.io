@@ -2,6 +2,7 @@ let resp = {
   // contacts
   FullName: `Sy Le`,
   Location: `Morgan Hill, CA`,
+  LocationURL: `google.com/maps/place/Morgan Hill,CA`,
   PhoneNumber: `408-216-3428`,
   Email: `le.nguyen.sy@gmail.com`,
   HomePageURL: `synle.github.io`,
