@@ -4,11 +4,6 @@
   "private": true,
   "description": "Sy's resume along with some mini apps",
   "main": "index.html",
-  "devDependencies": {
-    "concurrently": "^8.2.2",
-    "mustache": "^4.2.0",
-    "puppeteer": "^17"
-  },
   "scripts": {
     "build": "sh build.sh",
     "format": "sh format.sh",
@@ -22,5 +17,10 @@
     "Le"
   ],
   "author": "Sy Le",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "mustache": "^4.2.0",
+    "puppeteer": "^24.4.0"
+  }
 }

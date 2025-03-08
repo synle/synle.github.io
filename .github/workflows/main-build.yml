@@ -15,7 +15,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [14.x]
+        node-version: [21.x]
 
     steps:
       - uses: actions/checkout@v2
@@ -28,6 +28,6 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: npm install
       - run: npm run build
-      - uses: EndBug/add-and-commit@v7
+      - uses: EndBug/add-and-commit@v9
         with:
           message: '[CI Build] - Prettier & LESS build & PDF generation'
