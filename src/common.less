@@ -8,11 +8,11 @@
   --colorBgMain: #fff;
   --colorBgSecondary: #f2f2f2;
   --colorBgHover: #f2f2f2;
-  --colorTextMain: #000;
-  --colorTextLight: #666;
-  --colorTextLink: #005594;
+  --colorTextMain: #6e6e73;
+  --colorTextSecondary: #1d1d1f;
+  --colorLinkPrimary: #0066cc;
   --colorBorderMain: #58a6ff;
-  --colorBorderSecondary: #c9d1d9;
+  --colorBorderSecondary: #d2d2d7;
   --colorShadow: #aaa;
 }
 
@@ -21,8 +21,8 @@
   --colorBgSecondary: #161b22;
   --colorBgHover: #102138;
   --colorTextMain: #c9d1d9;
-  --colorTextLight: #999;
-  --colorTextLink: #58a6ff;
+  --colorTextSecondary: #999;
+  --colorLinkPrimary: #58a6ff;
   --colorBorderMain: #58a6ff;
   --colorBorderSecondary: #30363d;
   --colorShadow: #333;
@@ -49,7 +49,8 @@
 // END Color
 
 :root {
-  --fontFamilyMain: 'Arial', 'Tahoma', sans-serif;
+  --fontFamilyMain:
+    SF Pro Display, SF Pro Icons, Helvetica Neue, Helvetica, Arial, sans-serif;
   --fontSize1: 1.25rem;
   --fontSize2: 1.1rem;
   --fontSize3: 1rem;
@@ -87,14 +88,14 @@ h3 {
 }
 
 a {
-  color: var(--colorTextLink);
+  color: var(--colorLinkPrimary);
   text-decoration: none;
 }
 
 html {
   font-family: var(--fontFamilyMain);
   background-color: var(--colorBgMain);
-  color: var(--colorTextLight);
+  color: var(--colorTextMain);
 }
 
 body {
