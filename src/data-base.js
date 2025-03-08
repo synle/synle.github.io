@@ -4,14 +4,14 @@ let resp = {
   Location: `Morgan Hill, CA`,
   LocationURL: `google.com/maps/place/Morgan Hill,CA`,
   PhoneNumber: `408-216-3428`,
-  Email: `le.nguyen.sy@gmail.com`,
+  Email: `lenguyensy@gmail.com`,
   HomePageURL: `synle.github.io`,
   GithubURL: `github.com/synle`,
   LinkedinURL: `linkedin.com/in/syle1021`,
   ResumeURL: `/syle-resume.pdf`,
 
   Summary: `
-    I am Sy Le, a software engineer with a decade of experience at LinkedIn, Salesforce, and Yahoo.
+    I am Sy Le, a software engineer with _YOE_ years of experience at LinkedIn, Salesforce, and Yahoo.
     I built software for CRM, marketing automation, e-commerce, and monitoring platforms.
     My skills include JavaScript/TypeScript and React for front-end, and Node.js / RemixJS / Express for back-end development.
   `.trim(),
@@ -123,4 +123,7 @@ let resp = {
     ],
   },
 };
+
+const yoe = new Date().getFullYear() - 2010 - 1;
+resp['Summary'] = resp['Summary'].replace(/_YOE_/, yoe);
 resp;
