@@ -171,6 +171,12 @@ html {
 }
 .paper header {
   text-transform: uppercase;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+.paper header > *:first-child {
+  grid-column: span 3;
 }
 @media print {
   html {
@@ -180,17 +186,6 @@ html {
   .paper {
     padding: 15px;
     margin: 0;
-  }
-  .paper header {
-    display: flex;
-    gap: 0.5rem;
-  }
-  .paper header > * {
-    flex: 1 1 calc(33.33% - 10px);
-    max-width: calc(33.33% - 10px);
-  }
-  .paper header > *:nth-child(3n) {
-    text-align: right;
   }
   .paper .hiddenPrint {
     display: none;
@@ -224,6 +219,12 @@ html {
   .paper .row-container > *,
   .paper .col-container > * {
     display: block;
+  }
+  .paper header {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .paper header > *:first-child {
+    grid-column: span 1;
   }
   .paper .hiddenMobile {
     display: none;

@@ -13,20 +13,16 @@
 <body>
   <div class='paper'>
     <!-- Contact Info -->
-    <article>
-      <header class='row-container space-between'>
-        <h1>{{FullName}}</h1>
-        <span></span>
-        <span></span>
-        <a href="//{{LocationURL}}">{{Location}}</a>
-        <a href="tel:1-{{PhoneNumber}}">{{PhoneNumber}}</a>
-        <a href="mailto:{{Email}}">{{Email}}</a>
-        <a class='hiddenMobile' href="//{{HomePageURL}}">{{HomePageURL}}</a>
-        <a href="//{{LinkedinURL}}">{{LinkedinURL}}</a>
-        <a href="//{{GithubURL}}">{{GithubURL}}</a>
-        <a class='hiddenPrint' href="{{ResumeURL}}" download>Download Resume</a>
-      </header>
-    </article>
+    <header>
+      <h1>{{FullName}}</h1>
+      <a href="//{{LocationURL}}">{{Location}}</a>
+      <a href="tel:1-{{PhoneNumber}}">{{PhoneNumber}}</a>
+      <a href="mailto:{{Email}}" title="Send email">{{Email}}</a>
+      <a class='hiddenMobile' href="//{{HomePageURL}}" title="Sy's Homepage">{{HomePageURL}}</a>
+      <a href="//{{LinkedinURL}}" title="Linkedin Profile">{{LinkedinURL}}</a>
+      <a href="//{{GithubURL}}" title="View Github Contributions">{{GithubURL}}</a>
+      <a class='hiddenPrint' href="{{ResumeURL}}" title="Download Resume as PDF" download>Download Resume</a>
+    </header>
 
     <!-- Summary -->
     <article>
