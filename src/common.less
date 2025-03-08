@@ -49,20 +49,10 @@
 // END Color
 
 :root {
-  --fontFamilyMain: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  --fontFamilySecondary: var(--fontFamilyMain);
-  --fontFamilyMonospace: monospace;
-
-  --fontWeightBold: 600;
-  --fontWeightSemiBold: 500;
-  --fontWeightLight: 300;
-
-  --fontSize1: 1.5rem;
-  --fontSize2: 1.2rem;
-  --fontSize3: 1.1rem;
-  --fontSize4: 1rem;
-  --fontSize5: 0.8rem;
-
+  --fontFamilyMain: tahoma;
+  --fontSize1: 1.25rem;
+  --fontSize2: 1.1rem;
+  --fontSize3: 1rem;
   --spaceSizeAuto: auto;
   --spaceSize0: 0;
 }
@@ -94,4 +84,20 @@ h2 {
 .h3,
 h3 {
   font-size: var(--fontSize3);
+}
+
+a {
+  color: var(--colorTextLink);
+  text-decoration: none;
+}
+
+html {
+  font-family: var(--fontFamilyMain);
+  background-color: var(--colorBgMain);
+  color: var(--colorTextLight);
+}
+
+body {
+  margin: 0;
+  padding: 0;
 }

@@ -41,7 +41,7 @@ Won the SalesforceIQ Hackday Fall 2016 Most Creative award with the predictive e
       },
       {
         title: `Tech Yahoo, Software Dev Engineer`,
-        company: `Yahoo Inc`,
+        company: `Yahoo Inc.`,
         location: `Sunnyvale, CA`,
         from: `07/2014`,
         to: `04/2015`,
@@ -51,7 +51,7 @@ As an Engineer on the Yahoo Monitoring team, I worked on the redesign of the YAM
       },
       {
         title: `Software Engineer`,
-        company: `eBay Inc`,
+        company: `eBay Inc.`,
         location: `San Jose, CA`,
         from: `08/2013`,
         to: `07/2014`,
@@ -61,12 +61,12 @@ As a Software Engineer on eBay Transaction Flow and Registration team, I impleme
       },
       {
         title: `Software Engineer`,
-        company: `Etrigue Inc`,
+        company: `Etrigue Inc.`,
         location: `San Jose, CA`,
         from: `10/2011`,
         to: `08/2013`,
         items: `
-As a Full-Stack Engineer, I used JavaScript, PHP, Node.js, C#, MySQL, Cassandra, and RabbitMQ to build key components of the <a href='https://www.etrigue.com/'>eTrigue Demand Center</a>. This includes Prospect List, Campaign Builder, ETL Jobs, and vendor integration with Cisco Webex and Citrix GoToWebinar
+As a Full-Stack Engineer, I used JavaScript, PHP, Node.js, C#, MySQL, Cassandra, and RabbitMQ to build key components of the <a href='https://etrigue.com/'>eTrigue Demand Center</a>. This includes Prospect List, Campaign Builder, ETL Jobs, and vendor integration with Cisco Webex and Citrix GoToWebinar
         `._formatStringList(),
       },
       {
