@@ -172,11 +172,16 @@ html {
 .paper header {
   text-transform: uppercase;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
   gap: 0.5rem;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: repeat(3, auto);
+  flex-grow: 1;
 }
-.paper header > *:first-child {
-  grid-column: span 3;
+.paper h1 {
+  margin-right: 1rem;
+  font-size: 20px;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
 }
 @media print {
   html {
@@ -221,10 +226,10 @@ html {
     display: block;
   }
   .paper header {
-    grid-template-columns: repeat(1, 1fr);
+    display: block !important;
   }
-  .paper header > *:first-child {
-    grid-column: span 1;
+  .paper header > * {
+    display: block;
   }
   .paper .hiddenMobile {
     display: none;
