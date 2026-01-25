@@ -11,9 +11,9 @@ let resp = {
   ResumeURL: `/syle-resume.pdf`,
 
   Summary: `
-    I am Sy Le, a software engineer with _YOE_ years of experience at LinkedIn, Salesforce, and Yahoo.
-    I built software for CRM, marketing automation, e-commerce, and monitoring platforms.
-    My skills include JavaScript/TypeScript and React for front-end, and Node.js / RemixJS / Express for back-end development.
+    Staff Software Engineer with 14+ years building large-scale product platforms at LinkedIn, Salesforce, and Yahoo. 
+    Specialized in frontend-heavy full-stack systems, developer productivity, and internal platforms used by thousands of engineers. 
+    Currently pursuing an MS in Artificial Intelligence at UT Austin, with a focus on applied AI and product integration.
   `.trim(),
 
   // entries
