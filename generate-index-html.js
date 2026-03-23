@@ -1,33 +1,12 @@
 const Mustache = require('mustache');
 const fs = require('fs');
-
-function generateView(inputData, outputFile) {
-  // generate the view
-  let yoe;
-  try {
-    yoe = new Date().getYear() - (2011 - 1900);
-    yoe += '+';
-  } catch (e) {
-    yoe = '8+';
-  }
-
-  const commonData = {
-    yoe,
-  };
-
-  const viewData = {
-    ...eval(inputData),
-    ...commonData,
-  };
-
-  const template = readFile('src/index.mustache');
-  const output = Mustache.render(template, viewData);
-  fs.writeFileSync(outputFile, output);
-}
+const resumes = require('./src/resumes');
 
 function readFile(inputFile) {
   return fs.readFileSync(inputFile, 'utf8');
 }
+
+const srcCommon = readFile('src/data.common.js');
 
 function parseConfigFile(inputFile, baseConfigs = {}) {
   return {
@@ -36,24 +15,55 @@ function parseConfigFile(inputFile, baseConfigs = {}) {
   };
 }
 
-const srcCommon = readFile('src/data.common.js');
+function generateView(inputData, outputFile) {
+  let yoe;
+  try {
+    yoe = new Date().getYear() - (2011 - 1900);
+    yoe += '+';
+  } catch (e) {
+    yoe = '8+';
+  }
 
+  const viewData = {
+    ...eval(inputData),
+    yoe,
+  };
+
+  const template = readFile('src/index.mustache');
+  const output = Mustache.render(template, viewData);
+  fs.writeFileSync(outputFile, output);
+}
+
+// Parse base data
 const dataBase = parseConfigFile('src/data-base.js');
-const dataShort = parseConfigFile('src/data-short.js', dataBase);
 
-// default short
-generateView(dataShort, 'index.html');
+// Generate HTML for each resume variant
+for (const resume of resumes) {
+  const inputFile = 'src/' + resume.dataFile;
+  const outputFile = resume.name + '.html';
 
-for (const file of fs
-  .readdirSync('src')
-  .filter(
-    (file) =>
-      !file.includes('base') && file.includes('data-') && file.includes('.js'),
-  )) {
-  const inputFile = 'src/' + file;
-  const outputFile = file.replace('.js', '').replace('data-', '') + '.html';
-
-  console.log('> ', inputFile, outputFile);
+  console.log('>', inputFile, '->', outputFile);
   const targetData = parseConfigFile(inputFile, dataBase);
   generateView(targetData, outputFile);
+
+  // Copy default variant to index.html
+  if (resume.isDefault) {
+    fs.copyFileSync(outputFile, 'index.html');
+    console.log('>', outputFile, '-> index.html (default)');
+  }
 }
+
+// Generate list.html
+const listTemplate = readFile('src/list.mustache');
+const listData = {
+  resumes: resumes.map((r) => ({
+    name: r.name,
+    description: r.description,
+    htmlFile: r.name + '.html',
+    pdfFile: r.name + '.pdf',
+    isDefault: r.isDefault,
+  })),
+};
+const listOutput = Mustache.render(listTemplate, listData);
+fs.writeFileSync('list.html', listOutput);
+console.log('> generated list.html');

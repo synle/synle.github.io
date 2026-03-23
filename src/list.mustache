@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Resume Variants</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="/index.css" />
+</head>
+
+<body>
+  <div class='paper'>
+    <article>
+      <div><h1>Resume Variants</h1></div>
+      <p>Select a resume version below.</p>
+    </article>
+
+    <article>
+      <section><h3>Available Resumes:</h3></section>
+      <div class="col-container" style="gap: 1rem;">
+        {{#resumes}}
+        <div style="padding: 0.75rem; border: 1px solid var(--colorBorderSecondary); border-radius: 4px;">
+          <div class='row-container space-between' style="margin-bottom: 0.25rem;">
+            <h4>{{name}}{{#isDefault}} (default){{/isDefault}}</h4>
+            <div>
+              <a href="/{{htmlFile}}">View HTML</a>
+              &nbsp;|&nbsp;
+              <a href="/{{pdfFile}}" download>Download PDF</a>
+            </div>
+          </div>
+          <p>{{description}}</p>
+        </div>
+        {{/resumes}}
+      </div>
+    </article>
+  </div>
+</body>
+
+<script>
+  (function () {
+    document.querySelectorAll('a').forEach(anchorTag => {
+      anchorTag.setAttribute('target', '_blank');
+      anchorTag.setAttribute('rel', 'noopener noreferrer');
+    });
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    document.documentElement.classList.toggle('light-theme', !isDarkMode);
+  })();
+</script>
+
+</html>
