@@ -1,22 +1,6 @@
 // BEGIN Color
 
-:root {
-  .dark-theme();
-}
-
-.light-theme {
-  --colorBgMain: #fff;
-  --colorBgSecondary: #f2f2f2;
-  --colorBgHover: #f2f2f2;
-  --colorTextMain: #6e6e73;
-  --colorTextSecondary: #1d1d1f;
-  --colorLinkPrimary: #0066cc;
-  --colorBorderMain: #58a6ff;
-  --colorBorderSecondary: #d2d2d7;
-  --colorShadow: #aaa;
-}
-
-.dark-theme {
+@mixin dark-theme {
   --colorBgMain: #0d1117;
   --colorBgSecondary: #161b22;
   --colorBgHover: #102138;
@@ -28,15 +12,31 @@
   --colorShadow: #333;
 }
 
+@mixin light-theme {
+  --colorBgMain: #fff;
+  --colorBgSecondary: #f2f2f2;
+  --colorBgHover: #f2f2f2;
+  --colorTextMain: #6e6e73;
+  --colorTextSecondary: #1d1d1f;
+  --colorLinkPrimary: #0066cc;
+  --colorBorderMain: #58a6ff;
+  --colorBorderSecondary: #d2d2d7;
+  --colorShadow: #aaa;
+}
+
+:root {
+  @include dark-theme;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
-    .dark-theme();
+    @include dark-theme;
   }
 }
 
 @media print, (prefers-color-scheme: light) {
   :root {
-    .light-theme();
+    @include light-theme;
   }
 }
 

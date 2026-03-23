@@ -1,4 +1,4 @@
-@import '/common';
+@import 'common';
 
 // specific to this app
 html {
@@ -124,7 +124,7 @@ html {
 @media screen {
   .paper {
     max-width: 1050px;
-    width: calc(~'100% - 40px');
+    width: calc(100% - 40px);
   }
 }
 

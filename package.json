@@ -5,7 +5,7 @@
   "description": "Sy's resume along with some mini apps",
   "main": "index.html",
   "scripts": {
-    "build": "rm -f *.html *.css && node generate-index-html.js && npx -p less lessc src/index.less index.css && node generate-resume.js",
+    "build": "rm -f *.html *.css && node generate-index-html.js && npx --yes -p sass sass src/index.scss index.css && node generate-resume.js",
     "start": "npx http-server --cors . -p 3000"
   },
   "keywords": [
