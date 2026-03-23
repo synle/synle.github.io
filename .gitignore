@@ -3,3 +3,11 @@
 dist
 node_modules
 npm-debug.log
+
+# generated build artifacts
+*.css
+*.pdf
+*.map
+index.html
+short.html
+full.html
