@@ -5,11 +5,7 @@
   "description": "Sy's resume along with some mini apps",
   "main": "index.html",
   "scripts": {
-    "build": "sh build.sh",
-    "format": "sh format.sh",
-    "dev": "sh dev.sh",
-    "clean": "sh clean.sh",
-    "test": "echo \"TBD\"",
+    "build": "rm -f *.html *.css && node generate-index-html.js && npx -p less lessc src/index.less index.css && node generate-resume.js",
     "start": "npx http-server --cors . -p 3000"
   },
   "keywords": [
@@ -19,7 +15,6 @@
   "author": "Sy Le",
   "license": "ISC",
   "devDependencies": {
-    "concurrently": "^9.1.2",
     "mustache": "^4.2.0",
     "puppeteer": "^24.4.0"
   }
