@@ -1,5 +1,5 @@
 build:
-	rm -f *.html *.css
+	make clean
 	node generate-index-html.js
 	npx --yes -p sass sass src/index.scss index.css
 	node generate-resume.js
@@ -18,6 +18,9 @@ endif
 	@if [ -f "src/data/$(name).jsonc" ]; then echo "Error: src/data/$(name).jsonc already exists"; exit 1; fi
 	@echo '// $(name) resume variant\n// Overrides: Experience\n{\n  "Experience": {\n    "rows": []\n  }\n}' > src/data/$(name).jsonc
 	@echo "Created src/data/$(name).jsonc"
+
+clean:
+	rm -f *.html *.css *.pdf *.map
 
 validate:
 	make format
