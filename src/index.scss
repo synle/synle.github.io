@@ -1,6 +1,16 @@
 @use "common";
 
 // specific to this app
+:root {
+  --fontFamilyMain:
+    "SF Pro Display", "SF Pro", "Helvetica Neue", Helvetica, Arial, "Segoe UI",
+    sans-serif;
+}
+
+body {
+  padding-bottom: 0;
+}
+
 html {
   line-height: 1.5;
 }
