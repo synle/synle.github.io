@@ -24,7 +24,11 @@ for (const resume of resumes) {
   const outputFile = resume.name + ".html";
 
   const variantData = autoFormat(parseJsonc(inputFile));
-  const viewData = { ...profileData, ...variantData };
+  const pdfFile = resume.name.startsWith("syle-resume")
+    ? resume.name + ".pdf"
+    : "syle-resume-" + resume.name + ".pdf";
+  const resumeURL = resume.resumeURL || "/" + pdfFile;
+  const viewData = { ...profileData, ...variantData, ResumeURL: resumeURL };
 
   const template = fs.readFileSync("src/index.mustache", "utf8");
   const output = Mustache.render(template, viewData);

@@ -12,6 +12,7 @@
     "name": "syle-resume",
     "description": "Default resume PDF (mirrors index)",
     "dataFile": "index.jsonc",
+    "resumeURL": "/syle-resume.pdf",
   },
   {
     "name": "full",
