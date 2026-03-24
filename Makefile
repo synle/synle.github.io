@@ -19,6 +19,11 @@ endif
 	@echo '// $(name) resume variant\n// Overrides: Experience\n{\n  "Experience": {\n    "rows": []\n  }\n}' > src/data/$(name).jsonc
 	@echo "Created src/data/$(name).jsonc"
 
+validate:
+	make format
+	make test
+	make build
+
 dev:
 	curl -fsSL https://raw.githubusercontent.com/synle/gha-workflows/refs/heads/main/dev.sh | bash -s -- '*.json *.scss *.js *.html' 'make build'
 

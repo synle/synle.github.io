@@ -1,14 +1,22 @@
-.cache
+# OS / editor
 .DS_Store
-dist
+
+# dependencies
 node_modules
+
+# build cache and logs
+.cache
+dist
 npm-debug.log
 
 # generated build artifacts
 *.css
-*.pdf
 *.map
-*.patch
 *.html
+*.pdf
+*.patch
 !src/**/*.html
-.claude
+
+# claude code - ignore all except settings.json
+.claude/*
+!.claude/settings.json
