@@ -12,7 +12,7 @@
   "LinkedinURL": "linkedin.com/in/syle1021",
   "ResumeURL": "/syle-resume.pdf",
 
-  "Summary": "Staff Software Engineer with 15+ years building large-scale platforms at LinkedIn, Salesforce, and Yahoo. Specialized in full-stack systems, AI-powered product development, and internal platforms that drive engineering productivity at scale. Currently pursuing an MS in Artificial Intelligence at UT Austin, with a focus on applied AI and product integration.",
+  "Summary": "Staff Software Engineer with 15+ years of experience building and scaling enterprise platforms at LinkedIn, Salesforce, and Yahoo. Technical leader specializing in AI-powered systems, distributed architecture, and internal platforms that drive engineering productivity at scale. Currently pursuing an MS in Artificial Intelligence at UT Austin.",
 
   // Education history
   "Education": {
@@ -44,29 +44,29 @@
   "SideProjects": {
     "rows": [
       {
-        "label": "react-dialog-mui",
-        "link": "https://synle.github.io/react-dialog-mui",
-        "description": "This React library streamlines Material-UI dialog usage by abstracting state management and providing convenient replicas of standard JavaScript dialog methods like alert, confirm, and prompt, simplifying common UX flows",
-      },
-      {
         "label": "sqlui-native",
         "link": "https://synle.github.io/sqlui-native",
-        "description": "A cross-platform database management tool (Electron, React, TypeScript) supporting 12+ data stores including MySQL, PostgreSQL, SQLite, MongoDB, Redis, and Salesforce with features like data migration between engines, session management, and a VS Code-style command palette for fast workflows",
+        "description": "Cross-platform database client (Electron, React, TypeScript) supporting 12+ data stores with data migration between engines, session management, and a VS Code-style command palette for power users.",
       },
       {
         "label": "display-dj",
         "link": "https://synle.github.io/display-dj",
-        "description": "A cross-platform desktop utility (Electron) for controlling brightness on both laptop and external monitors without physical buttons, with global keyboard shortcuts, dark mode toggle, and per-display profiles on Windows and macOS",
+        "description": "Cross-platform desktop utility (Electron) for controlling brightness on laptop and external monitors without physical buttons, with global keyboard shortcuts, dark mode toggle, and per-display profiles.",
+      },
+      {
+        "label": "react-dialog-mui",
+        "link": "https://synle.github.io/react-dialog-mui",
+        "description": "React library that streamlines Material-UI dialog usage by abstracting state management and providing replicas of standard JavaScript dialog methods like alert, confirm, and prompt.",
       },
       {
         "label": "import-fixer",
         "link": "https://synle.github.io/js-import-fixer",
-        "description": "A deterministic npm executable module that removes duplicate or unused JavaScript/TypeScript imports",
+        "description": "npm CLI tool that deterministically removes duplicate and unused JavaScript/TypeScript imports.",
       },
       {
         "label": "Rest API Decorators",
         "link": "https://synle.github.io/restapi-typescript-decorators",
-        "description": "a TypeScript library that make writing API Client for Nodejs and Frontend simpler inspired by <a href='https://square.github.io/retrofit/'>Square Retrofit library</a>",
+        "description": "TypeScript library for writing API clients using decorators, inspired by <a href='https://square.github.io/retrofit/'>Square Retrofit</a>.",
       },
     ],
   },
@@ -75,24 +75,24 @@
   "Skills": {
     "rows": [
       {
-        "label": "Programing Languages",
-        "description": "JavaScript, TypeScript, Python, Java",
+        "label": "Languages",
+        "description": "JavaScript, TypeScript, Python, Java, C#",
       },
       {
-        "label": "Front End",
-        "description": "React, Redux, Reselect, React Query, Jest, Angular, Storybook, Sass, Grunt, Gulp, Puppeteer, Sinon",
+        "label": "Frontend",
+        "description": "React, Redux, React Query, Material-UI, Angular, Jest",
       },
       {
-        "label": "Back End",
-        "description": "Node.js, RemixJS, Express, next.js, Python / Flask, SQLAlchemy, Java / Spring Boot, Maven, Mockito, Jackson, Jetty",
+        "label": "Backend",
+        "description": "Node.js, Express, Flask, Spring Boot, gRPC, REST APIs",
       },
       {
-        "label": "Databases / Technologies",
-        "description": "MySQL, Microsoft SQL Server, Redis, MongoDB, Selenium, Cassandra, RabbitMQ",
+        "label": "Infrastructure",
+        "description": "MySQL, Redis, MongoDB, Cassandra, Docker, Kubernetes, AWS, Azure",
       },
       {
         "label": "Tools",
-        "description": "Git, Docker, Vagrant, VirtualBox, NGINX, JIRA, Bash, Jenkins CI, Github Actions, Azure, AWS and SauceLabs",
+        "description": "Git, CI/CD (GitHub Actions, Jenkins), JIRA",
       },
     ],
   },
