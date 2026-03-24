@@ -8,7 +8,7 @@
 </head>
 
 <body>
-  <div class='paper'>
+  <div class="paper">
     <article>
       <div><h1>Resume Variants</h1></div>
       <p>Select a resume version below.</p>
@@ -16,10 +16,10 @@
 
     <article>
       <section><h3>Available Resumes:</h3></section>
-      <div class="col-container" style="gap: 1rem;">
+      <div class="col-container" style="gap: var(--spaceSize4);">
         {{#resumes}}
-        <div style="padding: 0.75rem; border: 1px solid var(--colorBorderSecondary); border-radius: 4px;">
-          <div class='row-container space-between' style="margin-bottom: 0.25rem;">
+        <div style="padding: var(--spaceSize3); border: var(--borderSize1) solid var(--colorBorderSecondary); border-radius: var(--borderRadius1);">
+          <div class="row-container space-between" style="margin-bottom: var(--spaceSize1);">
             <h4>{{name}}</h4>
             <div>
               <a href="/{{htmlFile}}">View HTML</a>
@@ -33,17 +33,15 @@
       </div>
     </article>
   </div>
-</body>
 
-<script>
-  (function () {
-    document.querySelectorAll('a').forEach(anchorTag => {
-      anchorTag.setAttribute('target', '_blank');
-      anchorTag.setAttribute('rel', 'noopener noreferrer');
-    });
-    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    document.documentElement.classList.toggle('light-theme', !isDarkMode);
-  })();
-</script>
+  <script>
+    (function () {
+      document.querySelectorAll('a').forEach(function (a) {
+        a.setAttribute('target', '_blank');
+        a.setAttribute('rel', 'noopener noreferrer');
+      });
+    })();
+  </script>
+</body>
 
 </html>
