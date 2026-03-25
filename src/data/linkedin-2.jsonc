@@ -1,0 +1,109 @@
+// LinkedIn variant 2 — Full-stack tech lead angle.
+// Emphasizes breadth of stack, hands-on building, and technical leadership.
+{
+  "Headline": "Staff Software Engineer at LinkedIn | Full-Stack Tech Lead | React, Python, Java, Kubernetes | MS in AI at UT Austin",
+
+  "Summary": "Staff Software Engineer and full-stack tech lead with 15+ years of experience shipping products at LinkedIn, Salesforce, Yahoo, and eBay. I build end-to-end — from React frontends to Python/Java backends to Kubernetes infrastructure. Track record of leading teams, modernizing platforms, and delivering systems that scale across the enterprise. Currently pursuing an MS in Artificial Intelligence at UT Austin.",
+
+  "Experience": {
+    "rows": [
+      {
+        "title": "Staff Software Engineer",
+        "company": "LinkedIn",
+        "location": "Sunnyvale, CA",
+        "from": "05/2017",
+        "to": "Present",
+        "items": [
+          "Owned the technical vision and architecture of a company-wide talent management platform (React, Python/Flask, SQLAlchemy, gRPC), scaling it from prototype to a system of record used by engineering leadership.",
+          "Built a reusable LLM agent platform (LangChain, Azure OpenAI, gRPC streaming) that standardized AI workflows and safety controls across teams.",
+          "Delivered unified talent insights by consolidating multiple data sources into a single platform, eliminating manual workflows org-wide.",
+          "Drove infrastructure modernization (Kubernetes, Okta SSO, caching), reducing page load time from 60s to 5s and improving system reliability at scale.",
+          "Built and mentored a high-performing engineering team, reducing onboarding time significantly and increasing delivery velocity.",
+          "Earlier: led full-stack development of Nucleus (React/Redux, Spring Boot, Azure), redesigned Sendbloom's codebase (TypeScript, React, Node.js), and integrated LinkedIn Learning with Slideshare DocViewer.",
+        ],
+      },
+      {
+        "title": "Senior Member of Technical Staff",
+        "company": "Salesforce",
+        "location": "San Francisco, CA",
+        "from": "04/2015",
+        "to": "05/2017",
+        "items": [
+          "Built and shipped SalesforceIQ Inbox and Lightning integrations (TypeScript, Angular, React, Java), leading the desktop team and mentoring junior engineers.",
+          "Prototyped an Electron-based email client and Twilio-powered desktop dialer, winning two internal hackathon awards.",
+          "Created Aura Explorer and Aura Fiddle — internal developer tools for researching and prototyping Lightning components.",
+        ],
+      },
+      {
+        "title": "Software Engineer",
+        "company": "Yahoo",
+        "location": "Sunnyvale, CA",
+        "from": "07/2014",
+        "to": "04/2015",
+        "items": [
+          "Redesigned the YAMAS 2.0 monitoring dashboard (Angular, Node.js, Express), winning an award at Yahoo TechPulse 2014.",
+          "Set up CI/CD pipelines with Jenkins and Chef, and mentored engineers on Angular and Node.js.",
+        ],
+      },
+      {
+        "title": "Software Engineer",
+        "company": "eBay",
+        "location": "San Jose, CA",
+        "from": "08/2013",
+        "to": "07/2014",
+        "items": [
+          "Built responsive checkout and registration flows and extended Selenium UI automation to mobile devices using JavaScript, Java, and Spring MVC.",
+        ],
+      },
+      {
+        "title": "Software Engineer",
+        "company": "Etrigue",
+        "location": "San Jose, CA",
+        "from": "10/2011",
+        "to": "08/2013",
+        "items": [
+          "Built core modules of a marketing automation platform (JavaScript, PHP, Node.js, C#, MySQL, Cassandra, RabbitMQ) including ETL pipelines and third-party integrations.",
+        ],
+      },
+      {
+        "title": "Software Engineer",
+        "company": "MTSS",
+        "location": "San Jose, CA",
+        "from": "08/2010",
+        "to": "10/2011",
+        "items": [
+          "Built a full-stack clinic portal with patient charting, appointment management, and CMS using JavaScript, C#, and .NET.",
+        ],
+      },
+    ],
+  },
+
+  "Skills": {
+    "rows": [
+      {
+        "label": "Languages",
+        "description": "JavaScript, TypeScript, Python, Java, C#",
+      },
+      {
+        "label": "Frontend",
+        "description": "React, Redux, React Query, Material-UI, Angular, Ember, Electron",
+      },
+      {
+        "label": "Backend",
+        "description": "Node.js, Express, Flask, Spring Boot, gRPC, REST APIs",
+      },
+      {
+        "label": "AI / ML",
+        "description": "LLMs, LangChain, Azure OpenAI, AI Agents, Prompt Engineering",
+      },
+      {
+        "label": "Infrastructure",
+        "description": "Kubernetes, Docker, AWS, Azure, Redis, MongoDB, Cassandra, MySQL",
+      },
+      {
+        "label": "Tools",
+        "description": "Git, CI/CD (GitHub Actions, Jenkins), JIRA, Okta SSO",
+      },
+    ],
+  },
+}

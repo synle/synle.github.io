@@ -1,6 +1,8 @@
 // LinkedIn profile resume — optimized for LinkedIn's format with narrative-style bullets.
-// Overrides: Summary, Experience, Skills
+// Overrides: Headline, Summary, Experience, Skills
 {
+  "Headline": "Staff Software Engineer at LinkedIn | AI Platforms, Distributed Systems & Talent Intelligence | MS in AI at UT Austin",
+
   "Summary": "Staff Software Engineer with 15+ years of experience building and scaling enterprise platforms at LinkedIn, Salesforce, Yahoo, and eBay. I specialize in AI-powered systems, distributed architecture, and talent intelligence platforms that drive org-wide decision making. I define technical strategy, lead high-impact cross-org initiatives, and grow high-performing engineering teams. Currently pursuing an MS in Artificial Intelligence at UT Austin.",
 
   "Experience": {

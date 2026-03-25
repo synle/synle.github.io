@@ -1,6 +1,8 @@
 // Short resume variant — concise, one-page experience overview.
-// Overrides: Experience
+// Overrides: Headline, Experience
 {
+  "Headline": "Staff Software Engineer at LinkedIn | Full-Stack Tech Lead | MS in AI at UT Austin",
+
   "Experience": {
     "rows": [
       {

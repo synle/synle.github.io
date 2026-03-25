@@ -1,6 +1,8 @@
 // 2025 resume variant — snapshot of the short resume from 2025.
-// Overrides: Experience
+// Overrides: Headline, Experience
 {
+  "Headline": "Staff Software Engineer at LinkedIn | Full-Stack Tech Lead | MS in AI at UT Austin",
+
   "Experience": {
     "rows": [
       {

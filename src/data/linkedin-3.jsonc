@@ -1,9 +1,9 @@
-// March 2026 resume — tailored for staff+ full-stack / AI platform roles.
-// Overrides: Headline, Summary, Experience, Skills
+// LinkedIn variant 3 — Engineering leadership / people angle.
+// Emphasizes team building, mentoring, cross-org influence, and strategic impact.
 {
-  "Headline": "Staff Software Engineer at LinkedIn | AI Platforms & Distributed Systems | MS in AI at UT Austin",
+  "Headline": "Staff Software Engineer at LinkedIn | Engineering Leader | Team Builder & Cross-Org Technical Strategist | MS in AI at UT Austin",
 
-  "Summary": "Staff Software Engineer with 15+ years of experience building and scaling enterprise platforms at LinkedIn, Salesforce, and Yahoo. Technical leader specializing in AI-powered systems, distributed architecture, and talent intelligence platforms used for org-wide decision making. Proven track record of defining technical strategy, leading high-impact initiatives, and growing high-performing engineering teams. Currently pursuing an MS in Artificial Intelligence at UT Austin.",
+  "Summary": "Staff Software Engineer and engineering leader with 15+ years of experience at LinkedIn, Salesforce, Yahoo, and eBay. I grow teams, define technical strategy, and deliver platforms that transform how organizations operate. From mentoring engineers to driving cross-org initiatives, I focus on multiplying impact through people and systems. Currently pursuing an MS in Artificial Intelligence at UT Austin.",
 
   "Experience": {
     "rows": [
@@ -14,13 +14,13 @@
         "from": "05/2017",
         "to": "Present",
         "items": [
-          "Owned the technical vision and architecture of a company-wide talent management platform (React, Python/Flask, SQLAlchemy, gRPC), scaling it from prototype to a system of record used by engineering leadership for org-wide decision making.",
-          "Defined and operationalized AI strategy for LLM-powered applications, building a reusable agent platform (LangChain, Azure OpenAI, gRPC streaming) that standardized prompt engineering, streaming workflows, and safety controls across teams.",
-          "Delivered unified talent insights by consolidating 7 data sources into a single platform, eliminating 80% of manual workflows and transforming how managers evaluate performance org-wide.",
-          "Led development of a skills intelligence system, increasing skill coverage by 30% and enabling data-driven workforce planning across multiple engineering organizations.",
           "Built and mentored a high-performing engineering team, reducing onboarding time from 8 weeks to 2 weeks and increasing delivery velocity.",
-          "Drove infrastructure modernization (Kubernetes, Okta SSO, caching), reducing page load time from 60s to 5s and improving system reliability at scale.",
+          "Owned the technical vision and architecture of a company-wide talent management platform, scaling it from prototype to a system of record used by engineering leadership for org-wide decision making.",
           "Led cross-org technical initiatives supporting large-scale organizational transitions and global hiring workflows.",
+          "Defined AI strategy for LLM-powered applications, building a reusable agent platform that standardized workflows and safety controls across teams.",
+          "Delivered unified talent insights by consolidating multiple data sources, eliminating manual workflows and transforming how managers evaluate performance org-wide.",
+          "Led development of a skills intelligence system, enabling data-driven workforce planning across multiple engineering organizations.",
+          "Drove infrastructure modernization (Kubernetes, Okta SSO, caching), dramatically improving system reliability and performance at scale.",
         ],
       },
       {
@@ -30,8 +30,8 @@
         "from": "04/2015",
         "to": "05/2017",
         "items": [
-          "Built and shipped SalesforceIQ Inbox and Lightning integrations (TypeScript, Angular, React, Java), mentoring junior engineers and leading the desktop team.",
-          "Prototyped an Electron-based email client and Twilio-powered desktop dialer, winning two internal hackathon awards.",
+          "Led the SalesforceIQ Inbox Desktop team, mentoring junior engineers while shipping Lightning integrations across TypeScript, Angular, React, and Java.",
+          "Won two internal hackathon awards — fostering a culture of innovation through prototyping (Electron email client, Twilio desktop dialer).",
         ],
       },
       {
@@ -41,7 +41,7 @@
         "from": "07/2014",
         "to": "04/2015",
         "items": [
-          "Redesigned the YAMAS 2.0 monitoring dashboard (Angular, Node.js, Express), winning an award at Yahoo TechPulse 2014, and set up CI/CD pipelines with Jenkins and Chef.",
+          "Redesigned the YAMAS 2.0 monitoring dashboard, winning an award at Yahoo TechPulse 2014. Mentored engineers on Angular and Node.js.",
         ],
       },
       {
@@ -85,7 +85,7 @@
       },
       {
         "label": "AI / ML",
-        "description": "LLMs, LangChain, Azure OpenAI, AI Agents, Prompt Engineering, Content Moderation",
+        "description": "LLMs, LangChain, Azure OpenAI, AI Agents, Prompt Engineering",
       },
       {
         "label": "Frontend",

@@ -1,6 +1,8 @@
 // Full resume variant — detailed experience for all positions.
-// Overrides: Experience
+// Overrides: Headline, Experience
 {
+  "Headline": "Staff Software Engineer at LinkedIn | Full-Stack Platform Builder | 15+ Years in Enterprise Software",
+
   "Experience": {
     "rows": [
       {
