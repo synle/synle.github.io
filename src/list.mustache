@@ -16,6 +16,7 @@
 
     <article>
       <section><h3>Available Resumes:</h3></section>
+      <input id="search" type="text" placeholder="Search resumes..." style="width: 100%; padding: var(--spaceSize2); margin-bottom: var(--spaceSize3); border: var(--borderSize1) solid var(--colorBorderSecondary); border-radius: var(--borderRadius1); background: var(--colorBgPrimary); color: var(--colorTextSecondary); font-size: 1rem;" />
       <div class="col-container" style="gap: var(--spaceSize4);">
         {{#resumes}}
         <div style="padding: var(--spaceSize3); border: var(--borderSize1) solid var(--colorBorderSecondary); border-radius: var(--borderRadius1);">
@@ -39,6 +40,17 @@
       document.querySelectorAll('a').forEach(function (a) {
         a.setAttribute('target', '_blank');
         a.setAttribute('rel', 'noopener noreferrer');
+      });
+
+      var cards = document.querySelectorAll('.col-container > div');
+      var search = document.getElementById('search');
+      search.addEventListener('input', function () {
+        var terms = search.value.toLowerCase().split(/\s+/).filter(Boolean);
+        cards.forEach(function (card) {
+          var text = ((card.querySelector('h4')?.textContent || '') + ' ' + (card.querySelector('p')?.textContent || '')).toLowerCase();
+          var visible = terms.length === 0 || terms.some(function (t) { return text.indexOf(t) !== -1; });
+          card.style.display = visible ? '' : 'none';
+        });
       });
     })();
   </script>
