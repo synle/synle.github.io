@@ -66,7 +66,7 @@ html {
     color: var(--colorTextMain);
   }
 
-  article section h3 {
+  article section h2 {
     display: flex;
     align-items: center;
     text-transform: uppercase;
@@ -97,18 +97,32 @@ html {
 
   .row-container.space-between > * {
     font-size: var(--fontSize4);
+
+    &:first-child {
+      flex: 0 0 35%;
+    }
+    &:nth-child(2) {
+      flex: 0 0 40%;
+      text-align: center;
+    }
+    &:last-child {
+      flex: 0 0 25%;
+      text-align: right;
+    }
   }
 }
 
 @media print {
   html {
-    font-size: 12px;
+    font-size: 13px;
     line-height: 1.1;
   }
 
   .paper {
     padding: 15px;
     margin: 0;
+    height: 100vh;
+    justify-content: space-between;
 
     .hiddenPrint {
       display: none;
@@ -132,6 +146,16 @@ html {
 
   a {
     text-decoration: none;
+  }
+
+  .paper {
+    h1 {
+      font-size: var(--fontSize1);
+    }
+
+    .row-container.space-between > * {
+      font-size: var(--fontSize3);
+    }
   }
 }
 
