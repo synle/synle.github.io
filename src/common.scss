@@ -108,6 +108,12 @@
   }
 }
 
+@media print {
+  :root {
+    --colorBgMain: #ffffff;
+  }
+}
+
 :root[data-theme="dark"] {
   @include dark-theme;
 }

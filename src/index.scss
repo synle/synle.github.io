@@ -94,6 +94,10 @@ html {
     text-transform: uppercase;
     margin-bottom: var(--spaceSize2);
   }
+
+  .row-container.space-between > * {
+    font-size: var(--fontSize4);
+  }
 }
 
 @media print {
