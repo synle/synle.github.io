@@ -90,3 +90,14 @@ Generated files go to the repo root: `{name}.html`, `{name}.pdf`, `list.html`, `
 - Order strongest projects first (sqlui-native, display-dj).
 - Keep descriptions to one sentence focused on what it does and why it's useful.
 - Don't oversell with GitHub stats or release counts unless they're genuinely impressive.
+
+## GitHub Raw File URLs
+
+When fetching raw file content from GitHub repos, always use the `?raw=1` blob URL format:
+
+https://github.com/{owner}/{repo}/blob/head/{path}?raw=1
+
+Do NOT use:
+
+- `https://api.github.com/repos/{owner}/{repo}/contents/{path}` (GitHub Contents API)
+- `https://raw.githubusercontent.com/{owner}/{repo}/{branch}/{path}`
