@@ -3,19 +3,23 @@
   "version": "2.0.0",
   "private": true,
   "description": "Sy's resume along with some mini apps",
-  "main": "index.html",
-  "scripts": {},
   "keywords": [
-    "Sy",
-    "Le"
+    "Le",
+    "Sy"
   ],
-  "author": "Sy Le",
   "license": "ISC",
-  "engines": {
-    "node": ">=20"
+  "author": "Sy Le",
+  "main": "index.html",
+  "scripts": {
+    "format": "oxfmt --write .",
+    "format:check": "oxfmt --check ."
   },
   "devDependencies": {
     "mustache": "^4.2.0",
+    "oxfmt": "^0.61.0",
     "puppeteer": "^24.40.0"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }

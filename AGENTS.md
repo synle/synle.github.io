@@ -59,6 +59,7 @@ Generated files go to the repo root: `{name}.html`, `{name}.pdf`, `list.html`, `
 ## Resume Writing Rules (1-Pager, Staff+ ATS-Optimized)
 
 ### General Principles
+
 - **Less is more.** Fewer, sharper bullets beat a dense wall of text. Aim for 6–8 bullets max for the primary role.
 - **Lead with impact, not tasks.** Every bullet should answer "so what?" — frame outcomes, not activities.
 - **No small numbers.** Avoid citing specific user counts or team sizes that could sound underwhelming (e.g., "5,000 engineers", "700 DAU", "6 engineers"). Use relative framing instead ("org-wide", "cross-org", "company-wide").
@@ -66,27 +67,32 @@ Generated files go to the repo root: `{name}.html`, `{name}.pdf`, `list.html`, `
 - **Company names are clean.** Use "LinkedIn" (not "Linkedin"), "Yahoo" (not "Yahoo Inc."), "eBay" (not "eBay Inc."), "Etrigue" (not "Etrigue Inc.").
 
 ### Summary Section
+
 - Keep it crisp and executive-level — 3–4 sentences max.
 - Structure: years + companies → specialization → track record → education.
 - Should read as a positioning statement, not a bio.
 
 ### LinkedIn / Primary Role (Staff-Level Signals)
+
 - Lead verbs: "Owned", "Defined", "Drove", "Led", "Delivered", "Built" — signals ownership and strategy.
 - Emphasize: technical vision, cross-org influence, platform thinking, multiplier effects.
 - Frame AI work as strategy + platformization, not just implementation.
 - Consolidate related bullets rather than listing every project separately.
 
 ### Earlier Roles (Senior-Level Tone)
+
 - Keep 1–2 bullets per role. These are supporting context, not the main story.
 - Use straightforward senior verbs: "Built", "Shipped", "Redesigned", "Prototyped".
 - Don't inflate earlier roles with staff-level language.
 
 ### Skills Section
+
 - Group by signal: Languages / AI / Frontend / Backend / Infrastructure / Tools.
 - Keep it tight — drop older or niche tools (Grunt, Gulp, Vagrant, etc.) unless specifically relevant.
 - No redundancy across categories.
 
 ### Side Projects
+
 - Order strongest projects first (sqlui-native, display-dj).
 - Keep descriptions to one sentence focused on what it does and why it's useful.
 - Don't oversell with GitHub stats or release counts unless they're genuinely impressive.
@@ -103,7 +109,6 @@ Do NOT use:
 
 - `https://github.com/{owner}/{repo}/blob/HEAD/{path}?raw=1` (no CORS headers, breaks browser fetch)
 - `https://api.github.com/repos/{owner}/{repo}/contents/{path}` (returns JSON, not raw content)
-
 
 ## Git / PR Merge Policy
 

@@ -44,9 +44,7 @@ const listData = {
     name: r.name,
     description: r.description || "",
     htmlFile: r.name + ".html",
-    pdfFile: r.name.startsWith("syle-resume")
-      ? r.name + ".pdf"
-      : "syle-resume-" + r.name + ".pdf",
+    pdfFile: r.name.startsWith("syle-resume") ? r.name + ".pdf" : "syle-resume-" + r.name + ".pdf",
   })),
 };
 const listOutput = Mustache.render(listTemplate, listData);
