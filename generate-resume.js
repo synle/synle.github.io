@@ -53,7 +53,8 @@ const LETTER_HEIGHT = 11;
     };
 
     // Explicit value takes precedence, otherwise auto-detect from name
-    const allowMultiplePages = resume.allowMultiplePages ?? resume.name.includes("full");
+    const allowMultiplePages =
+      resume.allowMultiplePages ?? resume.name.includes("full");
 
     if (allowMultiplePages) {
       pdfOptions.scale = 1;

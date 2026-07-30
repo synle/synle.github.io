@@ -54,7 +54,9 @@ function autoFormat(obj) {
     const result = {};
     for (const [key, value] of Object.entries(obj)) {
       if (key === "items" && Array.isArray(value)) {
-        result[key] = value.map((s) => (typeof s === "string" ? formatString(s) : s));
+        result[key] = value.map((s) =>
+          typeof s === "string" ? formatString(s) : s,
+        );
       } else if (key === "description" && typeof value === "string") {
         result[key] = formatString(value);
       } else {
@@ -86,7 +88,8 @@ function loadResumes() {
   /** @type {Map<string, ResumeVariant>} */
   const resumeMap = new Map();
   for (const r of autoResumes) resumeMap.set(r.name, r);
-  for (const r of explicitResumes) resumeMap.set(r.name, { ...resumeMap.get(r.name), ...r });
+  for (const r of explicitResumes)
+    resumeMap.set(r.name, { ...resumeMap.get(r.name), ...r });
 
   return [...resumeMap.values()];
 }
